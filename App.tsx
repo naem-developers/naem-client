@@ -32,7 +32,10 @@ const App = () => {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <Text>Naem-client</Text>
+        <Text>
+          Naem-client
+          fdasfgasgfsg124642561425642525425142514254gfasgfasgfsagfasg asfgas
+        </Text>
       </ScrollView>
     </SafeAreaView>
   );
