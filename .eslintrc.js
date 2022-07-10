@@ -22,13 +22,10 @@ module.exports = {
   },
   plugins: ['react', 'react-hooks', '@typescript-eslint'],
   rules: {
-    'no-use-before-define': ['error', {variables: false}],
-    'react/jsx-filename-extension': [
-      2,
-      {extensions: ['.js', '.jsx', '.ts', '.tsx']},
-    ],
-    indent: ['error', 2, {SwitchCase: 1}],
-    quotes: ['error', 'single', {avoidEscape: true}],
+    'no-use-before-define': ['error', { variables: false }],
+    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+    indent: ['error', 2, { SwitchCase: 1 }],
+    quotes: ['error', 'single', { avoidEscape: true }],
     'no-empty-function': 'off',
     '@typescript-eslint/no-empty-function': 'off',
     'react/display-name': 'off',
