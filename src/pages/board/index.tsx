@@ -4,13 +4,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface BoardPageProps {}
 
-function BoardPage(props: BoardPageProps) {
+const BoardPage = (props: BoardPageProps) => {
   return (
     <SafeAreaView style={styles.container}>
       <Text>BoardPage</Text>
     </SafeAreaView>
   );
-}
+};
 
 export default BoardPage;
 

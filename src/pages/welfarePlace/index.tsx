@@ -4,13 +4,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface WelfarePlacePageProps {}
 
-function WelfarePlacePage(props: WelfarePlacePageProps) {
+const WelfarePlacePage = (props: WelfarePlacePageProps) => {
   return (
     <SafeAreaView style={styles.container}>
       <Text>WelfarePlacePage</Text>
     </SafeAreaView>
   );
-}
+};
 
 export default WelfarePlacePage;
 

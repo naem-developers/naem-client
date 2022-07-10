@@ -4,13 +4,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface HomePageProps {}
 
-function HomePage(props: HomePageProps) {
+const HomePage = (props: HomePageProps) => {
   return (
     <SafeAreaView style={styles.container}>
       <Text>HomePage</Text>
     </SafeAreaView>
   );
-}
+};
 
 export default HomePage;
 

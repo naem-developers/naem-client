@@ -8,7 +8,7 @@ import MyPage from '../pages/profile';
 
 const Tab = createBottomTabNavigator();
 
-export default function MainTabNavigator() {
+const MainTabNavigator = () => {
   return (
     <Tab.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
       <Tab.Screen name="Home" component={HomePage} />
@@ -17,4 +17,6 @@ export default function MainTabNavigator() {
       <Tab.Screen name="MyPage" component={MyPage} />
     </Tab.Navigator>
   );
-}
+};
+
+export default MainTabNavigator;
