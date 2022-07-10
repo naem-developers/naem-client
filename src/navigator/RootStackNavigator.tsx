@@ -2,6 +2,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import LandingPage from '../pages/landing';
 import SignUpStackNavigator from './SignUpStackNavigator';
+import MainTabNavigator from './MainTabNavigator';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,6 +16,7 @@ function RootStackNavigator() {
         name="SignUpStackNavigator"
         component={SignUpStackNavigator}
       />
+      <Stack.Screen name="MainTabNavigator" component={MainTabNavigator} />
     </Stack.Navigator>
   );
 }

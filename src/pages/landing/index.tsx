@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Text, StyleSheet, Button} from 'react-native';
-import {useNavigation} from '@react-navigation/core';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {useNavigation} from '@react-navigation/core';
 
 // eslint-disable-next-line ßno-unused-vars
 interface LandingPageProps {}
@@ -16,6 +16,12 @@ const LandingPage = () => {
         title="signup page"
         onPress={() => {
           navigation.push('SignUpStackNavigator');
+        }}
+      />
+      <Button
+        title="main page"
+        onPress={() => {
+          navigation.push('MainTabNavigator');
         }}
       />
     </SafeAreaView>
