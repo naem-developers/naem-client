@@ -7,38 +7,16 @@
  */
 
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {Text} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import RootStackNavigator from './src/navigator/RootStackNavigator';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-
-const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
+function App() {
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Text>
-          Naem-client
-          fdasfgasgfsg124642561425642525425142514254gfasgfasgfsagfasg asfgas
-        </Text>
-      </ScrollView>
-    </SafeAreaView>
+    <NavigationContainer>
+      <RootStackNavigator />
+    </NavigationContainer>
   );
-};
+}
 
 export default App;
