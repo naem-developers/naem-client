@@ -1,12 +1,10 @@
 import * as React from 'react';
-import {Text, StyleSheet, Button} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {useNavigation} from '@react-navigation/core';
+import { Text, StyleSheet, Button } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/core';
 
-// eslint-disable-next-line ßno-unused-vars
 interface LandingPageProps {}
 
-// eslint-disable-next-line react/function-component-definition
 const LandingPage = () => {
   const navigation = useNavigation();
   return (

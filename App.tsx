@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import {Text} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+import { Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import RootStackNavigator from './src/navigator/RootStackNavigator';
 
 function App() {
