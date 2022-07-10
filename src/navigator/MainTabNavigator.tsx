@@ -1,6 +1,6 @@
 import React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {NavigationContainer} from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
 import HomePage from '../pages/home';
 import BoardPage from '../pages/board';
 import WelfarePlacePage from '../pages/welfarePlace';
@@ -10,7 +10,7 @@ const Tab = createBottomTabNavigator();
 
 export default function MainTabNavigator() {
   return (
-    <Tab.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
+    <Tab.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
       <Tab.Screen name="Home" component={HomePage} />
       <Tab.Screen name="Board" component={BoardPage} />
       <Tab.Screen name="WelfarePlace" component={WelfarePlacePage} />
