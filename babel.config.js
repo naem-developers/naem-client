@@ -18,10 +18,11 @@ module.exports = {
         ],
         alias: {
           '~': './src',
+          '@assets': './src/assets',
           '@components': './src/components',
           '@constants': './src/constants',
           '@hooks': './src/hooks',
-          '@navigator': './src/navigator',
+          '@navigators': './src/navigators',
           '@pages': './src/pages',
           '@utils': './src/utils',
         },
