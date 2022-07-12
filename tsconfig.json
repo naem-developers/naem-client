@@ -10,18 +10,19 @@
     "noEmit": true,
     "strict": true,
     "target": "esnext",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"],
+      "@components/*": ["components/*"],
+      "@constants/*": ["constants/*"],
+      "@assets/*": ["assets/*"],
+      "@hooks/*": ["hooks/*"],
+      "@navigators/*": ["navigators/*"],
+      "@pages/*": ["pages/*"],
+      "@utils/*": ["utils/*"]
+    }
   },
-  "baseUrl": "./src",
-  "paths": {
-    "~/*": ["./*"],
-    "@components/*": ["components/*"],
-    "@constants/*": ["constants/*"],
-    "@assets/*": ["assets/*"],
-    "@hooks/*": ["hooks/*"],
-    "@navigators/*": ["navigators/*"],
-    "@pages/*": ["pages/*"],
-    "@utils/*": ["utils/*"]
-  },
+
   "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]
 }
