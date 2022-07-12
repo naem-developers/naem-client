@@ -22,7 +22,6 @@
     "@navigators/*": ["navigators/*"],
     "@pages/*": ["pages/*"],
     "@utils/*": ["utils/*"]
-  },git add .
-  
+  },
   "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]
 }
