@@ -10,7 +10,7 @@ const LandingPage = () => {
   const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={{ fontSize: 10 }}>LandingPage</Text>
+      <Text style={{ fontSize: 16 }}>LandingPage</Text>
       <Button
         title="signup page"
         onPress={() => {
