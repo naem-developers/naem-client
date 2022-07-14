@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, StyleSheet, TouchableOpacity, TouchableOpacityProps, ViewStyle } from 'react-native';
 import Text from '@components/atoms/Text';
-import { THEME } from '@/constants';
+import { THEME } from '@/theme';
 
 interface ButtonProps extends TouchableOpacityProps {
   text: string;
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     borderColor: '#c4c4c4',
   },
   disabledContainer: {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: THEME.BG,
   },
   largeContainer: {
     alignSelf: 'stretch',
@@ -75,9 +75,9 @@ const styles = StyleSheet.create({
     color: '#ffffff',
   },
   secondaryText: {
-    color: '#707070',
+    color: THEME.REG_TEXT,
   },
   disabledText: {
-    color: '#A3A3A3',
+    color: THEME.LIGHT_TEXT,
   },
 });
