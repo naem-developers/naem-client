@@ -14,7 +14,7 @@ const LandingPage = () => {
       <Button
         title="signup page"
         onPress={() => {
-          navigation.push('SignUpStackNavigator');
+          navigation.push('LoginPage');
         }}
       />
       <Button
