@@ -14,13 +14,13 @@ const LandingPage = () => {
       <Button
         title="signup page"
         onPress={() => {
-          navigation.push('LoginPage');
+          navigation.navigate('LoginPage');
         }}
       />
       <Button
         title="main page"
         onPress={() => {
-          navigation.push('MainTabNavigator');
+          navigation.navigate('MainTabNavigator');
         }}
       />
     </SafeAreaView>

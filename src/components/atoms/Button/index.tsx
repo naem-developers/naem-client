@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, StyleSheet, TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, TouchableOpacityProps, ViewStyle } from 'react-native';
 import Text from '@components/atoms/Text';
 import { THEME } from '@/constants';
 
@@ -15,6 +15,7 @@ const Button = ({
   priority = 'primary',
   btnSize = 'large',
   disabled = false,
+  style,
   ...props
 }: ButtonProps) => {
   return (
@@ -23,6 +24,7 @@ const Button = ({
         styles.container,
         styles[`${disabled ? 'disabled' : priority}Container`],
         styles[`${btnSize}Container`],
+        style,
       ]}
       disabled={disabled}
       accessible
@@ -58,6 +60,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     paddingVertical: 14,
     borderRadius: 10,
+    width: '100%',
   },
   smallContainer: {
     paddingTop: 11,
