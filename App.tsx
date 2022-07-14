@@ -9,7 +9,7 @@
 import React from 'react';
 import { Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import RootStackNavigator from './src/navigator/RootStackNavigator';
+import RootStackNavigator from './src/navigators/RootStackNavigator';
 
 function App() {
   return (
