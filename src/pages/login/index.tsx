@@ -4,6 +4,7 @@ import { H_PADDING } from '@/constants';
 import * as React from 'react';
 import { Image, ScrollView, StyleSheet, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import IcnCheckDefault from '@/assets/icons/icn_checkbox_default.svg';
 
 interface LoginPageProps {}
 
@@ -19,6 +20,7 @@ const LoginPage = (props: LoginPageProps) => {
           style={[styles.input, styles.mt14]}
           secureTextEntry
         />
+        <IcnCheckDefault width={20} height={20} />
         <Button text="확인" style={styles.button} />
       </ScrollView>
     </SafeAreaView>
