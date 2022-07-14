@@ -1,14 +1,19 @@
 import Button from '@/components/atoms/Button';
 import Text from '@/components/atoms/Text';
 import { H_PADDING } from '@/constants';
-import * as React from 'react';
-import { Image, ScrollView, StyleSheet, TextInput } from 'react-native';
+import React, { useState } from 'react';
+import { Image, ScrollView, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import IcnCheckDefault from '@/assets/icons/icn_checkbox_default.svg';
+import IcnCheckSelect from '@/assets/icons/icn_checkbox_select.svg';
+import { THEME } from '@/theme';
 
 interface LoginPageProps {}
 
 const LoginPage = (props: LoginPageProps) => {
+  // TODO: recoil 전역 상태 관리 값으로 관리하기
+  const [isSaveLoginStatus, setIsSaveLoginStatus] = useState<boolean>(false);
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.contentContainer}>
@@ -20,7 +25,17 @@ const LoginPage = (props: LoginPageProps) => {
           style={[styles.input, styles.mt14]}
           secureTextEntry
         />
-        <IcnCheckDefault width={20} height={20} />
+        <TouchableOpacity
+          style={styles.loginStatus}
+          onPress={() => setIsSaveLoginStatus((status) => !status)}
+        >
+          {isSaveLoginStatus ? (
+            <IcnCheckSelect width={20} height={20} />
+          ) : (
+            <IcnCheckDefault width={20} height={20} />
+          )}
+          <Text style={styles.loginStatusText}>로그인 상태 유지</Text>
+        </TouchableOpacity>
         <Button text="확인" style={styles.button} />
       </ScrollView>
     </SafeAreaView>
@@ -30,7 +45,7 @@ const LoginPage = (props: LoginPageProps) => {
 export default LoginPage;
 
 const styles = StyleSheet.create({
-  container: {},
+  container: { backgroundColor: THEME.BG, flex: 1 },
   contentContainer: {
     paddingHorizontal: H_PADDING,
     alignItems: 'center',
@@ -50,6 +65,17 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 21,
+  },
+  loginStatus: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'flex-start',
+    marginTop: 19,
+  },
+  loginStatusText: {
+    fontSize: 15,
+    color: THEME.REG_TEXT,
+    marginLeft: 7,
   },
   mt14: {
     marginTop: 14,
