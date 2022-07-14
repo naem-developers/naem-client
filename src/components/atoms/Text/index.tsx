@@ -10,7 +10,7 @@ interface TextProps extends RNTextProps {
 const Text = ({ children, style, ...props }: React.PropsWithChildren<TextProps>) => {
   return (
     <RNText
-      style={[style, { fontSize: RFValue(style?.fontSize, STANDARD_DEVICE_HEIGHT) }]}
+      style={[style, { fontSize: RFValue(style?.fontSize ?? 16, STANDARD_DEVICE_HEIGHT) }]}
       {...props}
     >
       {children}
