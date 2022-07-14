@@ -2,11 +2,12 @@ import Button from '@/components/atoms/Button';
 import Text from '@/components/atoms/Text';
 import { H_PADDING } from '@/constants';
 import React, { useState } from 'react';
-import { Image, ScrollView, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { Image, ScrollView, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import IcnCheckDefault from '@/assets/icons/icn_checkbox_default.svg';
 import IcnCheckSelect from '@/assets/icons/icn_checkbox_select.svg';
 import { THEME } from '@/theme';
+import TextBtn from '@/components/atoms/TextBtn';
 
 interface LoginPageProps {}
 
@@ -15,6 +16,8 @@ const LoginPage = (props: LoginPageProps) => {
   const [isSaveLoginStatus, setIsSaveLoginStatus] = useState<boolean>(false);
   const [id, setId] = useState<string>('');
   const [pw, setPw] = useState<string>('');
+
+  const handlePressSubmit = () => {};
 
   return (
     <SafeAreaView style={styles.container}>
@@ -46,7 +49,14 @@ const LoginPage = (props: LoginPageProps) => {
           )}
           <Text style={styles.loginStatusText}>로그인 상태 유지</Text>
         </TouchableOpacity>
-        <Button text="확인" style={styles.button} />
+        <Button text="확인" style={styles.button} onPress={handlePressSubmit} />
+        <View style={styles.btnsContainer}>
+          <TextBtn text="아이디 찾기" textStyle={styles.btnsText} />
+          <View style={styles.verticalDivider} />
+          <TextBtn text="비밀번호 재설정" textStyle={styles.btnsText} />
+          <View style={styles.verticalDivider} />
+          <TextBtn text="회원가입" textStyle={styles.btnsText} />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -86,6 +96,22 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: THEME.REG_TEXT,
     marginLeft: 7,
+  },
+  btnsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 28,
+  },
+  btnsText: {
+    color: THEME.REG_TEXT,
+    fontSize: 15,
+  },
+  verticalDivider: {
+    width: 1,
+    height: 10,
+    backgroundColor: THEME.LIGHT_TEXT,
+    marginHorizontal: 18,
   },
   mt14: {
     marginTop: 14,
