@@ -5,6 +5,13 @@ import SignUpStackNavigator from '@navigators/SignUpStackNavigator';
 import MainTabNavigator from '@navigators/MainTabNavigator';
 import LoginPage from '@/pages/login';
 
+export type RootStackParamList = {
+  landing: undefined;
+  SignUpStackNavigator: undefined;
+  MainTabNavigator: undefined;
+  LoginPage: undefined;
+};
+
 const Stack = createNativeStackNavigator();
 
 const RootStackNavigator = () => {
