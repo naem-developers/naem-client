@@ -13,17 +13,27 @@ interface LoginPageProps {}
 const LoginPage = (props: LoginPageProps) => {
   // TODO: recoil 전역 상태 관리 값으로 관리하기
   const [isSaveLoginStatus, setIsSaveLoginStatus] = useState<boolean>(false);
+  const [id, setId] = useState<string>('');
+  const [pw, setPw] = useState<string>('');
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <Image source={require('@/assets/logos/logo_eng.png')} style={styles.logo} />
-        <TextInput placeholder="아이디 입력" placeholderTextColor="#AEAEAE" style={styles.input} />
+        <TextInput
+          placeholder="아이디 입력"
+          placeholderTextColor="#AEAEAE"
+          style={styles.input}
+          value={id}
+          onChangeText={(text) => setId(text)}
+        />
         <TextInput
           placeholder="비밀번호 입력"
           placeholderTextColor="#AEAEAE"
           style={[styles.input, styles.mt14]}
           secureTextEntry
+          value={pw}
+          onChangeText={(text) => setPw(text)}
         />
         <TouchableOpacity
           style={styles.loginStatus}
