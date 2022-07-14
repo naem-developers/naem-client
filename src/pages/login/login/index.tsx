@@ -8,10 +8,14 @@ import IcnCheckDefault from '@/assets/icons/icn_checkbox_default.svg';
 import IcnCheckSelect from '@/assets/icons/icn_checkbox_select.svg';
 import { THEME } from '@/theme';
 import TextBtn from '@/components/atoms/TextBtn';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '@/navigators/RootStackNavigator';
 
-interface LoginPageProps {}
+interface LoginPageProps extends NativeStackScreenProps<RootStackParamList, 'LoginPage'> {}
+{
+}
 
-const LoginPage = (props: LoginPageProps) => {
+const LoginPage = ({ navigation }: LoginPageProps) => {
   // TODO: recoil 전역 상태 관리 값으로 관리하기
   const [isSaveLoginStatus, setIsSaveLoginStatus] = useState<boolean>(false);
   const [id, setId] = useState<string>('');
@@ -51,11 +55,29 @@ const LoginPage = (props: LoginPageProps) => {
         </TouchableOpacity>
         <Button text="확인" style={styles.button} onPress={handlePressSubmit} />
         <View style={styles.btnsContainer}>
-          <TextBtn text="아이디 찾기" textStyle={styles.btnsText} />
+          <TextBtn
+            text="아이디 찾기"
+            textStyle={styles.btnsText}
+            onPress={() => {
+              navigation.navigate('FindIdPage');
+            }}
+          />
           <View style={styles.verticalDivider} />
-          <TextBtn text="비밀번호 재설정" textStyle={styles.btnsText} />
+          <TextBtn
+            text="비밀번호 재설정"
+            textStyle={styles.btnsText}
+            onPress={() => {
+              navigation.navigate('FindPwPage');
+            }}
+          />
           <View style={styles.verticalDivider} />
-          <TextBtn text="회원가입" textStyle={styles.btnsText} />
+          <TextBtn
+            text="회원가입"
+            textStyle={styles.btnsText}
+            onPress={() => {
+              navigation.navigate('SignUpStackNavigator');
+            }}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
