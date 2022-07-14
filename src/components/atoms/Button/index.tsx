@@ -19,7 +19,11 @@ const Button = ({
 }: ButtonProps) => {
   return (
     <TouchableOpacity
-      style={[styles.container, styles[`${disabled ? 'disabled' : priority}Container`]]}
+      style={[
+        styles.container,
+        styles[`${disabled ? 'disabled' : priority}Container`],
+        styles[`${btnSize}Container`],
+      ]}
       disabled={disabled}
       accessible
       accessibilityLabel={text}
