@@ -21,6 +21,8 @@ const Button = ({
     <TouchableOpacity
       style={[styles.container, styles[`${disabled ? 'disabled' : priority}Container`]]}
       disabled={disabled}
+      accessible
+      accessibilityLabel={text}
       {...props}
     >
       <Text style={{ ...styles.text, ...styles[`${disabled ? 'disabled' : priority}Text`] }}>
