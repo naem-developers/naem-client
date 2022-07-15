@@ -1,5 +1,6 @@
+import Header from '@/components/organisms/Header';
 import * as React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface SignUpPageProps {}
@@ -7,7 +8,10 @@ interface SignUpPageProps {}
 const SignUpPage = (props: SignUpPageProps) => {
   return (
     <SafeAreaView style={styles.container}>
-      <Text>SignUpPage</Text>
+      <Header title="회원가입" />
+      <ScrollView>
+        <Text>SignUpPage</Text>
+      </ScrollView>
     </SafeAreaView>
   );
 };
