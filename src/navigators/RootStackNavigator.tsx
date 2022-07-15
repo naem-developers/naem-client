@@ -3,6 +3,18 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LandingPage from '@pages/landing';
 import SignUpStackNavigator from '@navigators/SignUpStackNavigator';
 import MainTabNavigator from '@navigators/MainTabNavigator';
+import LoginPage from '@/pages/login/login';
+import FindIdPage from '@/pages/login/findId';
+import FindPwPage from '@/pages/login/findPw';
+
+export type RootStackParamList = {
+  landing: undefined;
+  SignUpStackNavigator: undefined;
+  MainTabNavigator: undefined;
+  LoginPage: undefined;
+  FindIdPage: undefined;
+  FindPwPage: undefined;
+};
 
 const Stack = createNativeStackNavigator();
 
@@ -12,6 +24,9 @@ const RootStackNavigator = () => {
       <Stack.Screen name="landing" component={LandingPage} />
       <Stack.Screen name="SignUpStackNavigator" component={SignUpStackNavigator} />
       <Stack.Screen name="MainTabNavigator" component={MainTabNavigator} />
+      <Stack.Screen name="LoginPage" component={LoginPage} />
+      <Stack.Screen name="FindIdPage" component={FindIdPage} />
+      <Stack.Screen name="FindPwPage" component={FindPwPage} />
     </Stack.Navigator>
   );
 };

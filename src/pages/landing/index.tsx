@@ -3,24 +3,25 @@ import { StyleSheet, Button } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/core';
 import Text from '../../components/atoms/Text';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '@/navigators/RootStackNavigator';
 
-interface LandingPageProps {}
+interface LandingPageProps extends NativeStackScreenProps<RootStackParamList, 'landing'> {}
 
-const LandingPage = () => {
-  const navigation = useNavigation();
+const LandingPage = ({ navigation }: LandingPageProps) => {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={{ fontSize: 16 }}>LandingPage</Text>
       <Button
         title="signup page"
         onPress={() => {
-          navigation.push('SignUpStackNavigator');
+          navigation.navigate('LoginPage');
         }}
       />
       <Button
         title="main page"
         onPress={() => {
-          navigation.push('MainTabNavigator');
+          navigation.navigate('MainTabNavigator');
         }}
       />
     </SafeAreaView>

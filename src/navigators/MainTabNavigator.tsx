@@ -5,6 +5,13 @@ import WelfarePlacePage from '@pages/welfarePlace';
 import MyPage from '@pages/profile';
 import HomePage from '@pages/home';
 
+export type MainTabParamList = {
+  Home: undefined;
+  Board: undefined;
+  WelfarePlace: undefined;
+  MyPage: undefined;
+};
+
 const Tab = createBottomTabNavigator();
 
 const MainTabNavigator = () => {
