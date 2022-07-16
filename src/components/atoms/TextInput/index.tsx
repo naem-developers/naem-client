@@ -14,7 +14,7 @@ interface TextInputProps extends RNTextInputProps {
 const TextInput = ({ style, validationMsg, ...props }: TextInputProps) => {
   return (
     <>
-      <RNTextInput style={[style, styles.container]} {...props} />
+      <RNTextInput style={[style, styles.container]} placeholderTextColor="#aeaeae" {...props} />
       {!!validationMsg && <Text style={styles.validation}>{validationMsg}</Text>}
     </>
   );
@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     borderColor: THEME.LIGHT_BOX,
     borderWidth: 1.2,
     borderRadius: 10,
+    fontSize: 17,
   },
   validation: {
     marginTop: 9,
