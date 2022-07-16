@@ -6,13 +6,17 @@
  * @flow strict-local
  */
 
-import React from 'react';
-import { Text } from 'react-native';
+import React, { useEffect } from 'react';
+import SplashScreen from 'react-native-splash-screen';
 import { NavigationContainer } from '@react-navigation/native';
 import RootStackNavigator from './src/navigators/RootStackNavigator';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 function App() {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
+
   return (
     <SafeAreaProvider>
       <NavigationContainer>
