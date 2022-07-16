@@ -2,7 +2,7 @@ import Button from '@/components/atoms/Button';
 import Text from '@/components/atoms/Text';
 import { H_PADDING } from '@/constants';
 import React, { useState } from 'react';
-import { Image, ScrollView, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import IcnCheckDefault from '@/assets/icons/icn_checkbox_default.svg';
 import IcnCheckSelect from '@/assets/icons/icn_checkbox_select.svg';
@@ -10,6 +10,7 @@ import { THEME } from '@/theme';
 import TextBtn from '@/components/atoms/TextBtn';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/navigators/RootStackNavigator';
+import TextInput from '@/components/atoms/TextInput';
 
 interface LoginPageProps extends NativeStackScreenProps<RootStackParamList, 'LoginPage'> {}
 {
@@ -30,14 +31,13 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
         <TextInput
           placeholder="아이디 입력"
           placeholderTextColor="#AEAEAE"
-          style={styles.input}
           value={id}
           onChangeText={(text) => setId(text)}
         />
         <TextInput
           placeholder="비밀번호 입력"
           placeholderTextColor="#AEAEAE"
-          style={[styles.input, styles.mt14]}
+          style={styles.mt14}
           secureTextEntry
           value={pw}
           onChangeText={(text) => setPw(text)}

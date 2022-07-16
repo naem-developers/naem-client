@@ -7,4 +7,5 @@ export const THEME = {
   LIGHT_LINE: '#F3F3F3',
   POINT: '#FF6A6A',
   BG: '#F5F5F5',
+  LIGHT_BOX: '#E1E1E1',
 };
