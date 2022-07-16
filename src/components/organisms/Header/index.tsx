@@ -39,8 +39,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: 17,
-    paddingBottom: 22,
+    paddingTop: 15,
+    paddingBottom: 24,
     paddingHorizontal: 16,
   },
   titleContainer: {
