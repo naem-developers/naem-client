@@ -5,11 +5,19 @@ import {
   TextInput as RNTextInput,
   TextInputProps as RNTextInputProps,
 } from 'react-native';
+import Text from '@/components/atoms/Text';
 
-interface TextInputProps extends RNTextInputProps {}
+interface TextInputProps extends RNTextInputProps {
+  validationMsg?: string;
+}
 
-const TextInput = ({ style, ...props }: TextInputProps) => {
-  return <RNTextInput style={[style, styles.container]} {...props} />;
+const TextInput = ({ style, validationMsg, ...props }: TextInputProps) => {
+  return (
+    <>
+      <RNTextInput style={[style, styles.container]} {...props} />
+      {!!validationMsg && <Text style={styles.validation}>{validationMsg}</Text>}
+    </>
+  );
 };
 
 export default TextInput;
@@ -21,5 +29,12 @@ const styles = StyleSheet.create({
     borderColor: THEME.LIGHT_BOX,
     borderWidth: 1.2,
     borderRadius: 10,
+  },
+  validation: {
+    marginTop: 9,
+    color: '#ff6a6a',
+    fontSize: 13,
+    fontWeight: '600',
+    alignSelf: 'flex-start',
   },
 });
