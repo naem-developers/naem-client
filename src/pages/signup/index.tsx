@@ -47,6 +47,11 @@ const SignUpPage = (props: SignUpPageProps) => {
           <TextInput style={styles.input} placeholder="5자 이내, 특수문자 불가" />
           <Button text="중복 확인" btnSize="small" style={styles.btn} />
         </View>
+        <Text style={styles.subtitle}>
+          비밀번호<Text style={styles.starSup}>*</Text>
+        </Text>
+        <Button text="장애인 등록 인증하러 가기" priority="secondary" style={styles.mt10} />
+        <Button text="완료" style={styles.ctaBtn} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -90,5 +95,8 @@ const styles = StyleSheet.create({
   },
   mt10: {
     marginTop: 10,
+  },
+  ctaBtn: {
+    marginTop: 108,
   },
 });
