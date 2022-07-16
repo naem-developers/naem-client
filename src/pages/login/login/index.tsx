@@ -11,6 +11,7 @@ import TextBtn from '@/components/atoms/TextBtn';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/navigators/RootStackNavigator';
 import TextInput from '@/components/atoms/TextInput';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 interface LoginPageProps extends NativeStackScreenProps<RootStackParamList, 'LoginPage'> {}
 {
@@ -26,7 +27,7 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.contentContainer}>
+      <KeyboardAwareScrollView contentContainerStyle={styles.contentContainer}>
         <Image source={require('@/assets/logos/logo_eng.png')} style={styles.logo} />
         <TextInput
           placeholder="아이디 입력"
@@ -79,7 +80,7 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
             }}
           />
         </View>
-      </ScrollView>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 };

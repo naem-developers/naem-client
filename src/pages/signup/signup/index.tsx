@@ -8,6 +8,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { Text, StyleSheet, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 interface SignUpPageProps extends NativeStackScreenProps<SignUpStackParamList, 'SignUp'> {}
 
@@ -15,7 +16,7 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
   return (
     <SafeAreaView style={styles.container}>
       <Header title="회원가입" />
-      <ScrollView contentContainerStyle={styles.contentContainer}>
+      <KeyboardAwareScrollView contentContainerStyle={styles.contentContainer}>
         <Text style={styles.subtitle}>
           휴대폰 번호<Text style={styles.starSup}>*</Text>
         </Text>
@@ -61,7 +62,7 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
           }}
         />
         <Button text="완료" style={styles.ctaBtn} />
-      </ScrollView>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 };
