@@ -1,7 +1,9 @@
 import Text from '@/components/atoms/Text';
 import { THEME } from '@/theme';
 import * as React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import IcnArrowLeft from '@/assets/icons/icn_arrow_left.svg';
+import { useNavigation } from '@react-navigation/core';
 
 interface HeaderProps {
   title?: string;
@@ -9,11 +11,22 @@ interface HeaderProps {
   RightComponent?: React.ReactNode;
 }
 
-const Header = ({ title, LeftComponent, RightComponent }: HeaderProps) => {
+const BackButton = () => {
+  const navigation = useNavigation();
+  return (
+    <TouchableOpacity onPress={() => navigation.goBack()}>
+      <IcnArrowLeft width={16} height={16} />
+    </TouchableOpacity>
+  );
+};
+
+const Header = ({ title, LeftComponent = <BackButton />, RightComponent }: HeaderProps) => {
   return (
     <View style={styles.container}>
       <View>{LeftComponent}</View>
-      <Text style={styles.title}>{title}</Text>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>{title}</Text>
+      </View>
       <View>{RightComponent}</View>
     </View>
   );
@@ -26,8 +39,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: 14,
-    paddingBottom: 19,
+    paddingTop: 17,
+    paddingBottom: 22,
+    paddingHorizontal: 16,
+  },
+  titleContainer: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
     fontSize: 18,
