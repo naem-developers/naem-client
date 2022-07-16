@@ -2,14 +2,16 @@ import Button from '@/components/atoms/Button';
 import TextInput from '@/components/atoms/TextInput';
 import Header from '@/components/organisms/Header';
 import { H_PADDING } from '@/constants';
+import { SignUpStackParamList } from '@/navigators/SignUpStackNavigator';
 import { THEME } from '@/theme';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { Text, StyleSheet, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-interface SignUpPageProps {}
+interface SignUpPageProps extends NativeStackScreenProps<SignUpStackParamList, 'SignUp'> {}
 
-const SignUpPage = (props: SignUpPageProps) => {
+const SignUpPage = ({ navigation }: SignUpPageProps) => {
   return (
     <SafeAreaView style={styles.container}>
       <Header title="회원가입" />
@@ -50,7 +52,14 @@ const SignUpPage = (props: SignUpPageProps) => {
         <Text style={styles.subtitle}>
           비밀번호<Text style={styles.starSup}>*</Text>
         </Text>
-        <Button text="장애인 등록 인증하러 가기" priority="secondary" style={styles.mt10} />
+        <Button
+          text="장애인 등록 인증하러 가기"
+          priority="secondary"
+          style={styles.mt10}
+          onPress={() => {
+            navigation.navigate('DisabilityCertificatePage');
+          }}
+        />
         <Button text="완료" style={styles.ctaBtn} />
       </ScrollView>
     </SafeAreaView>
@@ -93,10 +102,11 @@ const styles = StyleSheet.create({
     paddingTop: 14,
     paddingBottom: 14,
   },
-  mt10: {
-    marginTop: 10,
-  },
   ctaBtn: {
     marginTop: 108,
+    marginBottom: 100,
+  },
+  mt10: {
+    marginTop: 10,
   },
 });
