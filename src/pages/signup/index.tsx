@@ -13,21 +13,29 @@ const SignUpPage = (props: SignUpPageProps) => {
     <SafeAreaView style={styles.container}>
       <Header title="회원가입" />
       <ScrollView contentContainerStyle={styles.contentContainer}>
-        <Text style={styles.subtitle}>휴대폰 번호</Text>
+        <Text style={styles.subtitle}>
+          휴대폰 번호<Text style={styles.starSup}>*</Text>
+        </Text>
         <TextInput
           style={styles.input}
           placeholder="‘-’ 없이 입력해주세요"
           keyboardType="number-pad"
         />
-        <Text style={styles.subtitle}>아이디</Text>
+        <Text style={styles.subtitle}>
+          아이디<Text style={styles.starSup}>*</Text>
+        </Text>
         <TextInput style={styles.input} placeholder="아이디를 입력해주세요" />
-        <Text style={styles.subtitle}>비밀번호</Text>
+        <Text style={styles.subtitle}>
+          비밀번호<Text style={styles.starSup}>*</Text>
+        </Text>
         <TextInput
           style={styles.input}
           placeholder="8~13자 이내 (영문, 숫자, 특수문자 포함)"
           secureTextEntry
         />
-        <Text style={styles.subtitle}>닉네임</Text>
+        <Text style={styles.subtitle}>
+          닉네임<Text style={styles.starSup}>*</Text>
+        </Text>
         <TextInput style={styles.input} placeholder="5자 이내, 특수문자 불가" />
       </ScrollView>
     </SafeAreaView>
@@ -37,7 +45,10 @@ const SignUpPage = (props: SignUpPageProps) => {
 export default SignUpPage;
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    backgroundColor: THEME.BG,
+    flex: 1,
+  },
   contentContainer: {
     paddingHorizontal: H_PADDING,
   },
@@ -49,5 +60,10 @@ const styles = StyleSheet.create({
   },
   input: {
     marginTop: 10,
+  },
+  starSup: {
+    marginLeft: 2,
+    color: THEME.POINT,
+    fontSize: 14,
   },
 });

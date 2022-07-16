@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   },
   validation: {
     marginTop: 9,
-    color: '#ff6a6a',
+    color: THEME.POINT,
     fontSize: 13,
     fontWeight: '600',
     alignSelf: 'flex-start',
