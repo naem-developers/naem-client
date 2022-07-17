@@ -6,16 +6,18 @@ import MyPage from '@pages/profile';
 import HomePage from '@pages/home';
 import { Pressable, StyleSheet, TouchableOpacity, View } from 'react-native';
 import Text from '@/components/atoms/Text';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { THEME } from '@/theme';
 import IcnHome from '@/assets/icons/icn_home.svg';
 import IcnBoard from '@/assets/icons/icn_board.svg';
 import IcnWelfarePlace from '@/assets/icons/icn_welfare_place.svg';
 import IcnMyPage from '@/assets/icons/icn_my_page.svg';
+import IcnHomeActive from '@/assets/icons/icn_home_active.svg';
+import IcnBoardActive from '@/assets/icons/icn_board_active.svg';
+import IcnWelfarePlaceActive from '@/assets/icons/icn_welfare_place_active.svg';
+import IcnMyPageActive from '@/assets/icons/icn_my_page_active.svg';
 import IcnPlusWithCircle from '@/assets/icons/icn_plus_with_circle.svg';
-import { useNavigation } from '@react-navigation/core';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from './RootStackNavigator';
+import { RootStackParamList } from '@/navigators/RootStackNavigator';
 
 export type MainTabParamList = {
   Home: undefined;
@@ -84,7 +86,13 @@ const MainTabNavigator = ({ navigation }: MainTabNavigatorProps) => {
             <TabBarIcon
               focused={focused}
               label="홈"
-              TabIcon={<IcnHome width={24} height={24} fill={focused ? THEME.MAIN : '#767676'} />}
+              TabIcon={
+                focused ? (
+                  <IcnHomeActive width={24} height={24} />
+                ) : (
+                  <IcnHome width={24} height={24} />
+                )
+              }
             />
           ),
         }}
@@ -98,7 +106,13 @@ const MainTabNavigator = ({ navigation }: MainTabNavigatorProps) => {
             <TabBarIcon
               focused={focused}
               label="게시판"
-              TabIcon={<IcnBoard width={24} height={24} fill={focused ? THEME.MAIN : '#767676'} />}
+              TabIcon={
+                focused ? (
+                  <IcnBoardActive width={24} height={24} />
+                ) : (
+                  <IcnBoard width={24} height={24} />
+                )
+              }
             />
           ),
         }}
@@ -129,7 +143,11 @@ const MainTabNavigator = ({ navigation }: MainTabNavigatorProps) => {
               focused={focused}
               label="복지 공간"
               TabIcon={
-                <IcnWelfarePlace width={24} height={24} fill={focused ? THEME.MAIN : '#767676'} />
+                focused ? (
+                  <IcnWelfarePlaceActive width={24} height={24} />
+                ) : (
+                  <IcnWelfarePlace width={24} height={24} />
+                )
               }
             />
           ),
@@ -144,7 +162,13 @@ const MainTabNavigator = ({ navigation }: MainTabNavigatorProps) => {
             <TabBarIcon
               focused={focused}
               label="마이페이지"
-              TabIcon={<IcnMyPage width={24} height={24} fill={focused ? THEME.MAIN : '#767676'} />}
+              TabIcon={
+                focused ? (
+                  <IcnMyPageActive width={24} height={24} />
+                ) : (
+                  <IcnMyPage width={24} height={24} />
+                )
+              }
             />
           ),
         }}
