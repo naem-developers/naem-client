@@ -195,6 +195,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 11,
+    marginTop: 6,
   },
 });
 
