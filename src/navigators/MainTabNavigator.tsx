@@ -4,9 +4,10 @@ import BoardPage from '@pages/board';
 import WelfarePlacePage from '@pages/welfarePlace';
 import MyPage from '@pages/profile';
 import HomePage from '@pages/home';
-import { TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import Text from '@/components/atoms/Text';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { THEME } from '@/theme';
 
 export type MainTabParamList = {
   Home: undefined;
@@ -75,7 +76,9 @@ const TabContainer = ({ state, descriptors, navigation }: BottomTabBarProps) => 
               paddingBottom: insets.bottom,
             }}
           >
-            <Text style={{ color: isFocused ? '#673ab7' : '#222' }}>{label as string}</Text>
+            <Text style={[styles.text, { color: isFocused ? THEME.MAIN : '#767676' }]}>
+              {label as string}
+            </Text>
           </TouchableOpacity>
         );
       })}
@@ -90,12 +93,22 @@ const MainTabNavigator = () => {
       screenOptions={{ headerShown: false }}
       tabBar={(props) => <TabContainer {...props} />}
     >
-      <Tab.Screen name="Home" component={HomePage} />
-      <Tab.Screen name="Board" component={BoardPage} />
-      <Tab.Screen name="WelfarePlace" component={WelfarePlacePage} />
-      <Tab.Screen name="MyPage" component={MyPage} />
+      <Tab.Screen name="Home" component={HomePage} options={{ tabBarLabel: '홈' }} />
+      <Tab.Screen name="Board" component={BoardPage} options={{ tabBarLabel: '게시판' }} />
+      <Tab.Screen
+        name="WelfarePlace"
+        component={WelfarePlacePage}
+        options={{ tabBarLabel: '복지 공간' }}
+      />
+      <Tab.Screen name="MyPage" component={MyPage} options={{ tabBarLabel: '마이페이지' }} />
     </Tab.Navigator>
   );
 };
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 11,
+  },
+});
 
 export default MainTabNavigator;
