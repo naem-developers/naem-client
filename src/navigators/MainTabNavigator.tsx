@@ -8,6 +8,10 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import Text from '@/components/atoms/Text';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { THEME } from '@/theme';
+import IcnHome from '@/assets/icons/icn_home.svg';
+import IcnBoard from '@/assets/icons/icn_board.svg';
+import IcnWelfarePlace from '@/assets/icons/icn_welfare_place.svg';
+import IcnMyPage from '@/assets/icons/icn_my_page.svg';
 
 export type MainTabParamList = {
   Home: undefined;
@@ -19,16 +23,8 @@ export type MainTabParamList = {
 const Tab = createBottomTabNavigator();
 
 const TabContainer = ({ state, descriptors, navigation }: BottomTabBarProps) => {
-  const insets = useSafeAreaInsets();
-
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
+    <View style={styles.container}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label =
@@ -38,7 +34,9 @@ const TabContainer = ({ state, descriptors, navigation }: BottomTabBarProps) => 
             ? options.title
             : route.name;
 
-        const isFocused = state.index === index;
+        const tabBarIcon = options?.tabBarIcon;
+
+        const focused = state.index === index;
 
         const onPress = () => {
           const event = navigation.emit({
@@ -47,7 +45,7 @@ const TabContainer = ({ state, descriptors, navigation }: BottomTabBarProps) => 
             canPreventDefault: true,
           });
 
-          if (!isFocused && !event.defaultPrevented) {
+          if (!focused && !event.defaultPrevented) {
             // The `merge: true` option makes sure that the params inside the tab screen are preserved
             // navigation.navigate({ name: route.name, merge: true });
             navigation.navigate(route.name);
@@ -64,19 +62,15 @@ const TabContainer = ({ state, descriptors, navigation }: BottomTabBarProps) => 
         return (
           <TouchableOpacity
             accessibilityRole="button"
-            accessibilityState={isFocused ? { selected: true } : {}}
+            accessibilityState={focused ? { selected: true } : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            style={{
-              flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-              paddingBottom: insets.bottom,
-            }}
+            style={[styles.tabContainer, { paddingBottom: insets.bottom }]}
           >
-            <Text style={[styles.text, { color: isFocused ? THEME.MAIN : '#767676' }]}>
+            <>{tabBarIcon}</>
+            <Text style={{ ...styles.text, ...{ color: focused ? THEME.MAIN : '#767676' } }}>
               {label as string}
             </Text>
           </TouchableOpacity>
@@ -86,26 +80,114 @@ const TabContainer = ({ state, descriptors, navigation }: BottomTabBarProps) => 
   );
 };
 
+const TabBarIcon = ({ focused, label, TabIcon }: any) => {
+  return (
+    <View
+      accessibilityRole="button"
+      accessibilityState={focused ? { selected: true } : {}}
+      // accessibilityLabel={options.tabBarAccessibilityLabel}
+      // testID={options.tabBarTestID}
+      // onPress={onPress}
+      // onLongPress={onLongPress}
+      style={styles.tabContainer}
+    >
+      {TabIcon}
+      <Text style={{ ...styles.text, ...{ color: focused ? THEME.MAIN : '#767676' } }}>
+        {label as string}
+      </Text>
+    </View>
+  );
+};
+
 const MainTabNavigator = () => {
   return (
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={{ headerShown: false }}
-      tabBar={(props) => <TabContainer {...props} />}
+      defaultScreenOptions={{ tabBarShowLabel: false }}
     >
-      <Tab.Screen name="Home" component={HomePage} options={{ tabBarLabel: '홈' }} />
-      <Tab.Screen name="Board" component={BoardPage} options={{ tabBarLabel: '게시판' }} />
+      <Tab.Screen
+        name="Home"
+        component={HomePage}
+        options={{
+          tabBarShowLabel: false,
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon
+              focused={focused}
+              label="홈"
+              TabIcon={<IcnHome width={24} height={24} fill={focused ? THEME.MAIN : '#767676'} />}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Board"
+        component={BoardPage}
+        options={{
+          tabBarShowLabel: false,
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon
+              focused={focused}
+              label="게시판"
+              TabIcon={<IcnBoard width={24} height={24} fill={focused ? THEME.MAIN : '#767676'} />}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen name="Write" component={HomePage} />
       <Tab.Screen
         name="WelfarePlace"
         component={WelfarePlacePage}
-        options={{ tabBarLabel: '복지 공간' }}
+        options={{
+          tabBarShowLabel: false,
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon
+              focused={focused}
+              label="복지 공간"
+              TabIcon={
+                <IcnWelfarePlace width={24} height={24} fill={focused ? THEME.MAIN : '#767676'} />
+              }
+            />
+          ),
+        }}
       />
-      <Tab.Screen name="MyPage" component={MyPage} options={{ tabBarLabel: '마이페이지' }} />
+      <Tab.Screen
+        name="MyPage"
+        component={MyPage}
+        options={{
+          tabBarShowLabel: false,
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon
+              focused={focused}
+              label="마이페이지"
+              TabIcon={<IcnMyPage width={24} height={24} fill={focused ? THEME.MAIN : '#767676'} />}
+            />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    paddingHorizontal: 16,
+    elevation: 5,
+    shadowColor: 'rgba(0, 0, 0, 0.05)',
+    backgroundColor: 'red',
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
+  },
+  tabContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  iconContainer: {
+    width: 24,
+    height: 24,
+  },
   text: {
     fontSize: 11,
   },
