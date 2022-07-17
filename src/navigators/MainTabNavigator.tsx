@@ -168,8 +168,8 @@ const MainTabNavigator = ({ navigation }: MainTabNavigatorProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    borderTopRightRadius: 12,
-    borderTopLeftRadius: 12,
+    borderTopRightRadius: 25,
+    borderTopLeftRadius: 25,
     height: 100,
     paddingTop: 16,
     paddingBottom: 36,
