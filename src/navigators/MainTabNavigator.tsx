@@ -198,4 +198,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MainTabNavigator;
+export default React.memo(MainTabNavigator);
