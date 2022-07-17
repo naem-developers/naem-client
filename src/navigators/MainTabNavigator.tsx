@@ -12,7 +12,10 @@ import IcnHome from '@/assets/icons/icn_home.svg';
 import IcnBoard from '@/assets/icons/icn_board.svg';
 import IcnWelfarePlace from '@/assets/icons/icn_welfare_place.svg';
 import IcnMyPage from '@/assets/icons/icn_my_page.svg';
+import IcnPlusWithCircle from '@/assets/icons/icn_plus_with_circle.svg';
 import { useNavigation } from '@react-navigation/core';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from './RootStackNavigator';
 
 export type MainTabParamList = {
   Home: undefined;
@@ -21,65 +24,8 @@ export type MainTabParamList = {
   MyPage: undefined;
 };
 
-const Tab = createBottomTabNavigator();
-
-const TabContainer = ({ state, descriptors, navigation }: BottomTabBarProps) => {
-  return (
-    <View style={styles.container}>
-      {state.routes.map((route, index) => {
-        const { options } = descriptors[route.key];
-        const label =
-          options.tabBarLabel !== undefined
-            ? options.tabBarLabel
-            : options.title !== undefined
-            ? options.title
-            : route.name;
-
-        const tabBarIcon = options?.tabBarIcon;
-
-        const focused = state.index === index;
-
-        const onPress = () => {
-          const event = navigation.emit({
-            type: 'tabPress',
-            target: route.key,
-            canPreventDefault: true,
-          });
-
-          if (!focused && !event.defaultPrevented) {
-            // The `merge: true` option makes sure that the params inside the tab screen are preserved
-            // navigation.navigate({ name: route.name, merge: true });
-            navigation.navigate(route.name);
-          }
-        };
-
-        const onLongPress = () => {
-          navigation.emit({
-            type: 'tabLongPress',
-            target: route.key,
-          });
-        };
-
-        return (
-          <TouchableOpacity
-            accessibilityRole="button"
-            accessibilityState={focused ? { selected: true } : {}}
-            accessibilityLabel={options.tabBarAccessibilityLabel}
-            testID={options.tabBarTestID}
-            onPress={onPress}
-            onLongPress={onLongPress}
-            style={[styles.tabContainer, { paddingBottom: insets.bottom }]}
-          >
-            <>{tabBarIcon}</>
-            <Text style={{ ...styles.text, ...{ color: focused ? THEME.MAIN : '#767676' } }}>
-              {label as string}
-            </Text>
-          </TouchableOpacity>
-        );
-      })}
-    </View>
-  );
-};
+interface MainTabNavigatorProps
+  extends NativeStackScreenProps<RootStackParamList, 'MainTabNavigator'> {}
 
 interface TabBarIconProps {
   focused?: boolean;
@@ -87,6 +33,8 @@ interface TabBarIconProps {
   TabIcon?: React.ReactNode;
   onPress?: () => void;
 }
+
+const Tab = createBottomTabNavigator();
 
 const TabBarIcon = ({ focused, label, TabIcon, onPress }: TabBarIconProps) => {
   const Container = Boolean(onPress) ? Pressable : View;
@@ -109,9 +57,7 @@ const TabBarIcon = ({ focused, label, TabIcon, onPress }: TabBarIconProps) => {
   );
 };
 
-const MainTabNavigator = () => {
-  const navigation = useNavigation();
-
+const MainTabNavigator = ({ navigation }: MainTabNavigatorProps) => {
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -168,7 +114,7 @@ const MainTabNavigator = () => {
               onPress={() => {
                 navigation.navigate('PostPage');
               }}
-              TabIcon={<IcnBoard width={48} height={48} fill={focused ? THEME.MAIN : '#767676'} />}
+              TabIcon={<IcnPlusWithCircle width={48} height={48} />}
             />
           ),
         }}
