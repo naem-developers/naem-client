@@ -12,6 +12,7 @@ import IcnHome from '@/assets/icons/icn_home.svg';
 import IcnBoard from '@/assets/icons/icn_board.svg';
 import IcnWelfarePlace from '@/assets/icons/icn_welfare_place.svg';
 import IcnMyPage from '@/assets/icons/icn_my_page.svg';
+import { useNavigation } from '@react-navigation/core';
 
 export type MainTabParamList = {
   Home: undefined;
@@ -109,6 +110,8 @@ const TabBarIcon = ({ focused, label, TabIcon, onPress }: TabBarIconProps) => {
 };
 
 const MainTabNavigator = () => {
+  const navigation = useNavigation();
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -155,14 +158,16 @@ const MainTabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Write"
+        name="Post"
         component={HomePage}
         options={{
           tabBarShowLabel: false,
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
               focused={focused}
-              onPress={() => {}}
+              onPress={() => {
+                navigation.navigate('PostPage');
+              }}
               TabIcon={<IcnBoard width={48} height={48} fill={focused ? THEME.MAIN : '#767676'} />}
             />
           ),
