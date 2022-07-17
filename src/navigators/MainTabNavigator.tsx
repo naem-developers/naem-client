@@ -77,9 +77,9 @@ const MainTabNavigator = ({ navigation }: MainTabNavigatorProps) => {
               label="홈"
               TabIcon={
                 focused ? (
-                  <IcnHomeActive width={24} height={24} />
+                  <IcnHomeActive width={28} height={28} />
                 ) : (
-                  <IcnHome width={24} height={24} />
+                  <IcnHome width={28} height={28} />
                 )
               }
             />
@@ -97,9 +97,9 @@ const MainTabNavigator = ({ navigation }: MainTabNavigatorProps) => {
               label="게시판"
               TabIcon={
                 focused ? (
-                  <IcnBoardActive width={24} height={24} />
+                  <IcnBoardActive width={28} height={28} />
                 ) : (
-                  <IcnBoard width={24} height={24} />
+                  <IcnBoard width={28} height={28} />
                 )
               }
             />
@@ -133,9 +133,9 @@ const MainTabNavigator = ({ navigation }: MainTabNavigatorProps) => {
               label="복지 공간"
               TabIcon={
                 focused ? (
-                  <IcnWelfarePlaceActive width={24} height={24} />
+                  <IcnWelfarePlaceActive width={28} height={28} />
                 ) : (
-                  <IcnWelfarePlace width={24} height={24} />
+                  <IcnWelfarePlace width={28} height={28} />
                 )
               }
             />
@@ -153,9 +153,9 @@ const MainTabNavigator = ({ navigation }: MainTabNavigatorProps) => {
               label="마이페이지"
               TabIcon={
                 focused ? (
-                  <IcnMyPageActive width={24} height={24} />
+                  <IcnMyPageActive width={28} height={28} />
                 ) : (
-                  <IcnMyPage width={24} height={24} />
+                  <IcnMyPage width={28} height={28} />
                 )
               }
             />
