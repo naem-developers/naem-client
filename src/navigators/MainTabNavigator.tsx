@@ -1,10 +1,10 @@
 import React from 'react';
-import { BottomTabBarProps, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import BoardPage from '@pages/board';
 import WelfarePlacePage from '@pages/welfarePlace';
 import MyPage from '@pages/profile';
 import HomePage from '@pages/home';
-import { Pressable, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import Text from '@/components/atoms/Text';
 import { THEME } from '@/theme';
 import IcnHome from '@/assets/icons/icn_home.svg';
@@ -45,9 +45,6 @@ const TabBarIcon = ({ focused, label, TabIcon, onPress }: TabBarIconProps) => {
     <Container
       accessibilityRole="button"
       accessibilityState={focused ? { selected: true } : {}}
-      // accessibilityLabel={options.tabBarAccessibilityLabel}
-      // testID={options.tabBarTestID}
-      // onLongPress={onLongPress}
       onPress={onPress}
       style={styles.tabContainer}
     >
