@@ -94,7 +94,7 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
         </Text>
         {/* TODO: 인증 여부 플래그 추가 */}
         <Button
-          text="장애인 등록 인증하러 가기"
+          text="장애인 인증하러 가기"
           priority="secondary"
           style={styles.mt10}
           onPress={() => {
