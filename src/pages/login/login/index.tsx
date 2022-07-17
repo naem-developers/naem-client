@@ -45,6 +45,9 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
         <TouchableOpacity
           style={styles.loginStatus}
           onPress={() => setIsSaveLoginStatus((status) => !status)}
+          accessibilityRole="button"
+          accessibilityState={{ selected: isSaveLoginStatus }}
+          accessibilityLabel={isSaveLoginStatus ? '로그인 상태 유지' : '로인 상태 유지하지 않음'}
         >
           {isSaveLoginStatus ? (
             <IcnCheckSelect width={20} height={20} />
