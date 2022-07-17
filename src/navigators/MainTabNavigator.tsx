@@ -4,7 +4,7 @@ import BoardPage from '@pages/board';
 import WelfarePlacePage from '@pages/welfarePlace';
 import MyPage from '@pages/profile';
 import HomePage from '@pages/home';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Pressable, StyleSheet, TouchableOpacity, View } from 'react-native';
 import Text from '@/components/atoms/Text';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { THEME } from '@/theme';
@@ -80,22 +80,31 @@ const TabContainer = ({ state, descriptors, navigation }: BottomTabBarProps) => 
   );
 };
 
-const TabBarIcon = ({ focused, label, TabIcon }: any) => {
+interface TabBarIconProps {
+  focused?: boolean;
+  label?: string;
+  TabIcon?: React.ReactNode;
+  onPress?: () => void;
+}
+
+const TabBarIcon = ({ focused, label, TabIcon, onPress }: TabBarIconProps) => {
+  const Container = Boolean(onPress) ? Pressable : View;
+
   return (
-    <View
+    <Container
       accessibilityRole="button"
       accessibilityState={focused ? { selected: true } : {}}
       // accessibilityLabel={options.tabBarAccessibilityLabel}
       // testID={options.tabBarTestID}
-      // onPress={onPress}
       // onLongPress={onLongPress}
+      onPress={onPress}
       style={styles.tabContainer}
     >
       {TabIcon}
       <Text style={{ ...styles.text, ...{ color: focused ? THEME.MAIN : '#767676' } }}>
         {label as string}
       </Text>
-    </View>
+    </Container>
   );
 };
 
@@ -103,8 +112,19 @@ const MainTabNavigator = () => {
   return (
     <Tab.Navigator
       initialRouteName="Home"
-      screenOptions={{ headerShown: false }}
-      defaultScreenOptions={{ tabBarShowLabel: false }}
+      screenOptions={{
+        headerShown: false,
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          borderTopRightRadius: 12,
+          borderTopLeftRadius: 12,
+          height: 100,
+          paddingTop: 16,
+          paddingBottom: 36,
+          justifyContent: 'center',
+          alignItems: 'center',
+        },
+      }}
     >
       <Tab.Screen
         name="Home"
@@ -134,7 +154,20 @@ const MainTabNavigator = () => {
           ),
         }}
       />
-      <Tab.Screen name="Write" component={HomePage} />
+      <Tab.Screen
+        name="Write"
+        component={HomePage}
+        options={{
+          tabBarShowLabel: false,
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon
+              focused={focused}
+              onPress={() => {}}
+              TabIcon={<IcnBoard width={48} height={48} fill={focused ? THEME.MAIN : '#767676'} />}
+            />
+          ),
+        }}
+      />
       <Tab.Screen
         name="WelfarePlace"
         component={WelfarePlacePage}
