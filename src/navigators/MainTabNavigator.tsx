@@ -63,15 +63,7 @@ const MainTabNavigator = ({ navigation }: MainTabNavigatorProps) => {
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarStyle: {
-          borderTopRightRadius: 12,
-          borderTopLeftRadius: 12,
-          height: 100,
-          paddingTop: 16,
-          paddingBottom: 36,
-          justifyContent: 'center',
-          alignItems: 'center',
-        },
+        tabBarStyle: styles.container,
       }}
     >
       <Tab.Screen
@@ -176,13 +168,20 @@ const MainTabNavigator = ({ navigation }: MainTabNavigatorProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    paddingHorizontal: 16,
-    elevation: 5,
-    shadowColor: 'rgba(0, 0, 0, 0.05)',
-    backgroundColor: 'red',
-    borderTopLeftRadius: 12,
     borderTopRightRadius: 12,
+    borderTopLeftRadius: 12,
+    height: 100,
+    paddingTop: 16,
+    paddingBottom: 36,
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 0,
+    backgroundColor: THEME.BG,
+    shadowColor: 'rgba(0, 0, 0, 0.5)',
+    shadowOffset: {
+      width: 0,
+      height: -1,
+    },
   },
   tabContainer: {
     flex: 1,
