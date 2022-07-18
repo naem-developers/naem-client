@@ -23,11 +23,11 @@ const BackButton = () => {
 const Header = ({ title, LeftComponent = <BackButton />, RightComponent }: HeaderProps) => {
   return (
     <View style={styles.container}>
-      <View>{LeftComponent}</View>
+      <View style={styles.zIndex1}>{LeftComponent}</View>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>{title}</Text>
       </View>
-      <View>{RightComponent}</View>
+      <View style={styles.zIndex1}>{RightComponent}</View>
     </View>
   );
 };
@@ -42,6 +42,9 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     paddingBottom: 24,
     paddingHorizontal: 16,
+  },
+  zIndex1: {
+    zIndex: 1,
   },
   titleContainer: {
     ...StyleSheet.absoluteFillObject,
