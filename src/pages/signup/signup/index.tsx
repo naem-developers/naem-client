@@ -9,7 +9,7 @@ import React, { useCallback, useState } from 'react';
 import { Text, StyleSheet, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { validatePhoneNum } from '@/utils/validation';
+import { validateId, validatePhoneNum } from '@/utils/validation';
 
 interface SignUpPageProps extends NativeStackScreenProps<SignUpStackParamList, 'SignUp'> {}
 
@@ -19,17 +19,27 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
   const [pw, setPw] = useState<string>('');
   const [nickname, setNickname] = useState<string>('');
   const [phoneNumValidationMsg, setPhoneNumValidationMsg] = useState<string>('');
+  const [idValidationMsg, setIdValidationMsg] = useState<string>('');
 
   const checkPhoneNum = useCallback(() => {
     const tempPhoneValidMsg = validatePhoneNum(phoneNum);
     setPhoneNumValidationMsg(tempPhoneValidMsg);
     return !!tempPhoneValidMsg;
   }, [phoneNum]);
+
+  const checkId = useCallback(() => {
+    const tempIdValidMsg = validateId(id);
+    setIdValidationMsg(tempIdValidMsg);
+    return !!tempIdValidMsg;
+  }, [id]);
+
   // TODO: 함수 구현
   const handleSendCertNum = useCallback(() => {
     checkPhoneNum();
   }, [checkPhoneNum]);
-  const handleCheckDuplicateId = useCallback(() => {}, []);
+  const handleCheckDuplicateId = useCallback(() => {
+    checkId();
+  }, [checkId]);
   const handleCheckDuplicateNickname = useCallback(() => {}, []);
 
   return (
@@ -65,6 +75,8 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
             placeholder="아이디를 입력해주세요"
             value={id}
             onChangeText={(text) => setId(text)}
+            onBlur={checkId}
+            validationMsg={idValidationMsg}
           />
           <Button
             text="중복 확인"
