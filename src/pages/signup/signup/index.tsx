@@ -9,6 +9,7 @@ import React, { useCallback, useState } from 'react';
 import { Text, StyleSheet, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { validatePhoneNum } from '@/utils/validation';
 
 interface SignUpPageProps extends NativeStackScreenProps<SignUpStackParamList, 'SignUp'> {}
 
@@ -17,9 +18,17 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
   const [id, setId] = useState<string>('');
   const [pw, setPw] = useState<string>('');
   const [nickname, setNickname] = useState<string>('');
+  const [phoneNumValidationMsg, setPhoneNumValidationMsg] = useState<string>('');
 
+  const checkPhoneNum = useCallback(() => {
+    const tempPhoneValidMsg = validatePhoneNum(phoneNum);
+    setPhoneNumValidationMsg(tempPhoneValidMsg);
+    return !!tempPhoneValidMsg;
+  }, [phoneNum]);
   // TODO: 함수 구현
-  const handleSendCertNum = useCallback(() => {}, []);
+  const handleSendCertNum = useCallback(() => {
+    checkPhoneNum();
+  }, [checkPhoneNum]);
   const handleCheckDuplicateId = useCallback(() => {}, []);
   const handleCheckDuplicateNickname = useCallback(() => {}, []);
 
@@ -37,6 +46,8 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
             keyboardType="number-pad"
             value={phoneNum}
             onChangeText={(text) => setPhoneNum(text)}
+            onBlur={checkPhoneNum}
+            validationMsg={phoneNumValidationMsg}
           />
           <Button
             text="인증번호 발송"
