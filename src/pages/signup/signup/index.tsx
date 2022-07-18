@@ -90,7 +90,7 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
           />
         </View>
         <Text style={styles.subtitle}>
-          비밀번호<Text style={styles.starSup}>*</Text>
+          장애인 인증<Text style={styles.starSup}>*</Text>
         </Text>
         {/* TODO: 인증 여부 플래그 추가 */}
         <Button
