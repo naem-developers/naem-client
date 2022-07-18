@@ -16,7 +16,7 @@ const USER_TYPE = {
   DISABLED: 'DISABLED',
   PROTECTOR: 'PROTECTOR',
 };
-import { validateId, validatePhoneNum } from '@/utils/validation';
+import { validateId, validatePhoneNum, validatePw } from '@/utils/validation';
 
 interface SignUpPageProps extends NativeStackScreenProps<SignUpStackParamList, 'SignUp'> {}
 
@@ -29,6 +29,7 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
   const [recommenderCode, setRecommenderCode] = useState<string>('');
   const [phoneNumValidationMsg, setPhoneNumValidationMsg] = useState<string>('');
   const [idValidationMsg, setIdValidationMsg] = useState<string>('');
+  const [pwValidationMsg, setPwValidationMsg] = useState<string>('');
 
   const checkPhoneNum = useCallback(() => {
     const tempPhoneValidMsg = validatePhoneNum(phoneNum);
@@ -42,14 +43,22 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
     return !!tempIdValidMsg;
   }, [id]);
 
+  const checkPw = useCallback(() => {
+    const tempPwValidMsg = validatePw(pw);
+    setPwValidationMsg(tempPwValidMsg);
+    return !!tempPwValidMsg;
+  }, [pw]);
+
   // TODO: 함수 구현
   const handleSendCertNum = useCallback(() => {
-    checkPhoneNum();
+    if (!checkPhoneNum()) return;
   }, [checkPhoneNum]);
   const handleCheckDuplicateId = useCallback(() => {
-    checkId();
+    if (!checkId()) return;
   }, [checkId]);
-  const handleCheckDuplicateNickname = useCallback(() => {}, []);
+  const handleCheckDuplicateNickname = useCallback(() => {
+    if (!checkPw()) return;
+  }, [checkPw]);
   const handleCheckRecommenderCode = useCallback(() => {}, []);
 
   const handlePickDisabled = useCallback(() => {
@@ -198,6 +207,8 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
           secureTextEntry
           value={pw}
           onChangeText={(text) => setPw(text)}
+          onBlur={checkPw}
+          validationMsg={pwValidationMsg}
         />
         <Text sizeStyle="f14" weightStyle="medium" style={styles.subtitle}>
           닉네임

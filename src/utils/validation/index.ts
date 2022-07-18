@@ -1,5 +1,6 @@
 const regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
 const regId = /^(?=.*[a-z])([a-z0-9]+)$/;
+const regPw = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/;
 
 export const validatePhoneNum = (phoneNum: string): string => {
   let validationMsg = '';
@@ -19,6 +20,18 @@ export const validateId = (id: string): string => {
     validationMsg = '아이디를 입력해 주세요.';
   } else if (!regId.test(id)) {
     validationMsg = '5~20자의 영문 소문자와 숫자만 가능합니다.';
+  } else {
+    validationMsg = '';
+  }
+  return validationMsg;
+};
+
+export const validatePw = (pw: string): string => {
+  let validationMsg = '';
+  if (pw.length === 0) {
+    validationMsg = '비밀번호를 입력해 주세요.';
+  } else if (!regPw.test(pw)) {
+    validationMsg = '8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.';
   } else {
     validationMsg = '';
   }
