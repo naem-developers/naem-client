@@ -9,7 +9,7 @@ import React, { useCallback, useState } from 'react';
 import { Text, StyleSheet, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { validateId, validatePhoneNum } from '@/utils/validation';
+import { validateId, validatePhoneNum, validatePw } from '@/utils/validation';
 
 interface SignUpPageProps extends NativeStackScreenProps<SignUpStackParamList, 'SignUp'> {}
 
@@ -20,6 +20,7 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
   const [nickname, setNickname] = useState<string>('');
   const [phoneNumValidationMsg, setPhoneNumValidationMsg] = useState<string>('');
   const [idValidationMsg, setIdValidationMsg] = useState<string>('');
+  const [pwValidationMsg, setPwValidationMsg] = useState<string>('');
 
   const checkPhoneNum = useCallback(() => {
     const tempPhoneValidMsg = validatePhoneNum(phoneNum);
@@ -33,14 +34,22 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
     return !!tempIdValidMsg;
   }, [id]);
 
+  const checkPw = useCallback(() => {
+    const tempPwValidMsg = validatePw(pw);
+    setPwValidationMsg(tempPwValidMsg);
+    return !!tempPwValidMsg;
+  }, [pw]);
+
   // TODO: 함수 구현
   const handleSendCertNum = useCallback(() => {
-    checkPhoneNum();
+    if (!checkPhoneNum()) return;
   }, [checkPhoneNum]);
   const handleCheckDuplicateId = useCallback(() => {
-    checkId();
+    if (!checkId()) return;
   }, [checkId]);
-  const handleCheckDuplicateNickname = useCallback(() => {}, []);
+  const handleCheckDuplicateNickname = useCallback(() => {
+    if (!checkPw()) return;
+  }, [checkPw]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -94,6 +103,8 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
           secureTextEntry
           value={pw}
           onChangeText={(text) => setPw(text)}
+          onBlur={checkPw}
+          validationMsg={pwValidationMsg}
         />
         <Text style={styles.subtitle}>
           닉네임<Text style={styles.starSup}>*</Text>
