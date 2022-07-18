@@ -16,6 +16,7 @@ const USER_TYPE = {
   DISABLED: 'DISABLED',
   PROTECTOR: 'PROTECTOR',
 };
+import { validatePhoneNum } from '@/utils/validation';
 
 interface SignUpPageProps extends NativeStackScreenProps<SignUpStackParamList, 'SignUp'> {}
 
@@ -26,9 +27,17 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
   const [nickname, setNickname] = useState<string>('');
   const [userType, setUserType] = useState<string>(USER_TYPE.DISABLED);
   const [recommenderCode, setRecommenderCode] = useState<string>('');
+  const [phoneNumValidationMsg, setPhoneNumValidationMsg] = useState<string>('');
 
+  const checkPhoneNum = useCallback(() => {
+    const tempPhoneValidMsg = validatePhoneNum(phoneNum);
+    setPhoneNumValidationMsg(tempPhoneValidMsg);
+    return !!tempPhoneValidMsg;
+  }, [phoneNum]);
   // TODO: 함수 구현
-  const handleSendCertNum = useCallback(() => {}, []);
+  const handleSendCertNum = useCallback(() => {
+    checkPhoneNum();
+  }, [checkPhoneNum]);
   const handleCheckDuplicateId = useCallback(() => {}, []);
   const handleCheckDuplicateNickname = useCallback(() => {}, []);
   const handleCheckRecommenderCode = useCallback(() => {}, []);
@@ -135,6 +144,8 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
             keyboardType="number-pad"
             value={phoneNum}
             onChangeText={(text) => setPhoneNum(text)}
+            onBlur={checkPhoneNum}
+            validationMsg={phoneNumValidationMsg}
           />
           <Button
             text="인증번호 발송"
