@@ -16,7 +16,7 @@ const USER_TYPE = {
   DISABLED: 'DISABLED',
   PROTECTOR: 'PROTECTOR',
 };
-import { validateId, validatePhoneNum, validatePw } from '@/utils/validation';
+import { validateId, validatePhoneNum, validatePw, validateNickname } from '@/utils/validation';
 
 interface SignUpPageProps extends NativeStackScreenProps<SignUpStackParamList, 'SignUp'> {}
 
@@ -30,6 +30,7 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
   const [phoneNumValidationMsg, setPhoneNumValidationMsg] = useState<string>('');
   const [idValidationMsg, setIdValidationMsg] = useState<string>('');
   const [pwValidationMsg, setPwValidationMsg] = useState<string>('');
+  const [nicknameValidationMsg, setNicknameValidationMsg] = useState<string>('');
 
   const checkPhoneNum = useCallback(() => {
     const tempPhoneValidMsg = validatePhoneNum(phoneNum);
@@ -49,6 +50,12 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
     return !!tempPwValidMsg;
   }, [pw]);
 
+  const checkNickname = useCallback(() => {
+    const tempNicknameValidMsg = validateNickname(nickname);
+    setNicknameValidationMsg(tempNicknameValidMsg);
+    return !!tempNicknameValidMsg;
+  }, [nickname]);
+
   // TODO: 함수 구현
   const handleSendCertNum = useCallback(() => {
     if (!checkPhoneNum()) return;
@@ -57,8 +64,8 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
     if (!checkId()) return;
   }, [checkId]);
   const handleCheckDuplicateNickname = useCallback(() => {
-    if (!checkPw()) return;
-  }, [checkPw]);
+    if (!checkNickname()) return;
+  }, [checkNickname]);
   const handleCheckRecommenderCode = useCallback(() => {}, []);
 
   const handlePickDisabled = useCallback(() => {
@@ -219,9 +226,11 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
         <View style={styles.row}>
           <TextInput
             style={styles.input}
-            placeholder="5자 이내, 특수문자 불가"
+            placeholder="10자 이내, 특수문자 불가"
             value={nickname}
             onChangeText={(text) => setNickname(text)}
+            onBlur={checkNickname}
+            validationMsg={nicknameValidationMsg}
           />
           <Button
             text="중복 확인"
