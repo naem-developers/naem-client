@@ -250,8 +250,8 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     width: '100%',
-    alignItems: 'center',
     marginTop: 10,
+    alignItems: 'flex-start',
   },
   btn: {
     borderRadius: 10,
