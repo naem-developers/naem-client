@@ -12,26 +12,20 @@
         <scene sceneID="EHf-IW-A2E">
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleAspectFit" id="Ze5-6b-2t3">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="NZy-7N-0Xv">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="dzV-ha-2GM">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="390" id="L4y-kV-roH"/>
-                                    <constraint firstAttribute="height" constant="667" id="YmI-5T-EQc"/>
-                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="NZy-7N-0Xv" secondAttribute="trailing" id="48J-DM-4O8"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="NZy-7N-0Xv" secondAttribute="bottom" id="JMF-iC-ChT"/>
-                            <constraint firstItem="NZy-7N-0Xv" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="Rgb-0N-umZ"/>
-                            <constraint firstAttribute="trailing" secondItem="NZy-7N-0Xv" secondAttribute="trailing" id="Y9e-9p-Df7"/>
-                            <constraint firstItem="NZy-7N-0Xv" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="blW-u6-H9E"/>
-                            <constraint firstItem="NZy-7N-0Xv" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="ldk-AL-FBe"/>
+                            <constraint firstItem="dzV-ha-2GM" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="9eC-xn-op0"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="dzV-ha-2GM" secondAttribute="bottom" id="iPe-0E-Rw1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dzV-ha-2GM" secondAttribute="trailing" id="uCW-rx-UY0"/>
+                            <constraint firstItem="dzV-ha-2GM" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="ue0-cl-Buz"/>
                         </constraints>
                     </view>
                 </viewController>
