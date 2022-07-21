@@ -1,5 +1,5 @@
 import Header from '@/components/organisms/Header';
-import * as React from 'react';
+import React, { useCallback } from 'react';
 import { View, StyleSheet, ScrollView, Image, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import IcnCheck from '@/assets/icons/icn_check.svg';
@@ -8,6 +8,7 @@ import Text from '@/components/atoms/Text';
 import Button from '@/components/atoms/Button';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { SignUpStackParamList } from '@/navigators/SignUpStackNavigator';
+import ImagePicker from 'react-native-image-crop-picker';
 
 const CAUTION_LIST = [
   `•빛 반사가 되지 않도록 촬영해주세요.
@@ -20,6 +21,16 @@ interface DisabilityCertificatePageProps
   extends NativeStackScreenProps<SignUpStackParamList, 'DisabilityCertificatePage'> {}
 
 const DisabilityCertificatePage = ({ navigation }: DisabilityCertificatePageProps) => {
+  const handleOpenGallery = useCallback(() => {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then((image) => {
+      console.log(image);
+    });
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <Header title="장애인 등록증 확인" />
@@ -29,7 +40,7 @@ const DisabilityCertificatePage = ({ navigation }: DisabilityCertificatePageProp
           장애인 인증을 위해{'\n'}
           <Text style={styles.mainColor}>장애인 등록증</Text>을 준비해주세요
         </Text>
-        <Pressable style={styles.sampleImgBtn}>
+        <Pressable style={styles.sampleImgBtn} onPress={handleOpenGallery}>
           <Image
             style={styles.sampleImg}
             source={require('@/assets/images/img_certificate_ex.png')}
@@ -49,7 +60,7 @@ const DisabilityCertificatePage = ({ navigation }: DisabilityCertificatePageProp
             style={[styles.flex1, styles.mr26]}
             onPress={() => navigation.goBack()}
           />
-          <Button text="촬영하기" style={styles.flex1} />
+          <Button text="촬영하기" style={styles.flex1} onPress={handleOpenGallery} />
         </View>
       </ScrollView>
     </SafeAreaView>
