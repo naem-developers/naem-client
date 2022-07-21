@@ -6,6 +6,8 @@ import IcnCheck from '@/assets/icons/icn_check.svg';
 import { THEME } from '@/theme';
 import Text from '@/components/atoms/Text';
 import Button from '@/components/atoms/Button';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { SignUpStackParamList } from '@/navigators/SignUpStackNavigator';
 
 const CAUTION_LIST = [
   `•빛 반사가 되지 않도록 촬영해주세요.
@@ -14,9 +16,10 @@ const CAUTION_LIST = [
   '•장애인 등록증이 없는 경우 그 외 가능한 서류로 인증 가능합니다.',
 ];
 
-interface DisabilityCertificatePageProps {}
+interface DisabilityCertificatePageProps
+  extends NativeStackScreenProps<SignUpStackParamList, 'DisabilityCertificatePage'> {}
 
-const DisabilityCertificatePage = (props: DisabilityCertificatePageProps) => {
+const DisabilityCertificatePage = ({ navigation }: DisabilityCertificatePageProps) => {
   return (
     <SafeAreaView style={styles.container}>
       <Header title="장애인 등록증 확인" />
@@ -40,7 +43,12 @@ const DisabilityCertificatePage = (props: DisabilityCertificatePageProps) => {
           <Text style={styles.otherDocStrongText}>그 외 가능한 서류</Text> 로 인증하기
         </Text>
         <View style={styles.CTABtnContainer}>
-          <Button text="이전으로" priority="secondary" style={[styles.flex1, styles.mr26]} />
+          <Button
+            text="이전으로"
+            priority="secondary"
+            style={[styles.flex1, styles.mr26]}
+            onPress={() => navigation.goBack()}
+          />
           <Button text="촬영하기" style={styles.flex1} />
         </View>
       </ScrollView>
