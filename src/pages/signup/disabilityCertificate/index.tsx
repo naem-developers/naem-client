@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import IcnCheck from '@/assets/icons/icn_check.svg';
 import { THEME } from '@/theme';
 import Text from '@/components/atoms/Text';
+import Button from '@/components/atoms/Button';
 
 const CAUTION_LIST = [
   `•빛 반사가 되지 않도록 촬영해주세요.
@@ -38,6 +39,10 @@ const DisabilityCertificatePage = (props: DisabilityCertificatePageProps) => {
         <Text style={styles.otherDocText}>
           <Text style={styles.otherDocStrongText}>그 외 가능한 서류</Text> 로 인증하기
         </Text>
+        <View style={styles.CTABtnContainer}>
+          <Button text="이전으로" priority="secondary" style={[styles.flex1, styles.mr26]} />
+          <Button text="촬영하기" style={styles.flex1} />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -102,5 +107,17 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     color: THEME.MAIN,
     textDecorationLine: 'underline',
+  },
+  CTABtnContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginTop: 36,
+  },
+  flex1: {
+    flex: 1,
+  },
+  mr26: {
+    marginRight: 26,
   },
 });
