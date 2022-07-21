@@ -21,6 +21,7 @@ interface DisabilityCertificatePageProps
   extends NativeStackScreenProps<SignUpStackParamList, 'DisabilityCertificatePage'> {}
 
 const DisabilityCertificatePage = ({ navigation }: DisabilityCertificatePageProps) => {
+  // TODO: crop size 지정 및 고도화하기
   const handleOpenGallery = useCallback(() => {
     ImagePicker.openPicker({
       width: 300,
@@ -48,7 +49,9 @@ const DisabilityCertificatePage = ({ navigation }: DisabilityCertificatePageProp
         </Pressable>
         <Text style={styles.cautionTitle}>주의사항</Text>
         {CAUTION_LIST.map((cautionText) => (
-          <Text style={styles.cautionText}>{cautionText}</Text>
+          <Text key={cautionText} style={styles.cautionText}>
+            {cautionText}
+          </Text>
         ))}
         <Text style={styles.otherDocText}>
           <Text style={styles.otherDocStrongText}>그 외 가능한 서류</Text> 로 인증하기
