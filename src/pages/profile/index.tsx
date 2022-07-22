@@ -1,9 +1,11 @@
 import Text from '@/components/atoms/Text';
 import { THEME } from '@/theme';
 import React, { useState } from 'react';
-import { StyleSheet, ScrollView, Image, Pressable, View } from 'react-native';
+import { StyleSheet, ScrollView, Image, Pressable, View, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import IcnCopy from '@/assets/icons/icn_copy.svg';
+import IcnArticle from '@/assets/icons/icn_article.svg';
+import IcnComment from '@/assets/icons/icn_comment.svg';
 import Clipboard from '@react-native-clipboard/clipboard';
 import { Snackbar } from 'react-native-paper';
 import Tag from '@/components/molecules/Tag';
@@ -66,6 +68,22 @@ const MyPage = ({ navigation }: MyPageProps) => {
           style={styles.profileEditBtn}
           onPress={() => navigation.navigate('ProfileEditPage')}
         />
+        <View style={styles.myPostContainer}>
+          <TouchableOpacity style={styles.myPostBtn}>
+            <IcnArticle width={24} height={24} />
+            <Text style={styles.myPostText}>내 게시글</Text>
+            <Text style={styles.myPostNumber}>
+              <Text style={styles.myPostNumberStrong}>10</Text> 개
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.myPostBtn, styles.ml14]}>
+            <IcnComment width={24} height={24} />
+            <Text style={styles.myPostText}>내 댓글</Text>
+            <Text style={styles.myPostNumber}>
+              <Text style={styles.myPostNumberStrong}>10</Text> 개
+            </Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
       <Snackbar
         visible={snackbarVisible}
@@ -134,6 +152,41 @@ const styles = StyleSheet.create({
     marginTop: 18,
     paddingVertical: 8,
   },
+  myPostContainer: {
+    marginTop: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  myPostBtn: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: 16,
+    paddingTop: 13,
+    borderRadius: 10,
+    borderColor: THEME.LIGHT_BOX,
+    borderWidth: 1,
+  },
+  myPostText: {
+    fontWeight: '600',
+    fontSize: 13,
+    lineHeight: 22,
+    marginTop: 2,
+  },
+  myPostNumber: {
+    fontSize: 15,
+    fontWeight: '500',
+    lineHeight: 22,
+    color: THEME.REG_TEXT,
+    marginTop: 14,
+  },
+  myPostNumberStrong: {
+    fontSize: 22,
+    fontWeight: '600',
+    lineHeight: 22,
+    color: THEME.STRONG_TEXT,
+  },
   mt16: {
     marginTop: 16,
   },
@@ -148,6 +201,9 @@ const styles = StyleSheet.create({
   },
   ml16: {
     marginLeft: 16,
+  },
+  ml14: {
+    marginLeft: 14,
   },
   ml10: {
     marginLeft: 10,
