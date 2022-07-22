@@ -65,11 +65,12 @@ const styles = StyleSheet.create({
   smallContainer: {
     paddingTop: 11,
     paddingBottom: 8,
-    paddingHorizontal: 40,
+    paddingHorizontal: 20,
     borderRadius: 15,
   },
   text: {
     fontSize: 18,
+    fontWeight: '600',
   },
   primaryText: {
     color: '#ffffff',
