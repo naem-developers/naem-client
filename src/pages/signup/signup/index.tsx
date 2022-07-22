@@ -54,7 +54,7 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
               status={userType === USER_TYPE.DISABLED ? 'checked' : 'unchecked'}
               onPress={handlePickDisabled}
             />
-            <Text>장애인 본인</Text>
+            <Text style={styles.radioText}>장애인 본인</Text>
           </Pressable>
           <Pressable style={[styles.row, styles.flex1]} onPress={handlePickProtector}>
             <RadioButton.Android
@@ -62,7 +62,7 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
               status={userType === USER_TYPE.PROTECTOR ? 'checked' : 'unchecked'}
               onPress={handlePickProtector}
             />
-            <Text>장애인 보호자</Text>
+            <Text style={styles.radioText}>장애인 보호자</Text>
           </Pressable>
         </View>
         <Text style={styles.subtitle}>
@@ -168,6 +168,12 @@ const styles = StyleSheet.create({
   radioContainer: {
     flexDirection: 'row',
     backgroundColor: 'red',
+  },
+  radioText: {
+    fontSize: 17,
+    fontWeight: '500',
+    lineHeight: 25,
+    color: THEME.STRONG_TEXT,
   },
   input: {
     flexShrink: 1,
