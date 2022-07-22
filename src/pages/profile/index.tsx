@@ -1,8 +1,9 @@
 import Text from '@/components/atoms/Text';
 import { THEME } from '@/theme';
 import * as React from 'react';
-import { StyleSheet, ScrollView, Image } from 'react-native';
+import { StyleSheet, ScrollView, Image, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import IcnCopy from '@/assets/icons/icn_copy.svg';
 
 interface MyPageProps {}
 
@@ -14,7 +15,16 @@ const MyPage = (props: MyPageProps) => {
           style={styles.profileImg}
           source={require('@/assets/images/img_profile_photo.png')}
         />
-        <Text style={styles.greetingText}>안녕하세요, 김나미 님!</Text>
+        {/* TODO: 유저 이름 */}
+        <Text style={styles.greetingText}>
+          안녕하세요, <Text style={styles.strongText}>김나미</Text> 님!
+        </Text>
+        <Text style={styles.bio}>안녕하세요~! 남양주시에 살고 있습니다</Text>
+        <Pressable style={[styles.row, styles.mt6]}>
+          <Text style={{ ...styles.subtitle, ...styles.mr5 }}>추천인코드</Text>
+          <Text style={{ ...styles.recommenderCodeText, ...styles.mr1 }}>abc1234</Text>
+          <IcnCopy width={15} height={15} />
+        </Pressable>
       </ScrollView>
     </SafeAreaView>
   );
@@ -44,5 +54,41 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     lineHeight: 22,
     textAlign: 'center',
+  },
+  strongText: {
+    fontWeight: '800',
+  },
+  bio: {
+    fontSize: 15,
+    fontWeight: '600',
+    lineHeight: 22,
+    color: THEME.REG_TEXT,
+    marginTop: 6,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  subtitle: {
+    fontSize: 14,
+    fontWeight: '500',
+    lineHeight: 22,
+    color: THEME.REG_TEXT,
+  },
+
+  recommenderCodeText: {
+    fontSize: 14,
+    fontWeight: '600',
+    lineHeight: 22,
+    color: THEME.STRONG_TEXT,
+  },
+  mt6: {
+    marginTop: 6,
+  },
+  mr5: {
+    marginRight: 5,
+  },
+  mr1: {
+    marginRight: 1,
   },
 });
