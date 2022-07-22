@@ -6,9 +6,17 @@ import { SignUpStackParamList } from '@/navigators/SignUpStackNavigator';
 import { THEME } from '@/theme';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useCallback, useState } from 'react';
-import { Text, StyleSheet, ScrollView, View } from 'react-native';
+import { Text, StyleSheet, ScrollView, View, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { RadioButton } from 'react-native-paper';
+
+const USER_TYPE = {
+  DISABLED: 'DISABLED',
+  PROTECTOR: 'PROTECTOR',
+};
+
+type UserType = USER_TYPE.DISABLED | USER_TYPE.PROTECTOR;
 
 interface SignUpPageProps extends NativeStackScreenProps<SignUpStackParamList, 'SignUp'> {}
 
@@ -17,16 +25,46 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
   const [id, setId] = useState<string>('');
   const [pw, setPw] = useState<string>('');
   const [nickname, setNickname] = useState<string>('');
+  const [userType, setUserType] = useState<UserType>(USER_TYPE.DISABLED);
 
   // TODO: 함수 구현
   const handleSendCertNum = useCallback(() => {}, []);
   const handleCheckDuplicateId = useCallback(() => {}, []);
   const handleCheckDuplicateNickname = useCallback(() => {}, []);
 
+  const handlePickDisabled = useCallback(() => {
+    setUserType(USER_TYPE.DISABLED);
+  }, []);
+
+  const handlePickProtector = useCallback(() => {
+    setUserType(USER_TYPE.PROTECTOR);
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <Header title="회원가입" />
       <KeyboardAwareScrollView contentContainerStyle={styles.contentContainer}>
+        <Text style={styles.subtitle}>
+          회원 유형 선택<Text style={styles.starSup}>*</Text>
+        </Text>
+        <View style={styles.row}>
+          <Pressable style={[styles.row, styles.flex1]} onPress={handlePickDisabled}>
+            <RadioButton.Android
+              value={USER_TYPE.DISABLED}
+              status={userType === USER_TYPE.DISABLED ? 'checked' : 'unchecked'}
+              onPress={handlePickDisabled}
+            />
+            <Text>장애인 본인</Text>
+          </Pressable>
+          <Pressable style={[styles.row, styles.flex1]} onPress={handlePickProtector}>
+            <RadioButton.Android
+              value={USER_TYPE.PROTECTOR}
+              status={userType === USER_TYPE.PROTECTOR ? 'checked' : 'unchecked'}
+              onPress={handlePickProtector}
+            />
+            <Text>장애인 보호자</Text>
+          </Pressable>
+        </View>
         <Text style={styles.subtitle}>
           휴대폰 번호<Text style={styles.starSup}>*</Text>
         </Text>
@@ -111,6 +149,9 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
 export default SignUpPage;
 
 const styles = StyleSheet.create({
+  flex1: {
+    flex: 1,
+  },
   container: {
     backgroundColor: THEME.BG,
     flex: 1,
@@ -123,6 +164,10 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: THEME.STRONG_TEXT,
     marginTop: 32,
+  },
+  radioContainer: {
+    flexDirection: 'row',
+    backgroundColor: 'red',
   },
   input: {
     flexShrink: 1,
