@@ -6,7 +6,7 @@ import { SignUpStackParamList } from '@/navigators/SignUpStackNavigator';
 import { THEME } from '@/theme';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useCallback, useState } from 'react';
-import { Text, StyleSheet, ScrollView, View, Pressable } from 'react-native';
+import { Text, StyleSheet, View, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { RadioButton } from 'react-native-paper';
@@ -16,8 +16,6 @@ const USER_TYPE = {
   PROTECTOR: 'PROTECTOR',
 };
 
-type UserType = USER_TYPE.DISABLED | USER_TYPE.PROTECTOR;
-
 interface SignUpPageProps extends NativeStackScreenProps<SignUpStackParamList, 'SignUp'> {}
 
 const SignUpPage = ({ navigation }: SignUpPageProps) => {
@@ -25,7 +23,7 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
   const [id, setId] = useState<string>('');
   const [pw, setPw] = useState<string>('');
   const [nickname, setNickname] = useState<string>('');
-  const [userType, setUserType] = useState<UserType>(USER_TYPE.DISABLED);
+  const [userType, setUserType] = useState<string>(USER_TYPE.DISABLED);
   const [recommenderCode, setRecommenderCode] = useState<string>('');
 
   // TODO: 함수 구현
