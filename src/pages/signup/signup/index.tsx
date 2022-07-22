@@ -26,11 +26,13 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
   const [pw, setPw] = useState<string>('');
   const [nickname, setNickname] = useState<string>('');
   const [userType, setUserType] = useState<UserType>(USER_TYPE.DISABLED);
+  const [recommenderCode, setRecommenderCode] = useState<string>('');
 
   // TODO: 함수 구현
   const handleSendCertNum = useCallback(() => {}, []);
   const handleCheckDuplicateId = useCallback(() => {}, []);
   const handleCheckDuplicateNickname = useCallback(() => {}, []);
+  const handleCheckRecommenderCode = useCallback(() => {}, []);
 
   const handlePickDisabled = useCallback(() => {
     setUserType(USER_TYPE.DISABLED);
@@ -39,6 +41,49 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
   const handlePickProtector = useCallback(() => {
     setUserType(USER_TYPE.PROTECTOR);
   }, []);
+
+  const renderCertificate = useCallback(() => {
+    return (
+      <>
+        {userType === USER_TYPE.DISABLED ? (
+          <>
+            <Text style={styles.subtitle}>
+              장애인 인증<Text style={styles.starSup}>*</Text>
+            </Text>
+            {/* TODO: 인증 여부 플래그 추가 */}
+            <Button
+              text="장애인 인증하러 가기"
+              priority="secondary"
+              style={styles.mt10}
+              onPress={() => {
+                navigation.navigate('DisabilityCertificatePage');
+              }}
+            />
+          </>
+        ) : (
+          <>
+            <Text style={styles.subtitle}>
+              추천인 코드<Text style={styles.starSup}>*</Text>
+            </Text>
+            <View style={styles.row}>
+              <TextInput
+                style={styles.input}
+                placeholder="아이디를 입력해주세요"
+                value={recommenderCode}
+                onChangeText={(text) => setRecommenderCode(text)}
+              />
+              <Button
+                text="확인"
+                btnSize="small"
+                style={styles.btn}
+                onPress={handleCheckRecommenderCode}
+              />
+            </View>
+          </>
+        )}
+      </>
+    );
+  }, [userType, navigation]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -127,18 +172,7 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
             onPress={handleCheckDuplicateNickname}
           />
         </View>
-        <Text style={styles.subtitle}>
-          장애인 인증<Text style={styles.starSup}>*</Text>
-        </Text>
-        {/* TODO: 인증 여부 플래그 추가 */}
-        <Button
-          text="장애인 인증하러 가기"
-          priority="secondary"
-          style={styles.mt10}
-          onPress={() => {
-            navigation.navigate('DisabilityCertificatePage');
-          }}
-        />
+        {renderCertificate()}
         {/* TODO: disabled 여부 */}
         <Button text="완료" style={styles.ctaBtn} />
       </KeyboardAwareScrollView>
