@@ -9,6 +9,7 @@ import React, { useCallback, useState } from 'react';
 import { Text, StyleSheet, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { validateId, validatePhoneNum, validatePw, validateNickname } from '@/utils/validation';
 
 interface SignUpPageProps extends NativeStackScreenProps<SignUpStackParamList, 'SignUp'> {}
 
@@ -17,11 +18,45 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
   const [id, setId] = useState<string>('');
   const [pw, setPw] = useState<string>('');
   const [nickname, setNickname] = useState<string>('');
+  const [phoneNumValidationMsg, setPhoneNumValidationMsg] = useState<string>('');
+  const [idValidationMsg, setIdValidationMsg] = useState<string>('');
+  const [pwValidationMsg, setPwValidationMsg] = useState<string>('');
+  const [nicknameValidationMsg, setNicknameValidationMsg] = useState<string>('');
+
+  const checkPhoneNum = useCallback(() => {
+    const tempPhoneValidMsg = validatePhoneNum(phoneNum);
+    setPhoneNumValidationMsg(tempPhoneValidMsg);
+    return !!tempPhoneValidMsg;
+  }, [phoneNum]);
+
+  const checkId = useCallback(() => {
+    const tempIdValidMsg = validateId(id);
+    setIdValidationMsg(tempIdValidMsg);
+    return !!tempIdValidMsg;
+  }, [id]);
+
+  const checkPw = useCallback(() => {
+    const tempPwValidMsg = validatePw(pw);
+    setPwValidationMsg(tempPwValidMsg);
+    return !!tempPwValidMsg;
+  }, [pw]);
+
+  const checkNickname = useCallback(() => {
+    const tempNicknameValidMsg = validateNickname(nickname);
+    setNicknameValidationMsg(tempNicknameValidMsg);
+    return !!tempNicknameValidMsg;
+  }, [nickname]);
 
   // TODO: 함수 구현
-  const handleSendCertNum = useCallback(() => {}, []);
-  const handleCheckDuplicateId = useCallback(() => {}, []);
-  const handleCheckDuplicateNickname = useCallback(() => {}, []);
+  const handleSendCertNum = useCallback(() => {
+    if (!checkPhoneNum()) return;
+  }, [checkPhoneNum]);
+  const handleCheckDuplicateId = useCallback(() => {
+    if (!checkId()) return;
+  }, [checkId]);
+  const handleCheckDuplicateNickname = useCallback(() => {
+    if (!checkNickname()) return;
+  }, [checkNickname]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -37,6 +72,8 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
             keyboardType="number-pad"
             value={phoneNum}
             onChangeText={(text) => setPhoneNum(text)}
+            onBlur={checkPhoneNum}
+            validationMsg={phoneNumValidationMsg}
           />
           <Button
             text="인증번호 발송"
@@ -54,6 +91,8 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
             placeholder="아이디를 입력해주세요"
             value={id}
             onChangeText={(text) => setId(text)}
+            onBlur={checkId}
+            validationMsg={idValidationMsg}
           />
           <Button
             text="중복 확인"
@@ -71,6 +110,8 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
           secureTextEntry
           value={pw}
           onChangeText={(text) => setPw(text)}
+          onBlur={checkPw}
+          validationMsg={pwValidationMsg}
         />
         <Text style={styles.subtitle}>
           닉네임<Text style={styles.starSup}>*</Text>
@@ -78,9 +119,11 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
         <View style={styles.row}>
           <TextInput
             style={styles.input}
-            placeholder="5자 이내, 특수문자 불가"
+            placeholder="10자 이내, 특수문자 불가"
             value={nickname}
             onChangeText={(text) => setNickname(text)}
+            onBlur={checkNickname}
+            validationMsg={nicknameValidationMsg}
           />
           <Button
             text="중복 확인"
@@ -135,8 +178,8 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     width: '100%',
-    alignItems: 'center',
     marginTop: 10,
+    alignItems: 'flex-start',
   },
   btn: {
     borderRadius: 10,
