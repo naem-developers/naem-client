@@ -28,7 +28,7 @@ const MyPage = ({ navigation }: MyPageProps) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollView}>
+      <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollViewContent}>
         <Image
           style={styles.profileImg}
           source={require('@/assets/images/img_profile_photo.png')}
@@ -107,6 +107,10 @@ const styles = StyleSheet.create({
     paddingBottom: 204,
   },
   scrollView: {
+    flex: 1,
+    width: '100%',
+  },
+  scrollViewContent: {
     alignItems: 'center',
     paddingHorizontal: 16,
   },
