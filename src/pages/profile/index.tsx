@@ -29,7 +29,11 @@ const MyPage = ({ navigation }: MyPageProps) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollViewContent}>
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.scrollViewContent}
+        showsVerticalScrollIndicator={false}
+      >
         <Image
           style={styles.profileImg}
           source={require('@/assets/images/img_profile_photo.png')}
