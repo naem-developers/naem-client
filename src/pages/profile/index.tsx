@@ -84,6 +84,9 @@ const MyPage = ({ navigation }: MyPageProps) => {
             </Text>
           </TouchableOpacity>
         </View>
+        <View style={styles.settingsContainer}>
+          <Text>앱 설정</Text>
+        </View>
       </ScrollView>
       <Snackbar
         visible={snackbarVisible}
@@ -104,7 +107,6 @@ const styles = StyleSheet.create({
     backgroundColor: THEME.BG,
     alignItems: 'center',
     paddingTop: 14,
-    paddingBottom: 204,
   },
   scrollView: {
     flex: 1,
@@ -158,6 +160,7 @@ const styles = StyleSheet.create({
   },
   myPostContainer: {
     marginTop: 16,
+    marginBottom: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -190,6 +193,14 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     lineHeight: 22,
     color: THEME.STRONG_TEXT,
+  },
+  settingsContainer: {
+    paddingTop: 24,
+    paddingBottom: 204,
+    paddingHorizontal: 0,
+    marginHorizontal: -16,
+    backgroundColor: '#f5f5f5',
+    alignSelf: 'stretch',
   },
   mt16: {
     marginTop: 16,
