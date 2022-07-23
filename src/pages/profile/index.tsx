@@ -27,6 +27,11 @@ const MyPage = ({ navigation }: MyPageProps) => {
     setSnackbarVisible(true);
   };
 
+  // TODO: 함수 구현
+  const handleInquiry = () => {};
+  const handleLogout = () => {};
+  const handleWithdraw = () => {};
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView
@@ -116,7 +121,7 @@ const MyPage = ({ navigation }: MyPageProps) => {
               navigation.navigate('ServiceTermsPage');
             }}
           />
-          <SettingsItem text="문의하기" onPress={() => {}} />
+          <SettingsItem text="문의하기" onPress={handleInquiry} />
           <Text style={styles.settingTitle}>계정</Text>
           <SettingsItem
             text="비밀번호 변경"
@@ -124,8 +129,8 @@ const MyPage = ({ navigation }: MyPageProps) => {
               navigation.navigate('FindPwPage');
             }}
           />
-          <SettingsItem text="로그아웃" onPress={() => {}} />
-          <SettingsItem text="회원 탈퇴" onPress={() => {}} />
+          <SettingsItem text="로그아웃" onPress={handleLogout} />
+          <SettingsItem text="회원 탈퇴" onPress={handleWithdraw} />
         </View>
       </ScrollView>
       <Snackbar
