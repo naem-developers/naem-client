@@ -12,6 +12,7 @@ import Tag from '@/components/molecules/Tag';
 import Button from '@/components/atoms/Button';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/navigators/RootStackNavigator';
+import SettingsItem from '@/components/myPage/SettingsItem';
 
 interface MyPageProps extends NativeStackScreenProps<RootStackParamList, 'MainTabNavigator'> {}
 
@@ -85,7 +86,17 @@ const MyPage = ({ navigation }: MyPageProps) => {
           </TouchableOpacity>
         </View>
         <View style={styles.settingsContainer}>
-          <Text>앱 설정</Text>
+          <Text style={styles.settingTitle}>앱 설정</Text>
+          <SettingsItem text="알림 설정" onPress={() => {}} />
+          <Text style={styles.settingTitle}>앱 정보</Text>
+          <SettingsItem text="공지사항" onPress={() => {}} />
+          <SettingsItem text="이벤트" onPress={() => {}} />
+          <SettingsItem text="서비스 이용약관" onPress={() => {}} />
+          <SettingsItem text="문의하기" onPress={() => {}} />
+          <Text style={styles.settingTitle}>계정</Text>
+          <SettingsItem text="비밀번호 변경" onPress={() => {}} />
+          <SettingsItem text="로그아웃" onPress={() => {}} />
+          <SettingsItem text="회원 탈퇴" onPress={() => {}} />
         </View>
       </ScrollView>
       <Snackbar
@@ -195,12 +206,20 @@ const styles = StyleSheet.create({
     color: THEME.STRONG_TEXT,
   },
   settingsContainer: {
-    paddingTop: 24,
     paddingBottom: 204,
     paddingHorizontal: 0,
     marginHorizontal: -16,
     backgroundColor: '#f5f5f5',
     alignSelf: 'stretch',
+  },
+  settingTitle: {
+    fontSize: 14,
+    fontWeight: '500',
+    lineHeight: 22,
+    color: THEME.REG_TEXT,
+    paddingHorizontal: 16,
+    paddingBottom: 6,
+    paddingTop: 28,
   },
   mt16: {
     marginTop: 16,
