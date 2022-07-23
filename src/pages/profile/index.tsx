@@ -87,14 +87,39 @@ const MyPage = ({ navigation }: MyPageProps) => {
         </View>
         <View style={styles.settingsContainer}>
           <Text style={styles.settingTitle}>앱 설정</Text>
-          <SettingsItem text="알림 설정" onPress={() => {}} />
+          <SettingsItem
+            text="알림 설정"
+            onPress={() => {
+              navigation.navigate('NotificationSettingPage');
+            }}
+          />
           <Text style={styles.settingTitle}>앱 정보</Text>
-          <SettingsItem text="공지사항" onPress={() => {}} />
-          <SettingsItem text="이벤트" onPress={() => {}} />
-          <SettingsItem text="서비스 이용약관" onPress={() => {}} />
+          <SettingsItem
+            text="공지사항"
+            onPress={() => {
+              navigation.navigate('NoticePage');
+            }}
+          />
+          <SettingsItem
+            text="이벤트"
+            onPress={() => {
+              navigation.navigate('EventPage');
+            }}
+          />
+          <SettingsItem
+            text="서비스 이용약관"
+            onPress={() => {
+              navigation.navigate('ServiceTermsPage');
+            }}
+          />
           <SettingsItem text="문의하기" onPress={() => {}} />
           <Text style={styles.settingTitle}>계정</Text>
-          <SettingsItem text="비밀번호 변경" onPress={() => {}} />
+          <SettingsItem
+            text="비밀번호 변경"
+            onPress={() => {
+              navigation.navigate('FindPwPage');
+            }}
+          />
           <SettingsItem text="로그아웃" onPress={() => {}} />
           <SettingsItem text="회원 탈퇴" onPress={() => {}} />
         </View>

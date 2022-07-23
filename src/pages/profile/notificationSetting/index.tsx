@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
-interface NotificationSettingProps {}
+interface NotificationSettingPageProps {}
 
-const NotificationSetting = (props: NotificationSettingProps) => {
+const NotificationSettingPage = (props: NotificationSettingPageProps) => {
   return (
     <View style={styles.container}>
-      <Text>NotificationSetting</Text>
+      <Text>NotificationSettingPage</Text>
     </View>
   );
 };
 
-export default NotificationSetting;
+export default NotificationSettingPage;
 
 const styles = StyleSheet.create({
   container: {},
