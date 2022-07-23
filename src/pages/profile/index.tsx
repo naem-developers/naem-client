@@ -2,7 +2,7 @@ import Text from '@/components/atoms/Text';
 import { THEME } from '@/theme';
 import React, { useState } from 'react';
 import { StyleSheet, ScrollView, Image, Pressable, View, TouchableOpacity } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import IcnCopy from '@/assets/icons/icn_copy.svg';
 import IcnArticle from '@/assets/icons/icn_article.svg';
 import IcnComment from '@/assets/icons/icn_comment.svg';
@@ -20,6 +20,8 @@ const RECOMMENDER_CODE_TEXT = 'abc1234';
 const DISBALED_TYPES = ['뇌병변장애', '장루, 요루장애', '지체장애'];
 
 const MyPage = ({ navigation }: MyPageProps) => {
+  const insets = useSafeAreaInsets();
+
   const [snackbarVisible, setSnackbarVisible] = useState<boolean>(false);
 
   const copyRecommenderCode = () => {
@@ -33,7 +35,7 @@ const MyPage = ({ navigation }: MyPageProps) => {
   const handleWithdraw = () => {};
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={[styles.container, { paddingTop: insets.top }]}>
       <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.scrollViewContent}
@@ -140,7 +142,7 @@ const MyPage = ({ navigation }: MyPageProps) => {
       >
         추천인 코드가 복사되었습니다
       </Snackbar>
-    </SafeAreaView>
+    </View>
   );
 };
 
