@@ -14,20 +14,23 @@ import IcnMic from '@/assets/icons/icn_mic.svg';
 
 interface SearchBarProps extends PressableProps {
   style?: StyleProp<ViewStyle>;
+  disabled?: boolean;
+  handleSearch?: () => void;
 }
 
-const SearchBar = ({ style, ...props }: SearchBarProps) => {
+const SearchBar = ({ style, disabled = false, handleSearch, ...props }: SearchBarProps) => {
   return (
     <Pressable style={[styles.container, style]} {...props}>
-      <TouchableOpacity>
+      <TouchableOpacity disabled={disabled} onPress={handleSearch}>
         <IcnMagnifier width={24} height={24} />
       </TouchableOpacity>
       <TextInput
         style={styles.input}
         placeholder="검색어를 입력하세요"
         placeholderTextColor="#c2c2c2"
+        editable={!disabled}
       />
-      <TouchableOpacity>
+      <TouchableOpacity disabled={disabled}>
         <IcnMic width={24} height={24} />
       </TouchableOpacity>
     </Pressable>
