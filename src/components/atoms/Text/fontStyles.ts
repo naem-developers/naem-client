@@ -1,3 +1,5 @@
+import { TextStyle } from 'react-native';
+
 export const sizeStyles: Record<string, { fontSize: number; lineHeight: number }> = {
   f18: {
     fontSize: 18,
@@ -22,5 +24,26 @@ export const sizeStyles: Record<string, { fontSize: number; lineHeight: number }
   f13: {
     fontSize: 13,
     lineHeight: 22,
+  },
+};
+
+export const weightStyles: Record<string, { fontWeight: TextStyle['fontWeight'] }> = {
+  exBold: {
+    fontWeight: '800',
+  },
+  bold: {
+    fontWeight: '700',
+  },
+  semiBold: {
+    fontWeight: '600',
+  },
+  medium: {
+    fontWeight: '500',
+  },
+  regular: {
+    fontWeight: '400',
+  },
+  light: {
+    fontWeight: '300',
   },
 };
