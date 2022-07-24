@@ -25,7 +25,9 @@ const Header = ({ title, LeftComponent = <BackButton />, RightComponent }: Heade
     <View style={styles.container}>
       <View style={styles.zIndex1}>{LeftComponent}</View>
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>{title}</Text>
+        <Text sizeStyle="f18" weightStyle="bold" style={styles.title}>
+          {title}
+        </Text>
       </View>
       <View style={styles.zIndex1}>{RightComponent}</View>
     </View>
@@ -52,8 +54,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: 18,
     color: THEME.STRONG_TEXT,
-    fontWeight: '700',
   },
 });

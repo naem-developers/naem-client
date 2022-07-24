@@ -55,12 +55,15 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
           ) : (
             <IcnCheckDefault width={20} height={20} />
           )}
-          <Text style={styles.loginStatusText}>로그인 상태 유지</Text>
+          <Text sizeStyle="f15" style={styles.loginStatusText}>
+            로그인 상태 유지
+          </Text>
         </TouchableOpacity>
         <Button text="확인" style={styles.button} onPress={handlePressSubmit} />
         <View style={styles.btnsContainer}>
           <TextBtn
             text="아이디 찾기"
+            sizeStyle="f15"
             textStyle={styles.btnsText}
             onPress={() => {
               navigation.navigate('FindIdPage');
@@ -69,6 +72,7 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
           <View style={styles.verticalDivider} />
           <TextBtn
             text="비밀번호 재설정"
+            sizeStyle="f15"
             textStyle={styles.btnsText}
             onPress={() => {
               navigation.navigate('FindPwPage');
@@ -77,6 +81,7 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
           <View style={styles.verticalDivider} />
           <TextBtn
             text="회원가입"
+            sizeStyle="f15"
             textStyle={styles.btnsText}
             onPress={() => {
               navigation.navigate('SignUpStackNavigator');
@@ -119,7 +124,6 @@ const styles = StyleSheet.create({
     marginTop: 19,
   },
   loginStatusText: {
-    fontSize: 15,
     color: THEME.REG_TEXT,
     marginLeft: 7,
   },
@@ -131,7 +135,6 @@ const styles = StyleSheet.create({
   },
   btnsText: {
     color: THEME.REG_TEXT,
-    fontSize: 15,
   },
   verticalDivider: {
     width: 1,

@@ -31,7 +31,11 @@ const Button = ({
       accessibilityLabel={text}
       {...props}
     >
-      <Text style={{ ...styles.text, ...styles[`${disabled ? 'disabled' : priority}Text`] }}>
+      <Text
+        sizeStyle="f18"
+        weightStyle="semiBold"
+        style={styles[`${disabled ? 'disabled' : priority}Text`]}
+      >
         {text}
       </Text>
     </TouchableOpacity>
@@ -67,10 +71,6 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
     paddingHorizontal: 20,
     borderRadius: 15,
-  },
-  text: {
-    fontSize: 18,
-    fontWeight: '600',
   },
   primaryText: {
     color: '#ffffff',

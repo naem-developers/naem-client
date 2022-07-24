@@ -6,10 +6,11 @@ import { SignUpStackParamList } from '@/navigators/SignUpStackNavigator';
 import { THEME } from '@/theme';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useCallback, useState } from 'react';
-import { Text, StyleSheet, View, Pressable } from 'react-native';
+import { StyleSheet, View, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { RadioButton } from 'react-native-paper';
+import Text from '@/components/atoms/Text';
 
 const USER_TYPE = {
   DISABLED: 'DISABLED',
@@ -45,8 +46,11 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
       <>
         {userType === USER_TYPE.DISABLED ? (
           <>
-            <Text style={styles.subtitle}>
-              장애인 인증<Text style={styles.starSup}>*</Text>
+            <Text sizeStyle="f14" weightStyle="medium" style={styles.subtitle}>
+              장애인 인증
+              <Text sizeStyle="f14" style={styles.starSup}>
+                *
+              </Text>
             </Text>
             {/* TODO: 인증 여부 플래그 추가 */}
             <Button
@@ -60,8 +64,11 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
           </>
         ) : (
           <>
-            <Text style={styles.subtitle}>
-              추천인 코드<Text style={styles.starSup}>*</Text>
+            <Text sizeStyle="f14" weightStyle="medium" style={styles.subtitle}>
+              추천인 코드
+              <Text sizeStyle="f14" style={styles.starSup}>
+                *
+              </Text>
             </Text>
             <View style={styles.row}>
               <TextInput
@@ -87,8 +94,11 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
     <SafeAreaView style={styles.container}>
       <Header title="회원가입" />
       <KeyboardAwareScrollView contentContainerStyle={styles.contentContainer}>
-        <Text style={styles.subtitle}>
-          회원 유형 선택<Text style={styles.starSup}>*</Text>
+        <Text sizeStyle="f14" weightStyle="medium" style={styles.subtitle}>
+          회원 유형 선택
+          <Text sizeStyle="f14" style={styles.starSup}>
+            *
+          </Text>
         </Text>
         <View style={styles.row}>
           <Pressable style={[styles.row, styles.flex1]} onPress={handlePickDisabled}>
@@ -97,7 +107,9 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
               status={userType === USER_TYPE.DISABLED ? 'checked' : 'unchecked'}
               onPress={handlePickDisabled}
             />
-            <Text style={styles.radioText}>장애인 본인</Text>
+            <Text sizeStyle="f17" weightStyle="medium" style={styles.radioText}>
+              장애인 본인
+            </Text>
           </Pressable>
           <Pressable style={[styles.row, styles.flex1]} onPress={handlePickProtector}>
             <RadioButton.Android
@@ -105,11 +117,16 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
               status={userType === USER_TYPE.PROTECTOR ? 'checked' : 'unchecked'}
               onPress={handlePickProtector}
             />
-            <Text style={styles.radioText}>장애인 보호자</Text>
+            <Text sizeStyle="f17" weightStyle="medium" style={styles.radioText}>
+              장애인 보호자
+            </Text>
           </Pressable>
         </View>
-        <Text style={styles.subtitle}>
-          휴대폰 번호<Text style={styles.starSup}>*</Text>
+        <Text sizeStyle="f14" weightStyle="medium" style={styles.subtitle}>
+          휴대폰 번호
+          <Text sizeStyle="f14" style={styles.starSup}>
+            *
+          </Text>
         </Text>
         <View style={styles.row}>
           <TextInput
@@ -126,8 +143,11 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
             onPress={handleSendCertNum}
           />
         </View>
-        <Text style={styles.subtitle}>
-          아이디<Text style={styles.starSup}>*</Text>
+        <Text sizeStyle="f14" weightStyle="medium" style={styles.subtitle}>
+          아이디
+          <Text sizeStyle="f14" style={styles.starSup}>
+            *
+          </Text>
         </Text>
         <View style={styles.row}>
           <TextInput
@@ -143,8 +163,11 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
             onPress={handleCheckDuplicateId}
           />
         </View>
-        <Text style={styles.subtitle}>
-          비밀번호<Text style={styles.starSup}>*</Text>
+        <Text sizeStyle="f14" weightStyle="medium" style={styles.subtitle}>
+          비밀번호
+          <Text sizeStyle="f14" style={styles.starSup}>
+            *
+          </Text>
         </Text>
         <TextInput
           style={[styles.input, styles.mt10]}
@@ -153,8 +176,11 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
           value={pw}
           onChangeText={(text) => setPw(text)}
         />
-        <Text style={styles.subtitle}>
-          닉네임<Text style={styles.starSup}>*</Text>
+        <Text sizeStyle="f14" weightStyle="medium" style={styles.subtitle}>
+          닉네임
+          <Text sizeStyle="f14" style={styles.starSup}>
+            *
+          </Text>
         </Text>
         <View style={styles.row}>
           <TextInput
@@ -192,8 +218,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: H_PADDING,
   },
   subtitle: {
-    fontSize: 14,
-    fontWeight: '500',
     color: THEME.STRONG_TEXT,
     marginTop: 32,
   },
@@ -202,8 +226,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
   },
   radioText: {
-    fontSize: 17,
-    fontWeight: '500',
     lineHeight: 25,
     color: THEME.STRONG_TEXT,
   },
@@ -213,7 +235,6 @@ const styles = StyleSheet.create({
   starSup: {
     marginLeft: 2,
     color: THEME.POINT,
-    fontSize: 14,
   },
   row: {
     flexDirection: 'row',

@@ -1,16 +1,20 @@
 import * as React from 'react';
 import { View, StyleSheet, Pressable, PressableProps, TextStyle } from 'react-native';
-import Text from '@/components/atoms/Text';
+import Text, { SizeStyle, WeightStyle } from '@/components/atoms/Text';
 
 interface TextBtnProps extends PressableProps {
   text: string;
   textStyle?: TextStyle;
+  sizeStyle?: SizeStyle;
+  weightStyle?: WeightStyle;
 }
 
-const TextBtn = ({ text, textStyle = {}, ...props }: TextBtnProps) => {
+const TextBtn = ({ text, textStyle = {}, sizeStyle, weightStyle, ...props }: TextBtnProps) => {
   return (
     <Pressable style={styles.container} hitSlop={5} {...props}>
-      <Text style={textStyle}>{text}</Text>
+      <Text sizeStyle={sizeStyle} weightStyle={weightStyle} style={textStyle}>
+        {text}
+      </Text>
     </Pressable>
   );
 };

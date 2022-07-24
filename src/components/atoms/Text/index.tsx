@@ -4,9 +4,12 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import { STANDARD_DEVICE_HEIGHT } from '../../../constants';
 import { sizeStyles, weightStyles } from './fontStyles';
 
+export type SizeStyle = keyof typeof sizeStyles;
+export type WeightStyle = keyof typeof weightStyles;
+
 interface TextProps extends RNTextProps {
-  sizeStyle?: keyof typeof sizeStyles;
-  weightStyle?: keyof typeof weightStyles;
+  sizeStyle?: SizeStyle;
+  weightStyle?: WeightStyle;
 }
 
 const Text = ({
