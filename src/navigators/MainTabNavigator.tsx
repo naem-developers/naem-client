@@ -49,7 +49,10 @@ const TabBarIcon = ({ focused, label, TabIcon, onPress }: TabBarIconProps) => {
       style={styles.tabContainer}
     >
       {TabIcon}
-      <Text style={{ ...styles.text, ...{ color: focused ? THEME.MAIN : '#767676' } }}>
+      <Text
+        sizeStyle="f11"
+        style={{ ...styles.text, ...{ color: focused ? THEME.MAIN : '#767676' } }}
+      >
         {label as string}
       </Text>
     </Container>
@@ -193,7 +196,6 @@ const styles = StyleSheet.create({
     height: 24,
   },
   text: {
-    fontSize: 11,
     marginTop: 6,
   },
 });

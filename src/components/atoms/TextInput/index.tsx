@@ -15,7 +15,11 @@ const TextInput = ({ style, validationMsg, ...props }: TextInputProps) => {
   return (
     <>
       <RNTextInput style={[style, styles.container]} placeholderTextColor="#aeaeae" {...props} />
-      {!!validationMsg && <Text style={styles.validation}>{validationMsg}</Text>}
+      {!!validationMsg && (
+        <Text sizeStyle="f13" weightStyle="semiBold" style={styles.validation}>
+          {validationMsg}
+        </Text>
+      )}
     </>
   );
 };
@@ -34,8 +38,6 @@ const styles = StyleSheet.create({
   validation: {
     marginTop: 9,
     color: THEME.POINT,
-    fontSize: 13,
-    fontWeight: '600',
     alignSelf: 'flex-start',
   },
 });

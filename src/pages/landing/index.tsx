@@ -11,7 +11,7 @@ interface LandingPageProps extends NativeStackScreenProps<RootStackParamList, 'l
 const LandingPage = ({ navigation }: LandingPageProps) => {
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={{ fontSize: 16 }}>LandingPage</Text>
+      <Text>LandingPage</Text>
       <Button
         title="signup page"
         onPress={() => {
