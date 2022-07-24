@@ -1,3 +1,4 @@
+import SearchBar from '@/components/organisms/SearchBar';
 import { THEME } from '@/theme';
 import * as React from 'react';
 import { Text, StyleSheet, View, Image } from 'react-native';
@@ -10,6 +11,7 @@ const HomePage = (props: HomePageProps) => {
   return (
     <View style={[styles.container]}>
       <View style={[styles.headerContainer, { paddingTop: insets.top }]}>
+        <SearchBar />
         <Image style={styles.catchPhrase} source={require('@/assets/images/img_catchphrase.png')} />
       </View>
     </View>
