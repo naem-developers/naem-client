@@ -1,6 +1,10 @@
 import { TextStyle } from 'react-native';
 
 export const sizeStyles: Record<string, { fontSize: number; lineHeight: number }> = {
+  f19: {
+    fontSize: 19,
+    lineHeight: 22,
+  },
   f18: {
     fontSize: 18,
     lineHeight: 22,
