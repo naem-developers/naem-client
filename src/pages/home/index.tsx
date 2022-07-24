@@ -13,7 +13,11 @@ const HomePage = ({ navigation }: HomePageProps) => {
   return (
     <View style={[styles.container]}>
       <View style={[styles.headerContainer, { paddingTop: insets.top }]}>
-        <SearchBar disabled onPress={() => navigation.navigate('SearchPage')} />
+        <SearchBar
+          style={styles.searchBar}
+          disabled
+          onPress={() => navigation.navigate('SearchPage')}
+        />
         <Image style={styles.catchPhrase} source={require('@/assets/images/img_catchphrase.png')} />
       </View>
     </View>
@@ -32,5 +36,9 @@ const styles = StyleSheet.create({
   catchPhrase: {
     width: 205,
     height: 48,
+  },
+  searchBar: {
+    marginTop: 5,
+    marginBottom: 35,
   },
 });
