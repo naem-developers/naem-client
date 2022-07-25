@@ -456,8 +456,8 @@ SPEC REPOS:
     - libevent
     - OpenSSL-Universal
     - SocketRocket
-    - YogaKit
     - TOCropViewController
+    - YogaKit
 
 EXTERNAL SOURCES:
   boost:
@@ -590,6 +590,6 @@ SPEC CHECKSUMS:
   Yoga: 99652481fcd320aefa4a7ef90095b95acd181952
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 582a9c382488c9f2d8d9cd3799c95fc055ad1fb0
+PODFILE CHECKSUM: 2c49bfd8320f89365af40602361ebceeba67103c
 
 COCOAPODS: 1.11.2
