@@ -1,6 +1,6 @@
 import Header from '@/components/organisms/Header';
-import React, { useCallback } from 'react';
-import { View, StyleSheet, ScrollView, Image, Pressable } from 'react-native';
+import React, { useCallback, useMemo, useState } from 'react';
+import { View, StyleSheet, ScrollView, Image, Pressable, Modal } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import IcnCheck from '@/assets/icons/icn_check.svg';
 import { THEME } from '@/theme';
@@ -9,6 +9,7 @@ import Button from '@/components/atoms/Button';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { SignUpStackParamList } from '@/navigators/SignUpStackNavigator';
 import ImagePicker from 'react-native-image-crop-picker';
+import BottomSheetMenu from '@/components/organisms/BottomSheetMenu';
 
 const CAUTION_LIST = [
   `• 빛 반사가 되지 않도록 촬영해주세요.
@@ -21,6 +22,11 @@ interface DisabilityCertificatePageProps
   extends NativeStackScreenProps<SignUpStackParamList, 'DisabilityCertificatePage'> {}
 
 const DisabilityCertificatePage = ({ navigation }: DisabilityCertificatePageProps) => {
+  const [bottomSheetMenuVisible, setBottomSheetMenuVisible] = useState<boolean>(false);
+
+  const openBottomSheetMenu = () => {
+    setBottomSheetMenuVisible(true);
+  };
   // TODO: crop size 지정 및 고도화하기
   const handleOpenGallery = useCallback(() => {
     ImagePicker.openPicker({
@@ -31,6 +37,13 @@ const DisabilityCertificatePage = ({ navigation }: DisabilityCertificatePageProp
       console.log(image);
     });
   }, []);
+
+  const MENU_LIST = useMemo(() => {
+    return [
+      { title: '앨범에서 찾기', onPress: handleOpenGallery },
+      { title: '촬영하기', onPress: handleOpenGallery },
+    ];
+  }, [handleOpenGallery]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -47,7 +60,7 @@ const DisabilityCertificatePage = ({ navigation }: DisabilityCertificatePageProp
           </Text>
           을 준비해주세요
         </Text>
-        <Pressable style={styles.sampleImgBtn} onPress={handleOpenGallery}>
+        <Pressable style={styles.sampleImgBtn} onPress={openBottomSheetMenu}>
           <Image
             style={styles.sampleImg}
             source={require('@/assets/images/img_certificate_ex.png')}
@@ -74,9 +87,14 @@ const DisabilityCertificatePage = ({ navigation }: DisabilityCertificatePageProp
             style={[styles.flex1, styles.mr26]}
             onPress={() => navigation.goBack()}
           />
-          <Button text="촬영하기" style={styles.flex1} onPress={handleOpenGallery} />
+          <Button text="촬영하기" style={styles.flex1} onPress={openBottomSheetMenu} />
         </View>
       </ScrollView>
+      <BottomSheetMenu
+        visible={bottomSheetMenuVisible}
+        setVisible={setBottomSheetMenuVisible}
+        menuList={MENU_LIST}
+      />
     </SafeAreaView>
   );
 };
