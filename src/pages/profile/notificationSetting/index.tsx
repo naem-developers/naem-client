@@ -1,18 +1,25 @@
+import Text from '@/components/atoms/Text';
+import Header from '@/components/organisms/Header';
+import { THEME } from '@/theme';
 import * as React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface NotificationSettingPageProps {}
 
 const NotificationSettingPage = (props: NotificationSettingPageProps) => {
   return (
-    <View style={styles.container}>
-      <Text>NotificationSettingPage</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <Header title="알림 설정" />
+      <ScrollView>
+        <Text>123</Text>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
 export default NotificationSettingPage;
 
 const styles = StyleSheet.create({
-  container: {},
+  container: { flex: 1, backgroundColor: THEME.BG },
 });
