@@ -1,4 +1,5 @@
 import Text from '@/components/atoms/Text';
+import SwitchItem from '@/components/myPage/SwitchItem';
 import Header from '@/components/organisms/Header';
 import { THEME } from '@/theme';
 import * as React from 'react';
@@ -12,7 +13,7 @@ const NotificationSettingPage = (props: NotificationSettingPageProps) => {
     <SafeAreaView style={styles.container}>
       <Header title="알림 설정" />
       <ScrollView>
-        <Text>123</Text>
+        <SwitchItem text="알림 허용" />
       </ScrollView>
     </SafeAreaView>
   );
