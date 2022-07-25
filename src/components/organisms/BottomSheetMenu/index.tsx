@@ -26,7 +26,7 @@ const BottomSheetMenu = ({ visible, setVisible, menuList }: BottomSheetMenuProps
               <Pressable
                 style={[
                   styles.itemContainer,
-                  menuIndex === length - 1 && { paddingBottom: insets.bottom },
+                  menuIndex === length - 1 && { paddingBottom: insets.bottom + 24 },
                 ]}
                 onPress={menuItem.onPress}
               >
