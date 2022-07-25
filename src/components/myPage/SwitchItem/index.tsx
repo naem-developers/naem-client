@@ -1,4 +1,5 @@
 import Text from '@/components/atoms/Text';
+import { THEME } from '@/theme';
 import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Switch } from 'react-native-paper';
@@ -12,7 +13,9 @@ interface SwitchItemProps {
 const SwitchItem = ({ text, value, onValueChange }: SwitchItemProps) => {
   return (
     <View style={styles.container}>
-      <Text>{text}</Text>
+      <Text sizeStyle="f17" weightStyle="medium" style={styles.text}>
+        {text}
+      </Text>
       <Switch value={value} onValueChange={onValueChange} />
     </View>
   );
@@ -26,5 +29,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 16,
+  },
+  text: {
+    color: THEME.STRONG_TEXT,
   },
 });
