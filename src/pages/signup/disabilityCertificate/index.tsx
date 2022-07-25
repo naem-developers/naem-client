@@ -11,6 +11,10 @@ import { SignUpStackParamList } from '@/navigators/SignUpStackNavigator';
 import ImagePicker from 'react-native-image-crop-picker';
 import BottomSheetMenu from '@/components/organisms/BottomSheetMenu';
 
+const CARD_RATIO = 1.5858;
+const CARD_WIDTH = 300;
+const CARD_HEIGHT = CARD_WIDTH / CARD_RATIO;
+
 const CAUTION_LIST = [
   `• 빛 반사가 되지 않도록 촬영해주세요.
   어두운 바닥에서 촬영하면 잘 인식됩니다.`,
@@ -30,18 +34,26 @@ const DisabilityCertificatePage = ({ navigation }: DisabilityCertificatePageProp
   // TODO: crop size 지정 및 고도화하기
   const handleOpenGallery = useCallback(() => {
     ImagePicker.openPicker({
-      width: 300,
-      height: 400,
+      width: CARD_WIDTH,
+      height: CARD_HEIGHT,
       cropping: true,
     }).then((image) => {
       console.log(image);
     });
   }, []);
 
+  const handleOpenCamera = useCallback(() => {
+    ImagePicker.openCamera({ width: CARD_WIDTH, height: CARD_HEIGHT, cropping: true }).then(
+      (image) => {
+        console.log(image);
+      },
+    );
+  }, []);
+
   const MENU_LIST = useMemo(() => {
     return [
       { title: '앨범에서 찾기', onPress: handleOpenGallery },
-      { title: '촬영하기', onPress: handleOpenGallery },
+      { title: '촬영하기', onPress: handleOpenCamera },
     ];
   }, [handleOpenGallery]);
 
