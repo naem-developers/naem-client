@@ -3,7 +3,7 @@ import PostView from '@/components/board/post';
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Text, StyleSheet, View } from 'react-native';
 
-const DumyPostData = [
+const DummyPostData = [
   {
     id: 1,
     type: 'hot',
@@ -50,7 +50,7 @@ const HotBoard = () => {
         setSearchValue={setSearchValue}
         setSelectedKeywords={setSelectedKeywords}
       />
-      <PostView postDataArray={DumyPostData} selectedKeywords={selectedKeywords} />
+      <PostView postDataArray={DummyPostData} selectedKeywords={selectedKeywords} />
     </View>
   );
 };

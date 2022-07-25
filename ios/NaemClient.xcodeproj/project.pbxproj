@@ -39,6 +39,7 @@
 		01360D326F6F998F836A9FDC /* Pods-NaemClient-NaemClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaemClient-NaemClientTests.release.xcconfig"; path = "Target Support Files/Pods-NaemClient-NaemClientTests/Pods-NaemClient-NaemClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		0AD54A01F379DB59BF95EA49 /* libPods-NaemClient-NaemClientTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NaemClient-NaemClientTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F7704AFA539F0DC836DE6EA /* libPods-NaemClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NaemClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A8C3C729A1768BE8AF3F686 /* libPods-NaemClient-NaemClientTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NaemClient-NaemClientTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* NaemClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NaemClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = NaemClient/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = NaemClient/AppDelegate.mm; sourceTree = "<group>"; };
@@ -459,6 +460,11 @@
 				"${PODS_ROOT}/Target Support Files/Pods-NaemClient-NaemClientTests/Pods-NaemClient-NaemClientTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NaemClient-NaemClientTests/Pods-NaemClient-NaemClientTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
@@ -476,6 +482,7 @@
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -512,7 +519,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-NaemClient/Pods-NaemClient-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 				"${PODS_ROOT}/Target Support Files/Pods-NaemClient-NaemClientTests/Pods-NaemClient-NaemClientTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NaemClient-NaemClientTests/Pods-NaemClient-NaemClientTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
@@ -527,12 +534,9 @@
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NaemClient-NaemClientTests/Pods-NaemClient-NaemClientTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -543,6 +547,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NaemClient/Pods-NaemClient-resources.sh\"\n";
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NaemClient-NaemClientTests/Pods-NaemClient-NaemClientTests-resources.sh\"\n";
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NaemClient-NaemClientTests/Pods-NaemClient-NaemClientTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
