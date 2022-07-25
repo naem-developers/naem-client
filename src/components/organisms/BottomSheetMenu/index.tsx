@@ -1,7 +1,7 @@
 import Text from '@/components/atoms/Text';
 import { THEME } from '@/theme';
 import * as React from 'react';
-import { View, StyleSheet, Modal as RNModal, Pressable, TouchableOpacity } from 'react-native';
+import { StyleSheet, Modal as RNModal, Pressable } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface BottomSheetMenuProps {
@@ -30,7 +30,9 @@ const BottomSheetMenu = ({ visible, setVisible, menuList }: BottomSheetMenuProps
               ]}
               onPress={menuItem.onPress}
             >
-              <Text>{menuItem.title}</Text>
+              <Text sizeStyle="f17" weightStyle="semiBold" style={styles.strongTextColor}>
+                {menuItem.title}
+              </Text>
             </Pressable>
           );
         })}
@@ -52,7 +54,9 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: THEME.BG,
     padding: 24,
-    // justifyContent: 'center',
     alignItems: 'center',
+  },
+  strongTextColor: {
+    color: THEME.STRONG_TEXT,
   },
 });
