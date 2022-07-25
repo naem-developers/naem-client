@@ -1,7 +1,7 @@
 import Text from '@/components/atoms/Text';
 import { THEME } from '@/theme';
 import * as React from 'react';
-import { StyleSheet, Modal as RNModal, Pressable } from 'react-native';
+import { StyleSheet, Modal as RNModal, Pressable, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface BottomSheetMenuProps {
@@ -22,18 +22,20 @@ const BottomSheetMenu = ({ visible, setVisible, menuList }: BottomSheetMenuProps
       <Pressable style={styles.modalContainer} onPress={() => setVisible(false)}>
         {menuList.map((menuItem, menuIndex, { length }) => {
           return (
-            <Pressable
-              key={`${menuItem.title}-${menuIndex}`}
-              style={[
-                styles.itemContainer,
-                menuIndex === length - 1 && { paddingBottom: insets.bottom },
-              ]}
-              onPress={menuItem.onPress}
-            >
-              <Text sizeStyle="f17" weightStyle="semiBold" style={styles.strongTextColor}>
-                {menuItem.title}
-              </Text>
-            </Pressable>
+            <React.Fragment key={`${menuItem.title}-${menuIndex}`}>
+              <Pressable
+                style={[
+                  styles.itemContainer,
+                  menuIndex === length - 1 && { paddingBottom: insets.bottom },
+                ]}
+                onPress={menuItem.onPress}
+              >
+                <Text sizeStyle="f17" weightStyle="semiBold" style={styles.strongTextColor}>
+                  {menuItem.title}
+                </Text>
+              </Pressable>
+              {menuIndex === length - 1 || <View style={styles.divider} />}
+            </React.Fragment>
           );
         })}
       </Pressable>
@@ -58,5 +60,10 @@ const styles = StyleSheet.create({
   },
   strongTextColor: {
     color: THEME.STRONG_TEXT,
+  },
+  divider: {
+    width: '100%',
+    height: 1,
+    backgroundColor: THEME.LIGHT_LINE,
   },
 });
