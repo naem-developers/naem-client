@@ -16,6 +16,7 @@ interface ProfileEditPageProps {}
 const ProfileEditPage = (props: ProfileEditPageProps) => {
   const [nickname, setNickname] = useState<string>('');
   const [nicknameValidationMsg, setNicknameValidationMsg] = useState<string>('');
+  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
 
   const checkNickname = useCallback(() => {
     const tempNicknameValidMsg = validateNickname(nickname);
@@ -36,6 +37,17 @@ const ProfileEditPage = (props: ProfileEditPageProps) => {
       </TouchableOpacity>
     );
   }, []);
+
+  const handlePressTag = useCallback(
+    (type: string) => {
+      if (selectedTypes.includes(type)) {
+        setSelectedTypes(selectedTypes.filter((item) => item !== type));
+      } else if (selectedTypes.length < 3) {
+        setSelectedTypes((v) => [...v, type]);
+      }
+    },
+    [selectedTypes],
+  );
 
   return (
     <SafeAreaView style={styles.container}>
@@ -85,7 +97,13 @@ const ProfileEditPage = (props: ProfileEditPageProps) => {
         <View style={styles.typesContainer}>
           {DISABLED_TYPE.map((typeItem, typeIndex) => {
             return (
-              <Tag key={`${typeItem}-${typeIndex}`} text={`#${typeItem}`} style={styles.tagItem} />
+              <Tag
+                key={`${typeItem}-${typeIndex}`}
+                text={`#${typeItem}`}
+                style={styles.tagItem}
+                selected={selectedTypes.includes(typeItem)}
+                onPress={() => handlePressTag(typeItem)}
+              />
             );
           })}
         </View>
