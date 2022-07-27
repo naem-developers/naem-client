@@ -7,11 +7,23 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import IcnCameraColor from '@/assets/icons/icn_camera_color.svg';
 import TextInput from '@/components/atoms/TextInput';
 import Button from '@/components/atoms/Button';
+import { validateNickname } from '@/utils/validation';
 
 interface ProfileEditPageProps {}
 
 const ProfileEditPage = (props: ProfileEditPageProps) => {
   const [nickname, setNickname] = useState<string>('');
+  const [nicknameValidationMsg, setNicknameValidationMsg] = useState<string>('');
+
+  const checkNickname = useCallback(() => {
+    const tempNicknameValidMsg = validateNickname(nickname);
+    setNicknameValidationMsg(tempNicknameValidMsg);
+    return !!tempNicknameValidMsg;
+  }, [nickname]);
+
+  const handleCheckDuplicateNickname = useCallback(() => {
+    if (!checkNickname()) return;
+  }, [checkNickname]);
 
   const CompleteBtn = useCallback(() => {
     return (
@@ -45,12 +57,14 @@ const ProfileEditPage = (props: ProfileEditPageProps) => {
             placeholder="10자 이내, 특수문자 불가"
             value={nickname}
             onChangeText={(text) => setNickname(text)}
+            onBlur={checkNickname}
+            validationMsg={nicknameValidationMsg}
           />
           <Button
             text="중복 확인"
             btnSize="small"
             style={styles.btn}
-            // onPress={handleCheckDuplicateNickname}
+            onPress={handleCheckDuplicateNickname}
           />
         </View>
       </ScrollView>
