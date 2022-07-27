@@ -216,6 +216,7 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
           onChangeText={(text) => setPw(text)}
           onBlur={checkPw}
           validationMsg={pwValidationMsg}
+          maxLength={13}
         />
         <Text sizeStyle="f14" weightStyle="medium" style={styles.subtitle}>
           닉네임
@@ -231,6 +232,7 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
             onChangeText={(text) => setNickname(text)}
             onBlur={checkNickname}
             validationMsg={nicknameValidationMsg}
+            maxLength={10}
           />
           <Button
             text="중복 확인"

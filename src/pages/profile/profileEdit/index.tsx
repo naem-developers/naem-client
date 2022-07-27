@@ -59,6 +59,7 @@ const ProfileEditPage = (props: ProfileEditPageProps) => {
             onChangeText={(text) => setNickname(text)}
             onBlur={checkNickname}
             validationMsg={nicknameValidationMsg}
+            maxLength={10}
           />
           <Button
             text="중복 확인"
@@ -67,6 +68,15 @@ const ProfileEditPage = (props: ProfileEditPageProps) => {
             onPress={handleCheckDuplicateNickname}
           />
         </View>
+        <Text sizeStyle="f14" weightStyle="mediumn" style={styles.title}>
+          한 줄 소개
+        </Text>
+        <TextInput
+          style={styles.bio}
+          placeholder="소개글을 입력해 주세요."
+          multiline
+          maxLength={32}
+        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -117,6 +127,12 @@ const styles = StyleSheet.create({
   btn: {
     borderRadius: 10,
     marginLeft: 12,
+    paddingTop: 14,
+    paddingBottom: 14,
+  },
+  bio: {
+    height: 75,
+    marginTop: 10,
     paddingTop: 14,
     paddingBottom: 14,
   },
