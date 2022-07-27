@@ -8,6 +8,8 @@ import IcnCameraColor from '@/assets/icons/icn_camera_color.svg';
 import TextInput from '@/components/atoms/TextInput';
 import Button from '@/components/atoms/Button';
 import { validateNickname } from '@/utils/validation';
+import { DISABLED_TYPE } from '@/constants';
+import Tag from '@/components/molecules/Tag';
 
 interface ProfileEditPageProps {}
 
@@ -77,6 +79,16 @@ const ProfileEditPage = (props: ProfileEditPageProps) => {
           multiline
           maxLength={32}
         />
+        <Text sizeStyle="f14" weightStyle="mediumn" style={styles.title}>
+          관심 키워드
+        </Text>
+        <View style={styles.typesContainer}>
+          {DISABLED_TYPE.map((typeItem, typeIndex) => {
+            return (
+              <Tag key={`${typeItem}-${typeIndex}`} text={`#${typeItem}`} style={styles.tagItem} />
+            );
+          })}
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -135,5 +147,14 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingTop: 14,
     paddingBottom: 14,
+  },
+  typesContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginTop: 10,
+  },
+  tagItem: {
+    marginBottom: 16,
+    marginRight: 12,
   },
 });
