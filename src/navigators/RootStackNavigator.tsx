@@ -7,6 +7,7 @@ import LoginPage from '@/pages/login/login';
 import FindIdPage from '@/pages/login/findId';
 import FindPwPage from '@/pages/login/findPw';
 import PostPage from '@/pages/post/post';
+import SearchPage from '@/pages/search';
 import ProfileEditPage from '@/pages/profile/profileEdit';
 import EventPage from '@/pages/profile/event';
 import MyPostCommentPage from '@/pages/profile/myPostComment';
@@ -22,6 +23,7 @@ export type RootStackParamList = {
   FindIdPage: undefined;
   FindPwPage: undefined;
   PostPage: undefined;
+  SearchPage: undefined;
   ProfileEditPage: undefined;
   EventPage: undefined;
   MyPostCommentPage: undefined;
@@ -42,6 +44,7 @@ const RootStackNavigator = () => {
       <Stack.Screen name="FindIdPage" component={FindIdPage} />
       <Stack.Screen name="FindPwPage" component={FindPwPage} />
       <Stack.Screen name="PostPage" component={PostPage} />
+      <Stack.Screen name="SearchPage" component={SearchPage} />
       <Stack.Screen name="ProfileEditPage" component={ProfileEditPage} />
       <Stack.Screen name="EventPage" component={EventPage} />
       <Stack.Screen name="MyPostCommentPage" component={MyPostCommentPage} />
