@@ -15,6 +15,7 @@ import {
   TabView,
 } from 'react-native-tab-view';
 import { FlashList } from '@shopify/flash-list';
+import IconListItem, { IconListItemProps } from '@/components/organisms/IconListItem';
 
 const MY_POST_LIST = [
   {
@@ -82,25 +83,39 @@ const MyPostCommentPage = (props: MyPostCommentPageProps) => {
 
   const MyPost = () => {
     return (
-      <View style={styles.flashListContainer}>
-        <FlatList
-          data={MY_POST_LIST}
-          renderItem={({ item }) => <Text>{item.title}</Text>}
-          showsVerticalScrollIndicator={false}
-        />
-      </View>
+      <FlatList
+        data={MY_POST_LIST}
+        renderItem={({ item }) => (
+          <IconListItem
+            type={item.type as IconListItemProps['type']}
+            board={item.board}
+            title={item.title}
+            body={item.body}
+            createdAt={item.createdAt}
+          />
+        )}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(item) => String(item.id)}
+      />
     );
   };
 
   const MyComment = () => {
     return (
-      <View style={styles.flashListContainer}>
-        <FlatList
-          data={MY_COMMENT_LIST}
-          renderItem={({ item }) => <Text>{item.title}</Text>}
-          showsVerticalScrollIndicator={false}
-        />
-      </View>
+      <FlatList
+        data={MY_COMMENT_LIST}
+        renderItem={({ item }) => (
+          <IconListItem
+            type={item.type as IconListItemProps['type']}
+            board={item.board}
+            title={item.title}
+            body={item.body}
+            createdAt={item.createdAt}
+          />
+        )}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(item) => String(item.id)}
+      />
     );
   };
 
