@@ -5,6 +5,7 @@ import { View, StyleSheet, TouchableOpacity, TouchableOpacityProps } from 'react
 import IcnArticle from '@/assets/icons/icn_article.svg';
 import IcnComment from '@/assets/icons/icn_comment.svg';
 import { THEME } from '@/theme';
+import { format } from 'date-fns';
 
 export interface IconListItemProps extends TouchableOpacityProps {
   type: 'comment' | 'post';
@@ -62,7 +63,7 @@ const IconListItem = ({
           numberOfLines={1}
           style={[styles.flex1, styles.createdAt]}
         >
-          {createdAt.toString()}
+          {format(createdAt, 'MM/dd HH:mm')}
         </Text>
       </View>
     </TouchableOpacity>
