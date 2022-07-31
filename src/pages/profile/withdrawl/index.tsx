@@ -20,6 +20,17 @@ const WithdrawlPage = (props: WithdrawlPageProps) => {
   const [checkedIdxList, setCheckedIdxList] = useState<number[]>([]);
   const [selectedReason, setSelectedReason] = useState<string>('');
 
+  const handleCheckItem = useCallback(
+    (checkIndex: number) => {
+      if (checkedIdxList.includes(checkIndex)) {
+        setCheckedIdxList((v) => v.filter((item) => item !== checkIndex));
+      } else {
+        setCheckedIdxList((v) => [...v, checkIndex]);
+      }
+    },
+    [checkedIdxList],
+  );
+
   const handleCheckAll = useCallback(() => {
     if (checkedIdxList.length === CHECK_LIST.length) {
       setCheckedIdxList([]);
@@ -46,11 +57,7 @@ const WithdrawlPage = (props: WithdrawlPageProps) => {
                 key={checkItem}
                 style={[styles.row, checkIndex !== 0 && styles.mt12]}
                 onPress={() => {
-                  if (checkedIdxList.includes(checkIndex)) {
-                    setCheckedIdxList((v) => v.filter((item) => item !== checkIndex));
-                  } else {
-                    setCheckedIdxList((v) => [...v, checkIndex]);
-                  }
+                  handleCheckItem(checkIndex);
                 }}
               >
                 <Checkbox.Android
