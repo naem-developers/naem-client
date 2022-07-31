@@ -4,7 +4,7 @@ import { H_PADDING } from '@/constants';
 import { THEME } from '@/theme';
 import React, { useCallback, useState } from 'react';
 import { View, StyleSheet, ScrollView, Pressable } from 'react-native';
-import { Checkbox } from 'react-native-paper';
+import { Checkbox, RadioButton } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const CHECK_LIST = [
@@ -12,10 +12,13 @@ const CHECK_LIST = [
   '다른 사람의 글에 단 댓글은 삭제되지 않으니 유의 바랍니다.',
 ];
 
+const REASON_LIST = ['사유 1', '시유 2', '사유 3', '기타'];
+
 interface WithdrawlPageProps {}
 
 const WithdrawlPage = (props: WithdrawlPageProps) => {
   const [checkedIdxList, setCheckedIdxList] = useState<number[]>([]);
+  const [selectedReason, setSelectedReason] = useState<string>('');
 
   const handleCheckAll = useCallback(() => {
     if (checkedIdxList.length === CHECK_LIST.length) {
@@ -24,6 +27,10 @@ const WithdrawlPage = (props: WithdrawlPageProps) => {
       setCheckedIdxList([...Array(CHECK_LIST.length).keys()]);
     }
   }, [checkedIdxList]);
+
+  const handleSelectReason = useCallback((reason: string) => {
+    setSelectedReason(reason);
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -66,6 +73,31 @@ const WithdrawlPage = (props: WithdrawlPageProps) => {
             모두 확인했습니다
           </Text>
         </Pressable>
+        <Text sizeStyle="f14" weightStyle="medium" style={[styles.title, styles.mt48]}>
+          탈퇴 사유 (선택)
+        </Text>
+        {REASON_LIST.map((reasonItem, reasonIndex) => {
+          return (
+            <Pressable
+              key={reasonItem}
+              style={styles.radioContainer}
+              onPress={() => {
+                handleSelectReason(reasonItem);
+              }}
+            >
+              <RadioButton.Android
+                value={reasonItem}
+                status={selectedReason === reasonItem ? 'checked' : 'unchecked'}
+                onPress={() => {
+                  handleSelectReason(reasonItem);
+                }}
+              />
+              <Text sizeStyle="f14" weightStyle="medium" style={styles.radioText}>
+                {reasonItem}
+              </Text>
+            </Pressable>
+          );
+        })}
       </ScrollView>
     </SafeAreaView>
   );
@@ -92,4 +124,6 @@ const styles = StyleSheet.create({
   checkAllContainer: { flexDirection: 'row', alignItems: 'center', marginTop: 10 },
   checkAllText: { color: THEME.LIGHT_TEXT },
   mt48: { marginTop: 48 },
+  radioText: { color: THEME.REG_TEXT },
+  radioContainer: { flexDirection: 'row', alignItems: 'center', marginTop: 14 },
 });
