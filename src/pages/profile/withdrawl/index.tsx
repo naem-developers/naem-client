@@ -16,7 +16,7 @@ interface WithdrawlPageProps {}
 
 const WithdrawlPage = (props: WithdrawlPageProps) => {
   const [checkedIdxList, setCheckedIdxList] = useState<number[]>([]);
-
+  console.log('checkedIdxList', checkedIdxList);
   return (
     <SafeAreaView style={styles.container}>
       <Header title="회원 탈퇴" />
@@ -38,7 +38,10 @@ const WithdrawlPage = (props: WithdrawlPageProps) => {
                   }
                 }}
               >
-                <Checkbox.Android status={checkedIdxList.includes(0) ? 'checked' : 'unchecked'} />
+                <Checkbox.Android
+                  status={checkedIdxList.includes(checkIndex) ? 'checked' : 'unchecked'}
+                  uncheckedColor="#c9c9c9"
+                />
                 <Text sizeStyle="f14" weightStyle="medium" style={styles.checkText}>
                   {checkItem}
                 </Text>
@@ -46,6 +49,24 @@ const WithdrawlPage = (props: WithdrawlPageProps) => {
             );
           })}
         </View>
+        <Pressable
+          style={styles.checkAllContainer}
+          onPress={() => {
+            if (checkedIdxList.length === CHECK_LIST.length) {
+              setCheckedIdxList([]);
+            } else {
+              setCheckedIdxList([...Array(CHECK_LIST.length).keys()]);
+            }
+          }}
+        >
+          <Checkbox.Android
+            status={checkedIdxList.length === CHECK_LIST.length ? 'checked' : 'unchecked'}
+            uncheckedColor="#c9c9c9"
+          />
+          <Text sizeStyle="f14" weightStyle="medium" style={styles.checkAllText}>
+            모두 확인했습니다
+          </Text>
+        </Pressable>
       </ScrollView>
     </SafeAreaView>
   );
@@ -69,4 +90,6 @@ const styles = StyleSheet.create({
   checkBox: { width: 20, height: 20, backgroundColor: 'red' },
   checkText: { flex: 1, color: THEME.REG_TEXT },
   mt12: { marginTop: 12 },
+  checkAllContainer: { flexDirection: 'row', alignItems: 'center', marginTop: 10 },
+  checkAllText: { color: THEME.LIGHT_TEXT },
 });
