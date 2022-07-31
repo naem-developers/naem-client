@@ -24,23 +24,24 @@ const WithdrawlPage = (props: WithdrawlPageProps) => {
         <Text sizeStyle="f14" weightStyle="medium" style={[styles.title, styles.mt22]}>
           유의사항 (필수)
         </Text>
-
         <View style={styles.checkContainer}>
           {CHECK_LIST.map((checkItem, checkIndex) => {
             return (
               <Pressable
                 key={checkItem}
-                style={styles.row}
+                style={[styles.row, checkIndex !== 0 && styles.mt12]}
                 onPress={() => {
                   if (checkedIdxList.includes(checkIndex)) {
                     setCheckedIdxList((v) => v.filter((item) => item !== checkIndex));
                   } else {
-                    setCheckedIdxList((v) => [...v, 0]);
+                    setCheckedIdxList((v) => [...v, checkIndex]);
                   }
                 }}
               >
                 <Checkbox.Android status={checkedIdxList.includes(0) ? 'checked' : 'unchecked'} />
-                <Text>{checkItem}</Text>
+                <Text sizeStyle="f14" weightStyle="medium" style={styles.checkText}>
+                  {checkItem}
+                </Text>
               </Pressable>
             );
           })}
@@ -66,4 +67,6 @@ const styles = StyleSheet.create({
   },
   row: { flexDirection: 'row', alignItems: 'flex-start' },
   checkBox: { width: 20, height: 20, backgroundColor: 'red' },
+  checkText: { flex: 1, color: THEME.REG_TEXT },
+  mt12: { marginTop: 12 },
 });
