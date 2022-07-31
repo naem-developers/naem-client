@@ -2,19 +2,10 @@ import Text from '@/components/atoms/Text';
 import Header from '@/components/organisms/Header';
 import { H_PADDING } from '@/constants';
 import { THEME } from '@/theme';
-import { TabRouter } from '@react-navigation/routers';
 import React, { useState } from 'react';
-import { View, StyleSheet, ScrollView, useWindowDimensions, FlatList } from 'react-native';
+import { StyleSheet, useWindowDimensions, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import {
-  NavigationState,
-  SceneMap,
-  SceneRendererProps,
-  TabBar,
-  TabBarProps,
-  TabView,
-} from 'react-native-tab-view';
-import { FlashList } from '@shopify/flash-list';
+import { SceneMap, TabBar, TabView } from 'react-native-tab-view';
 import IconListItem, { IconListItemProps } from '@/components/organisms/IconListItem';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/navigators/RootStackNavigator';
@@ -77,8 +68,6 @@ interface MyPostCommentPageProps
 
 const MyPostCommentPage = ({ route }: MyPostCommentPageProps) => {
   const type = route.params.type ?? 'post';
-
-  const layout = useWindowDimensions();
 
   const [index, setIndex] = useState(type === 'post' ? 0 : 1);
   const [routes] = useState([
