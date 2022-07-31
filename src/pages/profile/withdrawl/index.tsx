@@ -2,7 +2,7 @@ import Text from '@/components/atoms/Text';
 import Header from '@/components/organisms/Header';
 import { H_PADDING } from '@/constants';
 import { THEME } from '@/theme';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View, StyleSheet, ScrollView, Pressable } from 'react-native';
 import { Checkbox } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -16,7 +16,15 @@ interface WithdrawlPageProps {}
 
 const WithdrawlPage = (props: WithdrawlPageProps) => {
   const [checkedIdxList, setCheckedIdxList] = useState<number[]>([]);
-  console.log('checkedIdxList', checkedIdxList);
+
+  const handleCheckAll = useCallback(() => {
+    if (checkedIdxList.length === CHECK_LIST.length) {
+      setCheckedIdxList([]);
+    } else {
+      setCheckedIdxList([...Array(CHECK_LIST.length).keys()]);
+    }
+  }, [checkedIdxList]);
+
   return (
     <SafeAreaView style={styles.container}>
       <Header title="회원 탈퇴" />
@@ -49,16 +57,7 @@ const WithdrawlPage = (props: WithdrawlPageProps) => {
             );
           })}
         </View>
-        <Pressable
-          style={styles.checkAllContainer}
-          onPress={() => {
-            if (checkedIdxList.length === CHECK_LIST.length) {
-              setCheckedIdxList([]);
-            } else {
-              setCheckedIdxList([...Array(CHECK_LIST.length).keys()]);
-            }
-          }}
-        >
+        <Pressable style={styles.checkAllContainer} onPress={handleCheckAll}>
           <Checkbox.Android
             status={checkedIdxList.length === CHECK_LIST.length ? 'checked' : 'unchecked'}
             uncheckedColor="#c9c9c9"
@@ -92,4 +91,5 @@ const styles = StyleSheet.create({
   mt12: { marginTop: 12 },
   checkAllContainer: { flexDirection: 'row', alignItems: 'center', marginTop: 10 },
   checkAllText: { color: THEME.LIGHT_TEXT },
+  mt48: { marginTop: 48 },
 });
