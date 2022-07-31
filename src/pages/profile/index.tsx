@@ -81,14 +81,24 @@ const MyPage = ({ navigation }: MyPageProps) => {
           onPress={() => navigation.navigate('ProfileEditPage')}
         />
         <View style={styles.myPostContainer}>
-          <TouchableOpacity style={styles.myPostBtn}>
+          <TouchableOpacity
+            style={styles.myPostBtn}
+            onPress={() => {
+              navigation.navigate('MyPostCommentPage');
+            }}
+          >
             <IcnArticle width={24} height={24} />
             <Text style={styles.myPostText}>내 게시글</Text>
             <Text style={styles.myPostNumber}>
               <Text style={styles.myPostNumberStrong}>10</Text> 개
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.myPostBtn, styles.ml14]}>
+          <TouchableOpacity
+            style={[styles.myPostBtn, styles.ml14]}
+            onPress={() => {
+              navigation.navigate('MyPostCommentPage');
+            }}
+          >
             <IcnComment width={24} height={24} />
             <Text style={styles.myPostText}>내 댓글</Text>
             <Text style={styles.myPostNumber}>
