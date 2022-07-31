@@ -1,4 +1,6 @@
+import Button from '@/components/atoms/Button';
 import Text from '@/components/atoms/Text';
+import TextInput from '@/components/atoms/TextInput';
 import Header from '@/components/organisms/Header';
 import { H_PADDING } from '@/constants';
 import { THEME } from '@/theme';
@@ -19,6 +21,7 @@ interface WithdrawlPageProps {}
 const WithdrawlPage = (props: WithdrawlPageProps) => {
   const [checkedIdxList, setCheckedIdxList] = useState<number[]>([]);
   const [selectedReason, setSelectedReason] = useState<string>('');
+  const [etcReason, setEtcReason] = useState<string>('');
 
   const handleCheckItem = useCallback(
     (checkIndex: number) => {
@@ -42,6 +45,8 @@ const WithdrawlPage = (props: WithdrawlPageProps) => {
   const handleSelectReason = useCallback((reason: string) => {
     setSelectedReason(reason);
   }, []);
+
+  const handleWithdraw = () => {};
 
   return (
     <SafeAreaView style={styles.container}>
@@ -105,6 +110,22 @@ const WithdrawlPage = (props: WithdrawlPageProps) => {
             </Pressable>
           );
         })}
+        <TextInput
+          placeholder="기타 사유를 입력해 주세요"
+          style={styles.mt10}
+          onChangeText={(text) => {
+            setEtcReason(text);
+            if (text.length > 0) {
+              handleSelectReason('기타');
+            }
+          }}
+        />
+        <Button
+          text="탈퇴하기"
+          style={styles.mt76}
+          onPress={handleWithdraw}
+          disabled={checkedIdxList.length !== CHECK_LIST.length}
+        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -133,4 +154,6 @@ const styles = StyleSheet.create({
   mt48: { marginTop: 48 },
   radioText: { color: THEME.REG_TEXT },
   radioContainer: { flexDirection: 'row', alignItems: 'center', marginTop: 14 },
+  mt10: { marginTop: 10 },
+  mt76: { marginTop: 76 },
 });
