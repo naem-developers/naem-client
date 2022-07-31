@@ -136,7 +136,6 @@ export default WithdrawlPage;
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: THEME.BG },
   contentContainer: { paddingHorizontal: H_PADDING },
-  mt22: { marginTop: 22 },
   title: { color: THEME.REG_TEXT },
   checkContainer: {
     paddingTop: 14,
@@ -148,12 +147,13 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', alignItems: 'flex-start' },
   checkBox: { width: 20, height: 20, backgroundColor: 'red' },
   checkText: { flex: 1, color: THEME.REG_TEXT },
-  mt12: { marginTop: 12 },
   checkAllContainer: { flexDirection: 'row', alignItems: 'center', marginTop: 10 },
   checkAllText: { color: THEME.LIGHT_TEXT },
-  mt48: { marginTop: 48 },
   radioText: { color: THEME.REG_TEXT },
   radioContainer: { flexDirection: 'row', alignItems: 'center', marginTop: 14 },
   mt10: { marginTop: 10 },
+  mt12: { marginTop: 12 },
+  mt22: { marginTop: 22 },
+  mt48: { marginTop: 48 },
   mt76: { marginTop: 76 },
 });
