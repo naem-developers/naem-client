@@ -3,7 +3,7 @@ import TextBtn from '@/components/atoms/TextBtn';
 import { THEME } from '@/theme';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Modal } from 'react-native-paper';
+import { Divider, Modal } from 'react-native-paper';
 import IcnExclamationMark from '@/assets/icons/icn_exclamation_mark.svg';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -19,7 +19,7 @@ const WelfarePlacePage = (props: WelfarePlacePageProps) => {
         <Text sizeStyle="f17" weightStyle="semiBold" style={styles.text}>
           서비스 준비 중입니다
         </Text>
-        <View style={[styles.divider]} />
+        <Divider style={styles.divider} />
         <TextBtn text="확인" textStyle={styles.btnText} sizeStyle="f17" weightStyle="semiBold" />
       </Modal>
     </View>
