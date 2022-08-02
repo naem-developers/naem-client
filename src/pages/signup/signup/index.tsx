@@ -58,7 +58,8 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
 
   // TODO: 함수 구현
   const handleSendCertNum = useCallback(() => {
-    if (!checkPhoneNum()) return;
+    // if (!checkPhoneNum()) return;
+    navigation.navigate('PhoneCertificatePage');
   }, [checkPhoneNum]);
   const handleCheckDuplicateId = useCallback(() => {
     if (!checkId()) return;
