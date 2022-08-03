@@ -1,7 +1,7 @@
 import ko from './ko';
 
 const resources = {
-    ko: ko,
-  };
-  
-  export default resources;
+  ko: ko,
+};
+
+export default resources;

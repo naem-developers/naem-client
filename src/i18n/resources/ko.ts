@@ -1,7 +1,7 @@
 const resource = {
-    login: {
-        heaer:'test'
-    }
-}
+  login: {
+    header: 'test',
+  },
+};
 
 export default resource;
