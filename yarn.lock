@@ -1431,7 +1431,7 @@
   dependencies:
     nanoid "^3.1.23"
 
-"@shopify/flash-list@^1.2.0":
+"@shopify/flash-list@1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@shopify/flash-list/-/flash-list-1.2.0.tgz#981b1a9fc92b16aeb835fc17423c9e3d5cb36565"
   integrity sha512-P5YzT91InI3t+Cw651bFXl1au2FxPuuPPDs1ijaUDUCOCJVliZOLdVD58CXElsNVcLppEqWDah4TB1JyC54Pqg==

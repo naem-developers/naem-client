@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SceneMap, TabBar, TabView } from 'react-native-tab-view';
+import HotBoard from './boards/HotBoard';
 
 interface BoardPageProps {}
 
@@ -18,7 +19,7 @@ const BoardPage = (props: BoardPageProps) => {
   ]);
 
   const renderScene = SceneMap({
-    hot: () => <></>,
+    hot: () => <HotBoard />,
     free: () => <></>,
     guardian: () => <></>,
     rehabilitation: () => <></>,
@@ -32,7 +33,7 @@ const BoardPage = (props: BoardPageProps) => {
         onIndexChange={setIndex}
         renderScene={renderScene}
         overScrollMode={'always'}
-        // sceneContainerStyle={{ backgroundColor: '#272A31' }}
+        sceneContainerStyle={{ backgroundColor: '#272A31' }}
         navigationState={{
           index: index,
           routes: routes,
