@@ -2,7 +2,12 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SceneMap, TabBar, TabView } from 'react-native-tab-view';
+import GuardianBoard from './boards/ GuardianBoard';
+import FreeBoard from './boards/FreeBoard';
 import HotBoard from './boards/HotBoard';
+import RehabilitationBoard from './boards/rehabilitationBoard';
+import TogetherBoard from './boards/TogetherBoard';
+import WelfareBoard from './boards/welfareBoard';
 
 interface BoardPageProps {}
 
@@ -20,11 +25,11 @@ const BoardPage = (props: BoardPageProps) => {
 
   const renderScene = SceneMap({
     hot: () => <HotBoard />,
-    free: () => <></>,
-    guardian: () => <></>,
-    rehabilitation: () => <></>,
-    welfare: () => <></>,
-    together: () => <></>,
+    free: () => <FreeBoard />,
+    guardian: () => <GuardianBoard />,
+    rehabilitation: () => <RehabilitationBoard />,
+    welfare: () => <WelfareBoard />,
+    together: () => <TogetherBoard />,
   });
 
   return (
@@ -33,7 +38,7 @@ const BoardPage = (props: BoardPageProps) => {
         onIndexChange={setIndex}
         renderScene={renderScene}
         overScrollMode={'always'}
-        sceneContainerStyle={{ backgroundColor: '#272A31' }}
+        sceneContainerStyle={{ backgroundColor: '#FFFFFF' }}
         navigationState={{
           index: index,
           routes: routes,
@@ -60,7 +65,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   tabStyle: {
-    width: 112,
+    width: 150,
   },
   labelStyle: {
     color: '#222222',
