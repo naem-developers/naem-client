@@ -14,6 +14,9 @@
 		33604A927B8DE705909806C8 /* libPods-NaemClient-NaemClientTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6373490E99D75C890325C61 /* libPods-NaemClient-NaemClientTests.a */; };
 		68A105F10EEA4BA92567A3A0 /* libPods-NaemClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F94CE1DEAF8CC8EA4F31FC /* libPods-NaemClient.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		20826F2E4EBDF309E980EEAD /* libPods-NaemClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89EB991C6DD8A80255A396A5 /* libPods-NaemClient.a */; };
+		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		C84BBEC5F139105BEB0FE8FD /* libPods-NaemClient-NaemClientTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB1F081D176B089857A95AE4 /* libPods-NaemClient-NaemClientTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +35,7 @@
 		00E356F21AD99517003FC87E /* NaemClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NaemClientTests.m; sourceTree = "<group>"; };
 		12F5B7BFD1091CDA9DFBAE09 /* Pods-NaemClient-NaemClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaemClient-NaemClientTests.release.xcconfig"; path = "Target Support Files/Pods-NaemClient-NaemClientTests/Pods-NaemClient-NaemClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		0A8C3C729A1768BE8AF3F686 /* libPods-NaemClient-NaemClientTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NaemClient-NaemClientTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		01360D326F6F998F836A9FDC /* Pods-NaemClient-NaemClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaemClient-NaemClientTests.release.xcconfig"; path = "Target Support Files/Pods-NaemClient-NaemClientTests/Pods-NaemClient-NaemClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* NaemClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NaemClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = NaemClient/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = NaemClient/AppDelegate.mm; sourceTree = "<group>"; };
@@ -39,6 +43,9 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = NaemClient/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = NaemClient/main.m; sourceTree = "<group>"; };
 		6F183D8427FC9BA444C70D6E /* Pods-NaemClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaemClient.debug.xcconfig"; path = "Target Support Files/Pods-NaemClient/Pods-NaemClient.debug.xcconfig"; sourceTree = "<group>"; };
+		5E869E8319D011A9F30028CA /* Pods-NaemClient-NaemClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaemClient-NaemClientTests.debug.xcconfig"; path = "Target Support Files/Pods-NaemClient-NaemClientTests/Pods-NaemClient-NaemClientTests.debug.xcconfig"; sourceTree = "<group>"; };
+		695C47351EF24AA0DBA38450 /* Pods-NaemClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaemClient.debug.xcconfig"; path = "Target Support Files/Pods-NaemClient/Pods-NaemClient.debug.xcconfig"; sourceTree = "<group>"; };
+		7C407BFCEE2144E57247475C /* Pods-NaemClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaemClient.release.xcconfig"; path = "Target Support Files/Pods-NaemClient/Pods-NaemClient.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = NaemClient/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		96BBE9382896C17D00E26B1C /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		96BBE9392896C17D00E26B1C /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
@@ -60,6 +67,9 @@
 		A0D62ACB81DF3EDDB113FE65 /* Pods-NaemClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaemClient.release.xcconfig"; path = "Target Support Files/Pods-NaemClient/Pods-NaemClient.release.xcconfig"; sourceTree = "<group>"; };
 		B02C945B93CD3B6416F4F8B7 /* Pods-NaemClient-NaemClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaemClient-NaemClientTests.debug.xcconfig"; path = "Target Support Files/Pods-NaemClient-NaemClientTests/Pods-NaemClient-NaemClientTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E6373490E99D75C890325C61 /* libPods-NaemClient-NaemClientTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NaemClient-NaemClientTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2A8AFB738756D0DDE8BF3CF /* Pods-NaemClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaemClient.release.xcconfig"; path = "Target Support Files/Pods-NaemClient/Pods-NaemClient.release.xcconfig"; sourceTree = "<group>"; };
+		89EB991C6DD8A80255A396A5 /* libPods-NaemClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NaemClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB1F081D176B089857A95AE4 /* libPods-NaemClient-NaemClientTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NaemClient-NaemClientTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -69,6 +79,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33604A927B8DE705909806C8 /* libPods-NaemClient-NaemClientTests.a in Frameworks */,
+				C84BBEC5F139105BEB0FE8FD /* libPods-NaemClient-NaemClientTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +88,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68A105F10EEA4BA92567A3A0 /* libPods-NaemClient.a in Frameworks */,
+				20826F2E4EBDF309E980EEAD /* libPods-NaemClient.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,6 +132,8 @@
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				98F94CE1DEAF8CC8EA4F31FC /* libPods-NaemClient.a */,
 				E6373490E99D75C890325C61 /* libPods-NaemClient-NaemClientTests.a */,
+				89EB991C6DD8A80255A396A5 /* libPods-NaemClient.a */,
+				DB1F081D176B089857A95AE4 /* libPods-NaemClient-NaemClientTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -185,6 +199,10 @@
 				A0D62ACB81DF3EDDB113FE65 /* Pods-NaemClient.release.xcconfig */,
 				B02C945B93CD3B6416F4F8B7 /* Pods-NaemClient-NaemClientTests.debug.xcconfig */,
 				12F5B7BFD1091CDA9DFBAE09 /* Pods-NaemClient-NaemClientTests.release.xcconfig */,
+				695C47351EF24AA0DBA38450 /* Pods-NaemClient.debug.xcconfig */,
+				7C407BFCEE2144E57247475C /* Pods-NaemClient.release.xcconfig */,
+				5E869E8319D011A9F30028CA /* Pods-NaemClient-NaemClientTests.debug.xcconfig */,
+				01360D326F6F998F836A9FDC /* Pods-NaemClient-NaemClientTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -202,6 +220,14 @@
 				00E356EC1AD99517003FC87E /* Resources */,
 				A8C72B3882C5AC511E737CA2 /* [CP] Embed Pods Frameworks */,
 				659955AB538F10BDC6748E46 /* [CP] Copy Pods Resources */,
+				20EAD85AC06A4A79DAA4189B /* [CP] Embed Pods Frameworks */,
+				953681EF4BBBE3E35C646A80 /* [CP] Copy Pods Resources */,
+				897478A0347EFDF1A48AE51A /* [CP] Check Pods Manifest.lock */,
+				00E356EA1AD99517003FC87E /* Sources */,
+				00E356EB1AD99517003FC87E /* Frameworks */,
+				00E356EC1AD99517003FC87E /* Resources */,
+				9A7B98E32B4B7B639CBE4CB4 /* [CP] Embed Pods Frameworks */,
+				9895C4B91FE26E724533D013 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -218,6 +244,7 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "NaemClient" */;
 			buildPhases = (
 				07C1105B67F524A1C195B702 /* [CP] Check Pods Manifest.lock */,
+				7C8591EC5EE9E485CA1E00E9 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
@@ -225,6 +252,10 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				2717905114FF6F4BC8845A73 /* [CP] Embed Pods Frameworks */,
 				F02431D4E212CFE9CA5896FF /* [CP] Copy Pods Resources */,
+				574AD5FF9D5D26A64F03C71A /* [CP] Embed Pods Frameworks */,
+				39036A52A47A54DF914B38D5 /* [CP] Copy Pods Resources */,
+				A2645D6B3B682DAA4E42C9CE /* [CP] Embed Pods Frameworks */,
+				C86426818D06B43B34D64F72 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -306,6 +337,7 @@
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		07C1105B67F524A1C195B702 /* [CP] Check Pods Manifest.lock */ = {
+		7C8591EC5EE9E485CA1E00E9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -328,6 +360,24 @@
 			showEnvVarsInLog = 0;
 		};
 		2717905114FF6F4BC8845A73 /* [CP] Embed Pods Frameworks */ = {
+		2919AED09E403273EABD837F /* [CP] Check Pods Manifest.lock */ = {
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NaemClient-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		897478A0347EFDF1A48AE51A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -351,6 +401,8 @@
 			showEnvVarsInLog = 0;
 		};
 		3CE46AAE44241E10F73ADF75 /* [CP] Check Pods Manifest.lock */ = {
+		39036A52A47A54DF914B38D5 /* [CP] Copy Pods Resources */ = {
+		9895C4B91FE26E724533D013 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -360,8 +412,9 @@
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
+				"${PODS_ROOT}/Target Support Files/Pods-NaemClient-NaemClientTests/Pods-NaemClient-NaemClientTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -373,6 +426,15 @@
 			showEnvVarsInLog = 0;
 		};
 		659955AB538F10BDC6748E46 /* [CP] Copy Pods Resources */ = {
+		574AD5FF9D5D26A64F03C71A /* [CP] Embed Pods Frameworks */ = {
+				"${PODS_ROOT}/Target Support Files/Pods-NaemClient-NaemClientTests/Pods-NaemClient-NaemClientTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NaemClient-NaemClientTests/Pods-NaemClient-NaemClientTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9A7B98E32B4B7B639CBE4CB4 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -390,6 +452,19 @@
 			showEnvVarsInLog = 0;
 		};
 		A8C72B3882C5AC511E737CA2 /* [CP] Embed Pods Frameworks */ = {
+		953681EF4BBBE3E35C646A80 /* [CP] Copy Pods Resources */ = {
+				"${PODS_ROOT}/Target Support Files/Pods-NaemClient-NaemClientTests/Pods-NaemClient-NaemClientTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NaemClient-NaemClientTests/Pods-NaemClient-NaemClientTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NaemClient-NaemClientTests/Pods-NaemClient-NaemClientTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A2645D6B3B682DAA4E42C9CE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -399,8 +474,9 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 				"${PODS_ROOT}/Target Support Files/Pods-NaemClient-NaemClientTests/Pods-NaemClient-NaemClientTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-NaemClient/Pods-NaemClient-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NaemClient-NaemClientTests/Pods-NaemClient-NaemClientTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
@@ -410,6 +486,15 @@
 			showEnvVarsInLog = 0;
 		};
 		F02431D4E212CFE9CA5896FF /* [CP] Copy Pods Resources */ = {
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NaemClient-NaemClientTests/Pods-NaemClient-NaemClientTests-resources.sh\"\n";
+				"${PODS_ROOT}/Target Support Files/Pods-NaemClient/Pods-NaemClient-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NaemClient/Pods-NaemClient-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C86426818D06B43B34D64F72 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -480,6 +565,7 @@
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B02C945B93CD3B6416F4F8B7 /* Pods-NaemClient-NaemClientTests.debug.xcconfig */;
+			baseConfigurationReference = 5E869E8319D011A9F30028CA /* Pods-NaemClient-NaemClientTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -507,6 +593,7 @@
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 12F5B7BFD1091CDA9DFBAE09 /* Pods-NaemClient-NaemClientTests.release.xcconfig */;
+			baseConfigurationReference = 01360D326F6F998F836A9FDC /* Pods-NaemClient-NaemClientTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -531,6 +618,7 @@
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6F183D8427FC9BA444C70D6E /* Pods-NaemClient.debug.xcconfig */;
+			baseConfigurationReference = 695C47351EF24AA0DBA38450 /* Pods-NaemClient.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -557,6 +645,7 @@
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A0D62ACB81DF3EDDB113FE65 /* Pods-NaemClient.release.xcconfig */;
+			baseConfigurationReference = 7C407BFCEE2144E57247475C /* Pods-NaemClient.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

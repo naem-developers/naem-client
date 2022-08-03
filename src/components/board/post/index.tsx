@@ -32,7 +32,7 @@ const PostView = ({ postDataArray, selectedKeywords }: ProstViewProps) => {
       />
       <FlatList
         data={postDataArray}
-        keyExtractor={(item)=>item.id}
+        keyExtractor={(item) => item.id}
         renderItem={({ item }: { item: postedData }) => {
           return <Post postedData={item} selectedKeywords={selectedKeywords} />;
         }}

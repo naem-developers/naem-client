@@ -34,7 +34,7 @@ const BoardPage = (props: BoardPageProps) => {
         onIndexChange={setIndex}
         renderScene={renderScene}
         overScrollMode={'always'}
-        sceneContainerStyle={{ backgroundColor: '#FFFFFF' }}
+        sceneContainerStyle={{ backgroundColor: THEME.BG }}
         navigationState={{
           index: index,
           routes: routes,
