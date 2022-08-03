@@ -159,8 +159,8 @@
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				6B4A0797570534CB065C34A3 /* [CP] Embed Pods Frameworks */,
-				FD8EEC24D219A2C4EE51A9EC /* [CP] Copy Pods Resources */,
+				F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */,
+				20EAD85AC06A4A79DAA4189B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -182,8 +182,8 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				2D90C5C797336C81DD753458 /* [CP] Embed Pods Frameworks */,
-				3F8A3B2317763CAE524FB61D /* [CP] Copy Pods Resources */,
+				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
+				574AD5FF9D5D26A64F03C71A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -264,7 +264,41 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		09A25C2E848B29F81041D73D /* [CP] Check Pods Manifest.lock */ = {
+		20EAD85AC06A4A79DAA4189B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NaemClient-NaemClientTests/Pods-NaemClient-NaemClientTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NaemClient-NaemClientTests/Pods-NaemClient-NaemClientTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NaemClient-NaemClientTests/Pods-NaemClient-NaemClientTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		574AD5FF9D5D26A64F03C71A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NaemClient/Pods-NaemClient-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NaemClient/Pods-NaemClient-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NaemClient/Pods-NaemClient-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
