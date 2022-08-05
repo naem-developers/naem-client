@@ -2,7 +2,7 @@ import Text from '@/components/atoms/Text';
 import { THEME } from '@/theme';
 import * as React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import IcnArrowLeft from '@/assets/icons/icn_arrow_left.svg';
+import IcnArrowLeftBlack from '@/assets/icons/icn_arrow_left_black.svg';
 import { useNavigation } from '@react-navigation/core';
 
 interface HeaderProps {
@@ -15,7 +15,7 @@ const BackButton = () => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity onPress={() => navigation.goBack()}>
-      <IcnArrowLeft width={16} height={16} />
+      <IcnArrowLeftBlack width={16} height={16} />
     </TouchableOpacity>
   );
 };
