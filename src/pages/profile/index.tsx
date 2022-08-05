@@ -32,7 +32,6 @@ const MyPage = ({ navigation }: MyPageProps) => {
   // TODO: 함수 구현
   const handleInquiry = () => {};
   const handleLogout = () => {};
-  const handleWithdraw = () => {};
 
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
@@ -142,7 +141,12 @@ const MyPage = ({ navigation }: MyPageProps) => {
             }}
           />
           <SettingsItem text="로그아웃" onPress={handleLogout} />
-          <SettingsItem text="회원 탈퇴" onPress={handleWithdraw} />
+          <SettingsItem
+            text="회원 탈퇴"
+            onPress={() => {
+              navigation.navigate('WithdrawlPage');
+            }}
+          />
         </View>
       </ScrollView>
       <Snackbar
