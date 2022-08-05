@@ -210,13 +210,13 @@ const SignUpPage = ({ navigation }: SignUpPageProps) => {
         </Text>
         <TextInput
           style={[styles.input, styles.mt10]}
-          placeholder="8~13자 이내 (영문, 숫자, 특수문자 포함)"
+          placeholder="8~16자 이내 (영문 대소문자, 숫자, 특수문자 포함)"
           secureTextEntry
           value={pw}
           onChangeText={(text) => setPw(text)}
           onBlur={checkPw}
           validationMsg={pwValidationMsg}
-          maxLength={13}
+          maxLength={16}
         />
         <Text sizeStyle="f14" weightStyle="medium" style={styles.subtitle}>
           닉네임
