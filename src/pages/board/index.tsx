@@ -2,12 +2,12 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SceneMap, TabBar, TabView } from 'react-native-tab-view';
-import GuardianBoard from './boards/ GuardianBoard';
-import FreeBoard from './boards/FreeBoard';
-import HotBoard from './boards/HotBoard';
-import RehabilitationBoard from './boards/rehabilitationBoard';
-import TogetherBoard from './boards/TogetherBoard';
-import WelfareBoard from './boards/welfareBoard';
+import GuardianBoard from '@pages/board//boards/ GuardianBoard';
+import FreeBoard from '@pages/board/boards/FreeBoard';
+import HotBoard from '@pages/board//boards/HotBoard';
+import RehabilitationBoard from '@pages/board//boards/rehabilitationBoard';
+import TogetherBoard from '@pages/board//boards/TogetherBoard';
+import WelfareBoard from '@pages/board//boards/welfareBoard';
 
 interface BoardPageProps {}
 
