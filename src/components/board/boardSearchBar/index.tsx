@@ -1,6 +1,6 @@
 import { DISABLED_TYPE, H_PADDING, STANDARD_DEVICE_WIDTH } from '@/constants';
 import { THEME } from '@/theme';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
 import Text from '@components/atoms/Text';
 import Tag from '@components/molecules/Tag';
