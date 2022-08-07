@@ -1,19 +1,41 @@
-import Text from '@/components/atoms/Text';
-import { THEME } from '@/theme';
-import React from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import React, { useState } from 'react';
+import { FlatList, StyleSheet, View } from 'react-native';
+import { SORT_MENU } from '@/constants';
+import ChooseSortView from '@components/board/post/ChooseSortView';
+import PostHeader from '@components/board/post/PostHeader';
+import Post from '@components/board/post/Post';
+import { postedData } from '@/types';
 
-const PostView = () => {
+interface ProstViewProps {
+  postDataArray: postedData[];
+  selectedKeywords: string[];
+}
+
+const PostView = ({ postDataArray, selectedKeywords }: ProstViewProps) => {
+  const [visible, setVisible] = useState<boolean>(false);
+  const [sortValue, setSortValue] = useState<string>(SORT_MENU[0]);
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+
+  const setSortDataValue = (sort: string) => {
+    setSortValue(sort);
+    setVisible(false);
+  };
+
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title} sizeStyle="f13" weightStyle="light">
-          등록 게시글
-        </Text>
-        <Text style={styles.subTitle} sizeStyle="f12" weightStyle="light">
-          {`건`}
-        </Text>
-      </View>
+      <PostHeader sortValue={sortValue} showModal={showModal} />
+      <ChooseSortView
+        isVisible={visible}
+        hideAction={hideModal}
+        setSortDataValue={setSortDataValue}
+      />
+      <FlatList
+        data={postDataArray}
+        renderItem={({ item }: { item: postedData }) => {
+          return <Post postedData={item} selectedKeywords={selectedKeywords} />;
+        }}
+      />
     </View>
   );
 };
@@ -25,16 +47,5 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingHorizontal: 16,
     backgroundColor: '#FFFFFF',
-  },
-  title: {
-    color: THEME.STRONG_TEXT,
-  },
-  subTitle: {
-    color: THEME.REG_TEXT,
-    marginLeft: 8,
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
   },
 });

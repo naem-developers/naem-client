@@ -26,6 +26,7 @@ export const WINDOW_HEIGHT = Dimensions.get('window').height;
 export const STANDARD_DEVICE_WIDTH = 390;
 export const STANDARD_DEVICE_HEIGHT = 844;
 export const H_PADDING = 16;
+export const SORT_MENU = ['시간순', '인기순', '댓글순'];
 export const DISABLED_TYPE = [
   '정신장애',
   '지적장애',

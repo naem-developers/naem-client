@@ -1,18 +1,27 @@
 import { DISABLED_TYPE, STANDARD_DEVICE_WIDTH } from '@/constants';
 import { THEME } from '@/theme';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
 import Text from '@components/atoms/Text';
 import Tag from '@components/molecules/Tag';
 import Collapsible from 'react-native-collapsible';
 import SearchInputBar from './SearchInput';
+import { removeItemOfArray } from '@/utils/array';
+import UpArrow from '@assets/icons/icn_arrow_up.svg';
 
 interface BoardSearchBarProps {
-  selectedKeyword: string | undefined;
-  setSelectedKeyword: React.Dispatch<React.SetStateAction<string | undefined>>;
+  selectedKeywords: string[];
+  setSelectedKeywords: React.Dispatch<React.SetStateAction<string[]>>;
+  searchValue: string | undefined;
+  setSearchValue: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
-const BoardSearchBar = ({ selectedKeyword, setSelectedKeyword }: BoardSearchBarProps) => {
+const BoardSearchBar = ({
+  selectedKeywords,
+  searchValue,
+  setSelectedKeywords,
+  setSearchValue,
+}: BoardSearchBarProps) => {
   const keywords = DISABLED_TYPE;
   const [keywordsSet, setKeywordsSet] = useState<Array<Array<string>>>([]);
   const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
@@ -41,17 +50,25 @@ const BoardSearchBar = ({ selectedKeyword, setSelectedKeyword }: BoardSearchBarP
     setKeywordsSet(splitKeywords);
   };
 
-  const setSearchKeyword = (item: string) => {
-    selectedKeyword == item ? setSelectedKeyword(undefined) : setSelectedKeyword(item);
-  };
+  const setSearchKeyword = useCallback(
+    (item: string) => {
+      if (selectedKeywords?.includes(item))
+        setSelectedKeywords(removeItemOfArray(selectedKeywords, item));
+      else setSelectedKeywords([...selectedKeywords, item]);
+    },
+    [selectedKeywords],
+  );
 
   return (
     <View style={styles.container}>
-      <SearchInputBar selectedKeyword={selectedKeyword} setSelectedKeyword={setSelectedKeyword} />
+      <SearchInputBar searchValue={searchValue} setSearchValue={setSearchValue} />
       <TouchableOpacity onPress={() => setIsCollapsed(!isCollapsed)}>
-        <Text style={styles.title} sizeStyle="f19" weightStyle="bold">
-          키워드 선택
-        </Text>
+        <View style={styles.header}>
+          <Text style={styles.title} sizeStyle="f19" weightStyle="bold">
+            키워드 선택
+          </Text>
+          <UpArrow />
+        </View>
         <Text style={styles.subTitle} sizeStyle="f14" weightStyle="light">
           장애 유형별 키워드를 선택해 더 빠르게 글을 검색하세요
         </Text>
@@ -72,7 +89,7 @@ const BoardSearchBar = ({ selectedKeyword, setSelectedKeyword }: BoardSearchBarP
                     <Tag
                       text={`#${item}`}
                       style={styles.tag}
-                      selected={item == selectedKeyword}
+                      selected={selectedKeywords?.includes(item)}
                       onPress={() => setSearchKeyword(item)}
                     />
                   );
@@ -105,9 +122,15 @@ const styles = StyleSheet.create({
   subTitle: {
     color: THEME.REG_TEXT,
     lineHeight: 22,
+    marginTop: 6,
   },
   searchBar: {
     marginTop: 5,
     marginBottom: 35,
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 });

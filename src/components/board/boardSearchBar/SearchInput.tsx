@@ -3,19 +3,19 @@ import { StyleSheet, TextInput, View } from 'react-native';
 import Magnifying from '@assets/icons/magnifying.svg';
 
 interface SearchInputBarProps {
-  selectedKeyword: string | undefined;
-  setSelectedKeyword: React.Dispatch<React.SetStateAction<string | undefined>>;
+  searchValue: string | undefined;
+  setSearchValue: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
-const SearchInputBar = ({ selectedKeyword, setSelectedKeyword }: SearchInputBarProps) => {
+const SearchInputBar = ({ searchValue, setSearchValue }: SearchInputBarProps) => {
   return (
     <View style={styles.container}>
       <Magnifying />
       <TextInput
         style={styles.textInput}
-        value={selectedKeyword}
+        value={searchValue}
         placeholder={'검색어를 입력하세요'}
-        onChangeText={(text) => setSelectedKeyword(text)}
+        onChangeText={(text) => setSearchValue(text)}
       />
     </View>
   );
