@@ -5,9 +5,9 @@ import { SceneMap, TabBar, TabView } from 'react-native-tab-view';
 import GuardianBoard from '@pages/board//boards/ GuardianBoard';
 import FreeBoard from '@pages/board/boards/FreeBoard';
 import HotBoard from '@pages/board//boards/HotBoard';
-import RehabilitationBoard from '@pages/board//boards/rehabilitationBoard';
+import RehabilitationBoard from '@pages/board//boards/RehabilitationBoard';
 import TogetherBoard from '@pages/board//boards/TogetherBoard';
-import WelfareBoard from '@pages/board//boards/welfareBoard';
+import WelfareBoard from '@pages/board//boards/WelfareBoard';
 
 interface BoardPageProps {}
 
