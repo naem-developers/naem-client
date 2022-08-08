@@ -1,7 +1,7 @@
 import Text from '@/components/atoms/Text';
 import { THEME } from '@/theme';
 import * as React from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, ViewStyle } from 'react-native';
 import IcnArrowLeftBlack from '@/assets/icons/icn_arrow_left_black.svg';
 import { useNavigation } from '@react-navigation/core';
 
@@ -9,6 +9,7 @@ interface HeaderProps {
   title?: string;
   LeftComponent?: React.ReactNode;
   RightComponent?: React.ReactNode;
+  titleStyle?: ViewStyle;
 }
 
 const BackButton = () => {
@@ -20,11 +21,16 @@ const BackButton = () => {
   );
 };
 
-const Header = ({ title, LeftComponent = <BackButton />, RightComponent }: HeaderProps) => {
+const Header = ({
+  title,
+  titleStyle = {},
+  LeftComponent = <BackButton />,
+  RightComponent,
+}: HeaderProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.zIndex1}>{LeftComponent}</View>
-      <View style={styles.titleContainer}>
+      <View style={[styles.titleContainer, titleStyle]}>
         <Text sizeStyle="f18" weightStyle="bold" style={styles.title}>
           {title}
         </Text>

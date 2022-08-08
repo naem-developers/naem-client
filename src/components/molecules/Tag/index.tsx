@@ -6,9 +6,17 @@ import { View, StyleSheet, TouchableOpacity, TouchableOpacityProps } from 'react
 interface TagProps extends TouchableOpacityProps {
   text: string;
   selected?: boolean;
+  isReverseColor?: boolean;
 }
 
-const Tag = ({ text, selected = false, disabled = false, style, ...props }: TagProps) => {
+const Tag = ({
+  text,
+  selected = false,
+  disabled = false,
+  style,
+  isReverseColor,
+  ...props
+}: TagProps) => {
   return (
     <TouchableOpacity
       style={[
@@ -22,7 +30,11 @@ const Tag = ({ text, selected = false, disabled = false, style, ...props }: TagP
       <Text
         style={{
           ...styles.text,
-          ...(selected && !disabled ? styles.selectedText : styles.unSelectedText),
+          ...(selected && !disabled
+            ? styles.selectedText
+            : !isReverseColor
+            ? styles.unSelectedText
+            : styles.unSelectedReverseText),
         }}
       >
         {text}
@@ -51,6 +63,9 @@ const styles = StyleSheet.create({
   },
   unSelectedText: {
     color: THEME.REG_TEXT,
+  },
+  unSelectedReverseText: {
+    color: THEME.MAIN,
   },
   selectedText: {
     color: '#ffffff',
