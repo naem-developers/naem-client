@@ -27,7 +27,7 @@ export type RootStackParamList = {
   SearchPage: undefined;
   ProfileEditPage: undefined;
   EventPage: undefined;
-  MyPostCommentPage: undefined;
+  MyPostCommentPage: { type: 'post' | 'comment' };
   NoticePage: undefined;
   NotificationSettingPage: undefined;
   ServiceTermsPage: undefined;

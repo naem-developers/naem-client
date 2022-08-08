@@ -83,7 +83,9 @@ const MyPage = ({ navigation }: MyPageProps) => {
           <TouchableOpacity
             style={styles.myPostBtn}
             onPress={() => {
-              navigation.navigate('MyPostCommentPage');
+              navigation.navigate('MyPostCommentPage', {
+                type: 'post',
+              });
             }}
           >
             <IcnArticle width={24} height={24} />
@@ -95,7 +97,9 @@ const MyPage = ({ navigation }: MyPageProps) => {
           <TouchableOpacity
             style={[styles.myPostBtn, styles.ml14]}
             onPress={() => {
-              navigation.navigate('MyPostCommentPage');
+              navigation.navigate('MyPostCommentPage', {
+                type: 'comment',
+              });
             }}
           >
             <IcnComment width={24} height={24} />
