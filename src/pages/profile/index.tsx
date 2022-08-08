@@ -1,7 +1,15 @@
 import Text from '@/components/atoms/Text';
 import { THEME } from '@/theme';
 import React, { useState } from 'react';
-import { StyleSheet, ScrollView, Image, Pressable, View, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  ScrollView,
+  Image,
+  Pressable,
+  View,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import IcnCopy from '@/assets/icons/icn_copy.svg';
 import IcnArticle from '@/assets/icons/icn_article.svg';
@@ -32,6 +40,15 @@ const MyPage = ({ navigation }: MyPageProps) => {
   // TODO: 함수 구현
   const handleInquiry = () => {};
   const handleLogout = () => {};
+  const openLogoutAlert = () => {
+    Alert.alert('', '로그아웃 하시겠습니까?', [
+      {
+        text: '취소',
+        style: 'cancel',
+      },
+      { text: '로그아웃', onPress: handleLogout },
+    ]);
+  };
 
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
@@ -144,7 +161,7 @@ const MyPage = ({ navigation }: MyPageProps) => {
               navigation.navigate('FindPwPage');
             }}
           />
-          <SettingsItem text="로그아웃" onPress={handleLogout} />
+          <SettingsItem text="로그아웃" onPress={openLogoutAlert} />
           <SettingsItem
             text="회원 탈퇴"
             onPress={() => {
