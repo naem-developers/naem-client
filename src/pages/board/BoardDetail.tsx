@@ -1,20 +1,20 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '@/components/organisms/Header';
 import { FlatList, ScrollView, StyleSheet, View } from 'react-native';
 import { THEME } from '@/theme';
-import { DumyPostData } from '@pages/board/boards/dumys';
+import { postDetailData } from '@pages/board/boards/dumys';
 import Text from '@/components/atoms/Text';
 import Tag from '@/components/molecules/Tag';
+import DetailMenuBar from '@/components/board/boardDetail/DetailMenuBar';
 
 const BoardDetail = () => {
   const navigation = useNavigation();
-  const scrollRef = useRef<ScrollView>(null);
-  const postData = DumyPostData[0];
+  const postData = postDetailData;
 
   return (
-    <SafeAreaView style={styles.container} ref={scrollRef}>
+    <SafeAreaView style={styles.container}>
       <Header title="자유게시판" titleStyle={styles.textAlign} />
       <ScrollView style={styles.scrollView}>
         <Text sizeStyle="f20" weightStyle="semiBold">
@@ -28,6 +28,9 @@ const BoardDetail = () => {
             {`  ·  ${postData.createdAt.toString()}`}
           </Text>
         </View>
+        <Text style={styles.body} sizeStyle="f17" weightStyle="medium">
+          {postData.body}
+        </Text>
         <FlatList
           data={postData.tags}
           horizontal={true}
@@ -44,6 +47,7 @@ const BoardDetail = () => {
             );
           }}
         />
+        <DetailMenuBar like={postData.like} comments={postData.comment} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -53,7 +57,7 @@ export default BoardDetail;
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 16,
+    flex: 1,
     backgroundColor: THEME.BG,
   },
   textAlign: {
@@ -61,7 +65,9 @@ const styles = StyleSheet.create({
     marginLeft: 48,
     justifyContent: 'center',
   },
-  scrollView: {},
+  scrollView: {
+    paddingHorizontal: 16,
+  },
   footer: {
     marginTop: 8,
     flexDirection: 'row',
@@ -74,5 +80,9 @@ const styles = StyleSheet.create({
   tag: {
     marginRight: 12,
     marginVertical: 8,
+  },
+  body: {
+    marginTop: 18,
+    marginBottom: 20,
   },
 });

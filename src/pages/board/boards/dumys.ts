@@ -33,3 +33,35 @@ export const DumyPostData = [
     createdAt: new Date(),
   },
 ];
+
+export const postDetailData = {
+  id: 3,
+  type: 'hot',
+  title: '안녕하세요, 남양주시에 살고 있습니다',
+  body: '안녕하세요. 남양주시에 살고 있습니다. 혹시 체육관어쩌구저쩌구관어쩌구저쩌구관어쩌구저쩌구',
+  userId: 'fsdafs123',
+  tags: ['지적장애', '간장애', '기타'],
+  like: 10,
+  comment: 2,
+  createdAt: new Date(),
+  comments: [
+    {
+      userId: 'dlfjsl1234',
+      like: 12,
+      commnet: 'dfklajsfdljdslkfajldksjfkl',
+      date: new Date(),
+    },
+    {
+      userId: 'dlfjsl1234',
+      like: 12,
+      commnet: 'dfklajsfdljdslkfajldksjfkl',
+      date: new Date(),
+    },
+    {
+      userId: 'dlfjsl1234',
+      like: 12,
+      commnet: 'dfklajsfdljdslkfajldksjfkl',
+      date: new Date(),
+    },
+  ],
+};
