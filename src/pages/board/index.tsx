@@ -29,7 +29,7 @@ const BoardPage = (props: BoardPageProps) => {
   });
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top']}>
       <TabView
         onIndexChange={setIndex}
         renderScene={renderScene}

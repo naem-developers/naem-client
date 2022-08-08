@@ -15,6 +15,7 @@ import NoticePage from '@/pages/profile/notice';
 import NotificationSettingPage from '@/pages/profile/notificationSetting';
 import ServiceTermsPage from '@/pages/profile/serviceTerms';
 import WithdrawlPage from '@/pages/profile/withdrawl';
+import BoardDetail from '@/pages/board/BoardDetail';
 
 export type RootStackParamList = {
   landing: undefined;
@@ -54,6 +55,7 @@ const RootStackNavigator = () => {
       <Stack.Screen name="NotificationSettingPage" component={NotificationSettingPage} />
       <Stack.Screen name="ServiceTermsPage" component={ServiceTermsPage} />
       <Stack.Screen name="WithdrawlPage" component={WithdrawlPage} />
+      <Stack.Screen name="BoardDetail" component={BoardDetail} />
     </Stack.Navigator>
   );
 };

@@ -1,20 +1,28 @@
 import BoardSearchBar from '@/components/board/boardSearchBar';
+import PostView from '@/components/board/post';
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Text, StyleSheet, View } from 'react-native';
+import { DumyPostData } from './dumys';
 
 const GuardianBoard = () => {
-  const [selectedKeyword, setSelectedKeyword] = useState<string>();
+  const [selectedKeywords, setSelectedKeywords] = useState<Array<string>>([]);
+  const [searchValue, setSearchValue] = useState<string>();
   return (
     <View style={styles.container}>
-      <BoardSearchBar selectedKeyword={selectedKeyword} setSelectedKeyword={setSelectedKeyword} />
+      <BoardSearchBar
+        selectedKeywords={selectedKeywords}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+        setSelectedKeywords={setSelectedKeywords}
+      />
+      <PostView postDataArray={DumyPostData} selectedKeywords={selectedKeywords} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 16,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#F5F5F5',
   },
 });
 

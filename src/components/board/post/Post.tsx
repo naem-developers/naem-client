@@ -4,7 +4,7 @@ import { STANDARD_DEVICE_WIDTH } from '@/constants';
 import { THEME } from '@/theme';
 import { postedData } from '@/types';
 import React, { useCallback, useState } from 'react';
-import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { FlatList, StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native';
 
 interface ProstProps {
   postedData: postedData;
@@ -38,7 +38,7 @@ const Post = ({ postedData, selectedKeywords }: ProstProps) => {
               text={`#${item}`}
               style={styles.tag}
               selected={selectedKeywords.includes(item)}
-              disabled={true}
+              // disabled={true}
             />
           );
         }}
