@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 import Magnifying from '@assets/icons/magnifying.svg';
+import { THEME } from '@/theme';
 
 interface SearchInputBarProps {
   searchValue: string | undefined;
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
     marginBottom: 26,
     paddingHorizontal: 26,
     width: '100%',
-    backgroundColor: '#F5F5F5',
+    backgroundColor: THEME.BG,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
