@@ -27,10 +27,10 @@ const BoardSearchBar = ({
   const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
 
   useEffect(() => {
-    calcuateTagLenth();
+    calcurateTagLenth();
   }, []);
 
-  const calcuateTagLenth = () => {
+  const calcurateTagLenth = () => {
     let splitKeywords: Array<Array<string>> = [];
     let tempkeywords: Array<string> = [];
     let length = 0;
