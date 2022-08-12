@@ -19,8 +19,6 @@ const WelfarePlacePage = (props: WelfarePlacePageProps) => {
         <Text sizeStyle="f17" weightStyle="semiBold" style={styles.text}>
           서비스 준비 중입니다
         </Text>
-        <Divider style={styles.divider} />
-        <TextBtn text="확인" textStyle={styles.btnText} sizeStyle="f17" weightStyle="semiBold" />
       </Modal>
     </View>
   );
@@ -35,8 +33,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: 80,
-    paddingTop: 24,
-    paddingBottom: 20,
+    paddingTop: 30,
+    paddingBottom: 32,
     borderRadius: 20,
   },
   text: { color: THEME.STRONG_TEXT, marginTop: 16 },
