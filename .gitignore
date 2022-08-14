@@ -69,3 +69,4 @@ ios/Podfile.lock
 
 # firebase
 google-services.json
+GoogleService-Info.plist
