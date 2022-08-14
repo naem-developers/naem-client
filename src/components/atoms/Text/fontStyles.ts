@@ -57,7 +57,7 @@ export const weightStyles: Record<string, { fontWeight: TextStyle['fontWeight'] 
   },
 };
 
-export const colorStyle: Record<string, { color: TextStyle['color'] }> = {
+export const colorStyles: Record<string, { color: TextStyle['color'] }> = {
   main: {
     color: THEME.MAIN,
   },
