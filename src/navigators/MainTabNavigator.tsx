@@ -118,7 +118,7 @@ const MainTabNavigator = ({ navigation }: MainTabNavigatorProps) => {
             <TabBarIcon
               focused={focused}
               onPress={() => {
-                navigation.navigate('PostPage');
+                navigation.navigate('WriteNewPost');
               }}
               TabIcon={<IcnPlusWithCircle width={48} height={48} />}
             />
