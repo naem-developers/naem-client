@@ -14,6 +14,14 @@ const BlurbView = () => {
 
   return (
     <View>
+      <View style={styles.container}>
+        <Text sizeStyle="f19" weightStyle="semi-bold">
+          이벤트
+        </Text>
+        <Text sizeStyle="f14" weightStyle="medium" style={styles.subText}>
+          나음이 준비한 더 나은 이벤트!
+        </Text>
+      </View>
       <Swiper
         style={styles.wrapper}
         loop={true}
@@ -23,7 +31,7 @@ const BlurbView = () => {
         {tempBlurb.map((item) => {
           return (
             <View style={styles.slide1}>
-              <Text style={styles.text}>{item}</Text>
+              <Text>{item}</Text>
             </View>
           );
         })}
@@ -35,6 +43,11 @@ const BlurbView = () => {
 export default BlurbView;
 
 const styles = StyleSheet.create({
+  container: {
+    height: 100,
+    paddingHorizontal: 16,
+    justifyContent: 'center',
+  },
   wrapper: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -46,21 +59,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#9DD6EB',
   },
-  slide2: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#97CAE5',
-  },
-  slide3: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#92BBD9',
-  },
-  text: {
-    color: '#fff',
-    fontSize: 30,
-    fontWeight: 'bold',
+  subText: {
+    color: THEME.REG_TEXT,
   },
 });

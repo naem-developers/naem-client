@@ -35,7 +35,9 @@ const HomePage = ({ navigation }: HomePageProps) => {
 export default HomePage;
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
+  container: {
+    flex: 1,
+  },
   headerContainer: {
     backgroundColor: THEME.MAIN,
     paddingHorizontal: 16,
