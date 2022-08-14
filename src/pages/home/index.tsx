@@ -1,4 +1,5 @@
 import Text from '@/components/atoms/Text';
+import BlurbView from '@/components/home/BlurbView';
 import SearchBar from '@/components/organisms/SearchBar';
 import { RootStackParamList } from '@/navigators/RootStackNavigator';
 import { THEME } from '@/theme';
@@ -25,15 +26,8 @@ const HomePage = ({ navigation }: HomePageProps) => {
             source={require('@/assets/images/img_catchphrase.png')}
           />
         </View>
-        <View style={styles.postList}>
-          <Text sizeStyle="f19" weightStyle="semiBold" style={styles.title}>
-            인기 게시글
-          </Text>
-          <Text sizeStyle="f14" weightStyle="medium" style={styles.subtitle}>
-            지금 나음에서 인기있는 게시글을 확인하세요
-          </Text>
-        </View>
       </View>
+      <BlurbView />
     </ScrollView>
   );
 };
