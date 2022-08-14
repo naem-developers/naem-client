@@ -30,7 +30,7 @@ const BlurbView = () => {
       >
         {tempBlurb.map((item) => {
           return (
-            <View style={styles.slide1}>
+            <View style={styles.slide}>
               <Text>{item}</Text>
             </View>
           );
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: STANDARD_DEVICE_HEIGHT / 4,
   },
-  slide1: {
+  slide: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
