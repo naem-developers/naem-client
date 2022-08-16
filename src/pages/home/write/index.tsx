@@ -30,7 +30,7 @@ const WriteNewPost = () => {
           </Text>
         </View>
         <View style={styles.keywordView}>
-          <Text sizeStyle="f19" weightStyle="semi-bold">
+          <Text sizeStyle="f19" weightStyle="semiBold">
             키워드
           </Text>
           <Text sizeStyle="f13" weightStyle="medium" style={styles.subKeywordTitle}>
