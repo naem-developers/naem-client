@@ -4,6 +4,7 @@ import * as React from 'react';
 import { View, StyleSheet, TouchableOpacity, ViewStyle } from 'react-native';
 import IcnArrowLeftBlack from '@/assets/icons/icn_arrow_left_black.svg';
 import { useNavigation } from '@react-navigation/core';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 interface HeaderProps {
   title?: string;
@@ -13,7 +14,7 @@ interface HeaderProps {
 }
 
 const BackButton = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   return (
     <TouchableOpacity onPress={() => navigation.goBack()}>
       <IcnArrowLeftBlack width={16} height={16} />

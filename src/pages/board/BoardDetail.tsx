@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/native';
+import { ParamListBase, useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '@/components/organisms/Header';
@@ -8,9 +8,10 @@ import { postDetailData } from '@pages/board/boards/dumys';
 import Text from '@/components/atoms/Text';
 import Tag from '@/components/molecules/Tag';
 import DetailMenuBar from '@/components/board/boardDetail/DetailMenuBar';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 const BoardDetail = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const postData = postDetailData;
 
   return (

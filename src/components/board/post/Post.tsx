@@ -3,7 +3,8 @@ import Tag from '@/components/molecules/Tag';
 import { STANDARD_DEVICE_WIDTH } from '@/constants';
 import { THEME } from '@/theme';
 import { postedData } from '@/types';
-import { useNavigation } from '@react-navigation/native';
+import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useCallback, useState } from 'react';
 import { FlatList, StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native';
 
@@ -13,7 +14,7 @@ interface ProstProps {
 }
 
 const Post = ({ postedData, selectedKeywords }: ProstProps) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const shortening = useCallback(
     (body: string) => {
       if (body.length * 15 > STANDARD_DEVICE_WIDTH - 32) return body.slice(0, 32) + '...';
