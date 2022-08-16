@@ -3,7 +3,7 @@ import { THEME } from '@/theme';
 import * as React from 'react';
 import { View, StyleSheet, TouchableOpacity, ViewStyle } from 'react-native';
 import IcnArrowLeftBlack from '@/assets/icons/icn_arrow_left_black.svg';
-import { useNavigation } from '@react-navigation/core';
+import { useNavigation,ParamListBase } from '@react-navigation/core';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 interface HeaderProps {
