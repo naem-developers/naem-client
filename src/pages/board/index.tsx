@@ -3,6 +3,7 @@ import { Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SceneMap, TabBar, TabView } from 'react-native-tab-view';
 import HotBoard from '@pages/board//boards/HotBoard';
+import { THEME } from '@/theme';
 
 interface BoardPageProps {}
 
@@ -68,11 +69,11 @@ const styles = StyleSheet.create({
     lineHeight: 25,
   },
   indicatorStyle: {
-    backgroundColor: '#03DBB2',
+    backgroundColor: THEME.MAIN,
     height: 2,
   },
   indicatorContainerStyle: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: THEME.BG,
   },
 });
 
