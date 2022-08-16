@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     width: '100%',
     flex: 1,
     borderColor: THEME.LIGHT_BOX,
-    borderWidth: 1.2,
+    borderWidth: 1,
     borderRadius: 10,
   },
   input: {
