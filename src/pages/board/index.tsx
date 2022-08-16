@@ -2,12 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SceneMap, TabBar, TabView } from 'react-native-tab-view';
-import GuardianBoard from '@pages/board//boards/ GuardianBoard';
-import FreeBoard from '@pages/board/boards/FreeBoard';
 import HotBoard from '@pages/board//boards/HotBoard';
-import RehabilitationBoard from '@pages/board//boards/RehabilitationBoard';
-import TogetherBoard from '@pages/board//boards/TogetherBoard';
-import WelfareBoard from '@pages/board//boards/WelfareBoard';
 
 interface BoardPageProps {}
 
@@ -25,11 +20,11 @@ const BoardPage = (props: BoardPageProps) => {
 
   const renderScene = SceneMap({
     hot: () => <HotBoard />,
-    free: () => <FreeBoard />,
-    guardian: () => <GuardianBoard />,
-    rehabilitation: () => <RehabilitationBoard />,
-    welfare: () => <WelfareBoard />,
-    together: () => <TogetherBoard />,
+    free: () => <HotBoard />,
+    guardian: () => <HotBoard />,
+    rehabilitation: () => <HotBoard />,
+    welfare: () => <HotBoard />,
+    together: () => <HotBoard />,
   });
 
   return (

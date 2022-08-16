@@ -1,4 +1,4 @@
-import { DISABLED_TYPE, STANDARD_DEVICE_WIDTH } from '@/constants';
+import { DISABLED_TYPE, H_PADDING, STANDARD_DEVICE_WIDTH } from '@/constants';
 import { THEME } from '@/theme';
 import React, { useCallback, useEffect, useState } from 'react';
 import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
@@ -34,8 +34,7 @@ const BoardSearchBar = ({
     let splitKeywords: Array<Array<string>> = [];
     let tempkeywords: Array<string> = [];
     let length = 0;
-    for (let i = 0; i < keywords.length; i++) {
-      const keyword = keywords[i];
+    keywords.forEach((keyword : string)=> {
       const keywordLenth = 12 * 2 + 32 + 16 * (keyword.length + 1);
       if (length + keywordLenth > STANDARD_DEVICE_WIDTH) {
         splitKeywords.push(tempkeywords);
@@ -45,7 +44,7 @@ const BoardSearchBar = ({
         length += keywordLenth;
         tempkeywords.push(keyword);
       }
-    }
+    })
     splitKeywords.push(tempkeywords);
     setKeywordsSet(splitKeywords);
   };
@@ -76,14 +75,15 @@ const BoardSearchBar = ({
       <Collapsible collapsed={isCollapsed}>
         <FlatList
           data={keywordsSet}
+          keyExtractor={(index)=>index.toString()}
           scrollEnabled={false}
           renderItem={({ item }: { item: string[] }) => {
-            console.log(item);
             return (
               <FlatList
                 data={item}
                 scrollEnabled={false}
                 horizontal={true}
+                keyExtractor={(item)=>item}
                 renderItem={({ item }: { item: string }) => {
                   return (
                     <Tag
@@ -107,8 +107,8 @@ export default BoardSearchBar;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFFFFF',
-    paddingBottom: 20,
+    backgroundColor: THEME.BG,
+    paddingBottom: H_PADDING,
     paddingHorizontal: 16,
   },
   tag: {
