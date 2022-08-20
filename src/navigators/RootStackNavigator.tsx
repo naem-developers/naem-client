@@ -34,6 +34,7 @@ export type RootStackParamList = {
   NotificationSettingPage: undefined;
   ServiceTermsPage: undefined;
   WithdrawlPage: undefined;
+  BoardDetail: { id: number };
 };
 
 const Stack = createNativeStackNavigator();
