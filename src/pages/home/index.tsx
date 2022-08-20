@@ -1,5 +1,6 @@
 import Text from '@/components/atoms/Text';
 import BlurbView from '@/components/home/BlurbView';
+import HomePostList from '@/components/home/HomePostList';
 import SearchBar from '@/components/organisms/SearchBar';
 import { RootStackParamList } from '@/navigators/RootStackNavigator';
 import { THEME } from '@/theme';
@@ -13,7 +14,7 @@ interface HomePageProps extends NativeStackScreenProps<RootStackParamList, 'Main
 const HomePage = ({ navigation }: HomePageProps) => {
   const insets = useSafeAreaInsets();
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
+    <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
       <View style={[styles.container]}>
         <View style={[styles.headerContainer, { paddingTop: insets.top }]}>
           <SearchBar
@@ -27,6 +28,7 @@ const HomePage = ({ navigation }: HomePageProps) => {
           />
         </View>
       </View>
+      <HomePostList />
       <BlurbView />
     </ScrollView>
   );
@@ -37,6 +39,9 @@ export default HomePage;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  scrollView: {
+    backgroundColor: THEME.BG,
   },
   headerContainer: {
     backgroundColor: THEME.MAIN,
