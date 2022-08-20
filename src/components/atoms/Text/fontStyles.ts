@@ -1,3 +1,4 @@
+import { THEME } from '@/theme';
 import { TextStyle } from 'react-native';
 
 export const sizeStyles: Record<string, { fontSize: number; lineHeight: number }> = {
@@ -61,5 +62,35 @@ export const weightStyles: Record<string, { fontWeight: TextStyle['fontWeight'] 
   },
   light: {
     fontWeight: '300',
+  },
+};
+
+export const colorStyles: Record<string, { color: TextStyle['color'] }> = {
+  main: {
+    color: THEME.MAIN,
+  },
+  strongText: {
+    color: THEME.STRONG_TEXT,
+  },
+  regText: {
+    color: THEME.REG_TEXT,
+  },
+  lightText: {
+    color: THEME.LIGHT_TEXT,
+  },
+  lightGray: {
+    color: THEME.LIGHT_GRAY,
+  },
+  lightLine: {
+    color: THEME.LIGHT_GRAY,
+  },
+  point: {
+    color: THEME.POINT,
+  },
+  bg: {
+    color: THEME.BG,
+  },
+  lightBox: {
+    color: THEME.LIGHT_BOX,
   },
 };
