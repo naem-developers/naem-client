@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import { SceneMap, TabBar, TabView } from 'react-native-tab-view';
-import useInterval from 'use-interval';
 import Swiper from 'react-native-swiper';
 import Text from '@components/atoms/Text';
 import { STANDARD_DEVICE_HEIGHT } from '@/constants';
@@ -15,7 +14,7 @@ const BlurbView = () => {
   return (
     <View>
       <View style={styles.container}>
-        <Text sizeStyle="f19" weightStyle="semi-bold">
+        <Text sizeStyle="f19" weightStyle="semiBold">
           이벤트
         </Text>
         <Text sizeStyle="f14" weightStyle="medium" style={styles.subText}>
