@@ -16,6 +16,7 @@ import NotificationSettingPage from '@/pages/profile/notificationSetting';
 import ServiceTermsPage from '@/pages/profile/serviceTerms';
 import WithdrawlPage from '@/pages/profile/withdrawl';
 import WriteNewPost from '@/pages/home/write';
+import BoardDetail from '@/pages/board/BoardDetail';
 
 export type RootStackParamList = {
   landing: undefined;
@@ -33,6 +34,7 @@ export type RootStackParamList = {
   NotificationSettingPage: undefined;
   ServiceTermsPage: undefined;
   WithdrawlPage: undefined;
+  BoardDetail: { id: number };
 };
 
 const Stack = createNativeStackNavigator();
@@ -56,6 +58,7 @@ const RootStackNavigator = () => {
       <Stack.Screen name="ServiceTermsPage" component={ServiceTermsPage} />
       <Stack.Screen name="WithdrawlPage" component={WithdrawlPage} />
       <Stack.Screen name="WriteNewPost" component={WriteNewPost} />
+      <Stack.Screen name="BoardDetail" component={BoardDetail} />
     </Stack.Navigator>
   );
 };

@@ -4,8 +4,8 @@ import { SORT_MENU } from '@/constants';
 import ChooseSortView from '@components/board/post/ChooseSortView';
 import PostHeader from '@components/board/post/PostHeader';
 import Post from '@components/board/post/Post';
-import ArriwUpWhite from '@assets/icons/icn_arrow_up_white.svg';
 import { postedData } from '@/types';
+import ScrollTopButton from '@/components/molecules/ScrollTopButton';
 
 interface ProstViewProps {
   postDataArray: postedData[];
@@ -32,12 +32,10 @@ const PostView = ({ postDataArray, selectedKeywords }: ProstViewProps) => {
         hideAction={hideModal}
         setSortDataValue={setSortDataValue}
       />
-      <TouchableOpacity
-        style={styles.upScrollButton}
-        onPress={() => flatListRef.current?.scrollToOffset({ animated: true, offset: 0 })}
-      >
-        <ArriwUpWhite />
-      </TouchableOpacity>
+      <ScrollTopButton
+        commonRef={flatListRef}
+        scrollAction={() => flatListRef.current?.scrollToOffset({ animated: true, offset: 0 })}
+      />
       <FlatList
         data={postDataArray}
         ref={flatListRef}
