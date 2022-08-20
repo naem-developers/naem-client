@@ -4,7 +4,6 @@ import { SORT_MENU } from '@/constants';
 import ChooseSortView from '@components/board/post/ChooseSortView';
 import PostHeader from '@components/board/post/PostHeader';
 import Post from '@components/board/post/Post';
-import ArriwUpWhite from '@assets/icons/icn_arrow_up_white.svg';
 import { postedData } from '@/types';
 import ScrollTopButton from '@/components/molecules/ScrollTopButton';
 
