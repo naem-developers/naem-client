@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SceneMap, TabBar, TabView } from 'react-native-tab-view';
-import HotBoard from '@pages/board//boards/HotBoard';
+import HotBoard from '@pages/board/boards/HotBoard';
 import { THEME } from '@/theme';
 
 interface BoardPageProps {}
