@@ -29,6 +29,10 @@ export const sizeStyles: Record<string, { fontSize: number; lineHeight: number }
     fontSize: 13,
     lineHeight: 22,
   },
+  f12: {
+    fontSize: 12,
+    lineHeight: 22,
+  },
   f11: {
     fontSize: 11,
     lineHeight: 11,
