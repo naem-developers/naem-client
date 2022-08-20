@@ -7,5 +7,6 @@ export type postedData = {
   tags: string[];
   like: number;
   comment: number;
+  boardType?: string;
   createdAt: Date;
 };

@@ -29,10 +29,15 @@ const Post = ({ postedData, selectedKeywords }: ProstProps) => {
 
   return (
     <TouchableOpacity style={styles.container} onPress={navigateToDetail}>
-      <Text sizeStyle="f16" weightStyle="semiBold">
+      {postedData.boardType && (
+        <Text sizeStyle="f13" weightStyle="bold" colorStyle="main">
+          {postedData.boardType}
+        </Text>
+      )}
+      <Text sizeStyle="f16" weightStyle="bold">
         {postedData.title}
       </Text>
-      <Text style={styles.bodyText} sizeStyle="f15" weightStyle="medium">
+      <Text style={styles.bodyText} sizeStyle="f15" weightStyle="medium" colorStyle="regText">
         {shortening(postedData.body)}
       </Text>
       <FlatList
@@ -51,13 +56,13 @@ const Post = ({ postedData, selectedKeywords }: ProstProps) => {
         }}
       />
       <View style={styles.footer}>
-        <Text style={styles.footerText} sizeStyle="f13" weightStyle="medium">
+        <Text style={styles.footerText} sizeStyle="f13" weightStyle="medium" colorStyle="lightText">
           {postedData.userId}
         </Text>
-        <Text style={styles.footerText} sizeStyle="f13" weightStyle="medium">
+        <Text style={styles.footerText} sizeStyle="f13" weightStyle="medium" colorStyle="lightText">
           {`·  좋아요 ${postedData.like}`}
         </Text>
-        <Text style={styles.footerText} sizeStyle="f13" weightStyle="medium">
+        <Text style={styles.footerText} sizeStyle="f13" weightStyle="medium" colorStyle="lightText">
           {`댓글 ${postedData.comment}`}
         </Text>
       </View>

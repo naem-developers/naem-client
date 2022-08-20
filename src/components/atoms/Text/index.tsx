@@ -18,7 +18,7 @@ const Text = ({
   children,
   sizeStyle = 'f16',
   weightStyle = 'regular',
-  colorStyle = 'regText',
+  colorStyle = 'strongText',
   style,
   ...props
 }: React.PropsWithChildren<TextProps>) => {

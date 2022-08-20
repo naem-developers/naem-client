@@ -36,6 +36,8 @@ const Tag = ({
             ? styles.unSelectedText
             : styles.unSelectedReverseText),
         }}
+        weightStyle="semi-bold"
+        colorStyle="lightText"
       >
         {text}
       </Text>
