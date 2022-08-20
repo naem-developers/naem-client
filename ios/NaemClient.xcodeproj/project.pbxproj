@@ -23,6 +23,7 @@
 		969EE34A28A8FEAD000C04C2 /* FirebaseInAppMessagingSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 969EE34928A8FEAD000C04C2 /* FirebaseInAppMessagingSwift-Beta */; };
 		969EE34C28A8FEAD000C04C2 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 969EE34B28A8FEAD000C04C2 /* FirebaseMessaging */; };
 		BD492B7D388ABE054D79B74E /* Pods_NaemClient_NaemClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 720CDD2B330235A48571D581 /* Pods_NaemClient_NaemClientTests.framework */; };
+		CDD0D88E4DB0CE06E9C2E0EC /* libPods-NaemClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 731B203DE1FE751C19A33BF8 /* libPods-NaemClient.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,8 @@
 		7F8BE222288323F8EBB31A0E /* Pods_NaemClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NaemClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = NaemClient/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		969EE33E28A8E9D2000C04C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		856E6B961D2E24F5F6A940D3 /* libPods-NaemClient-NaemClientTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NaemClient-NaemClientTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		860B0DDA31F913DFBD757FCE /* Pods-NaemClient-NaemClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaemClient-NaemClientTests.release.xcconfig"; path = "Target Support Files/Pods-NaemClient-NaemClientTests/Pods-NaemClient-NaemClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		96BBE9382896C17D00E26B1C /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		96BBE9392896C17D00E26B1C /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		96BBE93A2896C17D00E26B1C /* Foundation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
@@ -129,7 +132,6 @@
 		13B07FAE1A68108700A75B9A /* NaemClient */ = {
 			isa = PBXGroup;
 			children = (
-				969EE33E28A8E9D2000C04C2 /* GoogleService-Info.plist */,
 				96BBE9372896C16200E26B1C /* Font */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
@@ -336,7 +338,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
-				969EE33F28A8E9D2000C04C2 /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
