@@ -3,6 +3,7 @@ import React from 'react';
 import PostView from '../board/post';
 import Post from '../board/post/Post';
 import { THEME } from '@/theme';
+import Text from '@/components/atoms/Text';
 
 const DummyPostData = [
   {
@@ -44,14 +45,20 @@ const DummyPostData = [
 ];
 
 const HomePostList = () => {
+  const listData = DummyPostData.slice(0, 3);
   return (
     <View style={styles.container}>
-      <FlatList
-        data={DummyPostData}
-        renderItem={({ item }: any) => {
-          return <Post postedData={item} selectedKeywords={[]} />;
-        }}
-      />
+      <View style={styles.title}>
+        <Text sizeStyle="f19" weightStyle="semiBold">
+          인기 게시글
+        </Text>
+        <Text sizeStyle="f14" weightStyle="medium" colorStyle="regText">
+          지금 나음에서 인기있는 게시글을 확인하세요
+        </Text>
+      </View>
+      {listData.map((item) => {
+        return <Post postedData={item} selectedKeywords={[]} />;
+      })}
     </View>
   );
 };
@@ -62,5 +69,9 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: THEME.BG,
     paddingHorizontal: 16,
+  },
+  title: {
+    marginTop: 20,
+    justifyContent: 'center',
   },
 });

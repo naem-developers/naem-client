@@ -1,11 +1,19 @@
 import React, { RefObject } from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity, ScrollView, FlatList, ViewStyle } from 'react-native';
 import ArriwUpWhite from '@assets/icons/icn_arrow_up_white.svg';
 
-const ScrollTopButton = ({ commonRef }: { commonRef: RefObject<any> }) => (
+const ScrollTopButton = ({
+  commonRef,
+  scrollAction,
+  marginBottom = 0,
+}: {
+  commonRef: RefObject<ScrollView | FlatList>;
+  scrollAction: () => void;
+  marginBottom?: number;
+}) => (
   <TouchableOpacity
-    style={styles.upScrollButton}
-    onPress={() => commonRef.current?.scrollToOffset({ animated: true, offset: 0 })}
+    style={[styles.upScrollButton, { marginBottom: marginBottom }]}
+    onPress={scrollAction}
   >
     <ArriwUpWhite />
   </TouchableOpacity>

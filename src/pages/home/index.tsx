@@ -1,6 +1,7 @@
 import Text from '@/components/atoms/Text';
 import BlurbView from '@/components/home/BlurbView';
 import HomePostList from '@/components/home/HomePostList';
+import ScrollTopButton from '@/components/molecules/ScrollTopButton';
 import SearchBar from '@/components/organisms/SearchBar';
 import { RootStackParamList } from '@/navigators/RootStackNavigator';
 import { THEME } from '@/theme';
@@ -13,24 +14,37 @@ interface HomePageProps extends NativeStackScreenProps<RootStackParamList, 'Main
 
 const HomePage = ({ navigation }: HomePageProps) => {
   const insets = useSafeAreaInsets();
+  const scrollRef = React.useRef<ScrollView>(null);
   return (
-    <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-      <View style={[styles.container]}>
-        <View style={[styles.headerContainer, { paddingTop: insets.top }]}>
-          <SearchBar
-            style={styles.searchBar}
-            disabled
-            onPress={() => navigation.navigate('SearchPage')}
-          />
+    <View style={styles.container}>
+      <View style={[styles.headerContainer, { paddingTop: insets.top }]}>
+        <SearchBar
+          style={styles.searchBar}
+          disabled
+          onPress={() => navigation.navigate('SearchPage')}
+        />
+      </View>
+      <ScrollTopButton
+        commonRef={scrollRef}
+        scrollAction={() => scrollRef.current?.scrollTo({ y: 0 })}
+        marginBottom={50}
+      />
+      <ScrollView
+        contentContainerStyle={styles.scroll}
+        showsVerticalScrollIndicator={false}
+        bounces={false}
+        ref={scrollRef}
+      >
+        <View style={styles.imageComp}>
           <Image
             style={styles.catchPhrase}
             source={require('@/assets/images/img_catchphrase.png')}
           />
         </View>
-      </View>
-      <HomePostList />
-      <BlurbView />
-    </ScrollView>
+        <HomePostList />
+        <BlurbView />
+      </ScrollView>
+    </View>
   );
 };
 
@@ -38,19 +52,25 @@ export default HomePage;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-  },
-  scrollView: {
     backgroundColor: THEME.BG,
+  },
+  scroll: {
+    paddingBottom: 250,
   },
   headerContainer: {
     backgroundColor: THEME.MAIN,
     paddingHorizontal: 16,
-    paddingBottom: 30,
   },
   catchPhrase: {
     width: 205,
     height: 48,
+  },
+  imageComp: {
+    paddingBottom: 30,
+    paddingLeft: 16,
+    backgroundColor: THEME.MAIN,
+    width: '100%',
+    justifyContent: 'center',
   },
   searchBar: {
     marginTop: 5,

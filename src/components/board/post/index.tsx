@@ -33,7 +33,10 @@ const PostView = ({ postDataArray, selectedKeywords }: ProstViewProps) => {
         hideAction={hideModal}
         setSortDataValue={setSortDataValue}
       />
-      <ScrollTopButton commonRef={flatListRef} />
+      <ScrollTopButton
+        commonRef={flatListRef}
+        scrollAction={() => flatListRef.current?.scrollToOffset({ animated: true, offset: 0 })}
+      />
       <FlatList
         data={postDataArray}
         ref={flatListRef}

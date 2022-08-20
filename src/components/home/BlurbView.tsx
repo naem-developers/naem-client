@@ -17,7 +17,7 @@ const BlurbView = () => {
         <Text sizeStyle="f19" weightStyle="semiBold">
           이벤트
         </Text>
-        <Text sizeStyle="f14" weightStyle="medium" style={styles.subText}>
+        <Text sizeStyle="f14" weightStyle="medium" colorStyle="regText">
           나음이 준비한 더 나은 이벤트!
         </Text>
       </View>
@@ -57,8 +57,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#9DD6EB',
-  },
-  subText: {
-    color: THEME.REG_TEXT,
   },
 });
