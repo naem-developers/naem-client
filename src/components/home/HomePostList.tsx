@@ -1,7 +1,6 @@
 import { FlatList, StyleSheet, View } from 'react-native';
 import React from 'react';
-import PostView from '../board/post';
-import Post from '../board/post/Post';
+import Post from '@components/board/post/Post';
 import { THEME } from '@/theme';
 import Text from '@/components/atoms/Text';
 
