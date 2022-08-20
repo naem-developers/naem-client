@@ -29,12 +29,12 @@ const BoardPage = (props: BoardPageProps) => {
   });
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top']}>
       <TabView
         onIndexChange={setIndex}
         renderScene={renderScene}
         overScrollMode={'always'}
-        sceneContainerStyle={{ backgroundColor: '#FFFFFF' }}
+        sceneContainerStyle={{ backgroundColor: THEME.BG }}
         navigationState={{
           index: index,
           routes: routes,

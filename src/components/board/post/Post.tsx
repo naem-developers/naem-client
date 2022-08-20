@@ -3,8 +3,10 @@ import Tag from '@/components/molecules/Tag';
 import { STANDARD_DEVICE_WIDTH } from '@/constants';
 import { THEME } from '@/theme';
 import { postedData } from '@/types';
+import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useCallback, useState } from 'react';
-import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { FlatList, StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native';
 
 interface ProstProps {
   postedData: postedData;
@@ -12,6 +14,7 @@ interface ProstProps {
 }
 
 const Post = ({ postedData, selectedKeywords }: ProstProps) => {
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const shortening = useCallback(
     (body: string) => {
       if (body.length * 15 > STANDARD_DEVICE_WIDTH - 32) return body.slice(0, 32) + '...';
@@ -20,8 +23,12 @@ const Post = ({ postedData, selectedKeywords }: ProstProps) => {
     [postedData],
   );
 
+  const navigateToDetail = () => {
+    navigation.navigate('BoardDetail', { id: postedData.id });
+  };
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={navigateToDetail}>
       <Text sizeStyle="f16" weightStyle="semiBold">
         {postedData.title}
       </Text>

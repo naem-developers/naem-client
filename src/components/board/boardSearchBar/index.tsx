@@ -34,7 +34,7 @@ const BoardSearchBar = ({
     let splitKeywords: Array<Array<string>> = [];
     let tempkeywords: Array<string> = [];
     let length = 0;
-    keywords.forEach((keyword : string)=> {
+    keywords.forEach((keyword: string) => {
       const keywordLenth = 12 * 2 + 32 + 16 * (keyword.length + 1);
       if (length + keywordLenth > STANDARD_DEVICE_WIDTH) {
         splitKeywords.push(tempkeywords);
@@ -44,7 +44,7 @@ const BoardSearchBar = ({
         length += keywordLenth;
         tempkeywords.push(keyword);
       }
-    })
+    });
     splitKeywords.push(tempkeywords);
     setKeywordsSet(splitKeywords);
   };
@@ -75,7 +75,7 @@ const BoardSearchBar = ({
       <Collapsible collapsed={isCollapsed}>
         <FlatList
           data={keywordsSet}
-          keyExtractor={(index)=>index.toString()}
+          keyExtractor={(index) => index.toString()}
           scrollEnabled={false}
           renderItem={({ item }: { item: string[] }) => {
             return (
@@ -83,7 +83,7 @@ const BoardSearchBar = ({
                 data={item}
                 scrollEnabled={false}
                 horizontal={true}
-                keyExtractor={(item)=>item}
+                keyExtractor={(item) => item}
                 renderItem={({ item }: { item: string }) => {
                   return (
                     <Tag
