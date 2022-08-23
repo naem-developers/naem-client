@@ -17,6 +17,7 @@ import ServiceTermsPage from '@/pages/profile/serviceTerms';
 import WithdrawlPage from '@/pages/profile/withdrawl';
 import WriteNewPost from '@/pages/home/write';
 import BoardDetail from '@/pages/board/BoardDetail';
+import PhoneCertificatePage from '@/pages/auth/phoneCertificate';
 
 export type RootStackParamList = {
   landing: undefined;
@@ -35,6 +36,7 @@ export type RootStackParamList = {
   ServiceTermsPage: undefined;
   WithdrawlPage: undefined;
   BoardDetail: { id: number };
+  PhoneCertificatePage: undefined;
 };
 
 const Stack = createNativeStackNavigator();
@@ -59,6 +61,7 @@ const RootStackNavigator = () => {
       <Stack.Screen name="WithdrawlPage" component={WithdrawlPage} />
       <Stack.Screen name="WriteNewPost" component={WriteNewPost} />
       <Stack.Screen name="BoardDetail" component={BoardDetail} />
+      <Stack.Screen name="PhoneCertificatePage" component={PhoneCertificatePage} />
     </Stack.Navigator>
   );
 };
