@@ -17,7 +17,7 @@ import ServiceTermsPage from '@/pages/profile/serviceTerms';
 import WithdrawlPage from '@/pages/profile/withdrawl';
 import WriteNewPost from '@/pages/home/write';
 import BoardDetail from '@/pages/board/BoardDetail';
-import PhoneCertificatePage from '@/pages/auth/phoneCertificate';
+import PhoneCertificatePage, { AuthType } from '@/pages/auth/phoneCertificate';
 
 export type RootStackParamList = {
   landing: undefined;
@@ -36,7 +36,7 @@ export type RootStackParamList = {
   ServiceTermsPage: undefined;
   WithdrawlPage: undefined;
   BoardDetail: { id: number };
-  PhoneCertificatePage: undefined;
+  PhoneCertificatePage: { type: AuthType };
 };
 
 const Stack = createNativeStackNavigator();

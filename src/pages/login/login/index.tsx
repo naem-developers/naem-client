@@ -66,7 +66,7 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
             sizeStyle="f15"
             textStyle={styles.btnsText}
             onPress={() => {
-              navigation.navigate('PhoneCertificatePage');
+              navigation.navigate('PhoneCertificatePage', { type: 'findId' });
             }}
           />
           <View style={styles.verticalDivider} />
