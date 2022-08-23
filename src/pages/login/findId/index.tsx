@@ -1,15 +1,27 @@
 import * as React from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
 import IcnCheck from '@/assets/icons/icn_check.svg';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import Text from '@/components/atoms/Text';
 import Header from '@/components/organisms/Header';
 import { H_PADDING } from '@/constants';
 import { THEME } from '@/theme';
+import Button from '@/components/atoms/Button';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { AuthStackParamList } from '@/navigators/AuthStackNavigator';
+import { CommonActions, StackActions } from '@react-navigation/routers';
+interface FindIdPageProps extends NativeStackScreenProps<AuthStackParamList, 'FindIdPage'> {}
+{
+}
 
-interface FindIdPageProps {}
+const FindIdPage = ({ navigation }: FindIdPageProps) => {
+  const insets = useSafeAreaInsets();
 
-const FindIdPage = (props: FindIdPageProps) => {
+  const handlePressCTA = React.useCallback(() => {
+    // navigation.dispatch(StackActions.replace('LoginPage'));
+    navigation.dispatch(CommonActions.reset({ routes: [{ name: 'LoginPage' }] }));
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <Header title="아이디 찾기" />
@@ -27,6 +39,9 @@ const FindIdPage = (props: FindIdPageProps) => {
           </Text>
         </View>
       </ScrollView>
+      <View style={[styles.cta, { marginBottom: insets.bottom }]}>
+        <Button text="완료" onPress={handlePressCTA} />
+      </View>
     </SafeAreaView>
   );
 };
@@ -52,5 +67,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 10,
   },
+  cta: { paddingHorizontal: H_PADDING, bottom: 20, position: 'absolute', width: '100%' },
   mt12: { marginTop: 12 },
 });
