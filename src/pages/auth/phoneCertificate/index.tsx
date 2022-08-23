@@ -8,7 +8,7 @@ import { THEME } from '@/theme';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export type AuthType = 'findId';
 
@@ -22,6 +22,8 @@ const assetMapper: Record<AuthType, { title: string; headerText?: string }> = {
 };
 
 const PhoneCertificatePage = ({ route }: PhoneCertificatePageProps) => {
+  const insets = useSafeAreaInsets();
+
   return (
     <SafeAreaView style={styles.container}>
       <Header title={assetMapper[route.params.type].title} />
@@ -42,6 +44,9 @@ const PhoneCertificatePage = ({ route }: PhoneCertificatePageProps) => {
           <Button priority="primary" disabled text="확인" btnSize="small" style={styles.button} />
         </View>
       </ScrollView>
+      <View style={[styles.cta, { marginBottom: insets.bottom }]}>
+        <Button text="완료" />
+      </View>
     </SafeAreaView>
   );
 };
@@ -56,4 +61,5 @@ const styles = StyleSheet.create({
   mt10: { marginTop: 10 },
   button: { borderRadius: 10, marginLeft: 12, paddingTop: 14, paddingBottom: 14 },
   input: { flexShrink: 1 },
+  cta: { paddingHorizontal: H_PADDING, bottom: 20, position: 'absolute', width: '100%' },
 });
