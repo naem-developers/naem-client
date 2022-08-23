@@ -1,4 +1,6 @@
+import Button from '@/components/atoms/Button';
 import Text from '@/components/atoms/Text';
+import TextInput from '@/components/atoms/TextInput';
 import Header from '@/components/organisms/Header';
 import { H_PADDING } from '@/constants';
 import { RootStackParamList } from '@/navigators/RootStackNavigator';
@@ -27,6 +29,10 @@ const PhoneCertificatePage = ({ route }: PhoneCertificatePageProps) => {
         <Text sizeStyle="f14" weightStyle="mediumn" colorStyle="strongText">
           {assetMapper[route.params.type]?.headerText}
         </Text>
+        <View style={[styles.row, styles.mt10]}>
+          <TextInput placeholder="‘-’ 없이 입력해주세요" style={styles.input} />
+          <Button priority="primary" text="인증번호 전송" btnSize="small" style={styles.button} />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -37,4 +43,8 @@ export default PhoneCertificatePage;
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: THEME.BG },
   contentContainerStyle: { paddingHorizontal: H_PADDING, paddingTop: 22, paddingBottom: 20 },
+  row: { flexDirection: 'row', alignItems: 'center' },
+  mt10: { marginTop: 10 },
+  button: { borderRadius: 10, marginLeft: 12, paddingTop: 14, paddingBottom: 14 },
+  input: { flexShrink: 1 },
 });

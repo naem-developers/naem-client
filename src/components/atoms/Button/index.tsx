@@ -34,7 +34,7 @@ const Button = ({
       <Text
         sizeStyle="f18"
         weightStyle="semiBold"
-        style={styles[`${disabled ? 'disabled' : priority}Text`]}
+        style={[styles.lh0, styles[`${disabled ? 'disabled' : priority}Text`]]}
       >
         {text}
       </Text>
@@ -80,5 +80,8 @@ const styles = StyleSheet.create({
   },
   disabledText: {
     color: THEME.LIGHT_TEXT,
+  },
+  lh0: {
+    lineHeight: 0,
   },
 });
