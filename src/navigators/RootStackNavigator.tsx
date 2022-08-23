@@ -3,6 +3,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LandingPage from '@pages/landing';
 import SignUpStackNavigator from '@navigators/SignUpStackNavigator';
 import MainTabNavigator from '@navigators/MainTabNavigator';
+import AuthStackNavigator, { AuthStackParamList } from '@/navigators/AuthStackNavigator';
+
 import LoginPage from '@/pages/login/login';
 import FindIdPage from '@/pages/login/findId';
 import FindPwPage from '@/pages/login/findPw';
@@ -17,12 +19,13 @@ import ServiceTermsPage from '@/pages/profile/serviceTerms';
 import WithdrawlPage from '@/pages/profile/withdrawl';
 import WriteNewPost from '@/pages/home/write';
 import BoardDetail from '@/pages/board/BoardDetail';
-import PhoneCertificatePage, { AuthType } from '@/pages/auth/phoneCertificate';
+import { NavigatorScreenParams } from '@react-navigation/core';
 
 export type RootStackParamList = {
   landing: undefined;
   SignUpStackNavigator: undefined;
   MainTabNavigator: undefined;
+  AuthStackNavigator: NavigatorScreenParams<AuthStackParamList>;
   LoginPage: undefined;
   FindIdPage: undefined;
   FindPwPage: undefined;
@@ -36,7 +39,6 @@ export type RootStackParamList = {
   ServiceTermsPage: undefined;
   WithdrawlPage: undefined;
   BoardDetail: { id: number };
-  PhoneCertificatePage: { type: AuthType };
 };
 
 const Stack = createNativeStackNavigator();
@@ -47,6 +49,8 @@ const RootStackNavigator = () => {
       <Stack.Screen name="landing" component={LandingPage} />
       <Stack.Screen name="SignUpStackNavigator" component={SignUpStackNavigator} />
       <Stack.Screen name="MainTabNavigator" component={MainTabNavigator} />
+      <Stack.Screen name="AuthStackNavigator" component={AuthStackNavigator} />
+
       <Stack.Screen name="LoginPage" component={LoginPage} />
       <Stack.Screen name="FindIdPage" component={FindIdPage} />
       <Stack.Screen name="FindPwPage" component={FindPwPage} />
@@ -61,7 +65,6 @@ const RootStackNavigator = () => {
       <Stack.Screen name="WithdrawlPage" component={WithdrawlPage} />
       <Stack.Screen name="WriteNewPost" component={WriteNewPost} />
       <Stack.Screen name="BoardDetail" component={BoardDetail} />
-      <Stack.Screen name="PhoneCertificatePage" component={PhoneCertificatePage} />
     </Stack.Navigator>
   );
 };

@@ -3,6 +3,7 @@ import Text from '@/components/atoms/Text';
 import TextInput from '@/components/atoms/TextInput';
 import Header from '@/components/organisms/Header';
 import { H_PADDING } from '@/constants';
+import { AuthStackParamList } from '@/navigators/AuthStackNavigator';
 import { RootStackParamList } from '@/navigators/RootStackNavigator';
 import { THEME } from '@/theme';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -13,7 +14,7 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 export type AuthType = 'findId';
 
 interface PhoneCertificatePageProps
-  extends NativeStackScreenProps<RootStackParamList, 'PhoneCertificatePage'> {}
+  extends NativeStackScreenProps<AuthStackParamList, 'PhoneCertificatePage'> {}
 {
 }
 
