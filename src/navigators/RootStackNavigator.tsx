@@ -27,7 +27,6 @@ export type RootStackParamList = {
   MainTabNavigator: undefined;
   AuthStackNavigator: NavigatorScreenParams<AuthStackParamList>;
   LoginPage: undefined;
-  FindIdPage: undefined;
   FindPwPage: undefined;
   PostPage: undefined;
   SearchPage: undefined;
@@ -52,7 +51,6 @@ const RootStackNavigator = () => {
       <Stack.Screen name="AuthStackNavigator" component={AuthStackNavigator} />
 
       <Stack.Screen name="LoginPage" component={LoginPage} />
-      <Stack.Screen name="FindIdPage" component={FindIdPage} />
       <Stack.Screen name="FindPwPage" component={FindPwPage} />
       <Stack.Screen name="PostPage" component={PostPage} />
       <Stack.Screen name="SearchPage" component={SearchPage} />

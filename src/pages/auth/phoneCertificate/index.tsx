@@ -18,12 +18,18 @@ interface PhoneCertificatePageProps
 {
 }
 
-const assetMapper: Record<AuthType, { title: string; headerText?: string }> = {
-  findId: { title: '아이디 찾기', headerText: '회원가입 시 등록한 휴대폰 번호를 입력해주세요' },
-};
-
-const PhoneCertificatePage = ({ route }: PhoneCertificatePageProps) => {
+const PhoneCertificatePage = ({ route, navigation }: PhoneCertificatePageProps) => {
   const insets = useSafeAreaInsets();
+
+  const assetMapper: Record<AuthType, { title: string; headerText?: string; func?: () => void }> = {
+    findId: {
+      title: '아이디 찾기',
+      headerText: '회원가입 시 등록한 휴대폰 번호를 입력해주세요',
+      func: () => {
+        navigation.navigate('FindIdPage');
+      },
+    },
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -46,7 +52,7 @@ const PhoneCertificatePage = ({ route }: PhoneCertificatePageProps) => {
         </View>
       </ScrollView>
       <View style={[styles.cta, { marginBottom: insets.bottom }]}>
-        <Button text="완료" />
+        <Button text="완료" onPress={() => assetMapper[route.params.type]?.func?.()} />
       </View>
     </SafeAreaView>
   );
