@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     borderColor: '#c4c4c4',
   },
   disabledContainer: {
-    backgroundColor: THEME.BG,
+    backgroundColor: THEME.LIGHT_GRAY,
   },
   largeContainer: {
     alignSelf: 'stretch',

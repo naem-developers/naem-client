@@ -30,8 +30,16 @@ const PhoneCertificatePage = ({ route }: PhoneCertificatePageProps) => {
           {assetMapper[route.params.type]?.headerText}
         </Text>
         <View style={[styles.row, styles.mt10]}>
-          <TextInput placeholder="‘-’ 없이 입력해주세요" style={styles.input} />
+          <TextInput
+            placeholder="‘-’ 없이 입력해주세요"
+            style={styles.input}
+            keyboardType="number-pad"
+          />
           <Button priority="primary" text="인증번호 전송" btnSize="small" style={styles.button} />
+        </View>
+        <View style={[styles.row, styles.mt16]}>
+          <TextInput placeholder="인증번호 입력" style={styles.input} keyboardType="number-pad" />
+          <Button priority="primary" disabled text="확인" btnSize="small" style={styles.button} />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -44,6 +52,7 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: THEME.BG },
   contentContainerStyle: { paddingHorizontal: H_PADDING, paddingTop: 22, paddingBottom: 20 },
   row: { flexDirection: 'row', alignItems: 'center' },
+  mt16: { marginTop: 16 },
   mt10: { marginTop: 10 },
   button: { borderRadius: 10, marginLeft: 12, paddingTop: 14, paddingBottom: 14 },
   input: { flexShrink: 1 },
