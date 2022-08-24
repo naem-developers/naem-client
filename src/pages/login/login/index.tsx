@@ -66,7 +66,10 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
             sizeStyle="f15"
             textStyle={styles.btnsText}
             onPress={() => {
-              navigation.navigate('FindIdPage');
+              navigation.navigate('AuthStackNavigator', {
+                screen: 'PhoneCertificatePage',
+                params: { type: 'findId' },
+              });
             }}
           />
           <View style={styles.verticalDivider} />

@@ -25,10 +25,10 @@ const Text = ({
   return (
     <RNText
       style={[
-        style,
         sizeStyles[sizeStyle],
         weightStyles[weightStyle],
         colorStyles[colorStyle],
+        style,
         { fontSize: RFValue(sizeStyles[sizeStyle].fontSize, STANDARD_DEVICE_HEIGHT) },
       ]}
       {...props}
