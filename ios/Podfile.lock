@@ -327,8 +327,6 @@ PODS:
   - RNFBApp (15.3.0):
     - Firebase/CoreOnly (= 9.4.0)
     - React-Core
-  - RNFlashList (1.2.0):
-    - React-Core
   - RNImageCropPicker (0.38.0):
     - React-Core
     - React-RCTImage
@@ -386,7 +384,6 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCClipboard (from `../node_modules/@react-native-clipboard/clipboard`)"
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
-  - "RNFlashList (from `../node_modules/@shopify/flash-list`)"
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
@@ -477,8 +474,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-clipboard/clipboard"
   RNFBApp:
     :path: "../node_modules/@react-native-firebase/app"
-  RNFlashList:
-    :path: "../node_modules/@shopify/flash-list"
   RNImageCropPicker:
     :path: "../node_modules/react-native-image-crop-picker"
   RNScreens:
@@ -535,7 +530,6 @@ SPEC CHECKSUMS:
   ReactCommon: 095366164a276d91ea704ce53cb03825c487a3f2
   RNCClipboard: f1736c75ab85b627a4d57587edb4b60999c4dd80
   RNFBApp: 0db41be0ca09ec0828164f16cd36732c0df8dabb
-  RNFlashList: adcc3a39aa72012852681bc439ccb4108c8c4448
   RNImageCropPicker: ffbba608264885c241cbf3a8f78eb7aeeb978241
   RNScreens: 4a1af06327774490d97342c00aee0c2bafb497b7
   RNSVG: 302bfc9905bd8122f08966dc2ce2d07b7b52b9f8
