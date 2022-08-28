@@ -13,6 +13,8 @@ import RootStackNavigator from './src/navigators/RootStackNavigator';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider as PaperProvider } from 'react-native-paper';
 import requestNotificationPermission from '@/utils/permissions/requestNotificationPermission';
+import useForegroundNotification from '@/hooks/notification/useForegroundNotification';
+import setBackgroundNotification from '@/utils/notifications/setBackgroundNotification';
 
 function App() {
   useEffect(() => {
@@ -20,6 +22,9 @@ function App() {
   }, []);
 
   requestNotificationPermission();
+  setBackgroundNotification();
+
+  useForegroundNotification();
 
   return (
     <SafeAreaProvider>
