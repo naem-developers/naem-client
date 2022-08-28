@@ -12,11 +12,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import RootStackNavigator from './src/navigators/RootStackNavigator';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider as PaperProvider } from 'react-native-paper';
+import requestNotificationPermission from '@/utils/permissions/requestNotificationPermission';
 
 function App() {
   useEffect(() => {
     SplashScreen.hide();
   }, []);
+
+  requestNotificationPermission();
 
   return (
     <SafeAreaProvider>
