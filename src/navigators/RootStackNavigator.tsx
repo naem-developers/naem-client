@@ -8,7 +8,6 @@ import AuthStackNavigator, { AuthStackParamList } from '@/navigators/AuthStackNa
 import LoginPage from '@/pages/login/login';
 import FindIdPage from '@/pages/login/findId';
 import FindPwPage from '@/pages/login/findPw';
-import PostPage from '@/pages/post/post';
 import SearchPage from '@/pages/search';
 import ProfileEditPage from '@/pages/profile/profileEdit';
 import EventPage from '@/pages/profile/event';
@@ -17,7 +16,7 @@ import NoticePage from '@/pages/profile/notice';
 import NotificationSettingPage from '@/pages/profile/notificationSetting';
 import ServiceTermsPage from '@/pages/profile/serviceTerms';
 import WithdrawlPage from '@/pages/profile/withdrawl';
-import WriteNewPost from '@/pages/home/write';
+import WriteNewPost from '@/pages/post';
 import BoardDetail from '@/pages/board/BoardDetail';
 import { NavigatorScreenParams } from '@react-navigation/core';
 
@@ -28,7 +27,6 @@ export type RootStackParamList = {
   AuthStackNavigator: NavigatorScreenParams<AuthStackParamList>;
   LoginPage: undefined;
   FindPwPage: undefined;
-  PostPage: undefined;
   SearchPage: undefined;
   ProfileEditPage: undefined;
   EventPage: undefined;
@@ -52,7 +50,6 @@ const RootStackNavigator = () => {
 
       <Stack.Screen name="LoginPage" component={LoginPage} />
       <Stack.Screen name="FindPwPage" component={FindPwPage} />
-      <Stack.Screen name="PostPage" component={PostPage} />
       <Stack.Screen name="SearchPage" component={SearchPage} />
       <Stack.Screen name="ProfileEditPage" component={ProfileEditPage} />
       <Stack.Screen name="EventPage" component={EventPage} />
