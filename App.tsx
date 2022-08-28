@@ -12,6 +12,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import RootStackNavigator from './src/navigators/RootStackNavigator';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider as PaperProvider } from 'react-native-paper';
+import { MenuProvider } from 'react-native-popup-menu';
 
 function App() {
   useEffect(() => {
@@ -21,9 +22,11 @@ function App() {
   return (
     <SafeAreaProvider>
       <PaperProvider>
-        <NavigationContainer>
-          <RootStackNavigator />
-        </NavigationContainer>
+        <MenuProvider>
+          <NavigationContainer>
+            <RootStackNavigator />
+          </NavigationContainer>
+        </MenuProvider>
       </PaperProvider>
     </SafeAreaProvider>
   );

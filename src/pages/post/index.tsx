@@ -1,6 +1,6 @@
 import TextInput from '@/components/atoms/TextInput';
 import Header from '@/components/organisms/Header';
-import { STANDARD_DEVICE_HEIGHT } from '@/constants';
+import { STANDARD_DEVICE_HEIGHT, STANDARD_DEVICE_WIDTH } from '@/constants';
 import * as React from 'react';
 import { StyleSheet, TouchableOpacity, View, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -8,11 +8,59 @@ import Camera from '@assets/icons/icn_camera.svg';
 import Text from '@/components/atoms/Text';
 import { THEME } from '@/theme';
 import Button from '@/components/atoms/Button';
+import {
+  BENEFITBOARD,
+  Board,
+  EMPLOYBOARD,
+  FREEBOARD,
+  GUAEDIAONBOARD,
+  REHABILITATIONBOARD,
+  TOGETHER,
+} from '@/types/post';
+import ChooseDataView from '@/components/board/post/ChooseDataView';
+import ImagePicker from 'react-native-image-crop-picker';
+import Menu, { MenuOptions, MenuOption, MenuTrigger } from 'react-native-popup-menu';
+
+const boardList = [
+  FREEBOARD,
+  GUAEDIAONBOARD,
+  EMPLOYBOARD,
+  REHABILITATIONBOARD,
+  BENEFITBOARD,
+  TOGETHER,
+];
 
 const WriteNewPost = () => {
+  const [title, setTtile] = React.useState<Board>(FREEBOARD);
+  const [visible, setVisible] = React.useState<boolean>(false);
+
+  const imagePicker = () => {
+    ImagePicker.openPicker({
+      multiple: true,
+    }).then((images) => {
+      console.log(images);
+    });
+  };
+
+  const CameraPicker = ({ openCameraAction }: { openCameraAction: () => void }) => {
+    return (
+      <Menu>
+        <MenuTrigger>
+          <Camera />
+        </MenuTrigger>
+        <MenuOptions>
+          <MenuOption onSelect={() => {}} text="촬영하기" />
+          <MenuOption onSelect={openCameraAction} text="앨범에서 선택" />
+        </MenuOptions>
+      </Menu>
+    );
+  };
+
   return (
     <SafeAreaView>
-      <Header title="자유게시판" />
+      <TouchableOpacity onPress={() => setVisible(true)}>
+        <Header title={title} />
+      </TouchableOpacity>
       <ScrollView>
         <View style={styles.container}>
           <TextInput placeholder="게시글 제목" />
@@ -21,7 +69,7 @@ const WriteNewPost = () => {
             style={styles.body}
             containerStyle={styles.containerStyle}
             multiline={true}
-            Icon={() => <Camera />}
+            Icon={() => <CameraPicker openCameraAction={imagePicker} />}
           />
           <Text sizeStyle="f13" weightStyle="light" style={styles.text}>
             {
@@ -39,6 +87,12 @@ const WriteNewPost = () => {
           <Button text="등록하기" priority="primary" style={styles.button} onPress={() => {}} />
         </View>
       </ScrollView>
+      <ChooseDataView
+        isVisible={visible}
+        data={boardList}
+        hideAction={() => setVisible(false)}
+        setSortDataValue={setTtile}
+      />
     </SafeAreaView>
   );
 };
@@ -67,6 +121,10 @@ const styles = StyleSheet.create({
   },
   subKeywordTitle: {
     color: THEME.REG_TEXT,
+  },
+  cameraButtons: {
+    width: STANDARD_DEVICE_WIDTH / 3,
+    backgroundColor: 'red',
   },
   button: { marginVertical: 10 },
 });

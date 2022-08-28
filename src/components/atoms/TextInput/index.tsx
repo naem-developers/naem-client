@@ -15,9 +15,17 @@ interface TextInputProps extends RNTextInputProps {
   validationMsg?: string;
   Icon?: React.FC<SvgProps>;
   containerStyle?: ViewStyle;
+  iconAction?: () => void;
 }
 
-const TextInput = ({ Icon, style, containerStyle, validationMsg, ...props }: TextInputProps) => {
+const TextInput = ({
+  Icon,
+  style,
+  containerStyle,
+  validationMsg,
+  iconAction,
+  ...props
+}: TextInputProps) => {
   return (
     <View style={[styles.container, containerStyle]}>
       <RNTextInput style={[style, styles.input]} placeholderTextColor="#aeaeae" {...props} />
@@ -27,7 +35,7 @@ const TextInput = ({ Icon, style, containerStyle, validationMsg, ...props }: Tex
         </Text>
       )}
       {Icon != undefined && (
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={iconAction}>
           <Icon />
         </TouchableOpacity>
       )}

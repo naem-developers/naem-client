@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { FlatList, StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native';
 import { SORT_MENU } from '@/constants';
-import ChooseSortView from '@components/board/post/ChooseSortView';
+import ChooseDataView from '@components/board/post/ChooseDataView';
 import PostHeader from '@components/board/post/PostHeader';
 import Post from '@components/board/post/Post';
 import { postedData } from '@/types';
@@ -27,8 +27,9 @@ const PostView = ({ postDataArray, selectedKeywords }: ProstViewProps) => {
   return (
     <View style={styles.container}>
       <PostHeader sortValue={sortValue} showModal={showModal} />
-      <ChooseSortView
+      <ChooseDataView
         isVisible={visible}
+        data={SORT_MENU}
         hideAction={hideModal}
         setSortDataValue={setSortDataValue}
       />
