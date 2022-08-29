@@ -16,7 +16,7 @@ const LandingPage = ({ navigation }: LandingPageProps) => {
 
   useEffect(() => {
     console.log(data, isLoading);
-  }, []);
+  }, [isLoading]);
 
   return (
     <SafeAreaView style={styles.container}>
