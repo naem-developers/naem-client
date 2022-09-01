@@ -70,3 +70,7 @@ ios/Podfile.lock
 # firebase
 google-services.json
 GoogleService-Info.plist
+
+# local env files
+.env*.local
+.env
