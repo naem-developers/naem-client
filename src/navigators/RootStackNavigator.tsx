@@ -3,7 +3,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LandingPage from '@pages/landing';
 import SignUpStackNavigator from '@navigators/SignUpStackNavigator';
 import MainTabNavigator from '@navigators/MainTabNavigator';
-import AuthStackNavigator, { AuthStackParamList } from '@/navigators/AuthStackNavigator';
 
 import LoginPage from '@/pages/login/login';
 import PostPage from '@/pages/post/post';
@@ -23,7 +22,6 @@ export type RootStackParamList = {
   landing: undefined;
   SignUpStackNavigator: undefined;
   MainTabNavigator: undefined;
-  AuthStackNavigator: NavigatorScreenParams<AuthStackParamList>;
   LoginPage: undefined;
   PostPage: undefined;
   SearchPage: undefined;
@@ -45,7 +43,6 @@ const RootStackNavigator = () => {
       <Stack.Screen name="landing" component={LandingPage} />
       <Stack.Screen name="SignUpStackNavigator" component={SignUpStackNavigator} />
       <Stack.Screen name="MainTabNavigator" component={MainTabNavigator} />
-      <Stack.Screen name="AuthStackNavigator" component={AuthStackNavigator} />
 
       <Stack.Screen name="LoginPage" component={LoginPage} />
       <Stack.Screen name="PostPage" component={PostPage} />
