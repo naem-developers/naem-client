@@ -6,7 +6,6 @@ import MainTabNavigator from '@navigators/MainTabNavigator';
 import AuthStackNavigator, { AuthStackParamList } from '@/navigators/AuthStackNavigator';
 
 import LoginPage from '@/pages/login/login';
-import FindIdPage from '@/pages/login/findId';
 import FindPwPage from '@/pages/login/findPw';
 import PostPage from '@/pages/post/post';
 import SearchPage from '@/pages/search';

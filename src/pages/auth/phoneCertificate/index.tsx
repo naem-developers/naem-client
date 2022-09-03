@@ -25,9 +25,7 @@ const PhoneCertificatePage = ({ route, navigation }: PhoneCertificatePageProps) 
     findId: {
       title: '아이디 찾기',
       headerText: '회원가입 시 등록한 휴대폰 번호를 입력해주세요',
-      func: () => {
-        navigation.navigate('FindIdPage');
-      },
+      func: () => {},
     },
   };
 
