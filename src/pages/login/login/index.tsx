@@ -31,6 +31,23 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
             나음
           </Text>
         </Text>
+        <View style={styles.loginTextContainer}>
+          <View style={styles.line} />
+          <Text
+            sizeStyle="f15"
+            weightStyle="medium"
+            colorStyle="lightText"
+            style={styles.loginText}
+          >
+            로그인 후 이용해보세요
+          </Text>
+          <View style={styles.line} />
+        </View>
+        <TouchableOpacity style={styles.ctaBtn}>
+          <Text sizeStyle="f16" weightStyle="semiBold" colorStyle="strongText">
+            카카오톡으로 빠른 시작 👉🏻
+          </Text>
+        </TouchableOpacity>
       </KeyboardAwareScrollView>
     </SafeAreaView>
   );
@@ -52,4 +69,18 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   title: { alignSelf: 'flex-start', marginHorizontal: 16, marginTop: 24 },
+  loginTextContainer: { flexDirection: 'row', alignItems: 'center', marginTop: 234 },
+  line: { flex: 1, height: 1, backgroundColor: THEME.LIGHT_LINE },
+  loginText: { marginHorizontal: 16 },
+  ctaBtn: {
+    marginTop: 26,
+    backgroundColor: '#F7E600',
+    color: THEME.STRONG_TEXT,
+    paddingTop: 15,
+    paddingBottom: 14,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 5,
+  },
 });
