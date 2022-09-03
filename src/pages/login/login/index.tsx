@@ -18,79 +18,19 @@ interface LoginPageProps extends NativeStackScreenProps<RootStackParamList, 'Log
 }
 
 const LoginPage = ({ navigation }: LoginPageProps) => {
-  // TODO: recoil 전역 상태 관리 값으로 관리하기
-  const [isSaveLoginStatus, setIsSaveLoginStatus] = useState<boolean>(false);
-  const [id, setId] = useState<string>('');
-  const [pw, setPw] = useState<string>('');
-
-  const handlePressSubmit = () => {};
-
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAwareScrollView contentContainerStyle={styles.contentContainer}>
         <Image source={require('@/assets/logos/logo_eng.png')} style={styles.logo} />
-        <TextInput
-          placeholder="아이디 입력"
-          placeholderTextColor="#AEAEAE"
-          value={id}
-          onChangeText={(text) => setId(text)}
-        />
-        <TextInput
-          placeholder="비밀번호 입력"
-          placeholderTextColor="#AEAEAE"
-          style={styles.mt14}
-          secureTextEntry
-          value={pw}
-          onChangeText={(text) => setPw(text)}
-        />
-        <TouchableOpacity
-          style={styles.loginStatus}
-          onPress={() => setIsSaveLoginStatus((status) => !status)}
-          accessibilityRole="button"
-          accessibilityState={{ selected: isSaveLoginStatus }}
-          accessibilityLabel={isSaveLoginStatus ? '로그인 상태 유지' : '로인 상태 유지하지 않음'}
-        >
-          {isSaveLoginStatus ? (
-            <IcnCheckSelect width={20} height={20} />
-          ) : (
-            <IcnCheckDefault width={20} height={20} />
-          )}
-          <Text sizeStyle="f15" style={styles.loginStatusText}>
-            로그인 상태 유지
+        <Text style={styles.title}>
+          <Text sizeStyle="f20" weightStyle="bold" colorStyle="strongText">
+            장애인과 장애인 보호자라면{'\n'}
+            커뮤니티 플랫폼{' '}
           </Text>
-        </TouchableOpacity>
-        <Button text="확인" style={styles.button} onPress={handlePressSubmit} />
-        <View style={styles.btnsContainer}>
-          <TextBtn
-            text="아이디 찾기"
-            sizeStyle="f15"
-            textStyle={styles.btnsText}
-            onPress={() => {
-              navigation.navigate('AuthStackNavigator', {
-                screen: 'PhoneCertificatePage',
-                params: { type: 'findId' },
-              });
-            }}
-          />
-          <View style={styles.verticalDivider} />
-          <TextBtn
-            text="비밀번호 재설정"
-            sizeStyle="f15"
-            textStyle={styles.btnsText}
-            onPress={() => {
-              navigation.navigate('FindPwPage');
-            }}
-          />
-          <View style={styles.verticalDivider} />
-          <TextBtn
-            text="회원가입"
-            sizeStyle="f15"
-            textStyle={styles.btnsText}
-            onPress={() => {
-              navigation.navigate('SignUpStackNavigator');
-            }}
-          />
-        </View>
+          <Text sizeStyle="f20" weightStyle="bold" colorStyle="main">
+            나음
+          </Text>
+        </Text>
       </KeyboardAwareScrollView>
     </SafeAreaView>
   );
@@ -108,44 +48,8 @@ const styles = StyleSheet.create({
     width: 146,
     height: 42.52,
     marginTop: 104,
-    marginBottom: 116,
-  },
-  input: {
-    padding: 14,
-    width: '100%',
-    borderColor: '#e4e4e4',
-    borderWidth: 1.2,
-    borderRadius: 10,
-  },
-  button: {
-    marginTop: 21,
-  },
-  loginStatus: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    marginHorizontal: 16,
     alignSelf: 'flex-start',
-    marginTop: 19,
   },
-  loginStatusText: {
-    color: THEME.REG_TEXT,
-    marginLeft: 7,
-  },
-  btnsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 28,
-  },
-  btnsText: {
-    color: THEME.REG_TEXT,
-  },
-  verticalDivider: {
-    width: 1,
-    height: 10,
-    backgroundColor: THEME.LIGHT_TEXT,
-    marginHorizontal: 18,
-  },
-  mt14: {
-    marginTop: 14,
-  },
+  title: { alignSelf: 'flex-start', marginHorizontal: 16, marginTop: 24 },
 });
