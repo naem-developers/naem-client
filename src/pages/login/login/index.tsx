@@ -20,6 +20,7 @@ interface LoginPageProps extends NativeStackScreenProps<RootStackParamList, 'Log
 const LoginPage = ({ navigation }: LoginPageProps) => {
   return (
     <SafeAreaView style={styles.container}>
+      <Image source={require('@/assets/images/img_background_logo.png')} style={styles.bgLogo} />
       <KeyboardAwareScrollView contentContainerStyle={styles.contentContainer}>
         <Image source={require('@/assets/logos/logo_eng.png')} style={styles.logo} />
         <Text style={styles.title}>
@@ -61,6 +62,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: H_PADDING,
     alignItems: 'center',
   },
+  bgLogo: { position: 'absolute', right: 0, bottom: 0, width: 282, height: 422 },
   logo: {
     width: 146,
     height: 42.52,
