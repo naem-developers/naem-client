@@ -18,6 +18,8 @@ interface LoginPageProps extends NativeStackScreenProps<RootStackParamList, 'Log
 }
 
 const LoginPage = ({ navigation }: LoginPageProps) => {
+  const handleKakaoLogin = () => {};
+
   return (
     <SafeAreaView style={styles.container}>
       <Image source={require('@/assets/images/img_background_logo.png')} style={styles.bgLogo} />
@@ -44,7 +46,7 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
           </Text>
           <View style={styles.line} />
         </View>
-        <TouchableOpacity style={styles.ctaBtn}>
+        <TouchableOpacity style={styles.ctaBtn} onPress={handleKakaoLogin}>
           <Text sizeStyle="f16" weightStyle="semiBold" colorStyle="strongText">
             카카오톡으로 빠른 시작 👉🏻
           </Text>
