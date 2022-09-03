@@ -6,7 +6,6 @@ import MainTabNavigator from '@navigators/MainTabNavigator';
 import AuthStackNavigator, { AuthStackParamList } from '@/navigators/AuthStackNavigator';
 
 import LoginPage from '@/pages/login/login';
-import FindPwPage from '@/pages/login/findPw';
 import PostPage from '@/pages/post/post';
 import SearchPage from '@/pages/search';
 import ProfileEditPage from '@/pages/profile/profileEdit';
@@ -26,7 +25,6 @@ export type RootStackParamList = {
   MainTabNavigator: undefined;
   AuthStackNavigator: NavigatorScreenParams<AuthStackParamList>;
   LoginPage: undefined;
-  FindPwPage: undefined;
   PostPage: undefined;
   SearchPage: undefined;
   ProfileEditPage: undefined;
@@ -50,7 +48,6 @@ const RootStackNavigator = () => {
       <Stack.Screen name="AuthStackNavigator" component={AuthStackNavigator} />
 
       <Stack.Screen name="LoginPage" component={LoginPage} />
-      <Stack.Screen name="FindPwPage" component={FindPwPage} />
       <Stack.Screen name="PostPage" component={PostPage} />
       <Stack.Screen name="SearchPage" component={SearchPage} />
       <Stack.Screen name="ProfileEditPage" component={ProfileEditPage} />
