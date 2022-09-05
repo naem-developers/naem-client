@@ -1,19 +1,66 @@
 import Text from '@/components/atoms/Text';
 import { H_PADDING } from '@/constants';
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { THEME } from '@/theme';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/navigators/RootStackNavigator';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import {
+  getProfile as getKakaoProfile,
+  login,
+  logout,
+  unlink,
+} from '@react-native-seoul/kakao-login';
 
 interface LoginPageProps extends NativeStackScreenProps<RootStackParamList, 'LoginPage'> {}
 {
 }
 
 const LoginPage = ({ navigation }: LoginPageProps) => {
-  const handleKakaoLogin = () => {};
+  const [result, setResult] = useState<any>();
+  console.log('result, ', result);
+
+  const signInWithKakao = async (): Promise<void> => {
+    try {
+      const token = await login();
+
+      setResult(JSON.stringify(token));
+    } catch (err) {
+      console.error('login err', err);
+    }
+  };
+
+  const signOutWithKakao = async (): Promise<void> => {
+    try {
+      const message = await logout();
+
+      setResult(message);
+    } catch (err) {
+      console.error('signOut error', err);
+    }
+  };
+
+  const getProfile = async (): Promise<void> => {
+    try {
+      const profile = await getKakaoProfile();
+
+      setResult(JSON.stringify(profile));
+    } catch (err) {
+      console.error('signOut error', err);
+    }
+  };
+
+  const unlinkKakao = async (): Promise<void> => {
+    try {
+      const message = await unlink();
+
+      setResult(message);
+    } catch (err) {
+      console.error('signOut error', err);
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -41,7 +88,7 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
           </Text>
           <View style={styles.line} />
         </View>
-        <TouchableOpacity style={styles.ctaBtn} onPress={handleKakaoLogin}>
+        <TouchableOpacity style={styles.ctaBtn} onPress={signInWithKakao}>
           <Text sizeStyle="f16" weightStyle="semiBold" colorStyle="strongText">
             카카오톡으로 빠른 시작 👉🏻
           </Text>
