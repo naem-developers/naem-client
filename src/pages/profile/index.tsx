@@ -155,12 +155,6 @@ const MyPage = ({ navigation }: MyPageProps) => {
           />
           <SettingsItem text="문의하기" onPress={handleInquiry} />
           <Text style={styles.settingTitle}>계정</Text>
-          <SettingsItem
-            text="비밀번호 변경"
-            onPress={() => {
-              navigation.navigate('FindPwPage');
-            }}
-          />
           <SettingsItem text="로그아웃" onPress={openLogoutAlert} />
           <SettingsItem
             text="회원 탈퇴"

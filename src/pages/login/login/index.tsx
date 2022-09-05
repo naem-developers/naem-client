@@ -1,16 +1,11 @@
-import Button from '@/components/atoms/Button';
 import Text from '@/components/atoms/Text';
 import { H_PADDING } from '@/constants';
-import React, { useState } from 'react';
-import { Image, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
+import React from 'react';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import IcnCheckDefault from '@/assets/icons/icn_checkbox_default.svg';
-import IcnCheckSelect from '@/assets/icons/icn_checkbox_select.svg';
 import { THEME } from '@/theme';
-import TextBtn from '@/components/atoms/TextBtn';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/navigators/RootStackNavigator';
-import TextInput from '@/components/atoms/TextInput';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 interface LoginPageProps extends NativeStackScreenProps<RootStackParamList, 'LoginPage'> {}
@@ -18,79 +13,39 @@ interface LoginPageProps extends NativeStackScreenProps<RootStackParamList, 'Log
 }
 
 const LoginPage = ({ navigation }: LoginPageProps) => {
-  // TODO: recoil 전역 상태 관리 값으로 관리하기
-  const [isSaveLoginStatus, setIsSaveLoginStatus] = useState<boolean>(false);
-  const [id, setId] = useState<string>('');
-  const [pw, setPw] = useState<string>('');
-
-  const handlePressSubmit = () => {};
+  const handleKakaoLogin = () => {};
 
   return (
     <SafeAreaView style={styles.container}>
+      <Image source={require('@/assets/images/img_background_logo.png')} style={styles.bgLogo} />
       <KeyboardAwareScrollView contentContainerStyle={styles.contentContainer}>
         <Image source={require('@/assets/logos/logo_eng.png')} style={styles.logo} />
-        <TextInput
-          placeholder="아이디 입력"
-          placeholderTextColor="#AEAEAE"
-          value={id}
-          onChangeText={(text) => setId(text)}
-        />
-        <TextInput
-          placeholder="비밀번호 입력"
-          placeholderTextColor="#AEAEAE"
-          style={styles.mt14}
-          secureTextEntry
-          value={pw}
-          onChangeText={(text) => setPw(text)}
-        />
-        <TouchableOpacity
-          style={styles.loginStatus}
-          onPress={() => setIsSaveLoginStatus((status) => !status)}
-          accessibilityRole="button"
-          accessibilityState={{ selected: isSaveLoginStatus }}
-          accessibilityLabel={isSaveLoginStatus ? '로그인 상태 유지' : '로인 상태 유지하지 않음'}
-        >
-          {isSaveLoginStatus ? (
-            <IcnCheckSelect width={20} height={20} />
-          ) : (
-            <IcnCheckDefault width={20} height={20} />
-          )}
-          <Text sizeStyle="f15" style={styles.loginStatusText}>
-            로그인 상태 유지
+        <Text style={styles.title}>
+          <Text sizeStyle="f20" weightStyle="bold" colorStyle="strongText">
+            장애인과 장애인 보호자라면{'\n'}
+            커뮤니티 플랫폼{' '}
+          </Text>
+          <Text sizeStyle="f20" weightStyle="bold" colorStyle="main">
+            나음
+          </Text>
+        </Text>
+        <View style={styles.loginTextContainer}>
+          <View style={styles.line} />
+          <Text
+            sizeStyle="f15"
+            weightStyle="medium"
+            colorStyle="lightText"
+            style={styles.loginText}
+          >
+            로그인 후 이용해보세요
+          </Text>
+          <View style={styles.line} />
+        </View>
+        <TouchableOpacity style={styles.ctaBtn} onPress={handleKakaoLogin}>
+          <Text sizeStyle="f16" weightStyle="semiBold" colorStyle="strongText">
+            카카오톡으로 빠른 시작 👉🏻
           </Text>
         </TouchableOpacity>
-        <Button text="확인" style={styles.button} onPress={handlePressSubmit} />
-        <View style={styles.btnsContainer}>
-          <TextBtn
-            text="아이디 찾기"
-            sizeStyle="f15"
-            textStyle={styles.btnsText}
-            onPress={() => {
-              navigation.navigate('AuthStackNavigator', {
-                screen: 'PhoneCertificatePage',
-                params: { type: 'findId' },
-              });
-            }}
-          />
-          <View style={styles.verticalDivider} />
-          <TextBtn
-            text="비밀번호 재설정"
-            sizeStyle="f15"
-            textStyle={styles.btnsText}
-            onPress={() => {
-              navigation.navigate('FindPwPage');
-            }}
-          />
-          <View style={styles.verticalDivider} />
-          <TextBtn
-            text="회원가입"
-            sizeStyle="f15"
-            textStyle={styles.btnsText}
-            onPress={() => {
-              navigation.navigate('SignUpStackNavigator');
-            }}
-          />
-        </View>
       </KeyboardAwareScrollView>
     </SafeAreaView>
   );
@@ -104,48 +59,27 @@ const styles = StyleSheet.create({
     paddingHorizontal: H_PADDING,
     alignItems: 'center',
   },
+  bgLogo: { position: 'absolute', right: 0, bottom: 0, width: 282, height: 422 },
   logo: {
     width: 146,
     height: 42.52,
     marginTop: 104,
-    marginBottom: 116,
-  },
-  input: {
-    padding: 14,
-    width: '100%',
-    borderColor: '#e4e4e4',
-    borderWidth: 1.2,
-    borderRadius: 10,
-  },
-  button: {
-    marginTop: 21,
-  },
-  loginStatus: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    marginHorizontal: 16,
     alignSelf: 'flex-start',
-    marginTop: 19,
   },
-  loginStatusText: {
-    color: THEME.REG_TEXT,
-    marginLeft: 7,
-  },
-  btnsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  title: { alignSelf: 'flex-start', marginHorizontal: 16, marginTop: 24 },
+  loginTextContainer: { flexDirection: 'row', alignItems: 'center', marginTop: 234 },
+  line: { flex: 1, height: 1, backgroundColor: THEME.LIGHT_LINE },
+  loginText: { marginHorizontal: 16 },
+  ctaBtn: {
+    marginTop: 26,
+    backgroundColor: '#F7E600',
+    color: THEME.STRONG_TEXT,
+    paddingTop: 15,
+    paddingBottom: 14,
+    width: '100%',
     alignItems: 'center',
-    marginTop: 28,
-  },
-  btnsText: {
-    color: THEME.REG_TEXT,
-  },
-  verticalDivider: {
-    width: 1,
-    height: 10,
-    backgroundColor: THEME.LIGHT_TEXT,
-    marginHorizontal: 18,
-  },
-  mt14: {
-    marginTop: 14,
+    justifyContent: 'center',
+    borderRadius: 5,
   },
 });
