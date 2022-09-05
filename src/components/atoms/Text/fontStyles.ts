@@ -93,4 +93,7 @@ export const colorStyles: Record<string, { color: TextStyle['color'] }> = {
   lightBox: {
     color: THEME.LIGHT_BOX,
   },
+  white: {
+    color: '#ffffff',
+  },
 };
