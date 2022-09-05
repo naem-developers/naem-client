@@ -24,9 +24,14 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
 
   const signInWithKakao = async (): Promise<void> => {
     try {
-      const token = await login();
+      login().then((res) => {
+        navigation.navigate('SignUpStackNavigator', {
+          screen: 'SignUpPage',
+          params: { loginInfo: res },
+        });
+      });
 
-      setResult(JSON.stringify(token));
+      // setResult(JSON.stringify(token));
     } catch (err) {
       console.error('login err', err);
     }
