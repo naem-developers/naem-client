@@ -18,7 +18,7 @@ const USER_TYPE = {
 };
 import { validateId, validatePhoneNum, validatePw, validateNickname } from '@/utils/validation';
 
-interface SignUpPageProps extends NativeStackScreenProps<SignUpStackParamList, 'SignUp'> {}
+interface SignUpPageProps extends NativeStackScreenProps<SignUpStackParamList, 'SignUpPage'> {}
 
 const SignUpPage = ({ navigation, route }: SignUpPageProps) => {
   console.log('route, ', route.params);
