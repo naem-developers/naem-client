@@ -1,27 +1,19 @@
 import Text from '@/components/atoms/Text';
 import { H_PADDING } from '@/constants';
-import React, { useState } from 'react';
+import React from 'react';
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { THEME } from '@/theme';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/navigators/RootStackNavigator';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import {
-  getProfile as getKakaoProfile,
-  login,
-  logout,
-  unlink,
-} from '@react-native-seoul/kakao-login';
+import { getProfile as getKakaoProfile, login } from '@react-native-seoul/kakao-login';
 
 interface LoginPageProps extends NativeStackScreenProps<RootStackParamList, 'LoginPage'> {}
 {
 }
 
 const LoginPage = ({ navigation }: LoginPageProps) => {
-  const [result, setResult] = useState<any>();
-  console.log('result, ', result);
-
   const signInWithKakao = async (): Promise<void> => {
     try {
       login().then((res) => {
@@ -30,40 +22,8 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
           params: { loginInfo: res },
         });
       });
-
-      // setResult(JSON.stringify(token));
     } catch (err) {
       console.error('login err', err);
-    }
-  };
-
-  const signOutWithKakao = async (): Promise<void> => {
-    try {
-      const message = await logout();
-
-      setResult(message);
-    } catch (err) {
-      console.error('signOut error', err);
-    }
-  };
-
-  const getProfile = async (): Promise<void> => {
-    try {
-      const profile = await getKakaoProfile();
-
-      setResult(JSON.stringify(profile));
-    } catch (err) {
-      console.error('signOut error', err);
-    }
-  };
-
-  const unlinkKakao = async (): Promise<void> => {
-    try {
-      const message = await unlink();
-
-      setResult(message);
-    } catch (err) {
-      console.error('signOut error', err);
     }
   };
 
