@@ -18,6 +18,11 @@ const Button = ({
   style,
   ...props
 }: ButtonProps) => {
+  const textColorMapper = {
+    primary: 'white',
+    secondary: 'regText',
+  };
+
   return (
     <TouchableOpacity
       style={[
@@ -34,7 +39,8 @@ const Button = ({
       <Text
         sizeStyle="f18"
         weightStyle="semiBold"
-        style={[styles.lh0, styles[`${disabled ? 'disabled' : priority}Text`]]}
+        colorStyle={disabled ? 'lightText' : textColorMapper[priority]}
+        style={styles.lh_undefined}
       >
         {text}
       </Text>
@@ -72,16 +78,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 15,
   },
-  primaryText: {
-    color: '#ffffff',
-  },
-  secondaryText: {
-    color: THEME.REG_TEXT,
-  },
-  disabledText: {
-    color: THEME.LIGHT_TEXT,
-  },
-  lh0: {
-    lineHeight: 0,
+  lh_undefined: {
+    lineHeight: undefined,
   },
 });
