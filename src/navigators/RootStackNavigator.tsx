@@ -1,7 +1,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LandingPage from '@pages/landing';
-import SignUpStackNavigator from '@navigators/SignUpStackNavigator';
+import SignUpStackNavigator, { SignUpStackParamList } from '@navigators/SignUpStackNavigator';
 import MainTabNavigator from '@navigators/MainTabNavigator';
 
 import LoginPage from '@/pages/login/login';
@@ -20,7 +20,7 @@ import { NavigatorScreenParams } from '@react-navigation/core';
 
 export type RootStackParamList = {
   landing: undefined;
-  SignUpStackNavigator: undefined;
+  SignUpStackNavigator: NavigatorScreenParams<SignUpStackParamList>;
   MainTabNavigator: undefined;
   LoginPage: undefined;
   PostPage: undefined;

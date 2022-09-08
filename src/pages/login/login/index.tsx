@@ -7,13 +7,25 @@ import { THEME } from '@/theme';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/navigators/RootStackNavigator';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { getProfile as getKakaoProfile, login } from '@react-native-seoul/kakao-login';
 
 interface LoginPageProps extends NativeStackScreenProps<RootStackParamList, 'LoginPage'> {}
 {
 }
 
 const LoginPage = ({ navigation }: LoginPageProps) => {
-  const handleKakaoLogin = () => {};
+  const signInWithKakao = async (): Promise<void> => {
+    try {
+      login().then((res) => {
+        navigation.navigate('SignUpStackNavigator', {
+          screen: 'SignUpPage',
+          params: { loginInfo: res },
+        });
+      });
+    } catch (err) {
+      console.error('login err', err);
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -41,7 +53,7 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
           </Text>
           <View style={styles.line} />
         </View>
-        <TouchableOpacity style={styles.ctaBtn} onPress={handleKakaoLogin}>
+        <TouchableOpacity style={styles.ctaBtn} onPress={signInWithKakao}>
           <Text sizeStyle="f16" weightStyle="semiBold" colorStyle="strongText">
             카카오톡으로 빠른 시작 👉🏻
           </Text>
