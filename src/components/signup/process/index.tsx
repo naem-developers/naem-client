@@ -14,16 +14,22 @@ const Process = ({ currentStep = 2, maxStep = 3, style, ...props }: ProcessProps
         return (
           <>
             <View
-              style={
+              style={[
+                styles.dot,
                 currentStep - 1 > item
                   ? styles.done
                   : currentStep - 1 === item
                   ? styles.currentStep
-                  : styles.notDone
-              }
+                  : styles.notDone,
+              ]}
             />
             {index !== length - 1 && (
-              <View style={currentStep - 1 > item ? styles.coloredLine : styles.line} />
+              <View
+                style={[
+                  styles.line,
+                  currentStep - 1 > item ? styles.coloredLine : styles.unColoredLine,
+                ]}
+              />
             )}
           </>
         );
@@ -48,20 +54,16 @@ const styles = StyleSheet.create({
     borderColor: THEME.POINT_YELLOW,
     backgroundColor: '#FFFFFF',
   },
+  dot: { width: 8, height: 8, borderRadius: 4 },
   notDone: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
     borderWidth: 1.5,
     borderColor: '#E4E4E4',
     backgroundColor: '#FFFFFF',
   },
   done: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
     backgroundColor: THEME.POINT_YELLOW,
   },
-  line: { backgroundColor: '#E4E4E4', width: 48, height: 1.5 },
-  coloredLine: { backgroundColor: THEME.POINT_YELLOW, width: 48, height: 1.5 },
+  line: { width: 48, height: 1.5 },
+  unColoredLine: { backgroundColor: '#E4E4E4' },
+  coloredLine: { backgroundColor: THEME.POINT_YELLOW },
 });
