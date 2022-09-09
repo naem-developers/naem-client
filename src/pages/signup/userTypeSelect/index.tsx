@@ -26,22 +26,24 @@ const UserTypeSelectPage = (props: UserTypeSelectPageProps) => {
       </Text>
       <View style={[styles.alignCenter, styles.mt28]}>
         <Pressable style={styles.alignCenter} onPress={() => setUserType('disabled')}>
-          <View style={[styles.typeContainer, userType === 'disabled' && styles.selectedBorder]}>
+          <View style={styles.typeContainer}>
             <Image
               style={styles.disabledImg}
               source={require('@/assets/images/signup/disabled.png')}
             />
+            <View style={[styles.border, userType === 'disabled' && styles.selectedBorder]} />
           </View>
           <Text sizeStyle="f14" weightStyle="medium" colorStyle="regText" style={styles.mt12}>
             장애인 본인
           </Text>
         </Pressable>
         <Pressable style={[styles.alignCenter, styles.mt60]} onPress={() => setUserType('parents')}>
-          <View style={[styles.typeContainer, userType === 'parents' && styles.selectedBorder]}>
+          <View style={styles.typeContainer}>
             <Image
               style={styles.parentsImg}
               source={require('@/assets/images/signup/parents.png')}
             />
+            <View style={[styles.border, userType === 'parents' && styles.selectedBorder]} />
           </View>
           <Text sizeStyle="f14" weightStyle="medium" colorStyle="regText" style={styles.mt12}>
             장애인 보호자
@@ -61,6 +63,9 @@ const styles = StyleSheet.create({
     height: 116,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  border: {
+    ...StyleSheet.absoluteFillObject,
     borderRadius: 28,
     borderColor: THEME.LIGHT_LINE,
     borderWidth: 1.5,
