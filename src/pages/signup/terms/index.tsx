@@ -1,15 +1,17 @@
 import Text from '@/components/atoms/Text';
 import SignUpTemplate from '@/components/signup/signUpTemplate';
 import { H_PADDING } from '@/constants';
+import { SignUpStackParamList } from '@/navigators/SignUpStackNavigator';
 import { THEME } from '@/theme';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 
-interface TermsPageProps {}
+interface TermsPageProps extends NativeStackScreenProps<SignUpStackParamList, 'TermsPage'> {}
 
-const TermsPage = (props: TermsPageProps) => {
+const TermsPage = ({ navigation }: TermsPageProps) => {
   return (
-    <SignUpTemplate>
+    <SignUpTemplate currentStep={1} onPressNext={() => navigation.navigate('UserTypeSelectPage')}>
       <Text>약관 페이지</Text>
     </SignUpTemplate>
   );

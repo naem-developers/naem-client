@@ -32,5 +32,5 @@ export default SignUpTemplate;
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: THEME.BG },
   ctaContainer: { position: 'absolute', left: H_PADDING, right: H_PADDING },
-  process: { marginTop: 24 },
+  process: { marginTop: 24, marginBottom: 32 },
 });
