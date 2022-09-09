@@ -6,6 +6,7 @@ import { THEME } from '@/theme';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
 import { View, StyleSheet, Image, Pressable } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const CURRENT_STEP = 2;
 
@@ -16,6 +17,8 @@ interface UserTypeSelectPageProps
   extends NativeStackScreenProps<SignUpStackParamList, 'UserTypeSelectPage'> {}
 
 const UserTypeSelectPage = (props: UserTypeSelectPageProps) => {
+  const { bottom } = useSafeAreaInsets();
+
   const [userType, setUserType] = useState<UserType | undefined>();
 
   return (
@@ -50,6 +53,15 @@ const UserTypeSelectPage = (props: UserTypeSelectPageProps) => {
           </Text>
         </Pressable>
       </View>
+      <Text
+        sizeStyle="f13"
+        weightStyle="mediumn"
+        colorStyle="lightText"
+        style={[styles.mt70, { marginBottom: bottom + 90 }]}
+      >
+        장애인 보호자로 가입 시 추천인 코드가 필요합니다 이미 가입하신 장애인 회원으로부터 추천인
+        코드를 받을 수 있습니다
+      </Text>
     </SignUpTemplate>
   );
 };
@@ -57,7 +69,6 @@ const UserTypeSelectPage = (props: UserTypeSelectPageProps) => {
 export default UserTypeSelectPage;
 
 const styles = StyleSheet.create({
-  container: {},
   typeContainer: {
     width: 156,
     height: 116,
@@ -78,4 +89,5 @@ const styles = StyleSheet.create({
   mt12: { marginTop: 12 },
   mt28: { marginTop: 28 },
   mt60: { marginTop: 60 },
+  mt70: { marginTop: 70 },
 });
