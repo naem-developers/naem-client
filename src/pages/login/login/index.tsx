@@ -18,7 +18,7 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
     // TODO: ios 카카오 연동하기
     if (Platform.OS === 'ios' || __DEV__) {
       navigation.navigate('SignUpStackNavigator', {
-        screen: 'SignUpPage',
+        screen: 'TermsPage',
         params: { loginInfo: {} },
       });
       return;
@@ -26,7 +26,7 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
     try {
       login().then((res) => {
         navigation.navigate('SignUpStackNavigator', {
-          screen: 'SignUpPage',
+          screen: 'TermsPage',
           params: { loginInfo: res },
         });
       });
