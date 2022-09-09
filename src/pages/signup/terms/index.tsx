@@ -16,7 +16,7 @@ const TermsPage = (props: TermsPageProps) => {
   return (
     <SafeAreaView style={styles.container}>
       <Header title="회원가입" />
-      <Process />
+      <Process style={styles.process} />
       <ScrollView>
         <Text>약관 페이지</Text>
       </ScrollView>
@@ -32,4 +32,5 @@ export default TermsPage;
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: THEME.BG },
   ctaContainer: { position: 'absolute', left: H_PADDING, right: H_PADDING },
+  process: { marginTop: 24 },
 });
