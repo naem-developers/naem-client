@@ -16,7 +16,7 @@ interface LoginPageProps extends NativeStackScreenProps<RootStackParamList, 'Log
 const LoginPage = ({ navigation }: LoginPageProps) => {
   const signInWithKakao = async (): Promise<void> => {
     // TODO: ios 카카오 연동하기
-    if (Platform.OS === 'ios') {
+    if (Platform.OS === 'ios' || __DEV__) {
       navigation.navigate('SignUpStackNavigator', {
         screen: 'SignUpPage',
         params: { loginInfo: {} },
