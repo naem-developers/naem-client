@@ -1,6 +1,7 @@
 import Button from '@/components/atoms/Button';
 import Text from '@/components/atoms/Text';
 import Header from '@/components/organisms/Header';
+import Process from '@/components/signup/process';
 import { H_PADDING } from '@/constants';
 import * as React from 'react';
 import { StyleSheet, ScrollView, View } from 'react-native';
@@ -14,6 +15,7 @@ const TermsPage = (props: TermsPageProps) => {
   return (
     <SafeAreaView style={styles.container}>
       <Header title="회원가입" />
+      <Process />
       <ScrollView>
         <Text>약관 페이지</Text>
       </ScrollView>

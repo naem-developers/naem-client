@@ -8,4 +8,5 @@ export const THEME = {
   POINT: '#FF6A6A',
   BG: '#FFFFFF',
   LIGHT_BOX: '#E1E1E1',
+  POINT_YELLOW: '#FFD12F',
 };
