@@ -19,7 +19,7 @@ const SignUpTemplate = ({ currentStep, onPressNext, children }: SignUpTemplatePr
     <SafeAreaView style={styles.container}>
       <Header title="회원가입" />
       <Process style={styles.process} currentStep={currentStep} />
-      <ScrollView>{children}</ScrollView>
+      <ScrollView contentContainerStyle={styles.contentContainerStyle}>{children}</ScrollView>
       <View style={[styles.ctaContainer, { bottom: 20 + insets.bottom }]}>
         <Button text="다음" onPress={onPressNext} />
       </View>
@@ -33,4 +33,5 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: THEME.BG },
   ctaContainer: { position: 'absolute', left: H_PADDING, right: H_PADDING },
   process: { marginTop: 24, marginBottom: 32 },
+  contentContainerStyle: { paddingHorizontal: H_PADDING },
 });
