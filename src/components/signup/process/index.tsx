@@ -1,5 +1,5 @@
 import { THEME } from '@/theme';
-import * as React from 'react';
+import React, { Fragment } from 'react';
 import { View, StyleSheet, ViewProps } from 'react-native';
 
 interface ProcessProps extends ViewProps {
@@ -12,7 +12,7 @@ const Process = ({ currentStep = 1, maxStep = 3, style, ...props }: ProcessProps
     <View style={[styles.container, style]} {...props}>
       {Array.from(Array(maxStep).keys()).map((item, index, { length }) => {
         return (
-          <>
+          <Fragment key={item}>
             <View
               style={[
                 styles.dot,
@@ -31,7 +31,7 @@ const Process = ({ currentStep = 1, maxStep = 3, style, ...props }: ProcessProps
                 ]}
               />
             )}
-          </>
+          </Fragment>
         );
       })}
     </View>
