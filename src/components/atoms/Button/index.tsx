@@ -3,7 +3,7 @@ import { View, StyleSheet, TouchableOpacity, TouchableOpacityProps, ViewStyle } 
 import Text from '@components/atoms/Text';
 import { THEME } from '@/theme';
 
-interface ButtonProps extends TouchableOpacityProps {
+export interface ButtonProps extends TouchableOpacityProps {
   text: string;
   priority?: 'primary' | 'secondary';
   btnSize?: 'large' | 'small';

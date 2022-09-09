@@ -22,7 +22,7 @@ const UserTypeSelectPage = (props: UserTypeSelectPageProps) => {
   const [userType, setUserType] = useState<UserType | undefined>();
 
   return (
-    <SignUpTemplate currentStep={CURRENT_STEP}>
+    <SignUpTemplate currentStep={CURRENT_STEP} btnProps={{ disabled: !Boolean(userType) }}>
       <Title step={CURRENT_STEP} text="회원 유형" />
       <Text sizeStyle="f14" weightStyle="medium" colorStyle="regText" style={styles.mt6}>
         가입 회원 유형을 선택해주세요

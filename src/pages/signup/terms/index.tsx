@@ -11,7 +11,10 @@ interface TermsPageProps extends NativeStackScreenProps<SignUpStackParamList, 'T
 
 const TermsPage = ({ navigation }: TermsPageProps) => {
   return (
-    <SignUpTemplate currentStep={1} onPressNext={() => navigation.navigate('UserTypeSelectPage')}>
+    <SignUpTemplate
+      currentStep={1}
+      btnProps={{ onPress: () => navigation.navigate('UserTypeSelectPage') }}
+    >
       <Text>약관 페이지</Text>
     </SignUpTemplate>
   );

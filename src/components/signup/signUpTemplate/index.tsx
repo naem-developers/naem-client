@@ -1,4 +1,4 @@
-import Button from '@/components/atoms/Button';
+import Button, { ButtonProps } from '@/components/atoms/Button';
 import Header from '@/components/organisms/Header';
 import Process from '@/components/signup/process';
 import { H_PADDING } from '@/constants';
@@ -9,19 +9,24 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 
 interface SignUpTemplateProps extends React.PropsWithChildren {
   currentStep?: number;
-  onPressNext?: () => void;
+  btnProps?: Partial<ButtonProps>;
 }
 
-const SignUpTemplate = ({ currentStep, onPressNext, children }: SignUpTemplateProps) => {
+const SignUpTemplate = ({ currentStep, btnProps, children }: SignUpTemplateProps) => {
   const insets = useSafeAreaInsets();
 
   return (
     <SafeAreaView style={styles.container}>
       <Header title="회원가입" />
       <Process style={styles.process} currentStep={currentStep} />
-      <ScrollView contentContainerStyle={styles.contentContainerStyle}>{children}</ScrollView>
+      <ScrollView
+        contentContainerStyle={styles.contentContainerStyle}
+        showsVerticalScrollIndicator={false}
+      >
+        {children}
+      </ScrollView>
       <View style={[styles.ctaContainer, { bottom: 20 + insets.bottom }]}>
-        <Button text="다음" onPress={onPressNext} />
+        <Button text="다음" {...btnProps} />
       </View>
     </SafeAreaView>
   );
