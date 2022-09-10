@@ -1,13 +1,25 @@
 import Text from '@/components/atoms/Text';
 import SignUpTemplate from '@/components/signup/signUpTemplate';
+import { SignUpStackParamList } from '@/navigators/SignUpStackNavigator';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { CommonActions } from '@react-navigation/routers';
 import * as React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 
-interface SignUpCompletePageProps {}
+interface SignUpCompletePageProps
+  extends NativeStackScreenProps<SignUpStackParamList, 'DisabledPage'> {}
 
-const SignUpCompletePage = (props: SignUpCompletePageProps) => {
+const SignUpCompletePage = ({ navigation }: SignUpCompletePageProps) => {
   return (
-    <SignUpTemplate currentStep={4}>
+    <SignUpTemplate
+      currentStep={4}
+      btnProps={{
+        text: '로그인 하러 가기',
+        onPress: () => {
+          navigation.dispatch(CommonActions.reset({ index: 0, routes: [{ name: 'LoginPage' }] }));
+        },
+      }}
+    >
       <View style={styles.container}>
         <Image
           style={styles.congratulation}
