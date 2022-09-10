@@ -39,7 +39,7 @@ const UserTypeSelectPage = ({ navigation }: UserTypeSelectPageProps) => {
           <View style={styles.typeContainer}>
             <Image
               style={styles.disabledImg}
-              source={require('@/assets/images/signup/disabled.png')}
+              source={require('@/assets/images/signup/img_disabled.png')}
             />
             <View style={[styles.border, userType === 'disabled' && styles.selectedBorder]} />
           </View>
@@ -51,7 +51,7 @@ const UserTypeSelectPage = ({ navigation }: UserTypeSelectPageProps) => {
           <View style={styles.typeContainer}>
             <Image
               style={styles.parentsImg}
-              source={require('@/assets/images/signup/parents.png')}
+              source={require('@/assets/images/signup/img_parents.png')}
             />
             <View style={[styles.border, userType === 'parents' && styles.selectedBorder]} />
           </View>
