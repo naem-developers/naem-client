@@ -1,7 +1,7 @@
 import Text from '@/components/atoms/Text';
 import { H_PADDING } from '@/constants';
 import React from 'react';
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Image, Platform, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { THEME } from '@/theme';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -15,10 +15,18 @@ interface LoginPageProps extends NativeStackScreenProps<RootStackParamList, 'Log
 
 const LoginPage = ({ navigation }: LoginPageProps) => {
   const signInWithKakao = async (): Promise<void> => {
+    // TODO: ios 카카오 연동하기
+    if (Platform.OS === 'ios' || __DEV__) {
+      navigation.navigate('SignUpStackNavigator', {
+        screen: 'TermsPage',
+        params: { loginInfo: {} },
+      });
+      return;
+    }
     try {
       login().then((res) => {
         navigation.navigate('SignUpStackNavigator', {
-          screen: 'SignUpPage',
+          screen: 'TermsPage',
           params: { loginInfo: res },
         });
       });
