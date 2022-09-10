@@ -31,7 +31,10 @@ const ParentsPage = ({ navigation }: ParentsPageProps) => {
   return (
     <SignUpTemplate
       currentStep={3}
-      btnProps={{ onPress: handlePressNext, disabled: nickname?.length === 0 || !checkNickname }}
+      btnProps={{
+        onPress: handlePressNext,
+        disabled: recommendationCode?.length === 0 || nickname?.length === 0 || !checkNickname,
+      }}
     >
       <Title step={3} text="닉네임" />
       <Text sizeStyle="f14" weightStyle="medium" colorStyle="regText" style={styles.mt6}>
