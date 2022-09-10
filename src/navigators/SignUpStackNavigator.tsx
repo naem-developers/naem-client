@@ -8,13 +8,18 @@ import DisabledPage from '@/pages/signup/disabled';
 import SignUpCompletePage from '@/pages/signup/signUpComplete';
 import ParentsPage from '@/pages/signup/parents';
 
+export interface LoginInfo {
+  loginId: string;
+  password: string;
+}
+
 export type SignUpStackParamList = {
-  SignUpPage: { loginInfo: any };
+  SignUpPage: { loginInfo: LoginInfo };
   DisabilityCertificatePage: undefined;
-  TermsPage: { loginInfo: any } | undefined;
-  UserTypeSelectPage: { loginInfo: any } | undefined;
-  DisabledPage: { loginInfo: any } | undefined;
-  ParentsPage: { loginInfo: any } | undefined;
+  TermsPage: { loginInfo: LoginInfo };
+  UserTypeSelectPage: { loginInfo: LoginInfo };
+  DisabledPage: { loginInfo: LoginInfo };
+  ParentsPage: { loginInfo: LoginInfo };
   SignUpCompletePage: undefined;
 };
 

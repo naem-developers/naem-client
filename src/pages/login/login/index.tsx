@@ -19,7 +19,12 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
     if (Platform.OS === 'ios' || __DEV__) {
       navigation.navigate('SignUpStackNavigator', {
         screen: 'TermsPage',
-        params: { loginInfo: {} },
+        params: {
+          loginInfo: {
+            loginId: 'loginId1',
+            password: 'password1',
+          },
+        },
       });
       return;
     }
