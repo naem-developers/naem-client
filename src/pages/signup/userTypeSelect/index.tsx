@@ -4,7 +4,7 @@ import Title from '@/components/signup/title';
 import { SignUpStackParamList } from '@/navigators/SignUpStackNavigator';
 import { THEME } from '@/theme';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View, StyleSheet, Image, Pressable } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -16,13 +16,20 @@ type UserType = 'disabled' | 'parents';
 interface UserTypeSelectPageProps
   extends NativeStackScreenProps<SignUpStackParamList, 'UserTypeSelectPage'> {}
 
-const UserTypeSelectPage = (props: UserTypeSelectPageProps) => {
+const UserTypeSelectPage = ({ navigation }: UserTypeSelectPageProps) => {
   const { bottom } = useSafeAreaInsets();
 
   const [userType, setUserType] = useState<UserType | undefined>();
 
+  const handlePressCTA = useCallback(() => {
+    navigation.navigate(userType === 'disabled' ? 'DisabledPage' : 'DisabledPage');
+  }, []);
+
   return (
-    <SignUpTemplate currentStep={CURRENT_STEP} btnProps={{ disabled: !Boolean(userType) }}>
+    <SignUpTemplate
+      currentStep={CURRENT_STEP}
+      btnProps={{ disabled: !Boolean(userType), onPress: handlePressCTA }}
+    >
       <Title step={CURRENT_STEP} text="회원 유형" />
       <Text sizeStyle="f14" weightStyle="medium" colorStyle="regText" style={styles.mt6}>
         가입 회원 유형을 선택해주세요

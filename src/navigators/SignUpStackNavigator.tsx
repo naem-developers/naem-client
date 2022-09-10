@@ -4,12 +4,14 @@ import SignUpPage from '@/pages/signup/signup';
 import DisabilityCertificatePage from '@/pages/signup/disabilityCertificate';
 import TermsPage from '@/pages/signup/terms';
 import UserTypeSelectPage from '@/pages/signup/userTypeSelect';
+import DisabledPage from '@/pages/signup/disabled/indext';
 
 export type SignUpStackParamList = {
   SignUpPage: { loginInfo: any };
   DisabilityCertificatePage: undefined;
   TermsPage: { loginInfo: any } | undefined;
   UserTypeSelectPage: { loginInfo: any } | undefined;
+  DisabledPage: { loginInfo: any } | undefined;
 };
 
 const Stack = createNativeStackNavigator();
@@ -23,6 +25,7 @@ const SignUpStackNavigator = () => {
       <Stack.Screen name="SignUpPage" component={SignUpPage} />
       <Stack.Screen name="TermsPage" component={TermsPage} />
       <Stack.Screen name="UserTypeSelectPage" component={UserTypeSelectPage} />
+      <Stack.Screen name="DisabledPage" component={DisabledPage} />
       <Stack.Screen name="DisabilityCertificatePage" component={DisabilityCertificatePage} />
     </Stack.Navigator>
   );
