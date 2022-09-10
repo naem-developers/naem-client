@@ -22,7 +22,9 @@ const DisabledPage = ({ navigation }: DisabledPageProps) => {
     return !!tempNicknameValidMsg;
   }, [nickname]);
 
-  const handlePressNext = useCallback(() => {}, []);
+  const handlePressNext = useCallback(() => {
+    navigation.navigate('SignUpCompletePage');
+  }, []);
 
   return (
     <SignUpTemplate
