@@ -22,8 +22,13 @@ const DisabledPage = ({ navigation }: DisabledPageProps) => {
     return !!tempNicknameValidMsg;
   }, [nickname]);
 
+  const handlePressNext = useCallback(() => {}, []);
+
   return (
-    <SignUpTemplate currentStep={3}>
+    <SignUpTemplate
+      currentStep={3}
+      btnProps={{ onPress: handlePressNext, disabled: nickname?.length === 0 || !checkNickname }}
+    >
       <Title step={3} text="회원 유형" />
       <Text sizeStyle="f14" weightStyle="medium" colorStyle="regText" style={styles.mt6}>
         가입 회원 유형을 선택해주세요
