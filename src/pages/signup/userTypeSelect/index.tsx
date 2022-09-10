@@ -22,7 +22,7 @@ const UserTypeSelectPage = ({ navigation }: UserTypeSelectPageProps) => {
   const [userType, setUserType] = useState<UserType | undefined>();
 
   const handlePressCTA = useCallback(() => {
-    navigation.navigate(userType === 'disabled' ? 'DisabledPage' : 'DisabledPage');
+    navigation.navigate(userType === 'disabled' ? 'DisabledPage' : 'ParentsPage');
   }, []);
 
   return (

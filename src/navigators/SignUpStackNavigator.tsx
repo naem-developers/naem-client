@@ -6,6 +6,7 @@ import TermsPage from '@/pages/signup/terms';
 import UserTypeSelectPage from '@/pages/signup/userTypeSelect';
 import DisabledPage from '@/pages/signup/disabled/indext';
 import SignUpCompletePage from '@/pages/signup/signUpComplete';
+import ParentsPage from '@/pages/signup/parents';
 
 export type SignUpStackParamList = {
   SignUpPage: { loginInfo: any };
@@ -13,6 +14,7 @@ export type SignUpStackParamList = {
   TermsPage: { loginInfo: any } | undefined;
   UserTypeSelectPage: { loginInfo: any } | undefined;
   DisabledPage: { loginInfo: any } | undefined;
+  ParentsPage: { loginInfo: any } | undefined;
   SignUpCompletePage: undefined;
 };
 
@@ -28,6 +30,7 @@ const SignUpStackNavigator = () => {
       <Stack.Screen name="TermsPage" component={TermsPage} />
       <Stack.Screen name="UserTypeSelectPage" component={UserTypeSelectPage} />
       <Stack.Screen name="DisabledPage" component={DisabledPage} />
+      <Stack.Screen name="ParentsPage" component={ParentsPage} />
       <Stack.Screen name="SignUpCompletePage" component={SignUpCompletePage} />
       <Stack.Screen name="DisabilityCertificatePage" component={DisabilityCertificatePage} />
     </Stack.Navigator>
