@@ -10,6 +10,7 @@ import React, { useCallback, useState } from 'react';
 import { View, StyleSheet, Image, Pressable } from 'react-native';
 import IcnArrowRight from '@/assets/icons/icn_arrow_right.svg';
 import usePostSignUp from '@/hooks/api/signUp/usePostSignUp';
+import Toast from 'react-native-toast-message';
 
 interface ParentsPageProps extends NativeStackScreenProps<SignUpStackParamList, 'ParentsPage'> {}
 
@@ -44,6 +45,7 @@ const ParentsPage = ({ navigation, route }: ParentsPageProps) => {
           navigation.navigate('SignUpCompletePage');
         },
         onError: (e) => {
+          Toast.show({ type: 'error', text1: '회원가입에 실패하였습니다.' });
           console.error('회원가입에 실패하였습니다.', e);
         },
       },

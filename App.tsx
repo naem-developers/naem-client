@@ -17,6 +17,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import requestNotificationPermission from '@/utils/permissions/requestNotificationPermission';
 import useForegroundNotification from '@/hooks/notification/useForegroundNotification';
 import setBackgroundNotification from '@/utils/notifications/setBackgroundNotification';
+import Toast from 'react-native-toast-message';
 
 const queryClient = new QueryClient();
 
@@ -31,15 +32,18 @@ function App() {
   useForegroundNotification();
 
   return (
-    <SafeAreaProvider>
-      <QueryClientProvider client={queryClient}>
-        <PaperProvider>
-          <NavigationContainer>
-            <RootStackNavigator />
-          </NavigationContainer>
-        </PaperProvider>
-      </QueryClientProvider>
-    </SafeAreaProvider>
+    <>
+      <SafeAreaProvider>
+        <QueryClientProvider client={queryClient}>
+          <PaperProvider>
+            <NavigationContainer>
+              <RootStackNavigator />
+            </NavigationContainer>
+          </PaperProvider>
+        </QueryClientProvider>
+      </SafeAreaProvider>
+      <Toast />
+    </>
   );
 }
 

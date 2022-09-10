@@ -9,6 +9,7 @@ import { validateNickname } from '@/utils/validation';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useCallback, useState } from 'react';
 import { View, StyleSheet, Image } from 'react-native';
+import Toast from 'react-native-toast-message';
 
 interface DisabledPageProps extends NativeStackScreenProps<SignUpStackParamList, 'DisabledPage'> {}
 
@@ -42,6 +43,7 @@ const DisabledPage = ({ navigation, route }: DisabledPageProps) => {
           navigation.navigate('SignUpCompletePage');
         },
         onError: (e) => {
+          Toast.show({ type: 'error', text1: '회원가입에 실패하였습니다.' });
           console.error('회원가입에 실패하였습니다.', e);
         },
       },
