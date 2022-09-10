@@ -7,10 +7,10 @@ interface ProcessProps extends ViewProps {
   maxStep?: number;
 }
 
-const Process = ({ currentStep = 1, maxStep = 3, style, ...props }: ProcessProps) => {
+const Process = ({ currentStep = 1, maxStep = 4, style, ...props }: ProcessProps) => {
   return (
     <View style={[styles.container, style]} {...props}>
-      {Array.from(Array(maxStep).keys()).map((item, index, { length }) => {
+      {Array.from(Array(maxStep - 1).keys()).map((item, index, { length }) => {
         return (
           <Fragment key={item}>
             <View

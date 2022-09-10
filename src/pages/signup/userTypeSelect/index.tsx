@@ -4,7 +4,7 @@ import Title from '@/components/signup/title';
 import { SignUpStackParamList } from '@/navigators/SignUpStackNavigator';
 import { THEME } from '@/theme';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View, StyleSheet, Image, Pressable } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -16,13 +16,20 @@ type UserType = 'disabled' | 'parents';
 interface UserTypeSelectPageProps
   extends NativeStackScreenProps<SignUpStackParamList, 'UserTypeSelectPage'> {}
 
-const UserTypeSelectPage = (props: UserTypeSelectPageProps) => {
+const UserTypeSelectPage = ({ navigation }: UserTypeSelectPageProps) => {
   const { bottom } = useSafeAreaInsets();
 
   const [userType, setUserType] = useState<UserType | undefined>();
 
+  const handlePressCTA = useCallback(() => {
+    navigation.navigate(userType === 'disabled' ? 'DisabledPage' : 'ParentsPage');
+  }, []);
+
   return (
-    <SignUpTemplate currentStep={CURRENT_STEP} btnProps={{ disabled: !Boolean(userType) }}>
+    <SignUpTemplate
+      currentStep={CURRENT_STEP}
+      btnProps={{ disabled: !Boolean(userType), onPress: handlePressCTA }}
+    >
       <Title step={CURRENT_STEP} text="회원 유형" />
       <Text sizeStyle="f14" weightStyle="medium" colorStyle="regText" style={styles.mt6}>
         가입 회원 유형을 선택해주세요
@@ -32,7 +39,7 @@ const UserTypeSelectPage = (props: UserTypeSelectPageProps) => {
           <View style={styles.typeContainer}>
             <Image
               style={styles.disabledImg}
-              source={require('@/assets/images/signup/disabled.png')}
+              source={require('@/assets/images/signup/img_disabled.png')}
             />
             <View style={[styles.border, userType === 'disabled' && styles.selectedBorder]} />
           </View>
@@ -44,7 +51,7 @@ const UserTypeSelectPage = (props: UserTypeSelectPageProps) => {
           <View style={styles.typeContainer}>
             <Image
               style={styles.parentsImg}
-              source={require('@/assets/images/signup/parents.png')}
+              source={require('@/assets/images/signup/img_parents.png')}
             />
             <View style={[styles.border, userType === 'parents' && styles.selectedBorder]} />
           </View>
