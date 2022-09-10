@@ -30,7 +30,8 @@ const DisabledPage = ({ navigation, route }: DisabledPageProps) => {
   const handlePressNext = useCallback(() => {
     postSignUp.mutate(
       {
-        username: loginInfo.loginId,
+        // TODO: 카카오 로그인 구현 완성될 때 id로 바꾸기
+        username: nickname,
         password: loginInfo.password,
         memberType: 'IN_PERSON',
         phoneNumber: '000-0000-0000',
