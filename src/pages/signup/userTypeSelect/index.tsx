@@ -16,14 +16,16 @@ type UserType = 'disabled' | 'parents';
 interface UserTypeSelectPageProps
   extends NativeStackScreenProps<SignUpStackParamList, 'UserTypeSelectPage'> {}
 
-const UserTypeSelectPage = ({ navigation }: UserTypeSelectPageProps) => {
+const UserTypeSelectPage = ({ navigation, route }: UserTypeSelectPageProps) => {
   const { bottom } = useSafeAreaInsets();
 
   const [userType, setUserType] = useState<UserType | undefined>();
 
   const handlePressCTA = useCallback(() => {
-    navigation.navigate(userType === 'disabled' ? 'DisabledPage' : 'ParentsPage');
-  }, []);
+    navigation.navigate(userType === 'disabled' ? 'DisabledPage' : 'ParentsPage', {
+      loginInfo: route.params.loginInfo,
+    });
+  }, [userType]);
 
   return (
     <SignUpTemplate
