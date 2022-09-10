@@ -96,4 +96,7 @@ export const colorStyles: Record<string, { color: TextStyle['color'] }> = {
   white: {
     color: '#ffffff',
   },
+  black: {
+    color: '#000000',
+  },
 };
