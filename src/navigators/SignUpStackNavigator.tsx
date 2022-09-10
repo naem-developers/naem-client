@@ -4,7 +4,7 @@ import SignUpPage from '@/pages/signup/signup';
 import DisabilityCertificatePage from '@/pages/signup/disabilityCertificate';
 import TermsPage from '@/pages/signup/terms';
 import UserTypeSelectPage from '@/pages/signup/userTypeSelect';
-import DisabledPage from '@/pages/signup/disabled/indext';
+import DisabledPage from '@/pages/signup/disabled';
 import SignUpCompletePage from '@/pages/signup/signUpComplete';
 import ParentsPage from '@/pages/signup/parents';
 
