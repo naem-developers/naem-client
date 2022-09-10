@@ -3,6 +3,7 @@ import Text from '@/components/atoms/Text';
 import TextInput from '@/components/atoms/TextInput';
 import SignUpTemplate from '@/components/signup/signUpTemplate';
 import Title from '@/components/signup/title';
+import usePostSignUp from '@/hooks/api/signUp/usePostSignUp';
 import { SignUpStackParamList } from '@/navigators/SignUpStackNavigator';
 import { validateNickname } from '@/utils/validation';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -11,10 +12,14 @@ import { View, StyleSheet, Image } from 'react-native';
 
 interface DisabledPageProps extends NativeStackScreenProps<SignUpStackParamList, 'DisabledPage'> {}
 
-const DisabledPage = ({ navigation }: DisabledPageProps) => {
+const DisabledPage = ({ navigation, route }: DisabledPageProps) => {
+  const { loginInfo } = route.params;
+
   const [inputHeight, setInputHeight] = useState<number | undefined>();
   const [nickname, setNickname] = useState<string>('');
   const [nicknameValidationMsg, setNicknameValidationMsg] = useState<string>('');
+
+  const postSignUp = usePostSignUp();
 
   const checkNickname = useCallback(() => {
     const tempNicknameValidMsg = validateNickname(nickname);
@@ -23,8 +28,24 @@ const DisabledPage = ({ navigation }: DisabledPageProps) => {
   }, [nickname]);
 
   const handlePressNext = useCallback(() => {
-    navigation.navigate('SignUpCompletePage');
-  }, []);
+    postSignUp.mutate(
+      {
+        username: loginInfo.loginId,
+        password: loginInfo.password,
+        memberType: 'IN_PERSON',
+        phoneNumber: '000-0000-0000',
+        nickname: nickname,
+      },
+      {
+        onSuccess: () => {
+          navigation.navigate('SignUpCompletePage');
+        },
+        onError: (e) => {
+          console.error('회원가입에 실패하였습니다.', e);
+        },
+      },
+    );
+  }, [loginInfo, nickname]);
 
   return (
     <SignUpTemplate

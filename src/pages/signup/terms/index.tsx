@@ -9,11 +9,14 @@ import { StyleSheet } from 'react-native';
 
 interface TermsPageProps extends NativeStackScreenProps<SignUpStackParamList, 'TermsPage'> {}
 
-const TermsPage = ({ navigation }: TermsPageProps) => {
+const TermsPage = ({ navigation, route }: TermsPageProps) => {
   return (
     <SignUpTemplate
       currentStep={1}
-      btnProps={{ onPress: () => navigation.navigate('UserTypeSelectPage') }}
+      btnProps={{
+        onPress: () =>
+          navigation.navigate('UserTypeSelectPage', { loginInfo: route.params.loginInfo }),
+      }}
     >
       <Text>약관 페이지</Text>
     </SignUpTemplate>
