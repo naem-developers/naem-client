@@ -9,7 +9,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useCallback, useState } from 'react';
 import { View, StyleSheet, Image, Pressable } from 'react-native';
 import IcnArrowRight from '@/assets/icons/icn_arrow_right.svg';
-import usePostSignUp from '@/hooks/api/signUp/usePostSignUp';
+import usePostSignUp from '@/hooks/api/auth/usePostSignUp';
 import Toast from 'react-native-toast-message';
 
 interface ParentsPageProps extends NativeStackScreenProps<SignUpStackParamList, 'ParentsPage'> {}

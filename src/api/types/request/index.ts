@@ -7,3 +7,8 @@ export interface IReqSignUp {
   phoneNumber: string;
   username: string;
 }
+
+export interface IReqSignIn {
+  username: string;
+  password: string;
+}

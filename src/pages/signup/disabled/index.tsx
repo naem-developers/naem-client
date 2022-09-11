@@ -3,7 +3,7 @@ import Text from '@/components/atoms/Text';
 import TextInput from '@/components/atoms/TextInput';
 import SignUpTemplate from '@/components/signup/signUpTemplate';
 import Title from '@/components/signup/title';
-import usePostSignUp from '@/hooks/api/signUp/usePostSignUp';
+import usePostSignUp from '@/hooks/api/auth/usePostSignUp';
 import { SignUpStackParamList } from '@/navigators/SignUpStackNavigator';
 import { validateNickname } from '@/utils/validation';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
