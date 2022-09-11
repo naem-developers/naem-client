@@ -2,6 +2,7 @@ import axios from 'axios';
 import { IResponseGetRoot } from './types/response';
 // @ts-ignore
 import { API_URL } from 'react-native-dotenv';
+import { IReqSignUp } from './types/request';
 
 const client = axios.create({ baseURL: API_URL });
 
@@ -10,6 +11,9 @@ const API = {
   // getRoot는 예시를 위해 임의로 만들어 놓은 엔드포인트입니다.
   getRoot(): IResponseGetRoot {
     return client.get('/');
+  },
+  postSignUp(body: IReqSignUp) {
+    return client.post('/auth/signUp', body);
   },
 };
 

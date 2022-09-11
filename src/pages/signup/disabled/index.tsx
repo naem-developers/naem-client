@@ -3,18 +3,24 @@ import Text from '@/components/atoms/Text';
 import TextInput from '@/components/atoms/TextInput';
 import SignUpTemplate from '@/components/signup/signUpTemplate';
 import Title from '@/components/signup/title';
+import usePostSignUp from '@/hooks/api/signUp/usePostSignUp';
 import { SignUpStackParamList } from '@/navigators/SignUpStackNavigator';
 import { validateNickname } from '@/utils/validation';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useCallback, useState } from 'react';
 import { View, StyleSheet, Image } from 'react-native';
+import Toast from 'react-native-toast-message';
 
 interface DisabledPageProps extends NativeStackScreenProps<SignUpStackParamList, 'DisabledPage'> {}
 
-const DisabledPage = ({ navigation }: DisabledPageProps) => {
+const DisabledPage = ({ navigation, route }: DisabledPageProps) => {
+  const { loginInfo } = route.params;
+
   const [inputHeight, setInputHeight] = useState<number | undefined>();
   const [nickname, setNickname] = useState<string>('');
   const [nicknameValidationMsg, setNicknameValidationMsg] = useState<string>('');
+
+  const postSignUp = usePostSignUp();
 
   const checkNickname = useCallback(() => {
     const tempNicknameValidMsg = validateNickname(nickname);
@@ -23,8 +29,26 @@ const DisabledPage = ({ navigation }: DisabledPageProps) => {
   }, [nickname]);
 
   const handlePressNext = useCallback(() => {
-    navigation.navigate('SignUpCompletePage');
-  }, []);
+    postSignUp.mutate(
+      {
+        // TODO: 카카오 로그인 구현 완성될 때 id로 바꾸기
+        username: nickname,
+        password: loginInfo.password,
+        memberType: 'IN_PERSON',
+        phoneNumber: '010-1234-5678',
+        nickname: nickname,
+      },
+      {
+        onSuccess: () => {
+          navigation.navigate('SignUpCompletePage');
+        },
+        onError: (e) => {
+          Toast.show({ type: 'error', text1: '회원가입에 실패하였습니다.' });
+          console.error('회원가입에 실패하였습니다.', e);
+        },
+      },
+    );
+  }, [loginInfo, nickname]);
 
   return (
     <SignUpTemplate

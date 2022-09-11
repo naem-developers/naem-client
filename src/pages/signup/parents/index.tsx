@@ -9,14 +9,20 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useCallback, useState } from 'react';
 import { View, StyleSheet, Image, Pressable } from 'react-native';
 import IcnArrowRight from '@/assets/icons/icn_arrow_right.svg';
+import usePostSignUp from '@/hooks/api/signUp/usePostSignUp';
+import Toast from 'react-native-toast-message';
 
 interface ParentsPageProps extends NativeStackScreenProps<SignUpStackParamList, 'ParentsPage'> {}
 
-const ParentsPage = ({ navigation }: ParentsPageProps) => {
+const ParentsPage = ({ navigation, route }: ParentsPageProps) => {
+  const { loginInfo } = route.params;
+
   const [inputHeight, setInputHeight] = useState<number | undefined>();
   const [nickname, setNickname] = useState<string>('');
   const [nicknameValidationMsg, setNicknameValidationMsg] = useState<string>('');
   const [recommendationCode, setRecommendationCode] = useState<string>('');
+
+  const postSignUp = usePostSignUp();
 
   const checkNickname = useCallback(() => {
     const tempNicknameValidMsg = validateNickname(nickname);
@@ -25,8 +31,27 @@ const ParentsPage = ({ navigation }: ParentsPageProps) => {
   }, [nickname]);
 
   const handlePressNext = useCallback(() => {
-    navigation.navigate('SignUpCompletePage');
-  }, []);
+    postSignUp.mutate(
+      {
+        // TODO: 카카오 로그인 구현 완성될 때 id로 바꾸기
+        username: nickname,
+        password: loginInfo.password,
+        // TODO: PROTECTOR인 경우 추천인 코드 받는지 확인하기
+        memberType: 'PROTECTOR',
+        phoneNumber: '010-1234-5678',
+        nickname: nickname,
+      },
+      {
+        onSuccess: () => {
+          navigation.navigate('SignUpCompletePage');
+        },
+        onError: (e) => {
+          Toast.show({ type: 'error', text1: '회원가입에 실패하였습니다.' });
+          console.error('회원가입에 실패하였습니다.', e);
+        },
+      },
+    );
+  }, [loginInfo, nickname]);
 
   return (
     <SignUpTemplate
