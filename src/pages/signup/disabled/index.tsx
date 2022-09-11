@@ -35,7 +35,7 @@ const DisabledPage = ({ navigation, route }: DisabledPageProps) => {
         username: nickname,
         password: loginInfo.password,
         memberType: 'IN_PERSON',
-        phoneNumber: '000-0000-0000',
+        phoneNumber: '010-1234-5678',
         nickname: nickname,
       },
       {
