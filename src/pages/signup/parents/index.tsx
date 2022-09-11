@@ -36,7 +36,7 @@ const ParentsPage = ({ navigation, route }: ParentsPageProps) => {
         // TODO: 카카오 로그인 구현 완성될 때 id로 바꾸기
         username: nickname,
         password: loginInfo.password,
-        memberType: 'IN_PERSON',
+        memberType: 'PROTECTOR',
         phoneNumber: '010-1234-5678',
         nickname: nickname,
       },
