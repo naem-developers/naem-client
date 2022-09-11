@@ -56,7 +56,7 @@ const HomePostList = () => {
         </Text>
       </View>
       {listData.map((item) => {
-        return <Post postedData={item} selectedKeywords={[]} />;
+        return <Post key={item.id} postedData={item} selectedKeywords={[]} />;
       })}
     </View>
   );
