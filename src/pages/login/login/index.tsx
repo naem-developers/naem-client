@@ -9,6 +9,7 @@ import { RootStackParamList } from '@/navigators/RootStackNavigator';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { getProfile as getKakaoProfile, login } from '@react-native-seoul/kakao-login';
 import usePostSignIn from '@/hooks/api/auth/usePostSignIn';
+import Toast from 'react-native-toast-message';
 
 // TODO: 로그인 id 중복 여부에 따라 willLogin 나누기
 const willLogin = true;
@@ -25,7 +26,19 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
   const handleAuth = useCallback(
     (isDev: boolean, responseFromKakao?: any) => {
       if (willLogin) {
-        signIn.mutate({ username: EXAMPLE_ID, password: EXAMPLE_PW });
+        signIn.mutate(
+          { username: EXAMPLE_ID, password: EXAMPLE_PW },
+          {
+            onSuccess: (res) => {
+              Toast.show({ type: 'success', text1: '로그인에 성공하였습니다.' });
+              console.log('res, ', res);
+            },
+            onError: (e) => {
+              Toast.show({ type: 'error', text1: '로그인에 실패하였습니다.' });
+              console.error('login err, ', e);
+            },
+          },
+        );
       } else {
         navigation.navigate('SignUpStackNavigator', {
           screen: 'TermsPage',
