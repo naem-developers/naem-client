@@ -8,32 +8,48 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/navigators/RootStackNavigator';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { getProfile as getKakaoProfile, login } from '@react-native-seoul/kakao-login';
+import usePostSignIn from '@/hooks/api/auth/usePostSignIn';
+
+const willLogin = true;
+const EXAMPLE_ID = 'example1';
+const EXAMPLE_PW = 'example1';
 
 interface LoginPageProps extends NativeStackScreenProps<RootStackParamList, 'LoginPage'> {}
 {
 }
 
 const LoginPage = ({ navigation }: LoginPageProps) => {
+  const signIn = usePostSignIn();
+
   const signInWithKakao = async (): Promise<void> => {
     // TODO: ios 카카오 연동하기
     if (Platform.OS === 'ios' || __DEV__) {
-      navigation.navigate('SignUpStackNavigator', {
-        screen: 'TermsPage',
-        params: {
-          loginInfo: {
-            loginId: 'loginId1',
-            password: 'password1',
+      if (willLogin) {
+        signIn.mutate({ username: EXAMPLE_ID, password: EXAMPLE_PW });
+      } else {
+        navigation.navigate('SignUpStackNavigator', {
+          screen: 'TermsPage',
+          params: {
+            loginInfo: {
+              loginId: 'loginId1',
+              password: 'password1',
+            },
           },
-        },
-      });
+        });
+      }
+
       return;
     }
     try {
       login().then((res) => {
-        navigation.navigate('SignUpStackNavigator', {
-          screen: 'TermsPage',
-          params: { loginInfo: res },
-        });
+        if (willLogin) {
+          signIn.mutate({ username: EXAMPLE_ID, password: EXAMPLE_PW });
+        } else {
+          navigation.navigate('SignUpStackNavigator', {
+            screen: 'TermsPage',
+            params: { loginInfo: res },
+          });
+        }
       });
     } catch (err) {
       console.error('login err', err);

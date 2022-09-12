@@ -1,9 +1,9 @@
 import API from '@/api';
-import { IReqSignUp } from '@/api/types/request';
+import { IReqSignIn } from '@/api/types/request';
 import { useMutation } from '@tanstack/react-query';
 
 export default () => {
-  const mutation = async (body: IReqSignUp) => {
+  const mutation = async (body: IReqSignIn) => {
     const res = await API.postSignIn(body);
     return res;
   };
