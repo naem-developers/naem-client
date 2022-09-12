@@ -1,6 +1,6 @@
 import Text from '@/components/atoms/Text';
 import { H_PADDING } from '@/constants';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Image, Platform, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { THEME } from '@/theme';
@@ -8,37 +8,55 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/navigators/RootStackNavigator';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { getProfile as getKakaoProfile, login } from '@react-native-seoul/kakao-login';
+import usePostSignIn from '@/hooks/api/auth/usePostSignIn';
+
+// TODO: 로그인 id 중복 여부에 따라 willLogin 나누기
+const willLogin = true;
+const EXAMPLE_ID = 'example1';
+const EXAMPLE_PW = 'example1';
 
 interface LoginPageProps extends NativeStackScreenProps<RootStackParamList, 'LoginPage'> {}
 {
 }
 
 const LoginPage = ({ navigation }: LoginPageProps) => {
-  const signInWithKakao = async (): Promise<void> => {
+  const signIn = usePostSignIn();
+
+  const handleAuth = useCallback(
+    (isDev: boolean, responseFromKakao?: any) => {
+      if (willLogin) {
+        signIn.mutate({ username: EXAMPLE_ID, password: EXAMPLE_PW });
+      } else {
+        navigation.navigate('SignUpStackNavigator', {
+          screen: 'TermsPage',
+          params: {
+            loginInfo: isDev
+              ? {
+                  loginId: 'loginId1',
+                  password: 'password1',
+                }
+              : responseFromKakao,
+          },
+        });
+      }
+    },
+    [willLogin, EXAMPLE_ID, EXAMPLE_PW],
+  );
+
+  const signInWithKakao = useCallback(async (): Promise<void> => {
     // TODO: ios 카카오 연동하기
     if (Platform.OS === 'ios' || __DEV__) {
-      navigation.navigate('SignUpStackNavigator', {
-        screen: 'TermsPage',
-        params: {
-          loginInfo: {
-            loginId: 'loginId1',
-            password: 'password1',
-          },
-        },
-      });
+      handleAuth(true);
       return;
     }
     try {
       login().then((res) => {
-        navigation.navigate('SignUpStackNavigator', {
-          screen: 'TermsPage',
-          params: { loginInfo: res },
-        });
+        handleAuth(false, res);
       });
     } catch (err) {
       console.error('login err', err);
     }
-  };
+  }, [handleAuth]);
 
   return (
     <SafeAreaView style={styles.container}>

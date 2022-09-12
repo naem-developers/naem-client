@@ -21,6 +21,7 @@ import Button from '@/components/atoms/Button';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/navigators/RootStackNavigator';
 import SettingsItem from '@/components/myPage/SettingsItem';
+import { clearToken } from '@/utils/auth';
 
 interface MyPageProps extends NativeStackScreenProps<RootStackParamList, 'MainTabNavigator'> {}
 
@@ -39,7 +40,9 @@ const MyPage = ({ navigation }: MyPageProps) => {
 
   // TODO: 함수 구현
   const handleInquiry = () => {};
-  const handleLogout = () => {};
+  const handleLogout = () => {
+    clearToken();
+  };
   const openLogoutAlert = () => {
     Alert.alert('', '로그아웃 하시겠습니까?', [
       {

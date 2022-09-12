@@ -4,7 +4,7 @@ import { IResponseGetRoot } from './types/response';
 import { API_URL } from 'react-native-dotenv';
 import { IReqSignIn, IReqSignUp } from './types/request';
 
-const client = axios.create({ baseURL: API_URL });
+export const client = axios.create({ baseURL: API_URL });
 
 /** api 정의가 이뤄지는 곳입니다. */
 const API = {

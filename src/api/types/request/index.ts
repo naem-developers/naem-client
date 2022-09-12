@@ -8,7 +8,4 @@ export interface IReqSignUp {
   username: string;
 }
 
-export interface IReqSignIn {
-  username: string;
-  password: string;
-}
+export interface IReqSignIn extends Pick<IReqSignUp, 'username' | 'password'> {}
