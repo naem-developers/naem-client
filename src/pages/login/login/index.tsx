@@ -10,6 +10,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { getProfile as getKakaoProfile, login } from '@react-native-seoul/kakao-login';
 import usePostSignIn from '@/hooks/api/auth/usePostSignIn';
 
+// TODO: 로그인 id 중복 여부에 따라 willLogin 나누기
 const willLogin = true;
 const EXAMPLE_ID = 'example1';
 const EXAMPLE_PW = 'example1';
