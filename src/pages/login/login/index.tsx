@@ -1,6 +1,6 @@
 import Text from '@/components/atoms/Text';
 import { H_PADDING } from '@/constants';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Image, Platform, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { THEME } from '@/theme';
@@ -22,40 +22,41 @@ interface LoginPageProps extends NativeStackScreenProps<RootStackParamList, 'Log
 const LoginPage = ({ navigation }: LoginPageProps) => {
   const signIn = usePostSignIn();
 
-  const signInWithKakao = async (): Promise<void> => {
-    // TODO: ios 카카오 연동하기
-    if (Platform.OS === 'ios' || __DEV__) {
+  const handleAuth = useCallback(
+    (isDev: boolean, responseFromKakao?: any) => {
       if (willLogin) {
         signIn.mutate({ username: EXAMPLE_ID, password: EXAMPLE_PW });
       } else {
         navigation.navigate('SignUpStackNavigator', {
           screen: 'TermsPage',
           params: {
-            loginInfo: {
-              loginId: 'loginId1',
-              password: 'password1',
-            },
+            loginInfo: isDev
+              ? {
+                  loginId: 'loginId1',
+                  password: 'password1',
+                }
+              : responseFromKakao,
           },
         });
       }
+    },
+    [willLogin, EXAMPLE_ID, EXAMPLE_PW],
+  );
 
+  const signInWithKakao = useCallback(async (): Promise<void> => {
+    // TODO: ios 카카오 연동하기
+    if (Platform.OS === 'ios' || __DEV__) {
+      handleAuth(true);
       return;
     }
     try {
       login().then((res) => {
-        if (willLogin) {
-          signIn.mutate({ username: EXAMPLE_ID, password: EXAMPLE_PW });
-        } else {
-          navigation.navigate('SignUpStackNavigator', {
-            screen: 'TermsPage',
-            params: { loginInfo: res },
-          });
-        }
+        handleAuth(false, res);
       });
     } catch (err) {
       console.error('login err', err);
     }
-  };
+  }, [handleAuth]);
 
   return (
     <SafeAreaView style={styles.container}>
