@@ -1,9 +1,10 @@
 import API from '@/api';
+import { IReqCheckId } from '@/api/types/request';
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEY from '../keys';
 
-export default () => {
-  const fetcher = async (body: any): Promise<any> => {
+export default (body: IReqCheckId) => {
+  const fetcher = async (): Promise<any> => {
     const res = await API.getCheckId(body);
     return res.data;
   };

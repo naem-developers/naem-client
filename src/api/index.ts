@@ -2,7 +2,7 @@ import axios from 'axios';
 import { IResponseGetRoot } from './types/response';
 // @ts-ignore
 import { API_URL } from 'react-native-dotenv';
-import { IReqSignIn, IReqSignUp } from './types/request';
+import { IReqCheckId, IReqSignIn, IReqSignUp } from './types/request';
 
 export const client = axios.create({ baseURL: API_URL });
 
@@ -18,7 +18,7 @@ const API = {
   postSignIn(body: IReqSignIn) {
     return client.post('/auth/signIn', body);
   },
-  getCheckId(body: any) {
+  getCheckId(body: IReqCheckId) {
     return client.get('/auth/checkid', body);
   },
 };
