@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import QUERY_KEY from '../keys';
 
 export default (body: IReqCheckId) => {
+  // TODO: return type 정의하기
   const fetcher = async (): Promise<any> => {
     const res = await API.getCheckId(body);
     return res.data;
