@@ -18,6 +18,9 @@ const API = {
   postSignIn(body: IReqSignIn) {
     return client.post('/auth/signIn', body);
   },
+  getCheckId(body: any) {
+    return client.get('/auth/checkid', body);
+  },
 };
 
 export default API;
