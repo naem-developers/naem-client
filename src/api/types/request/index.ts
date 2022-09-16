@@ -9,3 +9,7 @@ export interface IReqSignUp {
 }
 
 export interface IReqSignIn extends Pick<IReqSignUp, 'username' | 'password'> {}
+
+export interface IReqCheckId {
+  username: string;
+}
