@@ -5,8 +5,12 @@ import { useMutation } from '@tanstack/react-query';
 import Toast from 'react-native-toast-message';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import { USER_STORAGE_KEY } from '@/constants/storageKeys';
+import { useNavigation } from '@react-navigation/core';
+import { CommonActions } from '@react-navigation/routers';
 
 export default () => {
+  const navigation = useNavigation();
+
   const mutation = async (body: IReqSignIn) => {
     const res = await API.postSignIn(body);
     return res;
@@ -20,7 +24,9 @@ export default () => {
         USER_STORAGE_KEY,
         JSON.stringify({ accessToken: res.data.access_token, refreshToken: res.data.refresh }),
       );
+      navigation.dispatch(CommonActions.reset({ index: 0, routes: [{ name: 'Home' }] }));
     },
+
     onError: (e) => {
       Toast.show({ type: 'error', text1: '로그인에 실패하였습니다.' });
       console.error('login err, ', e);
