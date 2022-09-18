@@ -14,24 +14,49 @@ import { SvgProps } from 'react-native-svg';
 interface TextInputProps extends RNTextInputProps {
   validationMsg?: string;
   Icon?: React.FC<SvgProps>;
+  buttonText?: string;
   containerStyle?: ViewStyle;
+  inputContatinerStyle?: ViewStyle;
+  buttonTextStyle?: ViewStyle;
+  buttonOnPress?: () => void;
 }
 
-const TextInput = ({ Icon, style, containerStyle, validationMsg, ...props }: TextInputProps) => {
+const TextInput = ({
+  Icon,
+  buttonText,
+  style,
+  containerStyle,
+  inputContatinerStyle,
+  buttonTextStyle,
+  validationMsg,
+  buttonOnPress,
+  ...props
+}: TextInputProps) => {
   return (
     <View style={[styles.container, containerStyle]}>
-      <View style={styles.inputContainer}>
-        <RNTextInput style={[style, styles.input]} placeholderTextColor="#aeaeae" {...props} />
+      <View style={[styles.inputContainer, inputContatinerStyle]}>
+        <RNTextInput style={[styles.input, style]} placeholderTextColor="#aeaeae" {...props} />
+        {(Icon !== undefined || buttonText !== undefined) && (
+          <TouchableOpacity style={styles.button} onPress={buttonOnPress}>
+            {Icon ? (
+              <Icon />
+            ) : (
+              <Text
+                sizeStyle="f17"
+                weightStyle="semiBold"
+                colorStyle="main"
+                style={buttonTextStyle}
+              >
+                {buttonText}
+              </Text>
+            )}
+          </TouchableOpacity>
+        )}
       </View>
       {!!validationMsg && (
         <Text sizeStyle="f13" weightStyle="semiBold" style={styles.validation}>
           {validationMsg}
         </Text>
-      )}
-      {Icon != undefined && (
-        <TouchableOpacity style={styles.button}>
-          <Icon />
-        </TouchableOpacity>
       )}
     </View>
   );
@@ -61,6 +86,6 @@ const styles = StyleSheet.create({
   },
   button: {
     paddingHorizontal: 14,
-    paddingBottom: 20,
+    justifyContent: 'center',
   },
 });

@@ -10,9 +10,10 @@ import Text from '@/components/atoms/Text';
 interface MenubarProps {
   like: number;
   comments: number;
+  commentButtonPress: () => void;
 }
 
-const DetailMenuBar = ({ like, comments }: MenubarProps) => {
+const DetailMenuBar = ({ like, comments, commentButtonPress }: MenubarProps) => {
   const [isActivate, setIsActivate] = useState<boolean>(false);
   return (
     <View style={styles.container}>
@@ -23,7 +24,7 @@ const DetailMenuBar = ({ like, comments }: MenubarProps) => {
         </Text>
       </TouchableOpacity>
       <View style={styles.bar} />
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={commentButtonPress}>
         <Commnet />
         <Text style={styles.text} sizeStyle="f16" weightStyle="medium">
           {comments}
