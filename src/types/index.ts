@@ -9,11 +9,12 @@ export type postedData = {
   comment: number;
   boardType?: string;
   createdAt: Date;
+  comments: Array<Comments>;
 };
 
 export type Comments = {
   userId: string;
   like: number;
-  commnet: string;
-  date: Date;
+  body: string;
+  createdAt: Date;
 };

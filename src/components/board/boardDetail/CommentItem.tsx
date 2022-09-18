@@ -25,14 +25,14 @@ const CommentItem = ({ comment }: CommentProps) => {
             {comment.userId}
           </Text>
         </View>
-        <MenuButton />
+        <MenuButton data={comment} />
       </View>
       <Text style={styles.body} sizeStyle="f17" numberOfLines={1} ellipsizeMode={'tail'}>
-        {comment.commnet}
+        {comment.body}
       </Text>
       <View style={styles.header}>
         <Text colorStyle="regText" sizeStyle="f16" weightStyle="medium">
-          {comment.date.toDateString()}
+          {comment.createdAt.toDateString()}
         </Text>
         <TouchableOpacity style={styles.likeButton} onPress={() => setIsLike(!isLike)}>
           {!isLike ? (
