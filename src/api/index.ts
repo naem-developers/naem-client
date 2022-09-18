@@ -18,8 +18,8 @@ const API = {
   postSignIn(body: IReqSignIn) {
     return client.post('/auth/signIn', body);
   },
-  getCheckId(body: IReqCheckId) {
-    return client.get('/auth/checkid', body);
+  getCheckId(params: IReqCheckId) {
+    return client.get('/auth/checkid', { params });
   },
 };
 
