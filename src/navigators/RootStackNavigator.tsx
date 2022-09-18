@@ -1,6 +1,5 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LandingPage from '@pages/landing';
 import SignUpStackNavigator, { SignUpStackParamList } from '@navigators/SignUpStackNavigator';
 import MainTabNavigator from '@navigators/MainTabNavigator';
 
@@ -19,7 +18,6 @@ import BoardDetail from '@/pages/board/BoardDetail';
 import { NavigatorScreenParams } from '@react-navigation/core';
 
 export type RootStackParamList = {
-  landing: undefined;
   SignUpStackNavigator: NavigatorScreenParams<SignUpStackParamList>;
   MainTabNavigator: undefined;
   LoginPage: undefined;
@@ -39,8 +37,7 @@ const Stack = createNativeStackNavigator();
 
 const RootStackNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="landing" screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="landing" component={LandingPage} />
+    <Stack.Navigator initialRouteName="SignUpStackNavigator" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="SignUpStackNavigator" component={SignUpStackNavigator} />
       <Stack.Screen name="MainTabNavigator" component={MainTabNavigator} />
 
