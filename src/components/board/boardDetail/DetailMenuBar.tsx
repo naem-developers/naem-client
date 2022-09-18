@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Share, StyleSheet, TouchableOpacity, View } from 'react-native';
 import Commnet from '@assets/icons/icn_comment.svg';
 import ActiveHeart from '@assets/icons/icn_active_heart.svg';
 import DisableHeart from '@assets/icons/icn_disable_heart.svg';
-import Share from '@assets/icons/icn_share.svg';
+import ShareIcon from '@assets/icons/icn_share.svg';
 import { THEME } from '@/theme';
 import Text from '@/components/atoms/Text';
 
@@ -31,8 +31,15 @@ const DetailMenuBar = ({ like, comments, commentButtonPress }: MenubarProps) => 
         </Text>
       </TouchableOpacity>
       <View style={styles.bar} />
-      <TouchableOpacity style={styles.button}>
-        <Share />
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() =>
+          Share.share({
+            message: '',
+          })
+        }
+      >
+        <ShareIcon />
         <Text style={styles.text} sizeStyle="f16" weightStyle="medium">
           {'공유하기'}
         </Text>
