@@ -1,6 +1,6 @@
 import Text from '@/components/atoms/Text';
 import { H_PADDING } from '@/constants';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Image, Platform, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { THEME } from '@/theme';
@@ -18,7 +18,6 @@ import usePostSignIn from '@/hooks/api/auth/usePostSignIn';
 import useFetchCheckId from '@/hooks/api/auth/useFetchCheckId';
 
 // TODO: 로그인 id 중복 여부에 따라 willLogin 나누기
-const willLogin = true;
 const EXAMPLE_ID = 'example1';
 const EXAMPLE_PW = 'example1';
 
@@ -29,13 +28,19 @@ interface LoginPageProps extends NativeStackScreenProps<RootStackParamList, 'Log
 }
 
 const LoginPage = ({ navigation }: LoginPageProps) => {
+  const [kakaoEmail, setKakaoEmail] = useState('');
+
   const signIn = usePostSignIn();
+  const checkId = useFetchCheckId({ username: kakaoEmail }, !!kakaoEmail?.length);
 
   const handleAuth = useCallback(
     (isDev: boolean, responseFromKakao?: KakaoResponse) => {
+      // console.log({ checkId: checkId.data });
+      // TODO: 이메일 중복 여부 체크 이후 로그인, 회원가입 프로세스로 분기
+      const willLogin = true;
+
       if (willLogin) {
         signIn.mutate({ username: EXAMPLE_ID, password: EXAMPLE_PW });
-        // const checkId = useFetchCheckId({ username: EXAMPLE_ID });
       } else {
         navigation.navigate('SignUpStackNavigator', {
           screen: 'TermsPage',
@@ -50,21 +55,20 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
         });
       }
     },
-    [willLogin, EXAMPLE_ID, EXAMPLE_PW],
+    [EXAMPLE_ID, EXAMPLE_PW],
   );
 
   const signInWithKakao = useCallback(async (): Promise<void> => {
     // TODO: ios 카카오 연동하기
-    // if (Platform.OS === 'ios' || __DEV__) {
-    //   handleAuth(true);
-    //   return;
-    // }
+    if (__DEV__) {
+      handleAuth(true);
+      return;
+    }
     try {
       login().then(async (res) => {
-        const profile = await getProfile();
-        console.log({ res });
-        console.log({ profile });
-        // handleAuth(false, { ...res, ...profile });
+        const profile: KakaoProfile = await getProfile();
+        setKakaoEmail(profile.email);
+        handleAuth(false, { ...res, ...profile });
       });
     } catch (err) {
       console.error('login err', err);
