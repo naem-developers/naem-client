@@ -7,13 +7,22 @@ import { THEME } from '@/theme';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/navigators/RootStackNavigator';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { getProfile as getKakaoProfile, login } from '@react-native-seoul/kakao-login';
+import {
+  getProfile,
+  KakaoOAuthToken,
+  KakaoProfile,
+  KakaoProfileNoneAgreement,
+  login,
+} from '@react-native-seoul/kakao-login';
 import usePostSignIn from '@/hooks/api/auth/usePostSignIn';
+import useFetchCheckId from '@/hooks/api/auth/useFetchCheckId';
 
 // TODO: 로그인 id 중복 여부에 따라 willLogin 나누기
 const willLogin = true;
 const EXAMPLE_ID = 'example1';
 const EXAMPLE_PW = 'example1';
+
+interface KakaoResponse extends KakaoOAuthToken, KakaoProfile {}
 
 interface LoginPageProps extends NativeStackScreenProps<RootStackParamList, 'LoginPage'> {}
 {
@@ -23,9 +32,10 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
   const signIn = usePostSignIn();
 
   const handleAuth = useCallback(
-    (isDev: boolean, responseFromKakao?: any) => {
+    (isDev: boolean, responseFromKakao?: KakaoResponse) => {
       if (willLogin) {
         signIn.mutate({ username: EXAMPLE_ID, password: EXAMPLE_PW });
+        // const checkId = useFetchCheckId({ username: EXAMPLE_ID });
       } else {
         navigation.navigate('SignUpStackNavigator', {
           screen: 'TermsPage',
@@ -35,7 +45,7 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
                   loginId: 'loginId1',
                   password: 'password1',
                 }
-              : responseFromKakao,
+              : { loginId: responseFromKakao?.email!, password: responseFromKakao?.id! },
           },
         });
       }
@@ -45,13 +55,16 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
 
   const signInWithKakao = useCallback(async (): Promise<void> => {
     // TODO: ios 카카오 연동하기
-    if (Platform.OS === 'ios' || __DEV__) {
-      handleAuth(true);
-      return;
-    }
+    // if (Platform.OS === 'ios' || __DEV__) {
+    //   handleAuth(true);
+    //   return;
+    // }
     try {
-      login().then((res) => {
-        handleAuth(false, res);
+      login().then(async (res) => {
+        const profile = await getProfile();
+        console.log({ res });
+        console.log({ profile });
+        // handleAuth(false, { ...res, ...profile });
       });
     } catch (err) {
       console.error('login err', err);
