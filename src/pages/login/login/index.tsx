@@ -34,11 +34,7 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
   const checkId = useFetchCheckId({ username: kakaoEmail }, !!kakaoEmail?.length);
 
   const handleAuth = useCallback(
-    (isDev: boolean, responseFromKakao?: KakaoResponse) => {
-      // console.log({ checkId: checkId.data });
-      // TODO: 이메일 중복 여부 체크 이후 로그인, 회원가입 프로세스로 분기
-      const willLogin = true;
-
+    (isDev: boolean, willLogin: boolean, responseFromKakao?: KakaoResponse) => {
       if (willLogin) {
         signIn.mutate({ username: EXAMPLE_ID, password: EXAMPLE_PW });
       } else {
@@ -59,16 +55,17 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
   );
 
   const signInWithKakao = useCallback(async (): Promise<void> => {
-    // TODO: ios 카카오 연동하기
     if (__DEV__) {
-      handleAuth(true);
+      handleAuth(true, true);
       return;
     }
     try {
       login().then(async (res) => {
         const profile: KakaoProfile = await getProfile();
         setKakaoEmail(profile.email);
-        handleAuth(false, { ...res, ...profile });
+        const checkIdResult = await checkId.refetch();
+        console.log(checkIdResult.data);
+        handleAuth(false, checkIdResult.data.response !== 'OK', { ...res, ...profile });
       });
     } catch (err) {
       console.error('login err', err);
