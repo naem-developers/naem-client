@@ -1,4 +1,4 @@
-import utils from '@/utils';
+import { SYSTEMLANGUAGE } from '@/constants';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import { atom, DefaultValue } from 'recoil';
 
@@ -29,7 +29,7 @@ const localEncryptedForageEffect =
 
 export const languageState = atom<string>({
   key: 'languageState',
-  default: utils.SYSTEMLANGUAGE,
+  default: SYSTEMLANGUAGE,
   effects_UNSTABLE: [localEncryptedForageEffect('language state')],
 });
 

@@ -16,6 +16,8 @@ import {
 } from '@react-native-seoul/kakao-login';
 import usePostSignIn from '@/hooks/api/auth/usePostSignIn';
 import useFetchCheckId from '@/hooks/api/auth/useFetchCheckId';
+import { useRecoilState } from 'recoil';
+import { globalState } from '@/store/settingAtoms';
 
 const EXAMPLE_ID = 'example1';
 const EXAMPLE_PW = 'example1';
@@ -27,6 +29,7 @@ interface LoginPageProps extends NativeStackScreenProps<RootStackParamList, 'Log
 }
 
 const LoginPage = ({ navigation }: LoginPageProps) => {
+  const [state, setState] = useRecoilState(globalState);
   const [kakaoEmail, setKakaoEmail] = useState('');
 
   const signIn = usePostSignIn();
@@ -35,7 +38,14 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
   const handleAuth = useCallback(
     (isDev: boolean, willLogin: boolean, responseFromKakao?: KakaoResponse) => {
       if (willLogin) {
-        signIn.mutate({ username: EXAMPLE_ID, password: EXAMPLE_PW });
+        signIn.mutate(
+          { username: EXAMPLE_ID, password: EXAMPLE_PW },
+          {
+            onSuccess: () => {
+              setState({ ...state, isLogin: true });
+            },
+          },
+        );
       } else {
         navigation.navigate('SignUpStackNavigator', {
           screen: 'TermsPage',

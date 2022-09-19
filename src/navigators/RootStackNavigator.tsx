@@ -16,6 +16,8 @@ import WithdrawlPage from '@/pages/profile/withdrawl';
 import WriteNewPost from '@/pages/home/write';
 import BoardDetail from '@/pages/board/BoardDetail';
 import { NavigatorScreenParams } from '@react-navigation/core';
+import { useRecoilState } from 'recoil';
+import { globalState } from '@/store/settingAtoms';
 
 export type RootStackParamList = {
   SignUpStackNavigator: NavigatorScreenParams<SignUpStackParamList>;
@@ -36,8 +38,13 @@ export type RootStackParamList = {
 const Stack = createNativeStackNavigator();
 
 const RootStackNavigator = () => {
+  const [state] = useRecoilState(globalState);
+
   return (
-    <Stack.Navigator initialRouteName="LoginPage" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator
+      initialRouteName={state.isLogin ? 'MainTabNavigator' : 'LoginPage'}
+      screenOptions={{ headerShown: false }}
+    >
       <Stack.Screen name="SignUpStackNavigator" component={SignUpStackNavigator} />
       <Stack.Screen name="MainTabNavigator" component={MainTabNavigator} />
 
