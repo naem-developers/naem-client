@@ -23,7 +23,7 @@ interface TextInputProps extends RNTextInputProps {
   buttonTextStyle?: ViewStyle;
   images?: Array<string>;
   buttonOnPress?: () => void;
-  imageOnPress?: () => void;
+  imageOnPress?: (image: string) => void;
 }
 
 const TextInput = ({
@@ -47,11 +47,17 @@ const TextInput = ({
           <FlatList
             data={images}
             horizontal={true}
+            showsHorizontalScrollIndicator={false}
             keyExtractor={(item) => item}
             renderItem={({ item }: { item: string }) => {
               return (
                 <View style={styles.imageView}>
-                  <TouchableOpacity style={styles.delete} onPress={imageOnPress}>
+                  <TouchableOpacity
+                    style={styles.delete}
+                    onPress={() => {
+                      imageOnPress && imageOnPress(item);
+                    }}
+                  >
                     <Cross />
                   </TouchableOpacity>
                   <Image style={styles.image} source={{ uri: item }} />
