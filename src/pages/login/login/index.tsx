@@ -36,28 +36,35 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
   const checkId = useFetchCheckId({ username: kakaoEmail }, !!kakaoEmail?.length);
 
   const handleAuth = useCallback(
-    (isDev: boolean, willLogin: boolean, responseFromKakao?: KakaoResponse) => {
-      if (willLogin) {
-        signIn.mutate(
-          { username: EXAMPLE_ID, password: EXAMPLE_PW },
-          {
-            onSuccess: () => {
-              setState({ ...state, isLogin: true });
+    (isDev: boolean, willLogin: boolean, responseFromKakao?: Partial<KakaoResponse>) => {
+      try {
+        if (willLogin) {
+          if (!responseFromKakao?.email || !responseFromKakao?.id) {
+            throw Error('카카오 이메일 혹은 아이디가 없음');
+          }
+          signIn.mutate(
+            { username: responseFromKakao?.email, password: responseFromKakao?.id },
+            {
+              onSuccess: () => {
+                setState({ ...state, isLogin: true });
+              },
             },
-          },
-        );
-      } else {
-        navigation.navigate('SignUpStackNavigator', {
-          screen: 'TermsPage',
-          params: {
-            loginInfo: isDev
-              ? {
-                  loginId: 'loginId1',
-                  password: 'password1',
-                }
-              : { loginId: responseFromKakao?.email!, password: responseFromKakao?.id! },
-          },
-        });
+          );
+        } else {
+          navigation.navigate('SignUpStackNavigator', {
+            screen: 'TermsPage',
+            params: {
+              loginInfo: isDev
+                ? {
+                    loginId: 'loginId1',
+                    password: 'password1',
+                  }
+                : { loginId: responseFromKakao?.email!, password: responseFromKakao?.id! },
+            },
+          });
+        }
+      } catch (err) {
+        console.error(err);
       }
     },
     [EXAMPLE_ID, EXAMPLE_PW],
@@ -65,7 +72,7 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
 
   const signInWithKakao = useCallback(async (): Promise<void> => {
     if (__DEV__) {
-      handleAuth(true, true);
+      handleAuth(true, true, { email: EXAMPLE_ID, id: EXAMPLE_PW });
       return;
     }
     try {
