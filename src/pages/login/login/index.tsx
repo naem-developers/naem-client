@@ -17,7 +17,6 @@ import {
 import usePostSignIn from '@/hooks/api/auth/usePostSignIn';
 import useFetchCheckId from '@/hooks/api/auth/useFetchCheckId';
 
-// TODO: 로그인 id 중복 여부에 따라 willLogin 나누기
 const EXAMPLE_ID = 'example1';
 const EXAMPLE_PW = 'example1';
 
