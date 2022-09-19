@@ -22,6 +22,8 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/navigators/RootStackNavigator';
 import SettingsItem from '@/components/myPage/SettingsItem';
 import { clearToken } from '@/utils/auth';
+import { logout } from '@react-native-seoul/kakao-login';
+import { CommonActions } from '@react-navigation/routers';
 
 interface MyPageProps extends NativeStackScreenProps<RootStackParamList, 'MainTabNavigator'> {}
 
@@ -42,6 +44,8 @@ const MyPage = ({ navigation }: MyPageProps) => {
   const handleInquiry = () => {};
   const handleLogout = () => {
     clearToken();
+    logout();
+    navigation.dispatch(CommonActions.reset({ index: 0, routes: [{ name: 'LoginPage' }] }));
   };
   const openLogoutAlert = () => {
     Alert.alert('', '로그아웃 하시겠습니까?', [

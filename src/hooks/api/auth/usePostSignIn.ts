@@ -26,7 +26,7 @@ export default () => {
         JSON.stringify({ accessToken: res.data.access_token, refreshToken: res.data.refresh }),
       );
       navigation.dispatch(
-        CommonActions.reset({ index: 0, routes: [{ name: 'HomMainTabNavigatore' }] }),
+        CommonActions.reset({ index: 0, routes: [{ name: 'MainTabNavigator' }] }),
       );
     },
 
