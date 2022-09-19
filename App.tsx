@@ -21,7 +21,7 @@ import Toast from 'react-native-toast-message';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import { USER_STORAGE_KEY } from '@/constants/storageKeys';
 import { applyToken } from '@/utils/auth';
-
+import { RecoilRoot } from 'recoil';
 const queryClient = new QueryClient();
 
 function App() {
@@ -44,13 +44,15 @@ function App() {
   return (
     <>
       <SafeAreaProvider>
-        <QueryClientProvider client={queryClient}>
-          <PaperProvider>
-            <NavigationContainer>
-              <RootStackNavigator />
-            </NavigationContainer>
-          </PaperProvider>
-        </QueryClientProvider>
+        <RecoilRoot>
+          <QueryClientProvider client={queryClient}>
+            <PaperProvider>
+              <NavigationContainer>
+                <RootStackNavigator />
+              </NavigationContainer>
+            </PaperProvider>
+          </QueryClientProvider>
+        </RecoilRoot>
       </SafeAreaProvider>
       <Toast />
     </>
