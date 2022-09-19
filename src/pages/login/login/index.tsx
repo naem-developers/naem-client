@@ -80,7 +80,6 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
         const profile: KakaoProfile = await getProfile();
         setKakaoEmail(profile.email);
         const checkIdResult = await checkId.refetch();
-        console.log(checkIdResult.data);
         handleAuth(false, checkIdResult.data.response !== 'OK', { ...res, ...profile });
       });
     } catch (err) {
