@@ -1,6 +1,6 @@
 import TextInput from '@/components/atoms/TextInput';
 import Header from '@/components/organisms/Header';
-import { STANDARD_DEVICE_HEIGHT } from '@/constants';
+import { DISABLED_TYPE, STANDARD_DEVICE_HEIGHT } from '@/constants';
 import * as React from 'react';
 import { StyleSheet, TouchableOpacity, View, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -8,8 +8,22 @@ import Camera from '@assets/icons/icn_camera.svg';
 import Text from '@/components/atoms/Text';
 import { THEME } from '@/theme';
 import Button from '@/components/atoms/Button';
+import Tag from '@/components/molecules/Tag';
+import { removeItemOfArray } from '@/utils/array';
 
 const WriteNewPost = () => {
+  const keywords = DISABLED_TYPE;
+  const [selectedKeywords, setSelectedKeywords] = React.useState<Array<string>>([]);
+  const setSearchKeyword = React.useCallback(
+    (item: string) => {
+      if (selectedKeywords?.includes(item))
+        setSelectedKeywords(removeItemOfArray(selectedKeywords, item));
+      else if (selectedKeywords.length >= 3) return;
+      else setSelectedKeywords([...selectedKeywords, item]);
+    },
+    [selectedKeywords],
+  );
+
   return (
     <SafeAreaView>
       <Header title="자유게시판" />
@@ -36,6 +50,19 @@ const WriteNewPost = () => {
           <Text sizeStyle="f13" weightStyle="medium" style={styles.subKeywordTitle}>
             최대 3개의 키워드를 선택할 수 있습니다.
           </Text>
+          <View style={styles.tags}>
+            {keywords.map((item) => {
+              return (
+                <Tag
+                  key={item.toString()}
+                  text={`#${item}`}
+                  style={styles.tag}
+                  selected={selectedKeywords?.includes(item)}
+                  onPress={() => setSearchKeyword(item)}
+                />
+              );
+            })}
+          </View>
           <Button text="등록하기" priority="primary" style={styles.button} onPress={() => {}} />
         </View>
       </ScrollView>
@@ -58,6 +85,14 @@ const styles = StyleSheet.create({
   text: {
     color: THEME.REG_TEXT,
     marginBottom: 20,
+  },
+  tags: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  tag: {
+    marginRight: 12,
+    marginVertical: 8,
   },
   keywordView: {
     borderTopWidth: 10,
