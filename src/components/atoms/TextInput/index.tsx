@@ -1,6 +1,8 @@
 import { THEME } from '@/theme';
 import * as React from 'react';
 import {
+  FlatList,
+  Image,
   StyleSheet,
   TextInput as RNTextInput,
   TextInputProps as RNTextInputProps,
@@ -10,6 +12,7 @@ import {
 } from 'react-native';
 import Text from '@/components/atoms/Text';
 import { SvgProps } from 'react-native-svg';
+import Cross from '@assets/icons/icn_cross_white.svg';
 
 interface TextInputProps extends RNTextInputProps {
   validationMsg?: string;
@@ -18,7 +21,9 @@ interface TextInputProps extends RNTextInputProps {
   containerStyle?: ViewStyle;
   inputContatinerStyle?: ViewStyle;
   buttonTextStyle?: ViewStyle;
+  images?: Array<string>;
   buttonOnPress?: () => void;
+  imageOnPress?: () => void;
 }
 
 const TextInput = ({
@@ -29,13 +34,32 @@ const TextInput = ({
   inputContatinerStyle,
   buttonTextStyle,
   validationMsg,
+  images,
   buttonOnPress,
+  imageOnPress,
   ...props
 }: TextInputProps) => {
   return (
     <View style={[styles.container, containerStyle]}>
       <View style={[styles.inputContainer, inputContatinerStyle]}>
         <RNTextInput style={[styles.input, style]} placeholderTextColor="#aeaeae" {...props} />
+        {images && (
+          <FlatList
+            data={images}
+            horizontal={true}
+            keyExtractor={(item) => item}
+            renderItem={({ item }: { item: string }) => {
+              return (
+                <View style={styles.imageView}>
+                  <TouchableOpacity style={styles.delete} onPress={imageOnPress}>
+                    <Cross />
+                  </TouchableOpacity>
+                  <Image style={styles.image} source={{ uri: item }} />
+                </View>
+              );
+            }}
+          />
+        )}
         {(Icon !== undefined || buttonText !== undefined) && (
           <TouchableOpacity style={styles.button} onPress={buttonOnPress}>
             {Icon ? (
@@ -86,6 +110,30 @@ const styles = StyleSheet.create({
   },
   button: {
     paddingHorizontal: 14,
+    marginBottom: 20,
     justifyContent: 'center',
+  },
+  image: {
+    height: 100,
+    borderRadius: 10,
+    resizeMode: 'contain',
+  },
+  imageView: {
+    height: 100,
+    width: 100,
+    marginHorizontal: 5,
+    marginBottom: 20,
+  },
+  delete: {
+    position: 'absolute',
+    alignSelf: 'flex-end',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(94, 94, 94, 0.3)',
+    margin: 4,
+    height: 20,
+    width: 20,
+    borderRadius: 20,
+    zIndex: 2,
   },
 });
