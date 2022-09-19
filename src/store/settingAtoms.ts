@@ -18,7 +18,7 @@ const localEncryptedForageEffect =
     };
     loadPersisted();
 
-    onSet(async (newValue: any) => {
+    onSet((newValue: any) => {
       if (newValue instanceof DefaultValue) {
         EncryptedStorage.removeItem(key);
       } else {
@@ -36,7 +36,7 @@ export const languageState = atom<string>({
 export const globalState = atom({
   key: 'globalState',
   default: {
-    isLogin: false,
+    isLogin: undefined,
   },
-  effects_UNSTABLE: [localEncryptedForageEffect('globalState')],
+  effects_UNSTABLE: [localEncryptedForageEffect('global state')],
 });

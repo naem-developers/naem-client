@@ -7,7 +7,6 @@
  */
 
 import React, { useEffect } from 'react';
-import SplashScreen from 'react-native-splash-screen';
 import { NavigationContainer } from '@react-navigation/native';
 import RootStackNavigator from './src/navigators/RootStackNavigator';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -33,7 +32,6 @@ function App() {
       applyToken(authDataInJsonFormat.accessToken);
     };
     handleToken();
-    SplashScreen.hide();
   }, []);
 
   requestNotificationPermission();
