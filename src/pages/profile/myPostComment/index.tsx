@@ -7,35 +7,10 @@ import { StyleSheet, useWindowDimensions, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SceneMap, TabBar, TabView } from 'react-native-tab-view';
 import IconListItem, { IconListItemProps } from '@/components/organisms/IconListItem';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/navigators/RootStackNavigator';
-
-const MY_POST_LIST = [
-  {
-    id: 1,
-    type: 'post',
-    board: '자유게시판',
-    title: '안녕하세요, 남양주시에 살고 있습니다',
-    body: '안녕하세요. 남양주시에 살고 있습니다. 혹시 체육관어쩌구저쩌구관어쩌구저쩌구관어쩌구저쩌구',
-    createdAt: new Date(),
-  },
-  {
-    id: 2,
-    type: 'post',
-    board: '자유게시판',
-    title: '안녕하세요, 남양주시에 살고 있습니다',
-    body: '안녕하세요. 남양주시에 살고 있습니다. 혹시 체육관어쩌구저쩌구관어쩌구저쩌구관어쩌구저쩌구',
-    createdAt: new Date(),
-  },
-  {
-    id: 3,
-    type: 'post',
-    board: '자유게시판',
-    title: '안녕하세요, 남양주시에 살고 있습니다',
-    body: '안녕하세요. 남양주시에 살고 있습니다. 혹시 체육관어쩌구저쩌구관어쩌구저쩌구관어쩌구저쩌구',
-    createdAt: new Date(),
-  },
-];
+import { DumyPostData } from '@/pages/board/boards/dumys';
+import { ParamListBase, useNavigation } from '@react-navigation/native';
 
 const MY_COMMENT_LIST = [
   {
@@ -68,7 +43,7 @@ interface MyPostCommentPageProps
 
 const MyPostCommentPage = ({ route }: MyPostCommentPageProps) => {
   const type = route.params.type ?? 'post';
-
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const [index, setIndex] = useState(type === 'post' ? 0 : 1);
   const [routes] = useState([
     { key: 'myPost', title: '내 게시글' },
@@ -78,14 +53,15 @@ const MyPostCommentPage = ({ route }: MyPostCommentPageProps) => {
   const MyPost = () => {
     return (
       <FlatList
-        data={MY_POST_LIST}
+        data={DumyPostData}
         renderItem={({ item }) => (
           <IconListItem
-            type={item.type as IconListItemProps['type']}
-            board={item.board}
+            type={'post'}
+            board={item.type}
             title={item.title}
             body={item.body}
             createdAt={item.createdAt}
+            onPress={() => navigation.navigate('BoardDetail', { id: item.id })}
           />
         )}
         showsVerticalScrollIndicator={false}
@@ -105,6 +81,7 @@ const MyPostCommentPage = ({ route }: MyPostCommentPageProps) => {
             title={item.title}
             body={item.body}
             createdAt={item.createdAt}
+            onPress={() => navigation.navigate('BoardDetail', { id: item.id })}
           />
         )}
         showsVerticalScrollIndicator={false}
