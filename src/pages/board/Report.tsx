@@ -133,6 +133,7 @@ const Report = ({ route }: ReportProps) => {
               <TextInput
                 value={etcValue}
                 onChangeText={(text) => setEtcValue(text)}
+                maxLength={15}
                 placeholder="기타 사유를 입력해 주세요(15자 이내)"
                 editable={checkedValue === REPORT_TYPE.ETC}
               />
