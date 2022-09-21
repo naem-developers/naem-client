@@ -3,7 +3,7 @@ import { THEME } from '@/theme';
 import * as React from 'react';
 import { View, StyleSheet, TouchableOpacity, ViewStyle } from 'react-native';
 import IcnArrowLeftBlack from '@/assets/icons/icn_arrow_left_black.svg';
-import { useNavigation,ParamListBase } from '@react-navigation/core';
+import { useNavigation, ParamListBase } from '@react-navigation/core';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 interface HeaderProps {
@@ -11,6 +11,8 @@ interface HeaderProps {
   LeftComponent?: React.ReactNode;
   RightComponent?: React.ReactNode;
   titleStyle?: ViewStyle;
+  isTitleButton?: boolean;
+  onPress?: () => void;
 }
 
 const BackButton = () => {
@@ -27,15 +29,21 @@ const Header = ({
   titleStyle = {},
   LeftComponent = <BackButton />,
   RightComponent,
+  onPress = () => {},
+  isTitleButton = false,
 }: HeaderProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.zIndex1}>{LeftComponent}</View>
-      <View style={[styles.titleContainer, titleStyle]}>
+      <TouchableOpacity
+        style={[styles.titleContainer, titleStyle]}
+        onPress={onPress}
+        disabled={!isTitleButton}
+      >
         <Text sizeStyle="f18" weightStyle="bold" style={styles.title}>
           {title}
         </Text>
-      </View>
+      </TouchableOpacity>
       <View style={styles.zIndex1}>{RightComponent}</View>
     </View>
   );

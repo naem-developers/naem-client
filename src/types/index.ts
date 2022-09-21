@@ -18,3 +18,10 @@ export type Comments = {
   body: string;
   createdAt: Date;
 };
+
+export type Comments = {
+  userId: string;
+  like: number;
+  commnet: string;
+  date: Date;
+};
