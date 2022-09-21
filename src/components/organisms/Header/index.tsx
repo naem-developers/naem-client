@@ -11,7 +11,7 @@ interface HeaderProps {
   LeftComponent?: React.ReactNode;
   RightComponent?: React.ReactNode;
   titleStyle?: ViewStyle;
-  isTitleisButton?: boolean;
+  isTitleButton?: boolean;
   onPress?: () => void;
 }
 
@@ -30,7 +30,7 @@ const Header = ({
   LeftComponent = <BackButton />,
   RightComponent,
   onPress = () => {},
-  isTitleisButton = false,
+  isTitleButton = false,
 }: HeaderProps) => {
   return (
     <View style={styles.container}>
@@ -38,7 +38,7 @@ const Header = ({
       <TouchableOpacity
         style={[styles.titleContainer, titleStyle]}
         onPress={onPress}
-        disabled={!isTitleisButton}
+        disabled={!isTitleButton}
       >
         <Text sizeStyle="f18" weightStyle="bold" style={styles.title}>
           {title}
