@@ -48,20 +48,20 @@ export const postDetailData = {
     {
       userId: 'dlfjsl1234',
       like: 12,
-      commnet: 'dfklajsfdljdslkfajldksjfkl',
-      date: new Date(),
+      body: 'dfklajsfdljdslkfajldksjfkl',
+      createdAt: new Date(),
     },
     {
       userId: 'dlfjsl1234',
       like: 12,
-      commnet: 'dfklajsfdljdslkfajldksjfkl',
-      date: new Date(),
+      body: 'dfklajsfdljdslkfajldksjfkl',
+      createdAt: new Date(),
     },
     {
       userId: 'dlfjsl1234',
       like: 12,
-      commnet: 'dfklajsfdljdslkfajldksjfkl',
-      date: new Date(),
+      body: 'dfklajsfdljdslkfajldksjfkl',
+      createdAt: new Date(),
     },
   ],
 };
