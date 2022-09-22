@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React, { useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import RootStackNavigator from './src/navigators/RootStackNavigator';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -21,6 +21,7 @@ import EncryptedStorage from 'react-native-encrypted-storage';
 import { USER_STORAGE_KEY } from '@/constants/storageKeys';
 import { applyToken } from '@/utils/auth';
 import { RecoilRoot } from 'recoil';
+import Text from '@/components/atoms/Text';
 const queryClient = new QueryClient();
 
 function App() {
@@ -40,7 +41,7 @@ function App() {
   useForegroundNotification();
 
   return (
-    <>
+    <Suspense fallback={<Text>Loading...</Text>}>
       <SafeAreaProvider>
         <RecoilRoot>
           <QueryClientProvider client={queryClient}>
@@ -53,7 +54,7 @@ function App() {
         </RecoilRoot>
       </SafeAreaProvider>
       <Toast />
-    </>
+    </Suspense>
   );
 }
 
