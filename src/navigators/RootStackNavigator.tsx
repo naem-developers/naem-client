@@ -43,8 +43,6 @@ const RootStackNavigator = () => {
   const [state] = useRecoilState(globalState);
   const navigation = useNavigation();
 
-  console.log({ state });
-
   useEffect(() => {
     SplashScreen.hide();
     if (state.isLogin !== undefined) {
