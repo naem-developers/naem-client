@@ -1,18 +1,28 @@
 import TextInput from '@/components/atoms/TextInput';
 import Header from '@/components/organisms/Header';
 import { STANDARD_DEVICE_HEIGHT } from '@/constants';
-import * as React from 'react';
+import React, { useCallback, useState } from 'react';
 import { StyleSheet, TouchableOpacity, View, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Camera from '@assets/icons/icn_camera.svg';
 import Text from '@/components/atoms/Text';
 import { THEME } from '@/theme';
 import Button from '@/components/atoms/Button';
+import ImagePicker from 'react-native-image-crop-picker';
+import { removeItemOfArray } from '@/utils/array';
 
 const WriteNewPost = () => {
+  const [images, setImages] = useState<Array<string>>([]);
+  const handleOpenGallery = useCallback(() => {
+    ImagePicker.openPicker({
+      cropping: true,
+    }).then((image) => {
+      setImages([...images, image.path]);
+    });
+  }, [images]);
   return (
-    <SafeAreaView>
-      <Header title="자유게시판" />
+    <SafeAreaView style={styles.bg}>
+      <Header title="자유게시판" isTitleButton={true} />
       <ScrollView>
         <View style={styles.container}>
           <TextInput placeholder="게시글 제목" />
@@ -22,6 +32,9 @@ const WriteNewPost = () => {
             containerStyle={styles.containerStyle}
             multiline={true}
             Icon={() => <Camera />}
+            buttonOnPress={handleOpenGallery}
+            imageOnPress={(image: string) => setImages(removeItemOfArray(images, image))}
+            images={images}
           />
           <Text sizeStyle="f13" weightStyle="light" style={styles.text}>
             {
@@ -46,6 +59,10 @@ const WriteNewPost = () => {
 export default WriteNewPost;
 
 const styles = StyleSheet.create({
+  bg: {
+    backgroundColor: THEME.BG,
+    flex: 1,
+  },
   container: {
     paddingHorizontal: 16,
   },

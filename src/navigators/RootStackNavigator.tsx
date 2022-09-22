@@ -18,6 +18,8 @@ import BoardDetail from '@/pages/board/BoardDetail';
 import { NavigatorScreenParams } from '@react-navigation/core';
 import { useRecoilState } from 'recoil';
 import { globalState } from '@/store/atoms';
+import Report from '@/pages/board/Report';
+import { Comments, postedData } from '@/types';
 
 export type RootStackParamList = {
   SignUpStackNavigator: NavigatorScreenParams<SignUpStackParamList>;
@@ -31,6 +33,7 @@ export type RootStackParamList = {
   NoticePage: undefined;
   NotificationSettingPage: undefined;
   ServiceTermsPage: undefined;
+  Report: { data: postedData | Comments };
   WithdrawlPage: undefined;
   BoardDetail: { id: number };
 };
@@ -59,6 +62,7 @@ const RootStackNavigator = () => {
       <Stack.Screen name="ServiceTermsPage" component={ServiceTermsPage} />
       <Stack.Screen name="WithdrawlPage" component={WithdrawlPage} />
       <Stack.Screen name="WriteNewPost" component={WriteNewPost} />
+      <Stack.Screen name="Report" component={Report} />
       <Stack.Screen name="BoardDetail" component={BoardDetail} />
     </Stack.Navigator>
   );
