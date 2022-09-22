@@ -17,7 +17,7 @@ import WriteNewPost from '@/pages/home/write';
 import BoardDetail from '@/pages/board/BoardDetail';
 import { NavigatorScreenParams, useNavigation } from '@react-navigation/core';
 import { useRecoilState } from 'recoil';
-import { globalState } from '@/store/settingAtoms';
+import { globalState } from '@/store/atoms';
 import SplashScreen from 'react-native-splash-screen';
 import { CommonActions } from '@react-navigation/routers';
 

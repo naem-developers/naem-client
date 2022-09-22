@@ -25,7 +25,7 @@ import { clearToken } from '@/utils/auth';
 import { logout } from '@react-native-seoul/kakao-login';
 import { CommonActions } from '@react-navigation/routers';
 import { useRecoilState } from 'recoil';
-import { globalState } from '@/store/settingAtoms';
+import { globalState } from '@/store/atoms';
 
 interface MyPageProps extends NativeStackScreenProps<RootStackParamList, 'MainTabNavigator'> {}
 
