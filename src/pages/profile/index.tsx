@@ -46,10 +46,17 @@ const MyPage = ({ navigation }: MyPageProps) => {
   // TODO: 함수 구현
   const handleInquiry = () => {};
   const handleLogout = () => {
-    clearToken();
-    logout().then(() => {
+    const logoutAndGoLoginPage = () => {
+      clearToken();
       setState({ ...state, isLogin: false });
       navigation.dispatch(CommonActions.reset({ index: 0, routes: [{ name: 'LoginPage' }] }));
+    };
+    if (__DEV__) {
+      logoutAndGoLoginPage();
+      return;
+    }
+    logout().then(() => {
+      logoutAndGoLoginPage;
     });
   };
   const openLogoutAlert = () => {
