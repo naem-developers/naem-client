@@ -18,6 +18,7 @@ import usePostSignIn from '@/hooks/api/auth/usePostSignIn';
 import useFetchCheckId from '@/hooks/api/auth/useFetchCheckId';
 import { useRecoilState } from 'recoil';
 import { globalState } from '@/store/atoms';
+import Loader from '@/components/atoms/Loader';
 
 const EXAMPLE_ID = 'example1';
 const EXAMPLE_PW = 'example1';

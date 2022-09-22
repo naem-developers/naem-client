@@ -21,8 +21,9 @@ import EncryptedStorage from 'react-native-encrypted-storage';
 import { USER_STORAGE_KEY } from '@/constants/storageKeys';
 import { applyToken } from '@/utils/auth';
 import { RecoilRoot } from 'recoil';
-import Text from '@/components/atoms/Text';
 import SplashScreen from 'react-native-splash-screen';
+import LoadingTemplate from '@/components/templates/LoadingTemplate';
+
 const queryClient = new QueryClient();
 
 function App() {
@@ -43,7 +44,7 @@ function App() {
   useForegroundNotification();
 
   return (
-    <Suspense fallback={<Text>Loading...</Text>}>
+    <Suspense fallback={<LoadingTemplate />}>
       <SafeAreaProvider>
         <RecoilRoot>
           <QueryClientProvider client={queryClient}>
