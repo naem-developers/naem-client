@@ -22,6 +22,7 @@ import { USER_STORAGE_KEY } from '@/constants/storageKeys';
 import { applyToken } from '@/utils/auth';
 import { RecoilRoot } from 'recoil';
 import Text from '@/components/atoms/Text';
+import SplashScreen from 'react-native-splash-screen';
 const queryClient = new QueryClient();
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
       applyToken(authDataInJsonFormat.accessToken);
     };
     handleToken();
+    SplashScreen.hide();
   }, []);
 
   requestNotificationPermission();

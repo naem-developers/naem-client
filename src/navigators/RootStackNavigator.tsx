@@ -15,11 +15,9 @@ import ServiceTermsPage from '@/pages/profile/serviceTerms';
 import WithdrawlPage from '@/pages/profile/withdrawl';
 import WriteNewPost from '@/pages/home/write';
 import BoardDetail from '@/pages/board/BoardDetail';
-import { NavigatorScreenParams, useNavigation } from '@react-navigation/core';
+import { NavigatorScreenParams } from '@react-navigation/core';
 import { useRecoilState } from 'recoil';
 import { globalState } from '@/store/atoms';
-import SplashScreen from 'react-native-splash-screen';
-import { CommonActions } from '@react-navigation/routers';
 
 export type RootStackParamList = {
   SignUpStackNavigator: NavigatorScreenParams<SignUpStackParamList>;
@@ -41,19 +39,6 @@ const Stack = createNativeStackNavigator();
 
 const RootStackNavigator = () => {
   const [state] = useRecoilState(globalState);
-  const navigation = useNavigation();
-
-  useEffect(() => {
-    SplashScreen.hide();
-    if (state.isLogin !== undefined) {
-      navigation.dispatch(
-        CommonActions.reset({
-          index: 0,
-          routes: [{ name: state.isLogin ? 'MainTabNavigator' : 'LoginPage' }],
-        }),
-      );
-    }
-  }, []);
 
   return (
     <Stack.Navigator
