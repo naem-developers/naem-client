@@ -16,8 +16,10 @@ import {
 } from '@react-native-seoul/kakao-login';
 import usePostSignIn from '@/hooks/api/auth/usePostSignIn';
 import useFetchCheckId from '@/hooks/api/auth/useFetchCheckId';
+import { useRecoilState } from 'recoil';
+import { globalState } from '@/store/atoms';
+import Loader from '@/components/atoms/Loader';
 
-// TODO: 로그인 id 중복 여부에 따라 willLogin 나누기
 const EXAMPLE_ID = 'example1';
 const EXAMPLE_PW = 'example1';
 
@@ -28,47 +30,62 @@ interface LoginPageProps extends NativeStackScreenProps<RootStackParamList, 'Log
 }
 
 const LoginPage = ({ navigation }: LoginPageProps) => {
+  const [state, setState] = useRecoilState(globalState);
   const [kakaoEmail, setKakaoEmail] = useState('');
 
   const signIn = usePostSignIn();
   const checkId = useFetchCheckId({ username: kakaoEmail }, !!kakaoEmail?.length);
 
   const handleAuth = useCallback(
-    (isDev: boolean, responseFromKakao?: KakaoResponse) => {
-      // console.log({ checkId: checkId.data });
-      // TODO: 이메일 중복 여부 체크 이후 로그인, 회원가입 프로세스로 분기
-      const willLogin = true;
-
-      if (willLogin) {
-        signIn.mutate({ username: EXAMPLE_ID, password: EXAMPLE_PW });
-      } else {
-        navigation.navigate('SignUpStackNavigator', {
-          screen: 'TermsPage',
-          params: {
-            loginInfo: isDev
-              ? {
-                  loginId: 'loginId1',
-                  password: 'password1',
-                }
-              : { loginId: responseFromKakao?.email!, password: responseFromKakao?.id! },
-          },
-        });
+    (isDev: boolean, willLogin: boolean, responseFromKakao?: Partial<KakaoResponse>) => {
+      try {
+        if (willLogin) {
+          if (__DEV__) {
+            navigation.navigate('MainTabNavigator');
+          }
+          if (!responseFromKakao?.email || !responseFromKakao?.id) {
+            throw Error('카카오 이메일 혹은 아이디가 없음');
+          }
+          signIn.mutate(
+            { username: responseFromKakao?.email, password: responseFromKakao?.id },
+            {
+              onSuccess: () => {
+                setState({ ...state, isLogin: true });
+              },
+            },
+          );
+        } else {
+          navigation.navigate('SignUpStackNavigator', {
+            screen: 'TermsPage',
+            params: {
+              loginInfo: isDev
+                ? {
+                    loginId: 'loginId1',
+                    password: 'password1',
+                  }
+                : { loginId: responseFromKakao?.email!, password: responseFromKakao?.id! },
+            },
+          });
+        }
+      } catch (err) {
+        console.error(err);
       }
     },
     [EXAMPLE_ID, EXAMPLE_PW],
   );
 
   const signInWithKakao = useCallback(async (): Promise<void> => {
-    // TODO: ios 카카오 연동하기
     if (__DEV__) {
-      handleAuth(true);
+      setState({ ...state, isLogin: true });
+      handleAuth(true, true, { email: EXAMPLE_ID, id: EXAMPLE_PW });
       return;
     }
     try {
       login().then(async (res) => {
         const profile: KakaoProfile = await getProfile();
         setKakaoEmail(profile.email);
-        handleAuth(false, { ...res, ...profile });
+        const checkIdResult = await checkId.refetch();
+        handleAuth(false, checkIdResult.data.response !== 'OK', { ...res, ...profile });
       });
     } catch (err) {
       console.error('login err', err);

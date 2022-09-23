@@ -6,8 +6,7 @@
  * @flow strict-local
  */
 
-import React, { useEffect } from 'react';
-import SplashScreen from 'react-native-splash-screen';
+import React, { Suspense, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import RootStackNavigator from './src/navigators/RootStackNavigator';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -21,6 +20,9 @@ import Toast from 'react-native-toast-message';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import { USER_STORAGE_KEY } from '@/constants/storageKeys';
 import { applyToken } from '@/utils/auth';
+import { RecoilRoot } from 'recoil';
+import SplashScreen from 'react-native-splash-screen';
+import LoadingTemplate from '@/components/templates/LoadingTemplate';
 
 const queryClient = new QueryClient();
 
@@ -42,18 +44,20 @@ function App() {
   useForegroundNotification();
 
   return (
-    <>
+    <Suspense fallback={<LoadingTemplate />}>
       <SafeAreaProvider>
-        <QueryClientProvider client={queryClient}>
-          <PaperProvider>
-            <NavigationContainer>
-              <RootStackNavigator />
-            </NavigationContainer>
-          </PaperProvider>
-        </QueryClientProvider>
+        <RecoilRoot>
+          <QueryClientProvider client={queryClient}>
+            <PaperProvider>
+              <NavigationContainer>
+                <RootStackNavigator />
+              </NavigationContainer>
+            </PaperProvider>
+          </QueryClientProvider>
+        </RecoilRoot>
       </SafeAreaProvider>
       <Toast />
-    </>
+    </Suspense>
   );
 }
 

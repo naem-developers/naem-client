@@ -22,6 +22,10 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/navigators/RootStackNavigator';
 import SettingsItem from '@/components/myPage/SettingsItem';
 import { clearToken } from '@/utils/auth';
+import { logout } from '@react-native-seoul/kakao-login';
+import { CommonActions } from '@react-navigation/routers';
+import { useRecoilState } from 'recoil';
+import { globalState } from '@/store/atoms';
 
 interface MyPageProps extends NativeStackScreenProps<RootStackParamList, 'MainTabNavigator'> {}
 
@@ -31,6 +35,7 @@ const DISBALED_TYPES = ['뇌병변장애', '장루, 요루장애', '지체장애
 const MyPage = ({ navigation }: MyPageProps) => {
   const insets = useSafeAreaInsets();
 
+  const [state, setState] = useRecoilState(globalState);
   const [snackbarVisible, setSnackbarVisible] = useState<boolean>(false);
 
   const copyRecommenderCode = () => {
@@ -41,7 +46,18 @@ const MyPage = ({ navigation }: MyPageProps) => {
   // TODO: 함수 구현
   const handleInquiry = () => {};
   const handleLogout = () => {
-    clearToken();
+    const logoutAndGoLoginPage = () => {
+      clearToken();
+      setState({ ...state, isLogin: false });
+      navigation.dispatch(CommonActions.reset({ index: 0, routes: [{ name: 'LoginPage' }] }));
+    };
+    if (__DEV__) {
+      logoutAndGoLoginPage();
+      return;
+    }
+    logout().then(() => {
+      logoutAndGoLoginPage;
+    });
   };
   const openLogoutAlert = () => {
     Alert.alert('', '로그아웃 하시겠습니까?', [
