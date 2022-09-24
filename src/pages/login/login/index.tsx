@@ -42,6 +42,8 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
         if (willLogin) {
           if (__DEV__) {
             navigation.navigate('MainTabNavigator');
+            setState({ ...state, isLogin: true });
+            return;
           }
           if (!responseFromKakao?.email || !responseFromKakao?.id) {
             throw Error('카카오 이메일 혹은 아이디가 없음');
@@ -76,7 +78,6 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
 
   const signInWithKakao = useCallback(async (): Promise<void> => {
     if (__DEV__) {
-      setState({ ...state, isLogin: true });
       handleAuth(true, true, { email: EXAMPLE_ID, id: EXAMPLE_PW });
       return;
     }
