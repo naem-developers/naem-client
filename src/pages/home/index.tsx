@@ -35,7 +35,7 @@ const HomePage = ({ navigation }: HomePageProps) => {
       />
       <ScrollView
         contentContainerStyle={styles.scroll}
-        showsVerticalScrollIndicator={true}
+        showsVerticalScrollIndicator={false}
         bounces={false}
         onScroll={(scroll) => {
           if (scroll.nativeEvent.contentOffset.y > 0) {
