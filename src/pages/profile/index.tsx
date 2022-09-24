@@ -39,8 +39,9 @@ const DISBALED_TYPES = ['뇌병변장애', '장루, 요루장애', '지체장애
 const MyPage = ({ navigation }: MyPageProps) => {
   const insets = useSafeAreaInsets();
 
-  const fetchMyProfile = useFetchMemberProfile();
-  console.log({ fetchMyProfile });
+  // Todo: fetchMemberProfile 구현하기
+  // const fetchMyProfile = useFetchMemberProfile();
+  // console.log({ fetchMyProfile });
 
   const [state, setState] = useRecoilState(globalState);
   const [snackbarVisible, setSnackbarVisible] = useState<boolean>(false);
