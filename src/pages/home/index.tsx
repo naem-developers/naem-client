@@ -9,20 +9,24 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { StyleSheet, View, Image, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Collapsible from 'react-native-collapsible';
 
 interface HomePageProps extends NativeStackScreenProps<RootStackParamList, 'MainTabNavigator'> {}
 
 const HomePage = ({ navigation }: HomePageProps) => {
   const insets = useSafeAreaInsets();
   const scrollRef = React.useRef<ScrollView>(null);
+  const [visible, setVisible] = React.useState<boolean>(true);
   return (
     <View style={styles.container}>
       <View style={[styles.headerContainer, { paddingTop: insets.top }]}>
-        <SearchBar
-          style={styles.searchBar}
-          disabled
-          onPress={() => navigation.navigate('SearchPage')}
-        />
+        <Collapsible collapsed={!visible}>
+          <SearchBar
+            style={styles.searchBar}
+            disabled
+            onPress={() => navigation.navigate('SearchPage')}
+          />
+        </Collapsible>
       </View>
       <ScrollTopButton
         commonRef={scrollRef}
@@ -31,8 +35,15 @@ const HomePage = ({ navigation }: HomePageProps) => {
       />
       <ScrollView
         contentContainerStyle={styles.scroll}
-        showsVerticalScrollIndicator={false}
+        showsVerticalScrollIndicator={true}
         bounces={false}
+        onScroll={(scroll) => {
+          if (scroll.nativeEvent.contentOffset.y > 0) {
+            setVisible(false);
+          } else {
+            setVisible(true);
+          }
+        }}
         ref={scrollRef}
       >
         <View style={styles.imageComp}>
