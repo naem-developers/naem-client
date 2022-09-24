@@ -1,10 +1,10 @@
 import API from '@/api';
+import { IResMemberProfile } from '@/api/types/response';
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEY from '../keys';
 
 export default () => {
-  // TODO: return type 정의하기
-  const fetcher = async (): Promise<any> => {
+  const fetcher = async (): Promise<IResMemberProfile> => {
     const res = await API.getMemberProfile();
     return res.data;
   };
