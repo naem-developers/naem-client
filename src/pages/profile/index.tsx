@@ -9,6 +9,7 @@ import {
   View,
   TouchableOpacity,
   Alert,
+  Linking,
 } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import IcnCopy from '@/assets/icons/icn_copy.svg';
@@ -26,6 +27,8 @@ import { logout } from '@react-native-seoul/kakao-login';
 import { CommonActions } from '@react-navigation/routers';
 import { useRecoilState } from 'recoil';
 import { globalState } from '@/store/atoms';
+import CONTACT from '@/constants/contact';
+import Toast from 'react-native-toast-message';
 
 interface MyPageProps extends NativeStackScreenProps<RootStackParamList, 'MainTabNavigator'> {}
 
@@ -41,6 +44,23 @@ const MyPage = ({ navigation }: MyPageProps) => {
   const copyRecommenderCode = () => {
     Clipboard.setString(RECOMMENDER_CODE_TEXT);
     setSnackbarVisible(true);
+  };
+
+  const handleInquiry = async () => {
+    const handleShowErrorToast = () => {
+      Toast.show({ type: 'error', text1: '메일 앱을 열 수 없습니다' });
+    };
+    try {
+      const emailURL = `mailto:${CONTACT.email}`;
+      const canOpen = await Linking.canOpenURL(emailURL);
+      if (canOpen) {
+        Linking.openURL(emailURL);
+      } else {
+        handleShowErrorToast();
+      }
+    } catch (e) {
+      handleShowErrorToast();
+    }
   };
 
   const handleLogout = () => {
@@ -170,7 +190,7 @@ const MyPage = ({ navigation }: MyPageProps) => {
               navigation.navigate('ServiceTermsPage');
             }}
           />
-          <SettingsItem text="문의하기" onPress={() => navigation.navigate('InquiryPage')} />
+          <SettingsItem text="문의하기" onPress={handleInquiry} />
           <Text style={styles.settingTitle}>계정</Text>
           <SettingsItem text="로그아웃" onPress={openLogoutAlert} />
           <SettingsItem
