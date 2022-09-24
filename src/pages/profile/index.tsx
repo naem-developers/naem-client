@@ -43,8 +43,6 @@ const MyPage = ({ navigation }: MyPageProps) => {
     setSnackbarVisible(true);
   };
 
-  // TODO: 함수 구현
-  const handleInquiry = () => {};
   const handleLogout = () => {
     const logoutAndGoLoginPage = () => {
       clearToken();
@@ -172,7 +170,7 @@ const MyPage = ({ navigation }: MyPageProps) => {
               navigation.navigate('ServiceTermsPage');
             }}
           />
-          <SettingsItem text="문의하기" onPress={handleInquiry} />
+          <SettingsItem text="문의하기" onPress={() => navigation.navigate('InquiryPage')} />
           <Text style={styles.settingTitle}>계정</Text>
           <SettingsItem text="로그아웃" onPress={openLogoutAlert} />
           <SettingsItem

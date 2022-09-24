@@ -20,6 +20,7 @@ import { useRecoilState } from 'recoil';
 import { globalState } from '@/store/atoms';
 import Report from '@/pages/board/Report';
 import { Comments, postedData } from '@/types';
+import InquiryPage from '@/pages/profile/inquiry';
 
 export type RootStackParamList = {
   SignUpStackNavigator: NavigatorScreenParams<SignUpStackParamList>;
@@ -36,6 +37,7 @@ export type RootStackParamList = {
   Report: { data: postedData | Comments };
   WithdrawlPage: undefined;
   BoardDetail: { id: number };
+  InquiryPage: undefined;
 };
 
 const Stack = createNativeStackNavigator();
@@ -64,6 +66,7 @@ const RootStackNavigator = () => {
       <Stack.Screen name="WriteNewPost" component={WriteNewPost} />
       <Stack.Screen name="Report" component={Report} />
       <Stack.Screen name="BoardDetail" component={BoardDetail} />
+      <Stack.Screen name="InquiryPage" component={InquiryPage} />
     </Stack.Navigator>
   );
 };

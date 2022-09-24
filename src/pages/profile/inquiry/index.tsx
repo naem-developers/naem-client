@@ -4,17 +4,17 @@ import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-interface NoticePageProps {}
+interface EventPageProps {}
 
-const NoticePage = (props: NoticePageProps) => {
+const InquiryPage = (props: EventPageProps) => {
   return (
     <SafeAreaView style={styles.container}>
-      <Header title="공지사항" />
+      <Header title="문의하기" />
     </SafeAreaView>
   );
 };
 
-export default NoticePage;
+export default InquiryPage;
 
 const styles = StyleSheet.create({
   container: {
