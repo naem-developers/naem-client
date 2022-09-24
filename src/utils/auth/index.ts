@@ -8,5 +8,5 @@ export const applyToken = (jwt: string) => {
 
 export const clearToken = () => {
   delete client.defaults.headers.common['Authorization'];
-  EncryptedStorage.removeItem(USER_STORAGE_KEY);
+  EncryptedStorage.clear();
 };

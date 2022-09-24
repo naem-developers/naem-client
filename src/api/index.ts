@@ -16,6 +16,9 @@ const API = {
   getCheckId(params: IReqCheckId) {
     return client.get('/auth/checkid', { params });
   },
+  getMemberProfile() {
+    return client.get('/member/profile');
+  },
 };
 
 export default API;
