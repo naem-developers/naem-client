@@ -29,6 +29,7 @@ import { useRecoilState } from 'recoil';
 import { globalState } from '@/store/atoms';
 import CONTACT from '@/constants/contact';
 import Toast from 'react-native-toast-message';
+import useFetchMemberProfile from '@/hooks/api/member/useFetchMemberProfile';
 
 interface MyPageProps extends NativeStackScreenProps<RootStackParamList, 'MainTabNavigator'> {}
 
@@ -37,6 +38,9 @@ const DISBALED_TYPES = ['뇌병변장애', '장루, 요루장애', '지체장애
 
 const MyPage = ({ navigation }: MyPageProps) => {
   const insets = useSafeAreaInsets();
+
+  const fetchMyProfile = useFetchMemberProfile();
+  console.log({ fetchMyProfile });
 
   const [state, setState] = useRecoilState(globalState);
   const [snackbarVisible, setSnackbarVisible] = useState<boolean>(false);
