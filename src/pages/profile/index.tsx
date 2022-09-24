@@ -48,7 +48,7 @@ const MyPage = ({ navigation }: MyPageProps) => {
   const handleLogout = () => {
     const logoutAndGoLoginPage = () => {
       clearToken();
-      setState({ ...state, isLogin: false });
+      setState({ ...state, isLogin: false, userId: '' });
       navigation.dispatch(CommonActions.reset({ index: 0, routes: [{ name: 'LoginPage' }] }));
     };
     if (__DEV__) {

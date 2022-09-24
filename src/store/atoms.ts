@@ -28,6 +28,7 @@ export const globalState = atom({
   key: 'globalState',
   default: {
     isLogin: undefined,
+    userId: '',
   },
   effects_UNSTABLE: [persistAtom],
 });

@@ -42,7 +42,7 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
         if (willLogin) {
           if (__DEV__) {
             navigation.navigate('MainTabNavigator');
-            setState({ ...state, isLogin: true });
+            setState({ ...state, isLogin: true, userId: responseFromKakao?.email });
             return;
           }
           if (!responseFromKakao?.email || !responseFromKakao?.id) {
@@ -52,7 +52,7 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
             { username: responseFromKakao?.email, password: responseFromKakao?.id },
             {
               onSuccess: () => {
-                setState({ ...state, isLogin: true });
+                setState({ ...state, isLogin: true, userId: responseFromKakao?.email });
               },
             },
           );
