@@ -18,6 +18,7 @@ const persistAtom: AtomEffect<any> = ({ node, setSelf, onSet }) => {
   });
 };
 
+//stored
 export const languageState = atom<string>({
   key: 'languageState',
   default: SYSTEMLANGUAGE,
@@ -32,3 +33,5 @@ export const globalState = atom({
   },
   effects_UNSTABLE: [persistAtom],
 });
+
+//memory

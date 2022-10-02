@@ -1,6 +1,7 @@
 import axios from 'axios';
 // @ts-ignore
 import { API_URL } from 'react-native-dotenv';
+import { IReqSaveBoard } from './types/board';
 import { IReqCheckId, IReqSignIn, IReqSignUp } from './types/request';
 
 export const client = axios.create({ baseURL: API_URL });
@@ -18,6 +19,11 @@ const API = {
   },
   getMemberProfile() {
     return client.get('/member/profile');
+  },
+
+  //board
+  postSaveBoard(body: IReqSaveBoard) {
+    return client.post('/board/save', body);
   },
 };
 

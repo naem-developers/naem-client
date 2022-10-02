@@ -10,9 +10,14 @@ import { THEME } from '@/theme';
 import Button from '@/components/atoms/Button';
 import ImagePicker from 'react-native-image-crop-picker';
 import { removeItemOfArray } from '@/utils/array';
+import usePostSaveBaord from '@/hooks/api/board/usePostSaveBaord';
 
 const WriteNewPost = () => {
   const [images, setImages] = useState<Array<string>>([]);
+  const [title, setTitle] = useState<string>();
+  const [contents, setContents] = useState<string>();
+  const savePost = usePostSaveBaord();
+
   const handleOpenGallery = useCallback(() => {
     ImagePicker.openPicker({
       cropping: true,
@@ -20,15 +25,37 @@ const WriteNewPost = () => {
       setImages([...images, image.path]);
     });
   }, [images]);
+
+  const handleSavePost = useCallback(() => {
+    if (title !== undefined && contents !== undefined) {
+      savePost.mutate({
+        requestDto: {
+          title: title,
+          content: contents,
+          board: {
+            boardType: 1,
+          },
+          tag: [{ tagType: 1 }],
+        },
+      });
+    }
+  }, [contents, title]);
+
   return (
     <SafeAreaView style={styles.bg}>
       <Header title="자유게시판" isTitleButton={true} />
       <ScrollView>
         <View style={styles.container}>
-          <TextInput placeholder="게시글 제목" />
+          <TextInput
+            placeholder="게시글 제목"
+            value={title}
+            onChangeText={(text: string) => setTitle(text)}
+          />
           <TextInput
             placeholder="내용을 입력하세요"
             style={styles.body}
+            value={contents}
+            onChangeText={(text: string) => setContents(text)}
             containerStyle={styles.containerStyle}
             multiline={true}
             Icon={() => <Camera />}
@@ -49,7 +76,12 @@ const WriteNewPost = () => {
           <Text sizeStyle="f13" weightStyle="medium" style={styles.subKeywordTitle}>
             최대 3개의 키워드를 선택할 수 있습니다.
           </Text>
-          <Button text="등록하기" priority="primary" style={styles.button} onPress={() => {}} />
+          <Button
+            text="등록하기"
+            priority="primary"
+            style={styles.button}
+            onPress={handleSavePost}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
