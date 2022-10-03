@@ -5,7 +5,10 @@ import Toast from 'react-native-toast-message';
 
 export default () => {
   const mutation = async (body: IReqAuthDisabled) => {
-    const res = await API.postAuthDisabled(body);
+    const data = new FormData();
+    data.append('disabledAuthReq', body.disabledAuthReq);
+    data.append('multipartFile', body.multipartFile);
+    const res = await API.postAuthDisabled(data);
     return res.data;
   };
 

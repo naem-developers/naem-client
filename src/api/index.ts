@@ -19,7 +19,7 @@ const API = {
   getMemberProfile() {
     return client.get('/member/profile');
   },
-  postAuthDisabled(body: IReqAuthDisabled) {
+  postAuthDisabled(body: FormData) {
     return client.post('/auth/disabled', body, {
       headers: { 'content-type': 'multipart/form-data' },
     });
