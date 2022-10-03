@@ -1,4 +1,4 @@
-const SERVICE_TERMS_HTML = `<h2 style="font-size: 19px; color: #222222;">이용약관</h2>
+export const SERVICE_TERMS_HTML = `<h2 style="font-size: 19px; color: #222222;">이용약관</h2>
 <p style="font-size: 14px; color: #707070;">안녕하세요, 나음입니다</p>
 <p style="font-size: 13px; color: #a3a3a3;">나음 이용약관은 장애인과 장애인 보호자를 비롯한 커뮤니티 이용자들에게 서비스를 제공함에 있어 나음(이하 &lsquo;회사&rsquo;)와 커뮤니티 이용자(이하 &lsquo;회원&rsquo;) 간의 권리와 의무, 책임 사항 등을 규정하고 정보를 제공함을 목적으로 합니다.</p>
 <p>&nbsp;</p>
