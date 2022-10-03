@@ -8,8 +8,10 @@ import Text from '@/components/atoms/Text';
 import Button from '@/components/atoms/Button';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { SignUpStackParamList } from '@/navigators/SignUpStackNavigator';
-import ImagePicker from 'react-native-image-crop-picker';
+import ImagePicker, { PossibleArray } from 'react-native-image-crop-picker';
 import BottomSheetMenu from '@/components/organisms/BottomSheetMenu';
+import usePostAuthDisabled from '@/hooks/api/auth/usePostAuthDisabled';
+import Toast from 'react-native-toast-message';
 
 const CARD_RATIO = 1.5858;
 const CARD_WIDTH = 300;
@@ -25,30 +27,56 @@ const CAUTION_LIST = [
 interface DisabilityCertificatePageProps
   extends NativeStackScreenProps<SignUpStackParamList, 'DisabilityCertificatePage'> {}
 
-const DisabilityCertificatePage = ({ navigation }: DisabilityCertificatePageProps) => {
+const DisabilityCertificatePage = ({ navigation, route }: DisabilityCertificatePageProps) => {
+  const postAuthDisabled = usePostAuthDisabled();
+  const { loginId, password } = route.params.loginInfo;
+
   const [bottomSheetMenuVisible, setBottomSheetMenuVisible] = useState<boolean>(false);
 
   const openBottomSheetMenu = () => {
     setBottomSheetMenuVisible(true);
   };
+
+  const handleAuthDisabled = useCallback(
+    (image: any) => {
+      postAuthDisabled.mutate(
+        {
+          disabledAuthReq: { username: loginId, checkPassword: password },
+          multipartFile: [image.sourceURL],
+        },
+        {
+          onSuccess: (res) => {
+            Toast.show({ type: 'success', text1: '장애인 인증 정보 전송에 성공하였습니다.' });
+            setBottomSheetMenuVisible(false);
+          },
+        },
+      );
+    },
+    [loginId, password],
+  );
+
   // TODO: crop size 지정 및 고도화하기
   const handleOpenGallery = useCallback(() => {
     ImagePicker.openPicker({
       width: CARD_WIDTH,
       height: CARD_HEIGHT,
       cropping: true,
+      multiple: false,
     }).then((image) => {
-      console.log(image);
+      handleAuthDisabled(image);
     });
-  }, []);
+  }, [handleAuthDisabled]);
 
   const handleOpenCamera = useCallback(() => {
-    ImagePicker.openCamera({ width: CARD_WIDTH, height: CARD_HEIGHT, cropping: true }).then(
-      (image) => {
-        console.log(image);
-      },
-    );
-  }, []);
+    ImagePicker.openCamera({
+      width: CARD_WIDTH,
+      height: CARD_HEIGHT,
+      cropping: true,
+      multiple: false,
+    }).then((image) => {
+      handleAuthDisabled(image);
+    });
+  }, [handleAuthDisabled]);
 
   const MENU_LIST = useMemo(() => {
     return [

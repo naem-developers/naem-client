@@ -15,7 +15,7 @@ export interface LoginInfo {
 
 export type SignUpStackParamList = {
   SignUpPage: { loginInfo: LoginInfo };
-  DisabilityCertificatePage: undefined;
+  DisabilityCertificatePage: { loginInfo: LoginInfo };
   TermsPage: { loginInfo: LoginInfo };
   UserTypeSelectPage: { loginInfo: LoginInfo };
   DisabledPage: { loginInfo: LoginInfo };

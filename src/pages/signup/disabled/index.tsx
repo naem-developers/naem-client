@@ -93,7 +93,7 @@ const DisabledPage = ({ navigation, route }: DisabledPageProps) => {
         priority="secondary"
         style={styles.mt16}
         onPress={() => {
-          navigation.navigate('DisabilityCertificatePage');
+          navigation.navigate('DisabilityCertificatePage', { loginInfo });
         }}
       />
     </SignUpTemplate>
