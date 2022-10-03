@@ -19,6 +19,12 @@ const API = {
   getMemberProfile() {
     return client.get('/member/profile');
   },
+  patchMemberProfile(body: any) {
+    return client.patch('/member', body);
+  },
+  deleteMember() {
+    return client.delete('/member');
+  },
 };
 
 export default API;
