@@ -27,6 +27,7 @@
     "https-browserify": "^0.0.1",
     "react": "17.0.2",
     "react-native": "0.68.2",
+    "react-native-autoheight-webview": "^1.6.4",
     "react-native-collapsible": "1.6.0",
     "react-native-crypto": "^2.2.0",
     "react-native-dotenv": "^3.3.1",
@@ -48,6 +49,7 @@
     "react-native-tab-view": "^3.1.1",
     "react-native-toast-message": "^2.1.5",
     "react-native-vector-icons": "^9.2.0",
+    "react-native-webview": "^11.23.1",
     "recoil": "^0.7.5",
     "rn-nodeify": "^10.3.0",
     "use-interval": "^1.4.0"
