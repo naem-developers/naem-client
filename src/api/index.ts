@@ -1,7 +1,7 @@
 import axios from 'axios';
 // @ts-ignore
 import { API_URL } from 'react-native-dotenv';
-import { IReqCheckId, IReqSignIn, IReqSignUp } from './types/request';
+import { IReqCheckId, IReqPatchMemberProfile, IReqSignIn, IReqSignUp } from './types/request';
 
 export const client = axios.create({ baseURL: API_URL });
 
@@ -19,7 +19,7 @@ const API = {
   getMemberProfile() {
     return client.get('/member/profile');
   },
-  patchMemberProfile(body: any) {
+  patchMemberProfile(body: IReqPatchMemberProfile) {
     return client.patch('/member', body);
   },
   deleteMember() {
