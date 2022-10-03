@@ -20,7 +20,9 @@ const API = {
     return client.get('/member/profile');
   },
   postAuthDisabled(body: IReqAuthDisabled) {
-    return client.post('/auth/disabled', body);
+    return client.post('/auth/disabled', body, {
+      headers: { 'content-type': 'multipart/form-data' },
+    });
   },
 };
 
