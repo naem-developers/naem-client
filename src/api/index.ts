@@ -1,7 +1,7 @@
 import axios from 'axios';
 // @ts-ignore
 import { API_URL } from 'react-native-dotenv';
-import { IReqCheckId, IReqSignIn, IReqSignUp } from './types/request';
+import { IReqCheckId, IReqCheckNickname, IReqSignIn, IReqSignUp } from './types/request';
 
 export const client = axios.create({ baseURL: API_URL });
 
@@ -15,6 +15,9 @@ const API = {
   },
   getCheckId(params: IReqCheckId) {
     return client.get('/auth/check/username', { params });
+  },
+  getCheckNickname(params: IReqCheckNickname) {
+    return client.get('/auth/check/nickname', { params });
   },
   getMemberProfile() {
     return client.get('/member/profile');
