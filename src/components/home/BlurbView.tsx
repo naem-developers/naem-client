@@ -27,9 +27,9 @@ const BlurbView = () => {
         activeDotColor={THEME.MAIN}
         showsPagination={false}
       >
-        {tempBlurb.map((item) => {
+        {tempBlurb.map((item, index) => {
           return (
-            <View style={styles.slide}>
+            <View key={`${item}-${index}`} style={styles.slide}>
               <Text>{item}</Text>
             </View>
           );
