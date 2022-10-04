@@ -17,7 +17,6 @@ export interface IReqCheckId {
 export interface IReqAuthDisabled {
   disabledAuthReq: {
     username: string;
-    checkPassword: string;
   };
   multipartFile: any[];
 }

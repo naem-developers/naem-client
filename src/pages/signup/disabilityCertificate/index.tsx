@@ -29,7 +29,7 @@ interface DisabilityCertificatePageProps
 
 const DisabilityCertificatePage = ({ navigation, route }: DisabilityCertificatePageProps) => {
   const postAuthDisabled = usePostAuthDisabled();
-  const { loginId, password } = route.params.loginInfo;
+  const { loginId } = route.params.loginInfo;
 
   const [bottomSheetMenuVisible, setBottomSheetMenuVisible] = useState<boolean>(false);
 
@@ -41,7 +41,7 @@ const DisabilityCertificatePage = ({ navigation, route }: DisabilityCertificateP
     (image: any) => {
       postAuthDisabled.mutate(
         {
-          disabledAuthReq: { username: loginId, checkPassword: password },
+          disabledAuthReq: { username: loginId },
           multipartFile: [image.sourceURL],
         },
         {
@@ -52,7 +52,7 @@ const DisabilityCertificatePage = ({ navigation, route }: DisabilityCertificateP
         },
       );
     },
-    [loginId, password],
+    [loginId],
   );
 
   // TODO: crop size 지정 및 고도화하기

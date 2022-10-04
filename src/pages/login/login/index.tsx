@@ -72,7 +72,7 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
   const signInWithKakao = useCallback(async (): Promise<void> => {
     if (__DEV__) {
       // 회원가입으로 테스트를 하려면 두 번째 파라미터를 false로 바꾸면 됩니다
-      handleAuth(true, true, { email: EXAMPLE_ID, id: EXAMPLE_PW });
+      handleAuth(true, false, { email: EXAMPLE_ID, id: EXAMPLE_PW });
       return;
     }
     try {
