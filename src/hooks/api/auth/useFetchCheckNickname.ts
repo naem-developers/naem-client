@@ -9,10 +9,10 @@ export default (params: IReqCheckId, enabled: boolean = false) => {
     const res = await API.getCheckId(params);
     return res.data;
   };
-  return useQuery([QUERY_KEY.FETCH_CHECK_ID], fetcher, {
+  return useQuery([QUERY_KEY.FETCH_CHECK_NICKNAME], fetcher, {
     enabled,
     onError: (e) => {
-      console.error('id 중복 체크 중 오류가 발생했습니다.', e);
+      console.error('닉네임 중복 체크 중 오류가 발생했습니다.', e);
     },
   });
 };
