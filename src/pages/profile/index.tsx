@@ -30,6 +30,7 @@ import { globalState } from '@/store/atoms';
 import CONTACT from '@/constants/contact';
 import Toast from 'react-native-toast-message';
 import useFetchMemberProfile from '@/hooks/api/member/useFetchMemberProfile';
+import LoadingTemplate from '@/components/templates/LoadingTemplate';
 
 interface MyPageProps extends NativeStackScreenProps<RootStackParamList, 'MainTabNavigator'> {}
 
@@ -39,9 +40,7 @@ const DISBALED_TYPES = ['뇌병변장애', '장루, 요루장애', '지체장애
 const MyPage = ({ navigation }: MyPageProps) => {
   const insets = useSafeAreaInsets();
 
-  // Todo: fetchMemberProfile 구현하기
-  // const fetchMyProfile = useFetchMemberProfile();
-  // console.log({ fetchMyProfile });
+  const { data: profileData, isLoading: isProfileLoading } = useFetchMemberProfile();
 
   const [state, setState] = useRecoilState(globalState);
   const [snackbarVisible, setSnackbarVisible] = useState<boolean>(false);
@@ -92,6 +91,8 @@ const MyPage = ({ navigation }: MyPageProps) => {
     ]);
   };
 
+  if (!profileData || isProfileLoading) return <LoadingTemplate />;
+
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
       <ScrollView
@@ -105,9 +106,9 @@ const MyPage = ({ navigation }: MyPageProps) => {
         />
         {/* TODO: 유저 이름 */}
         <Text style={styles.greetingText}>
-          안녕하세요, <Text style={styles.strongText}>김나미</Text> 님!
+          안녕하세요, <Text style={styles.strongText}>{profileData.nickname}</Text> 님!
         </Text>
-        <Text style={styles.bio}>안녕하세요~! 남양주시에 살고 있습니다</Text>
+        {!!profileData.introduction && <Text style={styles.bio}>{profileData.introduction}</Text>}
         <Pressable style={[styles.row, styles.mt6]} onPress={copyRecommenderCode}>
           <Text style={{ ...styles.subtitle, ...styles.mr5 }}>추천인코드</Text>
           <Text style={{ ...styles.recommenderCodeText, ...styles.mr1 }}>
