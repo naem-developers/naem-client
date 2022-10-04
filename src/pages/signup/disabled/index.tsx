@@ -80,7 +80,10 @@ const DisabledPage = ({ navigation, route }: DisabledPageProps) => {
       btnProps={{
         onPress: handlePressNext,
         disabled:
-          nickname?.length === 0 || !!nicknameValidationMsg?.length || !isNicknameNotDuplicated,
+          nickname?.length === 0 ||
+          !!nicknameValidationMsg?.length ||
+          !isNicknameNotDuplicated ||
+          fetchCheckNickname.isLoading,
       }}
     >
       <Title step={3} text="닉네임" />
@@ -96,7 +99,6 @@ const DisabledPage = ({ navigation, route }: DisabledPageProps) => {
           maxLength={10}
           value={nickname}
           onChangeText={(text) => setNickname(text)}
-          onBlur={checkNickname}
           validationMsg={nicknameValidationMsg}
         />
         <Button
