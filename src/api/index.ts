@@ -14,7 +14,7 @@ const API = {
     return client.post('/auth/signIn', body);
   },
   getCheckId(params: IReqCheckId) {
-    return client.get('/auth/checkid', { params });
+    return client.get('/auth/check/username', { params });
   },
   getMemberProfile() {
     return client.get('/member/profile');
