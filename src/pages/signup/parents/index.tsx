@@ -52,6 +52,7 @@ const ParentsPage = ({ navigation, route }: ParentsPageProps) => {
     setisNicknameLoading(false);
     if (checkNicknameResult.data?.response === 'OK') {
       setIsNicknameNotDuplicated(true);
+      Toast.show({ type: 'success', text1: '사용 가능한 닉네임입니다.' });
       return;
     }
   }, [nickname]);
