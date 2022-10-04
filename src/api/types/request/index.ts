@@ -13,3 +13,10 @@ export interface IReqSignIn extends Pick<IReqSignUp, 'username' | 'password'> {}
 export interface IReqCheckId {
   username: string;
 }
+
+export interface IReqAuthDisabled {
+  disabledAuthReq: {
+    username: string;
+  };
+  multipartFile: any[];
+}
