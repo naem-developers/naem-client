@@ -11,6 +11,7 @@ import { View, StyleSheet, Image, Pressable } from 'react-native';
 import IcnArrowRight from '@/assets/icons/icn_arrow_right.svg';
 import usePostSignUp from '@/hooks/api/auth/usePostSignUp';
 import Toast from 'react-native-toast-message';
+import useFetchCheckNickname from '@/hooks/api/auth/useFetchCheckNickname';
 
 interface ParentsPageProps extends NativeStackScreenProps<SignUpStackParamList, 'ParentsPage'> {}
 
@@ -21,13 +22,38 @@ const ParentsPage = ({ navigation, route }: ParentsPageProps) => {
   const [nickname, setNickname] = useState<string>('');
   const [nicknameValidationMsg, setNicknameValidationMsg] = useState<string>('');
   const [recommendationCode, setRecommendationCode] = useState<string>('');
+  const [isNicknameNotDuplicated, setIsNicknameNotDuplicated] = useState<boolean | undefined>(
+    undefined,
+  );
+  const [isNicknameLoading, setisNicknameLoading] = useState<boolean>(false);
 
   const postSignUp = usePostSignUp();
+  const fetchCheckNickname = useFetchCheckNickname({ nickname }, !!nickname?.length, {
+    onError: (e) => {
+      if (e.response.data.error === 'CONFLICT' || e.repsonse.status === 409) {
+        setIsNicknameNotDuplicated(false);
+        setNicknameValidationMsg('중복된 닉네임이 존재합니다.');
+        return;
+      }
+      console.error('nickname check err, ', e);
+    },
+  });
 
-  const checkNickname = useCallback(() => {
+  const checkNickname = useCallback(async () => {
     const tempNicknameValidMsg = validateNickname(nickname);
-    setNicknameValidationMsg(tempNicknameValidMsg);
-    return !!tempNicknameValidMsg;
+    if (tempNicknameValidMsg?.length > 0) {
+      setNicknameValidationMsg(tempNicknameValidMsg);
+      return;
+    }
+    setNicknameValidationMsg('');
+
+    setisNicknameLoading(true);
+    const checkNicknameResult = await fetchCheckNickname.refetch();
+    setisNicknameLoading(false);
+    if (checkNicknameResult.data?.response === 'OK') {
+      setIsNicknameNotDuplicated(true);
+      return;
+    }
   }, [nickname]);
 
   const handlePressNext = useCallback(() => {
@@ -58,7 +84,12 @@ const ParentsPage = ({ navigation, route }: ParentsPageProps) => {
       currentStep={3}
       btnProps={{
         onPress: handlePressNext,
-        disabled: recommendationCode?.length === 0 || nickname?.length === 0 || !checkNickname,
+        disabled:
+          recommendationCode?.length === 0 ||
+          nickname?.length === 0 ||
+          !!nicknameValidationMsg?.length ||
+          !isNicknameNotDuplicated ||
+          isNicknameLoading,
       }}
     >
       <Title step={3} text="닉네임" />
