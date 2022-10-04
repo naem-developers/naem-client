@@ -3,6 +3,7 @@ import Text from '@/components/atoms/Text';
 import TextInput from '@/components/atoms/TextInput';
 import SignUpTemplate from '@/components/signup/signUpTemplate';
 import Title from '@/components/signup/title';
+import useFetchCheckNickname from '@/hooks/api/auth/useFetchCheckNickname';
 import usePostSignUp from '@/hooks/api/auth/usePostSignUp';
 import { SignUpStackParamList } from '@/navigators/SignUpStackNavigator';
 import { validateNickname } from '@/utils/validation';
@@ -19,13 +20,36 @@ const DisabledPage = ({ navigation, route }: DisabledPageProps) => {
   const [inputHeight, setInputHeight] = useState<number | undefined>();
   const [nickname, setNickname] = useState<string>('');
   const [nicknameValidationMsg, setNicknameValidationMsg] = useState<string>('');
+  const [isNicknameNotDuplicated, setIsNicknameNotDuplicated] = useState<boolean | undefined>(
+    undefined,
+  );
 
   const postSignUp = usePostSignUp();
+  const fetchCheckNickname = useFetchCheckNickname({ nickname }, !!nickname?.length, {
+    onError: (e) => {
+      if (e.response.data.error === 'CONFLICT' || e.repsonse.status === 409) {
+        setIsNicknameNotDuplicated(false);
+        setNicknameValidationMsg('중복된 닉네임이 존재합니다.');
+        return;
+      }
+      console.error('nickname check err, ', e);
+    },
+  });
 
-  const checkNickname = useCallback(() => {
+  const checkNickname = useCallback(async () => {
     const tempNicknameValidMsg = validateNickname(nickname);
-    setNicknameValidationMsg(tempNicknameValidMsg);
-    return !!tempNicknameValidMsg;
+    console.log({ tempNicknameValidMsg });
+    if (tempNicknameValidMsg?.length > 0) {
+      setNicknameValidationMsg(tempNicknameValidMsg);
+      return;
+    }
+    setNicknameValidationMsg('');
+
+    const checkNicknameResult = await fetchCheckNickname.refetch();
+    if (checkNicknameResult.data?.response === 'OK') {
+      setIsNicknameNotDuplicated(true);
+      return;
+    }
   }, [nickname]);
 
   const handlePressNext = useCallback(() => {
@@ -53,7 +77,11 @@ const DisabledPage = ({ navigation, route }: DisabledPageProps) => {
   return (
     <SignUpTemplate
       currentStep={3}
-      btnProps={{ onPress: handlePressNext, disabled: nickname?.length === 0 || !checkNickname }}
+      btnProps={{
+        onPress: handlePressNext,
+        disabled:
+          nickname?.length === 0 || !!nicknameValidationMsg?.length || !isNicknameNotDuplicated,
+      }}
     >
       <Title step={3} text="닉네임" />
       <Text sizeStyle="f14" weightStyle="medium" colorStyle="regText" style={styles.mt6}>

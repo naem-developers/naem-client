@@ -2,5 +2,6 @@
 
 export interface IResponse {
   response: string;
+  error: string;
   message: string;
 }
