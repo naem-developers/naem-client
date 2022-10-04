@@ -23,6 +23,7 @@ const DisabledPage = ({ navigation, route }: DisabledPageProps) => {
   const [isNicknameNotDuplicated, setIsNicknameNotDuplicated] = useState<boolean | undefined>(
     undefined,
   );
+  const [isNicknameLoading, setisNicknameLoading] = useState<boolean>(false);
 
   const postSignUp = usePostSignUp();
   const fetchCheckNickname = useFetchCheckNickname({ nickname }, !!nickname?.length, {
@@ -44,7 +45,9 @@ const DisabledPage = ({ navigation, route }: DisabledPageProps) => {
     }
     setNicknameValidationMsg('');
 
+    setisNicknameLoading(true);
     const checkNicknameResult = await fetchCheckNickname.refetch();
+    setisNicknameLoading(false);
     if (checkNicknameResult.data?.response === 'OK') {
       setIsNicknameNotDuplicated(true);
       return;
@@ -82,7 +85,7 @@ const DisabledPage = ({ navigation, route }: DisabledPageProps) => {
           nickname?.length === 0 ||
           !!nicknameValidationMsg?.length ||
           !isNicknameNotDuplicated ||
-          fetchCheckNickname.isLoading,
+          isNicknameLoading,
       }}
     >
       <Title step={3} text="닉네임" />
