@@ -38,7 +38,6 @@ const DisabledPage = ({ navigation, route }: DisabledPageProps) => {
 
   const checkNickname = useCallback(async () => {
     const tempNicknameValidMsg = validateNickname(nickname);
-    console.log({ tempNicknameValidMsg });
     if (tempNicknameValidMsg?.length > 0) {
       setNicknameValidationMsg(tempNicknameValidMsg);
       return;
