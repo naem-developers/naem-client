@@ -23,7 +23,11 @@ export default () => {
       applyToken(res.data.access_token);
       EncryptedStorage.setItem(
         USER_STORAGE_KEY,
-        JSON.stringify({ accessToken: res.data.access_token, refreshToken: res.data.refresh }),
+        JSON.stringify({
+          accessToken: res.data.access_token,
+          refreshToken: res.data.refresh_token,
+          expiresAt: res.data.accessTokenExp,
+        }),
       );
       navigation.dispatch(
         CommonActions.reset({ index: 0, routes: [{ name: 'MainTabNavigator' }] }),
