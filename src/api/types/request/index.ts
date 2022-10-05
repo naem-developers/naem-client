@@ -17,3 +17,9 @@ export interface IReqCheckId {
 export interface IReqCheckNickname {
   nickname: string;
 }
+
+export interface IReqPatchMemberProfile
+  extends Partial<{
+    introduction: string;
+    tag: Array<{ tagType: number }>;
+  }> {}
