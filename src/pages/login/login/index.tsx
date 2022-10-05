@@ -71,7 +71,7 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
 
   const signInWithKakao = useCallback(async (): Promise<void> => {
     if (__DEV__) {
-      handleAuth(true, false, { email: EXAMPLE_ID, id: EXAMPLE_PW });
+      handleAuth(true, true, { email: EXAMPLE_ID, id: EXAMPLE_PW });
       return;
     }
     try {
