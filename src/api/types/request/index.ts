@@ -23,3 +23,7 @@ export interface IReqPatchMemberProfile
     introduction: string;
     tag: Array<{ tagType: number }>;
   }> {}
+
+export interface IReqPostRegenerateToken {
+  refresh_token: string;
+}
