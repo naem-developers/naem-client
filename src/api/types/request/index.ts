@@ -14,6 +14,10 @@ export interface IReqCheckId {
   username: string;
 }
 
+export interface IReqCheckNickname {
+  nickname: string;
+}
+
 export interface IReqPatchMemberProfile
   extends Partial<{
     introduction: string;

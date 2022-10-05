@@ -1,7 +1,8 @@
 import axios from 'axios';
 // @ts-ignore
 import { API_URL } from 'react-native-dotenv';
-import { IReqCheckId, IReqPatchMemberProfile, IReqSignIn, IReqSignUp } from './types/request';
+import { IReqCheckId, IReqPatchMemberProfile, IReqCheckNickname, IReqSignIn, IReqSignUp } from './types/request';
+
 
 export const client = axios.create({ baseURL: API_URL });
 
@@ -14,7 +15,10 @@ const API = {
     return client.post('/auth/signIn', body);
   },
   getCheckId(params: IReqCheckId) {
-    return client.get('/auth/checkid', { params });
+    return client.get('/auth/check/username', { params });
+  },
+  getCheckNickname(params: IReqCheckNickname) {
+    return client.get('/auth/check/nickname', { params });
   },
   getMemberProfile() {
     return client.get('/member/profile');

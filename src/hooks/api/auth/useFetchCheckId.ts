@@ -1,11 +1,11 @@
 import API from '@/api';
+import { IResponse } from '@/api/types';
 import { IReqCheckId } from '@/api/types/request';
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEY from '../keys';
 
 export default (params: IReqCheckId, enabled: boolean = false) => {
-  // TODO: return type 정의하기
-  const fetcher = async (): Promise<any> => {
+  const fetcher = async (): Promise<IResponse> => {
     const res = await API.getCheckId(params);
     return res.data;
   };
