@@ -20,6 +20,7 @@ import { useRecoilState } from 'recoil';
 import { globalState } from '@/store/atoms';
 // @ts-ignore
 import { EXAMPLE_ID, EXAMPLE_PW } from 'react-native-dotenv';
+import { AppleButton } from '@invertase/react-native-apple-authentication';
 
 interface KakaoResponse extends KakaoOAuthToken, KakaoProfile {}
 
@@ -86,6 +87,8 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
     }
   }, [handleAuth]);
 
+  const signInWithApple = () => {};
+
   return (
     <SafeAreaView style={styles.container}>
       <Image source={require('@/assets/images/img_background_logo.png')} style={styles.bgLogo} />
@@ -115,6 +118,11 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
         <TouchableOpacity style={styles.ctaBtn} onPress={signInWithKakao}>
           <Text sizeStyle="f16" weightStyle="semiBold" colorStyle="strongText">
             카카오톡으로 빠른 시작 👉🏻
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.ctaBtn, styles.appleBgColor]} onPress={signInWithApple}>
+          <Text sizeStyle="f16" weightStyle="semiBold" colorStyle="white">
+            Apple ID로 로그인
           </Text>
         </TouchableOpacity>
       </KeyboardAwareScrollView>
@@ -153,4 +161,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 5,
   },
+  appleBgColor: { marginTop: 16, backgroundColor: THEME.STRONG_TEXT },
 });
