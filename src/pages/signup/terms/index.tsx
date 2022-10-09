@@ -59,7 +59,7 @@ const TermsPage = ({ navigation, route }: TermsPageProps) => {
         회원가입 전 이용약관에 동의해주세요
       </Text>
       <Pressable style={styles.checkAllContainer} onPress={()=>{
-        setCheckedList(ALL_CHECKED_LIST)
+        setCheckedList(isAllChecked?[]:ALL_CHECKED_LIST)
       }}>
         <Checkbox.Android
             status={isAllChecked ? 'checked' : 'unchecked'}
