@@ -33,6 +33,42 @@ const TermsPage = ({ navigation, route }: TermsPageProps) => {
   const [checkedList, setCheckedList]=useState<string[]>([]);
 
   const isAllChecked=useMemo(()=>Object.values(ALL_CHECKED_LIST).every(val=>checkedList.includes(val)), [checkedList])
+  const isTermListAllChecked=useMemo(()=>Object.values(SERVICE_TERM_LIST).every(val=>checkedList.includes(val)), [checkedList])
+  const isPersonalInfoListAllChecked=useMemo(()=>Object.values(PERSONAL_INFORMATION_LIST).every(val=>checkedList.includes(val)), [checkedList])
+
+  const handleCheckPressTerms=useCallback(()=>{
+    if(isTermListAllChecked){
+      Object.values(SERVICE_TERM_LIST).forEach(termItem=>{
+        if(checkedList.includes(termItem)){
+          setCheckedList(v=>v.filter(item=>item!==termItem))
+        }
+      })
+    }
+    else{
+      Object.values(SERVICE_TERM_LIST).forEach(termItem=>{
+        if(!checkedList.includes(termItem)){
+          setCheckedList(v=>[...v, termItem])
+        }
+      })
+    }
+  }, [checkedList, isTermListAllChecked])
+
+  const handleCheckPressPersonalInfo=useCallback(()=>{
+    if(isPersonalInfoListAllChecked){
+      Object.values(PERSONAL_INFORMATION_LIST).forEach(termItem=>{
+        if(checkedList.includes(termItem)){
+          setCheckedList(v=>v.filter(item=>item!==termItem))
+        }
+      })
+    }
+    else{
+      Object.values(PERSONAL_INFORMATION_LIST).forEach(termItem=>{
+        if(!checkedList.includes(termItem)){
+          setCheckedList(v=>[...v, termItem])
+        }
+      })
+    }
+  }, [checkedList, isTermListAllChecked])
 
   const handleCheckPress=useCallback((checkedItem:string)=>{
     if(!Object.values(SERVICE_TERM_LIST).includes(checkedItem)&&!Object.values(PERSONAL_INFORMATION_LIST).includes(checkedItem)) return;
@@ -71,10 +107,11 @@ const TermsPage = ({ navigation, route }: TermsPageProps) => {
       </Pressable>
       <View style={styles.checkBoxContainer}>
         <View style={styles.row}>
+          <Pressable onPress={handleCheckPressTerms}>
           <Checkbox.Android
-            status={Object.values(SERVICE_TERM_LIST).every(val=>checkedList.includes(val)) ? 'checked' : 'unchecked'}
+            status={isTermListAllChecked ? 'checked' : 'unchecked'}
             uncheckedColor="#c9c9c9"
-          />
+          /></Pressable>
           <Text sizeStyle="f14" weightStyle="medium" colorStyle='lightText'>
             이용약관 >
           </Text>
@@ -91,10 +128,11 @@ const TermsPage = ({ navigation, route }: TermsPageProps) => {
         </Pressable>
         })}
         <View style={[styles.row, styles.mt28]}>
+          <Pressable onPress={handleCheckPressPersonalInfo}>
           <Checkbox.Android
-            status={Object.values(PERSONAL_INFORMATION_LIST).every(val=>checkedList.includes(val)) ? 'checked' : 'unchecked'}
+            status={ isPersonalInfoListAllChecked? 'checked' : 'unchecked'}
             uncheckedColor="#c9c9c9"
-          />
+          /></Pressable>
           <Text sizeStyle="f14" weightStyle="medium" colorStyle='lightText'>
             개인정보 처리 및 소통 >
           </Text>
