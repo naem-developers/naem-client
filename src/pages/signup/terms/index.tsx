@@ -6,7 +6,7 @@ import { SERVICE_TERMS_HTML } from '@/constants/terms';
 import { SignUpStackParamList } from '@/navigators/SignUpStackNavigator';
 import { THEME } from '@/theme';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import  React, { useCallback, useState } from 'react';
+import  React, { useCallback, useMemo, useState } from 'react';
 import { Pressable, StyleSheet, useWindowDimensions, View } from 'react-native';
 import AutoHeightWebView from 'react-native-autoheight-webview';
 import { Checkbox } from 'react-native-paper';
@@ -24,13 +24,15 @@ const PERSONAL_INFORMATION_LIST = {
   NOTICE: '약관 및 운영정책 공지',
 };
 
+const ALL_CHECKED_LIST=[...Object.values(SERVICE_TERM_LIST), ...Object.values(PERSONAL_INFORMATION_LIST)];
 
 interface TermsPageProps extends NativeStackScreenProps<SignUpStackParamList, 'TermsPage'> {}
 
 const TermsPage = ({ navigation, route }: TermsPageProps) => {
-  const ALL_CHECKED_LIST=[...Object.values(SERVICE_TERM_LIST), ...Object.values(PERSONAL_INFORMATION_LIST)];
 
   const [checkedList, setCheckedList]=useState<string[]>([]);
+
+  const isAllChecked=useMemo(()=>Object.values(ALL_CHECKED_LIST).every(val=>checkedList.includes(val)), [checkedList])
 
   const handleCheckPress=useCallback((checkedItem:string)=>{
     if(!Object.values(SERVICE_TERM_LIST).includes(checkedItem)&&!Object.values(PERSONAL_INFORMATION_LIST).includes(checkedItem)) return;
@@ -49,7 +51,8 @@ const TermsPage = ({ navigation, route }: TermsPageProps) => {
       btnProps={{
         onPress: () =>
           navigation.navigate('UserTypeSelectPage', { loginInfo: route.params.loginInfo }),
-      }}
+        disabled:!isAllChecked
+        }}
     >
       <Title step={1} text="이용약관" />
       <Text sizeStyle="f14" weightStyle="medium" colorStyle="regText" style={styles.mt6}>
@@ -59,7 +62,7 @@ const TermsPage = ({ navigation, route }: TermsPageProps) => {
         setCheckedList(ALL_CHECKED_LIST)
       }}>
         <Checkbox.Android
-            status={Object.values(ALL_CHECKED_LIST).every(val=>checkedList.includes(val)) ? 'checked' : 'unchecked'}
+            status={isAllChecked ? 'checked' : 'unchecked'}
             uncheckedColor="#c9c9c9"
         />
         <Text sizeStyle="f14" weightStyle="medium" colorStyle='strongText'>
