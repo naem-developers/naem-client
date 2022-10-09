@@ -6,7 +6,7 @@ import { SERVICE_TERMS_HTML } from '@/constants/terms';
 import { SignUpStackParamList } from '@/navigators/SignUpStackNavigator';
 import { THEME } from '@/theme';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import * as React from 'react';
+import  React, { useCallback, useState } from 'react';
 import { Pressable, StyleSheet, useWindowDimensions, View } from 'react-native';
 import AutoHeightWebView from 'react-native-autoheight-webview';
 import { Checkbox } from 'react-native-paper';
@@ -18,15 +18,31 @@ const SERVICE_TERM_LIST = {
   SERVICE_WITHDRAWL_POLICY: '서비스 탈퇴 정책',
 };
 
-const PERSONAL_INFORMATION = {
+const PERSONAL_INFORMATION_LIST = {
   PERSONAL_INFO_POLICY: '개인정보 처리 방침',
   FEEDBACK: '피드백 및 소통',
   NOTICE: '약관 및 운영정책 공지',
 };
 
+
 interface TermsPageProps extends NativeStackScreenProps<SignUpStackParamList, 'TermsPage'> {}
 
 const TermsPage = ({ navigation, route }: TermsPageProps) => {
+  const ALL_CHECKED_LIST=[...Object.values(SERVICE_TERM_LIST), ...Object.values(PERSONAL_INFORMATION_LIST)];
+
+  const [checkedList, setCheckedList]=useState<string[]>([]);
+
+  const handleCheckPress=useCallback((checkedItem:string)=>{
+    if(!Object.values(SERVICE_TERM_LIST).includes(checkedItem)&&!Object.values(PERSONAL_INFORMATION_LIST).includes(checkedItem)) return;
+
+
+    if(checkedList.includes(checkedItem)){
+      setCheckedList(checkedList.filter(item=>item!==checkedItem))
+    }else{
+      setCheckedList([...checkedList, checkedItem])
+    }
+  }, [checkedList])
+
   return (
     <SignUpTemplate
       currentStep={1}
@@ -39,10 +55,11 @@ const TermsPage = ({ navigation, route }: TermsPageProps) => {
       <Text sizeStyle="f14" weightStyle="medium" colorStyle="regText" style={styles.mt6}>
         회원가입 전 이용약관에 동의해주세요
       </Text>
-      <Pressable style={styles.checkAllContainer}>
+      <Pressable style={styles.checkAllContainer} onPress={()=>{
+        setCheckedList(ALL_CHECKED_LIST)
+      }}>
         <Checkbox.Android
-          status="checked"
-          // status={checkedIdxList.length === CHECK_LIST.length ? 'checked' : 'unchecked'}
+          status={checkedList===ALL_CHECKED_LIST ? 'checked' : 'unchecked'}
           uncheckedColor="#c9c9c9"
         />
         <Text sizeStyle="f14" weightStyle="medium" colorStyle='strongText'>
@@ -52,8 +69,8 @@ const TermsPage = ({ navigation, route }: TermsPageProps) => {
       <View style={styles.checkBoxContainer}>
         <View style={styles.row}>
           <Checkbox.Android
-            status="checked"
-            // status={checkedIdxList.length === CHECK_LIST.length ? 'checked' : 'unchecked'}
+          status='checked'
+            // status={checkedList.includes(PERSONAL_INFORMATION_LIST) ? 'checked' : 'unchecked'}
             uncheckedColor="#c9c9c9"
           />
           <Text sizeStyle="f14" weightStyle="medium" colorStyle='lightText'>
@@ -61,10 +78,9 @@ const TermsPage = ({ navigation, route }: TermsPageProps) => {
           </Text>
         </View>
         {Object.values(SERVICE_TERM_LIST).map((item, index)=>{
-          return <Pressable key={`${item}-${index}`} style={[styles.row, styles.ml20]}>
+          return <Pressable key={`${item}-${index}`} style={[styles.row, styles.ml20]} onPress={()=>handleCheckPress(item)}>
           <Checkbox.Android
-            status="checked"
-            // status={checkedIdxList.length === CHECK_LIST.length ? 'checked' : 'unchecked'}
+            status={checkedList.includes(item) ? 'checked' : 'unchecked'}
             uncheckedColor="#c9c9c9"
           />
           <Text sizeStyle="f14" weightStyle="medium" colorStyle='lightText'>
@@ -82,11 +98,10 @@ const TermsPage = ({ navigation, route }: TermsPageProps) => {
             개인정보 처리 및 소통 >
           </Text>
         </View>
-        {Object.values(PERSONAL_INFORMATION).map((item, index)=>{
-          return <Pressable key={`${item}-${index}`} style={[styles.row, styles.ml20]}>
+        {Object.values(PERSONAL_INFORMATION_LIST).map((item, index)=>{
+          return <Pressable key={`${item}-${index}`} style={[styles.row, styles.ml20]} onPress={()=>handleCheckPress(item)}>
           <Checkbox.Android
-            status="checked"
-            // status={checkedIdxList.length === CHECK_LIST.length ? 'checked' : 'unchecked'}
+            status={checkedList.includes(item) ? 'checked' : 'unchecked'}
             uncheckedColor="#c9c9c9"
           />
           <Text sizeStyle="f14" weightStyle="medium" colorStyle='lightText'>
