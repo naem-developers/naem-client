@@ -1,14 +1,11 @@
 import Text from '@/components/atoms/Text';
 import SignUpTemplate from '@/components/signup/signUpTemplate';
 import Title from '@/components/signup/title';
-import { H_PADDING } from '@/constants';
-import { SERVICE_TERMS_HTML } from '@/constants/terms';
 import { SignUpStackParamList } from '@/navigators/SignUpStackNavigator';
 import { THEME } from '@/theme';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useCallback, useMemo, useState } from 'react';
 import { Pressable, StyleSheet, useWindowDimensions, View } from 'react-native';
-import AutoHeightWebView from 'react-native-autoheight-webview';
 import { Checkbox } from 'react-native-paper';
 import IcnArrowRight from '@/assets/icons/icn_arrow_right.svg';
 
@@ -191,10 +188,6 @@ const TermsPage = ({ navigation, route }: TermsPageProps) => {
           );
         })}
       </View>
-      {/* <AutoHeightWebView
-        containerStyle={{ width: width - H_PADDING * 2 }}
-        source={{ html: SERVICE_TERMS_HTML }}
-      /> */}
     </SignUpTemplate>
   );
 };
