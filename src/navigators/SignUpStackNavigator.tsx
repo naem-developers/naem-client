@@ -7,6 +7,7 @@ import UserTypeSelectPage from '@/pages/signup/userTypeSelect';
 import DisabledPage from '@/pages/signup/disabled';
 import SignUpCompletePage from '@/pages/signup/signUpComplete';
 import ParentsPage from '@/pages/signup/parents';
+import ServiceTermsPage from '@/pages/profile/serviceTerms';
 
 export interface LoginInfo {
   loginId: string;
@@ -21,6 +22,7 @@ export type SignUpStackParamList = {
   DisabledPage: { loginInfo: LoginInfo };
   ParentsPage: { loginInfo: LoginInfo };
   SignUpCompletePage: undefined;
+  ServiceTermsPage: undefined;
 };
 
 const Stack = createNativeStackNavigator();
@@ -38,6 +40,7 @@ const SignUpStackNavigator = () => {
       <Stack.Screen name="ParentsPage" component={ParentsPage} />
       <Stack.Screen name="SignUpCompletePage" component={SignUpCompletePage} />
       <Stack.Screen name="DisabilityCertificatePage" component={DisabilityCertificatePage} />
+      <Stack.Screen name="ServiceTermsPage" component={ServiceTermsPage} />
     </Stack.Navigator>
   );
 };

@@ -101,6 +101,10 @@ const TermsPage = ({ navigation, route }: TermsPageProps) => {
     [checkedList],
   );
 
+  const navigateToServiceTerms = useCallback(() => {
+    navigation.navigate('ServiceTermsPage');
+  }, []);
+
   return (
     <SignUpTemplate
       currentStep={1}
@@ -131,12 +135,12 @@ const TermsPage = ({ navigation, route }: TermsPageProps) => {
               uncheckedColor="#c9c9c9"
             />
           </Pressable>
-          <View style={styles.row}>
+          <Pressable style={styles.row} onPress={navigateToServiceTerms}>
             <Text sizeStyle="f14" weightStyle="medium" colorStyle="lightText" style={styles.mr4}>
               이용약관
             </Text>
             <IcnArrowRight width={10} height={10} />
-          </View>
+          </Pressable>
         </View>
         {Object.values(SERVICE_TERM_LIST).map((item, index) => {
           return (
@@ -162,12 +166,12 @@ const TermsPage = ({ navigation, route }: TermsPageProps) => {
               uncheckedColor="#c9c9c9"
             />
           </Pressable>
-          <View style={styles.row}>
+          <Pressable style={styles.row} onPress={navigateToServiceTerms}>
             <Text sizeStyle="f14" weightStyle="medium" colorStyle="lightText" style={styles.mr4}>
               개인정보 처리 및 소통
             </Text>
             <IcnArrowRight width={10} height={10} />
-          </View>
+          </Pressable>
         </View>
         {Object.values(PERSONAL_INFORMATION_LIST).map((item, index) => {
           return (
