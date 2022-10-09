@@ -36,6 +36,10 @@ const TermsPage = ({ navigation, route }: TermsPageProps) => {
   const isTermListAllChecked=useMemo(()=>Object.values(SERVICE_TERM_LIST).every(val=>checkedList.includes(val)), [checkedList])
   const isPersonalInfoListAllChecked=useMemo(()=>Object.values(PERSONAL_INFORMATION_LIST).every(val=>checkedList.includes(val)), [checkedList])
 
+  const handleCheckPressAll=useCallback(()=>{
+    setCheckedList(isAllChecked?[]:ALL_CHECKED_LIST)
+  }, [isAllChecked])
+
   const handleCheckPressTerms=useCallback(()=>{
     if(isTermListAllChecked){
       Object.values(SERVICE_TERM_LIST).forEach(termItem=>{
@@ -94,9 +98,7 @@ const TermsPage = ({ navigation, route }: TermsPageProps) => {
       <Text sizeStyle="f14" weightStyle="medium" colorStyle="regText" style={styles.mt6}>
         회원가입 전 이용약관에 동의해주세요
       </Text>
-      <Pressable style={styles.checkAllContainer} onPress={()=>{
-        setCheckedList(isAllChecked?[]:ALL_CHECKED_LIST)
-      }}>
+      <Pressable style={styles.checkAllContainer} onPress={handleCheckPressAll}>
         <Checkbox.Android
             status={isAllChecked ? 'checked' : 'unchecked'}
             uncheckedColor="#c9c9c9"
