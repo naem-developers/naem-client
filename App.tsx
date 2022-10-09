@@ -23,6 +23,7 @@ import { applyToken } from '@/utils/auth';
 import { RecoilRoot } from 'recoil';
 import SplashScreen from 'react-native-splash-screen';
 import LoadingTemplate from '@/components/templates/LoadingTemplate';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const queryClient = new QueryClient();
 
@@ -35,6 +36,9 @@ function App() {
       applyToken(authDataInJsonFormat.accessToken);
     };
     handleToken();
+
+    MaterialCommunityIcons.loadFont();
+
     SplashScreen.hide();
   }, []);
 
