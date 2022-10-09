@@ -59,8 +59,8 @@ const TermsPage = ({ navigation, route }: TermsPageProps) => {
         setCheckedList(ALL_CHECKED_LIST)
       }}>
         <Checkbox.Android
-          status={checkedList===ALL_CHECKED_LIST ? 'checked' : 'unchecked'}
-          uncheckedColor="#c9c9c9"
+            status={Object.values(ALL_CHECKED_LIST).every(val=>checkedList.includes(val)) ? 'checked' : 'unchecked'}
+            uncheckedColor="#c9c9c9"
         />
         <Text sizeStyle="f14" weightStyle="medium" colorStyle='strongText'>
           모두 동의
@@ -69,8 +69,7 @@ const TermsPage = ({ navigation, route }: TermsPageProps) => {
       <View style={styles.checkBoxContainer}>
         <View style={styles.row}>
           <Checkbox.Android
-          status='checked'
-            // status={checkedList.includes(PERSONAL_INFORMATION_LIST) ? 'checked' : 'unchecked'}
+            status={Object.values(SERVICE_TERM_LIST).every(val=>checkedList.includes(val)) ? 'checked' : 'unchecked'}
             uncheckedColor="#c9c9c9"
           />
           <Text sizeStyle="f14" weightStyle="medium" colorStyle='lightText'>
@@ -90,8 +89,7 @@ const TermsPage = ({ navigation, route }: TermsPageProps) => {
         })}
         <View style={[styles.row, styles.mt28]}>
           <Checkbox.Android
-            status="checked"
-            // status={checkedIdxList.length === CHECK_LIST.length ? 'checked' : 'unchecked'}
+            status={Object.values(PERSONAL_INFORMATION_LIST).every(val=>checkedList.includes(val)) ? 'checked' : 'unchecked'}
             uncheckedColor="#c9c9c9"
           />
           <Text sizeStyle="f14" weightStyle="medium" colorStyle='lightText'>
