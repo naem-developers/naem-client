@@ -1,7 +1,7 @@
 import axios from 'axios';
 // @ts-ignore
 import { API_URL } from 'react-native-dotenv';
-import { IReqSaveBoard } from './types/board';
+import { IReqGetPosts, IReqSaveBoard } from './types/board';
 import { IReqCheckId, IReqSignIn, IReqSignUp } from './types/request';
 
 export const client = axios.create({ baseURL: API_URL });
@@ -24,6 +24,9 @@ const API = {
   //board
   postSaveBoard(body: IReqSaveBoard) {
     return client.post('/board/save', body);
+  },
+  getpostsData(params: IReqGetPosts) {
+    return client.get('/board/list', { params });
   },
 };
 

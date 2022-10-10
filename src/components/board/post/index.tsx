@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FlatList, StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native';
 import { SORT_MENU } from '@/constants';
 import ChooseSortView from '@components/board/post/ChooseSortView';
@@ -6,16 +6,28 @@ import PostHeader from '@components/board/post/PostHeader';
 import Post from '@components/board/post/Post';
 import { postedData } from '@/types';
 import ScrollTopButton from '@/components/molecules/ScrollTopButton';
+import { BoardType } from '@/types/board';
+import API from '@/api';
+import { useFocusEffect } from '@react-navigation/native';
 
 interface ProstViewProps {
-  postDataArray: postedData[];
+  boardType: BoardType;
   selectedKeywords: string[];
 }
 
-const PostView = ({ postDataArray, selectedKeywords }: ProstViewProps) => {
+const PostView = ({ boardType, selectedKeywords }: ProstViewProps) => {
   const [visible, setVisible] = useState<boolean>(false);
   const [sortValue, setSortValue] = useState<string>(SORT_MENU[0]);
   const flatListRef = useRef<FlatList>(null);
+
+  useFocusEffect(() => {
+    API.getpostsData({
+      cursor: 0,
+    }).then((result) => {
+      console.log('result', result);
+    });
+  });
+
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
 
@@ -36,7 +48,7 @@ const PostView = ({ postDataArray, selectedKeywords }: ProstViewProps) => {
         commonRef={flatListRef}
         scrollAction={() => flatListRef.current?.scrollToOffset({ animated: true, offset: 0 })}
       />
-      <FlatList
+      {/* <FlatList
         data={postDataArray}
         ref={flatListRef}
         contentInset={{ bottom: 200 }}
@@ -44,7 +56,7 @@ const PostView = ({ postDataArray, selectedKeywords }: ProstViewProps) => {
         renderItem={({ item }: { item: postedData }) => {
           return <Post postedData={item} selectedKeywords={selectedKeywords} />;
         }}
-      />
+      /> */}
     </View>
   );
 };

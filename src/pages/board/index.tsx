@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { SceneMap, TabBar, TabView } from 'react-native-tab-view';
 import Board from '@pages/board/boards/Board';
 import { THEME } from '@/theme';
+import { BENEFIT, FREE, HOT, PROTECTOR, REHABILITATION, TOGHETHER } from '@/types/board';
 
 interface BoardPageProps {}
 
@@ -18,14 +19,13 @@ const BoardPage = (props: BoardPageProps) => {
     { key: 'welfare', title: '복지혜택 게시판' },
     { key: 'together', title: '같이해요 게시판' },
   ]);
-
   const renderScene = SceneMap({
-    hot: () => <Board />,
-    free: () => <Board />,
-    guardian: () => <Board />,
-    rehabilitation: () => <Board />,
-    welfare: () => <Board />,
-    together: () => <Board />,
+    hot: () => <Board boardType={HOT} />,
+    free: () => <Board boardType={FREE} />,
+    guardian: () => <Board boardType={PROTECTOR} />,
+    rehabilitation: () => <Board boardType={REHABILITATION} />,
+    welfare: () => <Board boardType={BENEFIT} />,
+    together: () => <Board boardType={TOGHETHER} />,
   });
 
   return (

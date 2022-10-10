@@ -1,47 +1,15 @@
 import BoardSearchBar from '@/components/board/boardSearchBar';
 import PostView from '@/components/board/post';
+import useGetPosts from '@/hooks/api/board/useGetPosts';
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Text, StyleSheet, View } from 'react-native';
+import { BoardType, PROTECTOR } from '@/types/board';
+import { postedData } from '@/types';
 
-const DumyPostData = [
-  {
-    id: 1,
-    type: 'hot',
-    title: '안녕하세요, 남양주시에 살고 있습니다',
-    body: '안녕하세요. 남양주시에 살고 있습니다. 혹시 체육관어쩌구저쩌구관어쩌구저쩌구관어쩌구저쩌구',
-    userId: 'fsdafs123',
-    tags: ['지적장애', '간장애', '기타'],
-    like: 10,
-    comment: 2,
-    createdAt: new Date(),
-  },
-  {
-    id: 2,
-    type: 'hot',
-    title: '안녕하세요, 남양주시에 살고 있습니다',
-    body: '안녕하세요. 남양주시에 살고 있습니다. 혹시 체육관어쩌구저쩌구관어쩌구저쩌구관어쩌구저쩌구',
-    userId: 'fsdafs123',
-    tags: ['지적장애', '간장애', '기타'],
-    like: 10,
-    comment: 2,
-    createdAt: new Date(),
-  },
-  {
-    id: 3,
-    type: 'hot',
-    title: '안녕하세요, 남양주시에 살고 있습니다',
-    body: '안녕하세요. 남양주시에 살고 있습니다. 혹시 체육관어쩌구저쩌구관어쩌구저쩌구관어쩌구저쩌구',
-    userId: 'fsdafs123',
-    tags: ['지적장애', '간장애', '기타'],
-    like: 10,
-    comment: 2,
-    createdAt: new Date(),
-  },
-];
-
-const HotBoard = () => {
+const HotBoard = ({ boardType }: { boardType: BoardType }) => {
   const [selectedKeywords, setSelectedKeywords] = useState<Array<string>>([]);
   const [searchValue, setSearchValue] = useState<string>();
+  // await API.getpostsData(params);
   return (
     <View style={styles.container}>
       <BoardSearchBar
@@ -50,7 +18,7 @@ const HotBoard = () => {
         setSearchValue={setSearchValue}
         setSelectedKeywords={setSelectedKeywords}
       />
-      <PostView postDataArray={DumyPostData} selectedKeywords={selectedKeywords} />
+      <PostView boardType={boardType} selectedKeywords={selectedKeywords} />
     </View>
   );
 };

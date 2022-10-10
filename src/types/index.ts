@@ -1,15 +1,15 @@
+import { BoardType } from './board';
+
 export type postedData = {
-  id: number;
-  type: string;
+  boardType: BoardType;
+  content: string;
+  createdDate: string;
+  postId: number;
   title: string;
-  body: string;
-  userId: string;
-  tags: string[];
-  like: number;
-  comment: number;
-  boardType?: string;
-  createdAt: Date;
-  comments: Array<Comments>;
+  writerName: string;
+  like?: number;
+  comment?: any;
+  tags?: Array<string>;
 };
 
 export type Comments = {

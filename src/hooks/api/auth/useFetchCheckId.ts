@@ -1,7 +1,7 @@
 import API from '@/api';
 import { IReqCheckId } from '@/api/types/request';
 import { useQuery } from '@tanstack/react-query';
-import QUERY_KEY from '../keys';
+import { QUERY_KEY } from '../keys';
 
 export default (params: IReqCheckId, enabled: boolean = false) => {
   // TODO: return type 정의하기

@@ -1,6 +1,8 @@
-enum QUERY_KEY {
+export enum QUERY_KEY {
   FETCH_CHECK_ID = 'fetchCheckId',
   FETCH_MEMBER_PROFILE = 'fetchMemberProfile',
 }
 
-export default QUERY_KEY;
+export enum BOARD_KEY {
+  GET_POST_DATA = 'getPostData',
+}

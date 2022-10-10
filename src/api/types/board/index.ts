@@ -1,3 +1,5 @@
+import { BoardType } from '@/types/board';
+
 export interface IReqSaveBoard {
   requestDto: {
     title: string;
@@ -7,4 +9,13 @@ export interface IReqSaveBoard {
       boardType?: number;
     };
   };
+}
+
+export interface IReqGetPosts {
+  cursor: number;
+  pageSize?: number;
+  offset?: number;
+  boardType?: BoardType;
+  keyword?: string;
+  sort?: boolean;
 }
