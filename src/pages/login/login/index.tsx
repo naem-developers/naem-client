@@ -20,6 +20,10 @@ import { useRecoilState } from 'recoil';
 import { globalState } from '@/store/atoms';
 // @ts-ignore
 import { EXAMPLE_ID, EXAMPLE_PW } from 'react-native-dotenv';
+import appleAuth, {
+  appleAuthAndroid,
+  AppleButton,
+} from '@invertase/react-native-apple-authentication';
 
 interface KakaoResponse extends KakaoOAuthToken, KakaoProfile {}
 
@@ -86,6 +90,26 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
     }
   }, [handleAuth]);
 
+  const signInWithApple = async () => {
+    const appleAuthRequestResponse = await appleAuth.performRequest({
+      requestedOperation: appleAuth.Operation.LOGIN,
+      // Note: it appears putting FULL_NAME first is important, see issue #293
+      requestedScopes: [appleAuth.Scope.FULL_NAME, appleAuth.Scope.EMAIL],
+    });
+
+    // get current authentication state for user
+    // /!\ This method must be tested on a real device. On the iOS simulator it always throws an error.
+    const credentialState = await appleAuth.getCredentialStateForUser(
+      appleAuthRequestResponse.user,
+    );
+
+    // use credentialState response to ensure the user is authenticated
+    if (credentialState === appleAuth.State.AUTHORIZED) {
+      // user is authenticated
+      // TODO: apple login 이후 로직 찾아보기
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Image source={require('@/assets/images/img_background_logo.png')} style={styles.bgLogo} />
@@ -117,6 +141,13 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
             카카오톡으로 빠른 시작 👉🏻
           </Text>
         </TouchableOpacity>
+        {appleAuthAndroid.isSupported && (
+          <TouchableOpacity style={[styles.ctaBtn, styles.appleBgColor]} onPress={signInWithApple}>
+            <Text sizeStyle="f16" weightStyle="semiBold" colorStyle="white">
+              Apple ID로 로그인
+            </Text>
+          </TouchableOpacity>
+        )}
       </KeyboardAwareScrollView>
     </SafeAreaView>
   );
@@ -153,4 +184,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 5,
   },
+  appleBgColor: { marginTop: 16, backgroundColor: THEME.STRONG_TEXT },
 });
